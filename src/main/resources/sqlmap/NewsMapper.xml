@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.fullbuy.dao.NewsMapper">
+  <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.News">
+    <id column="newsId" jdbcType="INTEGER" property="newsid" />
+    <result column="newsDetail" jdbcType="VARCHAR" property="newsdetail" />
+    <result column="newsImgPath" jdbcType="VARCHAR" property="newsimgpath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    newsId, newsDetail, newsImgPath
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from news
+    where newsId = #{newsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from news
+    where newsId = #{newsid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.we.fullbuy.pojo.News">
+    insert into news (newsId, newsDetail, newsImgPath
+      )
+    values (#{newsid,jdbcType=INTEGER}, #{newsdetail,jdbcType=VARCHAR}, #{newsimgpath,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.News">
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="newsid != null">
+        newsId,
+      </if>
+      <if test="newsdetail != null">
+        newsDetail,
+      </if>
+      <if test="newsimgpath != null">
+        newsImgPath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="newsid != null">
+        #{newsid,jdbcType=INTEGER},
+      </if>
+      <if test="newsdetail != null">
+        #{newsdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="newsimgpath != null">
+        #{newsimgpath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.News">
+    update news
+    <set>
+      <if test="newsdetail != null">
+        newsDetail = #{newsdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="newsimgpath != null">
+        newsImgPath = #{newsimgpath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where newsId = #{newsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.News">
+    update news
+    set newsDetail = #{newsdetail,jdbcType=VARCHAR},
+      newsImgPath = #{newsimgpath,jdbcType=VARCHAR}
+    where newsId = #{newsid,jdbcType=INTEGER}
+  </update>
+</mapper>

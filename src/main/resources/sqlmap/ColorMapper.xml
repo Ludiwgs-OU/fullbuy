@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.fullbuy.dao.ColorMapper">
+  <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Color">
+    <id column="colorId" jdbcType="INTEGER" property="colorid" />
+    <result column="colorName" jdbcType="VARCHAR" property="colorname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    colorId, colorName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from color
+    where colorId = #{colorid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from color
+    where colorId = #{colorid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.we.fullbuy.pojo.Color">
+    insert into color (colorId, colorName)
+    values (#{colorid,jdbcType=INTEGER}, #{colorname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Color">
+    insert into color
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="colorid != null">
+        colorId,
+      </if>
+      <if test="colorname != null">
+        colorName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="colorid != null">
+        #{colorid,jdbcType=INTEGER},
+      </if>
+      <if test="colorname != null">
+        #{colorname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Color">
+    update color
+    <set>
+      <if test="colorname != null">
+        colorName = #{colorname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where colorId = #{colorid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Color">
+    update color
+    set colorName = #{colorname,jdbcType=VARCHAR}
+    where colorId = #{colorid,jdbcType=INTEGER}
+  </update>
+</mapper>

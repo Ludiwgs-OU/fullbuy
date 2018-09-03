@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.fullbuy.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Order">
+    <id column="orderId" jdbcType="VARCHAR" property="orderid" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="skuId" jdbcType="INTEGER" property="skuid" />
+    <result column="totalPrice" jdbcType="DOUBLE" property="totalprice" />
+    <result column="addressId" jdbcType="INTEGER" property="addressid" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="orderDate" jdbcType="TIMESTAMP" property="orderdate" />
+    <result column="postfee" jdbcType="INTEGER" property="postfee" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    orderId, userId, skuId, totalPrice, addressId, num, orderDate, postfee
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where orderId = #{orderid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order
+    where orderId = #{orderid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.we.fullbuy.pojo.Order">
+    insert into order (orderId, userId, skuId, 
+      totalPrice, addressId, num, 
+      orderDate, postfee)
+    values (#{orderid,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{skuid,jdbcType=INTEGER}, 
+      #{totalprice,jdbcType=DOUBLE}, #{addressid,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, 
+      #{orderdate,jdbcType=TIMESTAMP}, #{postfee,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        orderId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="skuid != null">
+        skuId,
+      </if>
+      <if test="totalprice != null">
+        totalPrice,
+      </if>
+      <if test="addressid != null">
+        addressId,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="orderdate != null">
+        orderDate,
+      </if>
+      <if test="postfee != null">
+        postfee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="skuid != null">
+        #{skuid,jdbcType=INTEGER},
+      </if>
+      <if test="totalprice != null">
+        #{totalprice,jdbcType=DOUBLE},
+      </if>
+      <if test="addressid != null">
+        #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="orderdate != null">
+        #{orderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postfee != null">
+        #{postfee,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Order">
+    update order
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="skuid != null">
+        skuId = #{skuid,jdbcType=INTEGER},
+      </if>
+      <if test="totalprice != null">
+        totalPrice = #{totalprice,jdbcType=DOUBLE},
+      </if>
+      <if test="addressid != null">
+        addressId = #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="orderdate != null">
+        orderDate = #{orderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postfee != null">
+        postfee = #{postfee,jdbcType=INTEGER},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Order">
+    update order
+    set userId = #{userid,jdbcType=INTEGER},
+      skuId = #{skuid,jdbcType=INTEGER},
+      totalPrice = #{totalprice,jdbcType=DOUBLE},
+      addressId = #{addressid,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER},
+      orderDate = #{orderdate,jdbcType=TIMESTAMP},
+      postfee = #{postfee,jdbcType=INTEGER}
+    where orderId = #{orderid,jdbcType=VARCHAR}
+  </update>
+</mapper>

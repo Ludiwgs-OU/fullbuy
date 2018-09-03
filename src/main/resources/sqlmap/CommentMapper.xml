@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.fullbuy.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Comment">
+    <id column="commentId" jdbcType="INTEGER" property="commentid" />
+    <result column="productId" jdbcType="INTEGER" property="productid" />
+    <result column="commentDetail" jdbcType="VARCHAR" property="commentdetail" />
+    <result column="commentImgPath" jdbcType="VARCHAR" property="commentimgpath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    commentId, productId, commentDetail, commentImgPath
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where commentId = #{commentid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from comment
+    where commentId = #{commentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.we.fullbuy.pojo.Comment">
+    insert into comment (commentId, productId, commentDetail, 
+      commentImgPath)
+    values (#{commentid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{commentdetail,jdbcType=VARCHAR}, 
+      #{commentimgpath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Comment">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commentid != null">
+        commentId,
+      </if>
+      <if test="productid != null">
+        productId,
+      </if>
+      <if test="commentdetail != null">
+        commentDetail,
+      </if>
+      <if test="commentimgpath != null">
+        commentImgPath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commentid != null">
+        #{commentid,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null">
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="commentdetail != null">
+        #{commentdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="commentimgpath != null">
+        #{commentimgpath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Comment">
+    update comment
+    <set>
+      <if test="productid != null">
+        productId = #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="commentdetail != null">
+        commentDetail = #{commentdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="commentimgpath != null">
+        commentImgPath = #{commentimgpath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where commentId = #{commentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Comment">
+    update comment
+    set productId = #{productid,jdbcType=INTEGER},
+      commentDetail = #{commentdetail,jdbcType=VARCHAR},
+      commentImgPath = #{commentimgpath,jdbcType=VARCHAR}
+    where commentId = #{commentid,jdbcType=INTEGER}
+  </update>
+</mapper>

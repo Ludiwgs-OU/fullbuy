@@ -65,15 +65,89 @@
 
 
 		<!-- 要生成的表: tableName是数据库中的表名或视图名 domainObjectName是实体类名 -->
-		<table tableName="manager"
+		<table tableName="address"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 			<!-- 不要生成Example实例 -->
 		</table>
-		<!-- 可以指定java类型
-         <table schema="" tableName="">
-            <columnOverride column="" javaType="" />
-        </table> -->
+		<table tableName="category"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!-- 不要生成Example实例 -->
+		</table>
+		<table tableName="color"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!-- 不要生成Example实例 -->
+		</table>
+		<table tableName="comment"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!-- 不要生成Example实例 -->
+		</table>
+		<table tableName="groudbuy"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!-- 不要生成Example实例 -->
+		</table>
+		<table tableName="item"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!-- 不要生成Example实例 -->
+		</table>
+		<table tableName="manager"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!-- 不要生成Example实例 -->
+		</table>
+		<table tableName="news"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!-- 不要生成Example实例 -->
+		</table>
+		<table tableName="order"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!-- 不要生成Example实例 -->
+		</table>
+		<table tableName="product"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!-- 不要生成Example实例 -->
+		</table>
+		<table tableName="sales"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!-- 不要生成Example实例 -->
+		</table>
+		<table tableName="secondcategory"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!-- 不要生成Example实例 -->
+		</table>
+		<table tableName="sku"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!-- 不要生成Example实例 -->
+		</table>
+		<table tableName="user"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!-- 不要生成Example实例 -->
+		</table>
 	</context>
 </generatorConfiguration>  

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.fullbuy.dao.SalesMapper">
+  <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Sales">
+    <id column="salesId" jdbcType="INTEGER" property="salesid" />
+    <result column="salaesPwd" jdbcType="VARCHAR" property="salaespwd" />
+    <result column="salaesName" jdbcType="VARCHAR" property="salaesname" />
+    <result column="salesPhone" jdbcType="CHAR" property="salesphone" />
+    <result column="salesAddress" jdbcType="VARCHAR" property="salesaddress" />
+    <result column="salesDetail" jdbcType="VARCHAR" property="salesdetail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    salesId, salaesPwd, salaesName, salesPhone, salesAddress, salesDetail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sales
+    where salesId = #{salesid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sales
+    where salesId = #{salesid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.we.fullbuy.pojo.Sales">
+    insert into sales (salesId, salaesPwd, salaesName, 
+      salesPhone, salesAddress, salesDetail
+      )
+    values (#{salesid,jdbcType=INTEGER}, #{salaespwd,jdbcType=VARCHAR}, #{salaesname,jdbcType=VARCHAR}, 
+      #{salesphone,jdbcType=CHAR}, #{salesaddress,jdbcType=VARCHAR}, #{salesdetail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Sales">
+    insert into sales
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="salesid != null">
+        salesId,
+      </if>
+      <if test="salaespwd != null">
+        salaesPwd,
+      </if>
+      <if test="salaesname != null">
+        salaesName,
+      </if>
+      <if test="salesphone != null">
+        salesPhone,
+      </if>
+      <if test="salesaddress != null">
+        salesAddress,
+      </if>
+      <if test="salesdetail != null">
+        salesDetail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="salesid != null">
+        #{salesid,jdbcType=INTEGER},
+      </if>
+      <if test="salaespwd != null">
+        #{salaespwd,jdbcType=VARCHAR},
+      </if>
+      <if test="salaesname != null">
+        #{salaesname,jdbcType=VARCHAR},
+      </if>
+      <if test="salesphone != null">
+        #{salesphone,jdbcType=CHAR},
+      </if>
+      <if test="salesaddress != null">
+        #{salesaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="salesdetail != null">
+        #{salesdetail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Sales">
+    update sales
+    <set>
+      <if test="salaespwd != null">
+        salaesPwd = #{salaespwd,jdbcType=VARCHAR},
+      </if>
+      <if test="salaesname != null">
+        salaesName = #{salaesname,jdbcType=VARCHAR},
+      </if>
+      <if test="salesphone != null">
+        salesPhone = #{salesphone,jdbcType=CHAR},
+      </if>
+      <if test="salesaddress != null">
+        salesAddress = #{salesaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="salesdetail != null">
+        salesDetail = #{salesdetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where salesId = #{salesid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Sales">
+    update sales
+    set salaesPwd = #{salaespwd,jdbcType=VARCHAR},
+      salaesName = #{salaesname,jdbcType=VARCHAR},
+      salesPhone = #{salesphone,jdbcType=CHAR},
+      salesAddress = #{salesaddress,jdbcType=VARCHAR},
+      salesDetail = #{salesdetail,jdbcType=VARCHAR}
+    where salesId = #{salesid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.fullbuy.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.User">
+    <id column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="loginName" jdbcType="VARCHAR" property="loginname" />
+    <result column="loginPwd" jdbcType="VARCHAR" property="loginpwd" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="userType" jdbcType="INTEGER" property="usertype" />
+    <result column="userQQ" jdbcType="VARCHAR" property="userqq" />
+    <result column="userPhone" jdbcType="CHAR" property="userphone" />
+    <result column="userEmail" jdbcType="VARCHAR" property="useremail" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="userScore" jdbcType="INTEGER" property="userscore" />
+    <result column="userStatus" jdbcType="INTEGER" property="userstatus" />
+    <result column="lastLoginTime" jdbcType="TIMESTAMP" property="lastlogintime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userId, loginName, loginPwd, userName, userType, userQQ, userPhone, userEmail, sex, 
+    userScore, userStatus, lastLoginTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where userId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.we.fullbuy.pojo.User">
+    insert into user (userId, loginName, loginPwd, 
+      userName, userType, userQQ, 
+      userPhone, userEmail, sex, 
+      userScore, userStatus, lastLoginTime
+      )
+    values (#{userid,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{loginpwd,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{usertype,jdbcType=INTEGER}, #{userqq,jdbcType=VARCHAR}, 
+      #{userphone,jdbcType=CHAR}, #{useremail,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, 
+      #{userscore,jdbcType=INTEGER}, #{userstatus,jdbcType=INTEGER}, #{lastlogintime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="loginname != null">
+        loginName,
+      </if>
+      <if test="loginpwd != null">
+        loginPwd,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="usertype != null">
+        userType,
+      </if>
+      <if test="userqq != null">
+        userQQ,
+      </if>
+      <if test="userphone != null">
+        userPhone,
+      </if>
+      <if test="useremail != null">
+        userEmail,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="userscore != null">
+        userScore,
+      </if>
+      <if test="userstatus != null">
+        userStatus,
+      </if>
+      <if test="lastlogintime != null">
+        lastLoginTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="loginname != null">
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="loginpwd != null">
+        #{loginpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null">
+        #{usertype,jdbcType=INTEGER},
+      </if>
+      <if test="userqq != null">
+        #{userqq,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null">
+        #{userphone,jdbcType=CHAR},
+      </if>
+      <if test="useremail != null">
+        #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="userscore != null">
+        #{userscore,jdbcType=INTEGER},
+      </if>
+      <if test="userstatus != null">
+        #{userstatus,jdbcType=INTEGER},
+      </if>
+      <if test="lastlogintime != null">
+        #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.User">
+    update user
+    <set>
+      <if test="loginname != null">
+        loginName = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="loginpwd != null">
+        loginPwd = #{loginpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null">
+        userType = #{usertype,jdbcType=INTEGER},
+      </if>
+      <if test="userqq != null">
+        userQQ = #{userqq,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null">
+        userPhone = #{userphone,jdbcType=CHAR},
+      </if>
+      <if test="useremail != null">
+        userEmail = #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="userscore != null">
+        userScore = #{userscore,jdbcType=INTEGER},
+      </if>
+      <if test="userstatus != null">
+        userStatus = #{userstatus,jdbcType=INTEGER},
+      </if>
+      <if test="lastlogintime != null">
+        lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.User">
+    update user
+    set loginName = #{loginname,jdbcType=VARCHAR},
+      loginPwd = #{loginpwd,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      userType = #{usertype,jdbcType=INTEGER},
+      userQQ = #{userqq,jdbcType=VARCHAR},
+      userPhone = #{userphone,jdbcType=CHAR},
+      userEmail = #{useremail,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      userScore = #{userscore,jdbcType=INTEGER},
+      userStatus = #{userstatus,jdbcType=INTEGER},
+      lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP}
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.fullbuy.dao.ItemMapper">
+  <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Item">
+    <id column="itemId" jdbcType="INTEGER" property="itemid" />
+    <result column="itemName" jdbcType="VARCHAR" property="itemname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    itemId, itemName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from item
+    where itemId = #{itemid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from item
+    where itemId = #{itemid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.we.fullbuy.pojo.Item">
+    insert into item (itemId, itemName)
+    values (#{itemid,jdbcType=INTEGER}, #{itemname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Item">
+    insert into item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemid != null">
+        itemId,
+      </if>
+      <if test="itemname != null">
+        itemName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemid != null">
+        #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="itemname != null">
+        #{itemname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Item">
+    update item
+    <set>
+      <if test="itemname != null">
+        itemName = #{itemname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where itemId = #{itemid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Item">
+    update item
+    set itemName = #{itemname,jdbcType=VARCHAR}
+    where itemId = #{itemid,jdbcType=INTEGER}
+  </update>
+</mapper>

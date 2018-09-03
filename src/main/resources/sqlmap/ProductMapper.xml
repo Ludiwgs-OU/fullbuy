@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.fullbuy.dao.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Product">
+    <id column="productId" jdbcType="INTEGER" property="productid" />
+    <result column="productName" jdbcType="VARCHAR" property="productname" />
+    <result column="productDetail" jdbcType="VARCHAR" property="productdetail" />
+    <result column="productScore" jdbcType="DOUBLE" property="productscore" />
+    <result column="salesNum" jdbcType="INTEGER" property="salesnum" />
+    <result column="categoryId" jdbcType="INTEGER" property="categoryid" />
+    <result column="salesId" jdbcType="INTEGER" property="salesid" />
+    <result column="postTime" jdbcType="TIMESTAMP" property="posttime" />
+    <result column="mainImgPath" jdbcType="VARCHAR" property="mainimgpath" />
+    <result column="searchImgPath" jdbcType="VARCHAR" property="searchimgpath" />
+    <result column="detailImgPath" jdbcType="VARCHAR" property="detailimgpath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    productId, productName, productDetail, productScore, salesNum, categoryId, salesId, 
+    postTime, mainImgPath, searchImgPath, detailImgPath
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where productId = #{productid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product
+    where productId = #{productid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.we.fullbuy.pojo.Product">
+    insert into product (productId, productName, productDetail, 
+      productScore, salesNum, categoryId, 
+      salesId, postTime, mainImgPath, 
+      searchImgPath, detailImgPath)
+    values (#{productid,jdbcType=INTEGER}, #{productname,jdbcType=VARCHAR}, #{productdetail,jdbcType=VARCHAR}, 
+      #{productscore,jdbcType=DOUBLE}, #{salesnum,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, 
+      #{salesid,jdbcType=INTEGER}, #{posttime,jdbcType=TIMESTAMP}, #{mainimgpath,jdbcType=VARCHAR}, 
+      #{searchimgpath,jdbcType=VARCHAR}, #{detailimgpath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Product">
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productid != null">
+        productId,
+      </if>
+      <if test="productname != null">
+        productName,
+      </if>
+      <if test="productdetail != null">
+        productDetail,
+      </if>
+      <if test="productscore != null">
+        productScore,
+      </if>
+      <if test="salesnum != null">
+        salesNum,
+      </if>
+      <if test="categoryid != null">
+        categoryId,
+      </if>
+      <if test="salesid != null">
+        salesId,
+      </if>
+      <if test="posttime != null">
+        postTime,
+      </if>
+      <if test="mainimgpath != null">
+        mainImgPath,
+      </if>
+      <if test="searchimgpath != null">
+        searchImgPath,
+      </if>
+      <if test="detailimgpath != null">
+        detailImgPath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productid != null">
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="productname != null">
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="productdetail != null">
+        #{productdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="productscore != null">
+        #{productscore,jdbcType=DOUBLE},
+      </if>
+      <if test="salesnum != null">
+        #{salesnum,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null">
+        #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="salesid != null">
+        #{salesid,jdbcType=INTEGER},
+      </if>
+      <if test="posttime != null">
+        #{posttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainimgpath != null">
+        #{mainimgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="searchimgpath != null">
+        #{searchimgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="detailimgpath != null">
+        #{detailimgpath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Product">
+    update product
+    <set>
+      <if test="productname != null">
+        productName = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="productdetail != null">
+        productDetail = #{productdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="productscore != null">
+        productScore = #{productscore,jdbcType=DOUBLE},
+      </if>
+      <if test="salesnum != null">
+        salesNum = #{salesnum,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null">
+        categoryId = #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="salesid != null">
+        salesId = #{salesid,jdbcType=INTEGER},
+      </if>
+      <if test="posttime != null">
+        postTime = #{posttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainimgpath != null">
+        mainImgPath = #{mainimgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="searchimgpath != null">
+        searchImgPath = #{searchimgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="detailimgpath != null">
+        detailImgPath = #{detailimgpath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where productId = #{productid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Product">
+    update product
+    set productName = #{productname,jdbcType=VARCHAR},
+      productDetail = #{productdetail,jdbcType=VARCHAR},
+      productScore = #{productscore,jdbcType=DOUBLE},
+      salesNum = #{salesnum,jdbcType=INTEGER},
+      categoryId = #{categoryid,jdbcType=INTEGER},
+      salesId = #{salesid,jdbcType=INTEGER},
+      postTime = #{posttime,jdbcType=TIMESTAMP},
+      mainImgPath = #{mainimgpath,jdbcType=VARCHAR},
+      searchImgPath = #{searchimgpath,jdbcType=VARCHAR},
+      detailImgPath = #{detailimgpath,jdbcType=VARCHAR}
+    where productId = #{productid,jdbcType=INTEGER}
+  </update>
+</mapper>
