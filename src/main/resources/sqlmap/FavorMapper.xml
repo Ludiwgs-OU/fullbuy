@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.we.fullbuy.dao.FavorMapper">
+  <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Favor">
+    <id column="favorId" jdbcType="INTEGER" property="favorid" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="productId" jdbcType="INTEGER" property="productid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    favorId, userId, productId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from favor
+    where favorId = #{favorid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from favor
+    where favorId = #{favorid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.we.fullbuy.pojo.Favor">
+    insert into favor (favorId, userId, productId
+      )
+    values (#{favorid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Favor">
+    insert into favor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="favorid != null">
+        favorId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="productid != null">
+        productId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="favorid != null">
+        #{favorid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null">
+        #{productid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Favor">
+    update favor
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null">
+        productId = #{productid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where favorId = #{favorid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Favor">
+    update favor
+    set userId = #{userid,jdbcType=INTEGER},
+      productId = #{productid,jdbcType=INTEGER}
+    where favorId = #{favorid,jdbcType=INTEGER}
+  </update>
+</mapper>
