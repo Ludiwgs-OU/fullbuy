@@ -1,0 +1,104 @@
+html,body{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.header{
+	height: 20%;
+	border-bottom: 2px solid #E6E6E6;
+}
+
+.img{
+	text-align: right;
+}
+
+.img img{
+	width: 40%;
+}
+
+.logoFont img{
+	width: 90%;
+	margin-top: 25px;
+}
+
+.left,.right{
+	margin: 20px 0;
+	height: 10%;
+}
+
+.footer{
+	border-top: 2px solid #EE3C10;
+}
+
+.footer p{
+	margin-top: 70px;
+	font-size: 15px;
+	text-align: center;
+}
+
+.block{
+	margin-left: 10%;
+	margin-bottom: 5%;
+	margin-top: 5%;
+	width: 80%;
+}
+
+.block img{
+	width: 100%;
+	height: 100%;
+}
+
+.el-tabs__nav{
+	width: 100%;
+}
+
+.el-tabs__item{
+	width: 50%;
+	text-align: center;
+	font-size: 17px;
+}
+
+.right table{
+	width: 80%;
+	margin-left: 10%;
+}
+
+.right td{
+	padding: 20px;
+}
+
+.content-input{
+	font-size: 18px;
+	box-shadow: inset 0 1px 4px #AAA;
+    border: 1px solid #d6d6d6;
+    padding-left: 7px;
+    border-radius: 5px;
+    height: 40px;
+    width: 100%;
+}
+
+.content-button{
+	height: 40px;
+    width: 100%;
+    background-color: #66AFE9;
+	border: none;
+}
+
+#code_btn{
+	font-size: 0.8vw;
+}
+
+.content-button:hover{
+	background-color: #37aaea;
+}
+
+.register p{
+	margin-top: 20px;
+	text-align: center;
+}
+
+.register a{
+	margin-left: 20px;
+}
