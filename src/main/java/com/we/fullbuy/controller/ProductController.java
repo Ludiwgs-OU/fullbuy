@@ -1,4 +1,4 @@
 package com.we.fullbuy.controller;
 
-public class favorController {
+public class ProductController {
 }

@@ -1,15 +1,18 @@
 package com.we.fullbuy.controller;
 
-import com.we.fullbuy.service.managerService;
+import com.we.fullbuy.service.ManagerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
+
 @Controller
 @RequestMapping("/manager")
-public class managerController {
-    private managerService mService;
+public class ManagerController {
+    @Resource
+    private ManagerService managerService;
 
     //管理员登录
     @RequestMapping("/login")
@@ -20,7 +23,7 @@ public class managerController {
         //String cpassword = MD5Util.md5(password);
         System.out.println(managerId);
         System.out.println(password);
-        int result = mService.login(managerId,password);
+        int result = managerService.login(managerId,password);
         if(result!=0)
             return 1;
         else

@@ -20,4 +20,12 @@ public class Manager {
     public void setManagerpwd(String managerpwd) {
         this.managerpwd = managerpwd == null ? null : managerpwd.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "managerid=" + managerid +
+                ", managerpwd='" + managerpwd + '\'' +
+                '}';
+    }
 }

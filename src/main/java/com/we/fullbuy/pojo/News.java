@@ -30,4 +30,13 @@ public class News {
     public void setNewsimgpath(String newsimgpath) {
         this.newsimgpath = newsimgpath == null ? null : newsimgpath.trim();
     }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "newsid=" + newsid +
+                ", newsdetail='" + newsdetail + '\'' +
+                ", newsimgpath='" + newsimgpath + '\'' +
+                '}';
+    }
 }

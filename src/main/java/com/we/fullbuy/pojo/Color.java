@@ -20,4 +20,12 @@ public class Color {
     public void setColorname(String colorname) {
         this.colorname = colorname == null ? null : colorname.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Color{" +
+                "colorid=" + colorid +
+                ", colorname='" + colorname + '\'' +
+                '}';
+    }
 }

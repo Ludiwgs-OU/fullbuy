@@ -40,4 +40,14 @@ public class Comment {
     public void setCommentimgpath(String commentimgpath) {
         this.commentimgpath = commentimgpath == null ? null : commentimgpath.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentid=" + commentid +
+                ", productid=" + productid +
+                ", commentdetail='" + commentdetail + '\'' +
+                ", commentimgpath='" + commentimgpath + '\'' +
+                '}';
+    }
 }

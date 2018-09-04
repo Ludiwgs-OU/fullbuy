@@ -60,4 +60,16 @@ public class Sales {
     public void setSalesdetail(String salesdetail) {
         this.salesdetail = salesdetail == null ? null : salesdetail.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Sales{" +
+                "salesid=" + salesid +
+                ", salaespwd='" + salaespwd + '\'' +
+                ", salaesname='" + salaesname + '\'' +
+                ", salesphone='" + salesphone + '\'' +
+                ", salesaddress='" + salesaddress + '\'' +
+                ", salesdetail='" + salesdetail + '\'' +
+                '}';
+    }
 }

@@ -122,4 +122,22 @@ public class User {
     public void setLastlogintime(Date lastlogintime) {
         this.lastlogintime = lastlogintime;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userid=" + userid +
+                ", loginname='" + loginname + '\'' +
+                ", loginpwd='" + loginpwd + '\'' +
+                ", username='" + username + '\'' +
+                ", usertype=" + usertype +
+                ", userqq='" + userqq + '\'' +
+                ", userphone='" + userphone + '\'' +
+                ", useremail='" + useremail + '\'' +
+                ", sex='" + sex + '\'' +
+                ", userscore=" + userscore +
+                ", userstatus=" + userstatus +
+                ", lastlogintime=" + lastlogintime +
+                '}';
+    }
 }

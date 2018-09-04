@@ -82,4 +82,18 @@ public class Groudbuy {
     public void setSalesid(Integer salesid) {
         this.salesid = salesid;
     }
+
+    @Override
+    public String toString() {
+        return "Groudbuy{" +
+                "gbid=" + gbid +
+                ", productid=" + productid +
+                ", minpeople=" + minpeople +
+                ", maxpeople=" + maxpeople +
+                ", begintime=" + begintime +
+                ", endtime=" + endtime +
+                ", gbstatus=" + gbstatus +
+                ", salesid=" + salesid +
+                '}';
+    }
 }
