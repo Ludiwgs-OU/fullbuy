@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
+
 @Controller
 @RequestMapping("/manager")
 public class ManagerController {
@@ -17,13 +18,14 @@ public class ManagerController {
     //管理员登录
     @RequestMapping("/login")
     @ResponseBody
-    public int login(@RequestParam("managerId") int managerId, @RequestParam("password") String password)
+    public int login(@RequestParam("managerId") String managerId, @RequestParam("password") String password)
     {
 
         //String cpassword = MD5Util.md5(password);
         System.out.println(managerId);
         System.out.println(password);
-        int result = managerService.login(managerId,password);
+        int id = Integer.valueOf(managerId);
+        int result = managerService.login(id,password);
         if(result!=0)
             return 1;
         else
