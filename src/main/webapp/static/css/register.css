@@ -28,45 +28,16 @@ html,body{
 	height: 10%;
 }
 
-.footer{
-	border-top: 2px solid #EE3C10;
-}
-
-.footer p{
-	margin-top: 70px;
-	font-size: 15px;
-	text-align: center;
-}
-
-.block{
-	margin-left: 10%;
-	margin-bottom: 5%;
-	margin-top: 5%;
-	width: 80%;
-}
-
-.block img{
-	width: 100%;
-	height: 100%;
-}
-
-.el-tabs__nav{
-	width: 100%;
-}
-
-.el-tabs__item{
+.member{
 	width: 50%;
-	text-align: center;
-	font-size: 17px;
+	margin-left: 30%;
+	margin-top: 10%;
 }
 
-.right table{
-	width: 80%;
-	margin-left: 10%;
-}
-
-.right td{
-	padding: 20px;
+.member td,
+.merchant td,
+.changePwd td{
+	padding: 10px;
 }
 
 .content-input{
@@ -86,20 +57,23 @@ html,body{
 	border: none;
 }
 
-#code_btn{
-	font-size: 0.8vw;
-}
-
 .content-button:hover{
 	background-color: #37aaea;
 }
 
-.register p{
-	margin-top: 20px;
-	text-align: center;
+#code_btn{
+	font-size: 0.8vw;
 }
 
-.register a{
-	margin-right: 15px;
+.merchant textarea{
+	overflow: hidden;
+	width: 150%;
+	height: 80px;
 }
 
+.merchant,
+.changePwd{
+	width: 50%;
+	margin-left: 30%;
+	margin-top: 2%;
+}
