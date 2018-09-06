@@ -15,12 +15,8 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     @Transactional
-    public int login(int managerId, String password) {
-         Manager manager = managerMapper.selectByPrimaryKey(managerId);
-        if (manager!=null && manager.getManagerpwd().equals(password))
-            return 1;
-        else
-            return 0;
+    public Manager login(int managerId) {
+         return managerMapper.selectByPrimaryKey(managerId);
     }
 }
 

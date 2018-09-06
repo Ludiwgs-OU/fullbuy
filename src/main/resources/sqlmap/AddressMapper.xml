@@ -8,6 +8,7 @@
     <result column="postCode" jdbcType="VARCHAR" property="postcode" />
     <result column="phone" jdbcType="CHAR" property="phone" />
   </resultMap>
+
   <sql id="Base_Column_List">
     addressId, userId, address, postCode, phone
   </sql>
@@ -90,4 +91,11 @@
       phone = #{phone,jdbcType=CHAR}
     where addressId = #{addressid,jdbcType=INTEGER}
   </update>
+
+  <!--new-->
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from address
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
 </mapper>

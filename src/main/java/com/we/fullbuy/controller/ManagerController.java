@@ -1,5 +1,6 @@
 package com.we.fullbuy.controller;
 
+import com.we.fullbuy.pojo.Manager;
 import com.we.fullbuy.service.ManagerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +26,8 @@ public class ManagerController {
         System.out.println(managerId);
         System.out.println(password);
         int id = Integer.valueOf(managerId);
-        int result = managerService.login(id,password);
-        if(result!=0)
+        Manager manager = managerService.login(id);
+        if(manager.getManagerpwd().equals(password))
             return 1;
         else
             return 0;

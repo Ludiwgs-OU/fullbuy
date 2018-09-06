@@ -2,6 +2,8 @@ package com.we.fullbuy.dao;
 
 import com.we.fullbuy.pojo.Address;
 
+import java.util.List;
+
 public interface AddressMapper {
     int deleteByPrimaryKey(Integer addressid);
 
@@ -14,4 +16,7 @@ public interface AddressMapper {
     int updateByPrimaryKeySelective(Address record);
 
     int updateByPrimaryKey(Address record);
+
+    /*new*/
+    List<Address> selectByUserId(Integer userid);
 }

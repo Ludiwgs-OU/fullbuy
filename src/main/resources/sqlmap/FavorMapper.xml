@@ -68,4 +68,16 @@
       productId = #{productid,jdbcType=INTEGER}
     where favorId = #{favorid,jdbcType=INTEGER}
   </update>
+
+  <!--new-->
+  <delete id="deleteFavors" parameterType="java.util.List">
+     delete from favor
+    where favorId = #{favorid}
+  </delete>
+
+  <select id="selectByUserId" parameterType="java.lang.Integer">
+    select *
+    from favor
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
 </mapper>

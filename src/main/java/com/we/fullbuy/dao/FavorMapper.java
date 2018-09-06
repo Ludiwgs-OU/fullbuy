@@ -2,6 +2,8 @@ package com.we.fullbuy.dao;
 
 import com.we.fullbuy.pojo.Favor;
 
+import java.util.List;
+
 public interface FavorMapper {
     int deleteByPrimaryKey(Integer favorid);
 
@@ -14,4 +16,9 @@ public interface FavorMapper {
     int updateByPrimaryKeySelective(Favor record);
 
     int updateByPrimaryKey(Favor record);
+
+    /*new*/
+    int deleteFavors(List<Integer> favorid);
+
+    List<Favor> selectByUserId(Integer userid);
 }

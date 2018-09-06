@@ -174,4 +174,11 @@
       lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP}
     where userId = #{userid,jdbcType=INTEGER}
   </update>
+
+  <!--new-->
+  <select id="selectByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select userId,phone,password
+    from user
+    where phone = #{phone,jdbcType=STRING}
+  </select>
 </mapper>

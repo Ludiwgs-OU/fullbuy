@@ -1,5 +1,7 @@
 package com.we.fullbuy.service;
 
+import com.we.fullbuy.pojo.Manager;
+
 public interface ManagerService {
-    int login(int managerId, String password);
+    Manager login(int managerId);
 }
