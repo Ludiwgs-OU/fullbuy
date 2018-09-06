@@ -40,7 +40,7 @@ new Vue({
 var right = {
     data() {
       	return {
-        	activeName: 'second'
+        	activeName: 'first'
       	};
     },
     methods: {
@@ -52,26 +52,27 @@ var right = {
 var Ctor = Vue.extend(right);
 new Ctor().$mount('#right');
 
-$(document).ready(function(){
+$(document).ready(()=>{
 	
 	/*
 	 * 密码登录
 	 */
-	$("#login_pass").click(function(){
-		var phone = document.getElementById("phone_pass").value;
-		var pass = document.getElementById("password").value;
+	$("#login_pass").click(()=>{
+		var phone = $("#phone_pass").val();
+		var pass = $("#password").val();
 		var type = getUrlParam('type');
+		var passLogin = {
+			"loginName": phone,
+			"loginPwd": pass,
+			"type": type
+		}
 		
 		$.ajax({
 			type:"post",
 			url:"",
 			async:true,
 			dataType:"json",
-			data:{
-				"loginName": phone,
-				"loginPwd": pass,
-				"type": type
-			},
+			data: passLogin,
 			success:function(result){
 				alert("登录成功！");
 				window.location.href = "#";
@@ -83,38 +84,46 @@ $(document).ready(function(){
 	});
 	
 	/*
-	 * 验证登录
+	 * 获取验证码
 	 */
-	$("#login_code").click(function(){
-		var phone = document.getElementById("phone_code").value;
-		var code = document.getElementById("code").value;
-		var type = getUrlParam('type');
-		
+	$("#code_btn").click(()=>{
+		var phone = $("#phone_code").val();
 		var pattern = /^\d{11}$/;
 		if(!pattern.test(phone)){
 			alert("请输入正确的手机号码！");
 		}
 		else{
-			alert(type);
-			$.ajax({
-				type:"post",
-				url:"",
-				async:true,
-				dataType:"json",
-				data:{
-					"loginName": phone,
-					"loginPwd": pass,
-					"type": type
-				},
-				success:function(result){
-					alert("登录成功！");
-					window.location.href = "#";
-				},
-				error:function(result){
-					alert("登录出错！");
-				}
-			});
+			alert(phone);
 		}
+	})
+	
+	/*
+	 * 验证登录
+	 */
+	$("#login_code").click(()=>{
+		var phone = $("#phone_code").val();
+		var code = $("#code").val();
+		var type = getUrlParam('type');
+		var codeLogin = {
+			"loginName": phone,
+			"loginPwd": pass,
+			"type": type
+		}
+		
+		$.ajax({
+			type:"post",
+			url:"",
+			async:true,
+			dataType:"json",
+			data: codeLogin,
+			success:function(result){
+				alert("登录成功！");
+				window.location.href = "#";
+			},
+			error:function(result){
+				alert("登录出错！");
+			}
+		});
 	});
 	
 })
