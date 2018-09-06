@@ -4,10 +4,11 @@ import com.we.fullbuy.dao.FavorMapper;
 import com.we.fullbuy.pojo.Favor;
 import com.we.fullbuy.service.FavorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
+@Service("FavorService")
 public class FavorServiceImpl implements FavorService {
     @Autowired
     FavorMapper favorMapper;
