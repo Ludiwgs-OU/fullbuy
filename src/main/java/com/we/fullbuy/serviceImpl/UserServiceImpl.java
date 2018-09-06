@@ -1,7 +1,5 @@
 package com.we.fullbuy.serviceImpl;
 
-import com.we.fullbuy.dao.UserMapper;
-import com.we.fullbuy.pojo.User;
 import com.we.fullbuy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

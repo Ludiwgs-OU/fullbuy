@@ -8,7 +8,6 @@
     <result column="postCode" jdbcType="VARCHAR" property="postcode" />
     <result column="phone" jdbcType="CHAR" property="phone" />
   </resultMap>
-
   <sql id="Base_Column_List">
     addressId, userId, address, postCode, phone
   </sql>

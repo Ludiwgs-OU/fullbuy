@@ -1,7 +1,5 @@
 package com.we.fullbuy.serviceImpl;
 
-import com.we.fullbuy.dao.AddressMapper;
-import com.we.fullbuy.pojo.Address;
 import com.we.fullbuy.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

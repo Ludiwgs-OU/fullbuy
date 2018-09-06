@@ -13,10 +13,11 @@
     <result column="mainImgPath" jdbcType="VARCHAR" property="mainimgpath" />
     <result column="searchImgPath" jdbcType="VARCHAR" property="searchimgpath" />
     <result column="detailImgPath" jdbcType="VARCHAR" property="detailimgpath" />
+    <result column="productStatus" jdbcType="INTEGER" property="productstatus" />
   </resultMap>
   <sql id="Base_Column_List">
     productId, productName, productDetail, productScore, salesNum, categoryId, salesId, 
-    postTime, mainImgPath, searchImgPath, detailImgPath
+    postTime, mainImgPath, searchImgPath, detailImgPath, productStatus
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -32,11 +33,13 @@
     insert into product (productId, productName, productDetail, 
       productScore, salesNum, categoryId, 
       salesId, postTime, mainImgPath, 
-      searchImgPath, detailImgPath)
+      searchImgPath, detailImgPath, productStatus
+      )
     values (#{productid,jdbcType=INTEGER}, #{productname,jdbcType=VARCHAR}, #{productdetail,jdbcType=VARCHAR}, 
       #{productscore,jdbcType=DOUBLE}, #{salesnum,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, 
       #{salesid,jdbcType=INTEGER}, #{posttime,jdbcType=TIMESTAMP}, #{mainimgpath,jdbcType=VARCHAR}, 
-      #{searchimgpath,jdbcType=VARCHAR}, #{detailimgpath,jdbcType=VARCHAR})
+      #{searchimgpath,jdbcType=VARCHAR}, #{detailimgpath,jdbcType=VARCHAR}, #{productstatus,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Product">
     insert into product
@@ -74,6 +77,9 @@
       <if test="detailimgpath != null">
         detailImgPath,
       </if>
+      <if test="productstatus != null">
+        productStatus,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="productid != null">
@@ -108,6 +114,9 @@
       </if>
       <if test="detailimgpath != null">
         #{detailimgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="productstatus != null">
+        #{productstatus,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -144,6 +153,9 @@
       <if test="detailimgpath != null">
         detailImgPath = #{detailimgpath,jdbcType=VARCHAR},
       </if>
+      <if test="productstatus != null">
+        productStatus = #{productstatus,jdbcType=INTEGER},
+      </if>
     </set>
     where productId = #{productid,jdbcType=INTEGER}
   </update>
@@ -158,7 +170,8 @@
       postTime = #{posttime,jdbcType=TIMESTAMP},
       mainImgPath = #{mainimgpath,jdbcType=VARCHAR},
       searchImgPath = #{searchimgpath,jdbcType=VARCHAR},
-      detailImgPath = #{detailimgpath,jdbcType=VARCHAR}
+      detailImgPath = #{detailimgpath,jdbcType=VARCHAR},
+      productStatus = #{productstatus,jdbcType=INTEGER}
     where productId = #{productid,jdbcType=INTEGER}
   </update>
 </mapper>

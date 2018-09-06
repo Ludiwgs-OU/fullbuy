@@ -8,9 +8,14 @@
     <result column="salesPhone" jdbcType="CHAR" property="salesphone" />
     <result column="salesAddress" jdbcType="VARCHAR" property="salesaddress" />
     <result column="salesDetail" jdbcType="VARCHAR" property="salesdetail" />
+    <result column="salesStatus" jdbcType="INTEGER" property="salesstatus" />
+    <result column="salesEmail" jdbcType="VARCHAR" property="salesemail" />
+    <result column="black" jdbcType="INTEGER" property="black" />
+    <result column="loginPhone" jdbcType="CHAR" property="loginphone" />
   </resultMap>
   <sql id="Base_Column_List">
-    salesId, salaesPwd, salaesName, salesPhone, salesAddress, salesDetail
+    salesId, salaesPwd, salaesName, salesPhone, salesAddress, salesDetail, salesStatus, 
+    salesEmail, black, loginPhone
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -24,11 +29,13 @@
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Sales">
     insert into sales (salesId, salaesPwd, salaesName, 
-      salesPhone, salesAddress, salesDetail
-      )
+      salesPhone, salesAddress, salesDetail, 
+      salesStatus, salesEmail, black, 
+      loginPhone)
     values (#{salesid,jdbcType=INTEGER}, #{salaespwd,jdbcType=VARCHAR}, #{salaesname,jdbcType=VARCHAR}, 
-      #{salesphone,jdbcType=CHAR}, #{salesaddress,jdbcType=VARCHAR}, #{salesdetail,jdbcType=VARCHAR}
-      )
+      #{salesphone,jdbcType=CHAR}, #{salesaddress,jdbcType=VARCHAR}, #{salesdetail,jdbcType=VARCHAR}, 
+      #{salesstatus,jdbcType=INTEGER}, #{salesemail,jdbcType=VARCHAR}, #{black,jdbcType=INTEGER}, 
+      #{loginphone,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Sales">
     insert into sales
@@ -51,6 +58,18 @@
       <if test="salesdetail != null">
         salesDetail,
       </if>
+      <if test="salesstatus != null">
+        salesStatus,
+      </if>
+      <if test="salesemail != null">
+        salesEmail,
+      </if>
+      <if test="black != null">
+        black,
+      </if>
+      <if test="loginphone != null">
+        loginPhone,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="salesid != null">
@@ -70,6 +89,18 @@
       </if>
       <if test="salesdetail != null">
         #{salesdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="salesstatus != null">
+        #{salesstatus,jdbcType=INTEGER},
+      </if>
+      <if test="salesemail != null">
+        #{salesemail,jdbcType=VARCHAR},
+      </if>
+      <if test="black != null">
+        #{black,jdbcType=INTEGER},
+      </if>
+      <if test="loginphone != null">
+        #{loginphone,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -91,6 +122,18 @@
       <if test="salesdetail != null">
         salesDetail = #{salesdetail,jdbcType=VARCHAR},
       </if>
+      <if test="salesstatus != null">
+        salesStatus = #{salesstatus,jdbcType=INTEGER},
+      </if>
+      <if test="salesemail != null">
+        salesEmail = #{salesemail,jdbcType=VARCHAR},
+      </if>
+      <if test="black != null">
+        black = #{black,jdbcType=INTEGER},
+      </if>
+      <if test="loginphone != null">
+        loginPhone = #{loginphone,jdbcType=CHAR},
+      </if>
     </set>
     where salesId = #{salesid,jdbcType=INTEGER}
   </update>
@@ -100,7 +143,18 @@
       salaesName = #{salaesname,jdbcType=VARCHAR},
       salesPhone = #{salesphone,jdbcType=CHAR},
       salesAddress = #{salesaddress,jdbcType=VARCHAR},
-      salesDetail = #{salesdetail,jdbcType=VARCHAR}
+      salesDetail = #{salesdetail,jdbcType=VARCHAR},
+      salesStatus = #{salesstatus,jdbcType=INTEGER},
+      salesEmail = #{salesemail,jdbcType=VARCHAR},
+      black = #{black,jdbcType=INTEGER},
+      loginPhone = #{loginphone,jdbcType=CHAR}
     where salesId = #{salesid,jdbcType=INTEGER}
   </update>
+
+  <!--new-->
+  <select id="selectByPhone" parameterType="java.lang.String">
+    select *
+    from sales
+    where loginPhone = #{phone,jdbcType=CHAR}
+  </select>
 </mapper>

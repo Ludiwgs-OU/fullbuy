@@ -1,7 +1,5 @@
 package com.we.fullbuy.serviceImpl;
 
-import com.we.fullbuy.dao.FavorMapper;
-import com.we.fullbuy.pojo.Favor;
 import com.we.fullbuy.service.FavorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -3,11 +3,11 @@
 <mapper namespace="com.we.fullbuy.dao.NewsMapper">
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.News">
     <id column="newsId" jdbcType="INTEGER" property="newsid" />
-    <result column="newsDetail" jdbcType="VARCHAR" property="newsdetail" />
+    <result column="productId" jdbcType="INTEGER" property="productid" />
     <result column="newsImgPath" jdbcType="VARCHAR" property="newsimgpath" />
   </resultMap>
   <sql id="Base_Column_List">
-    newsId, newsDetail, newsImgPath
+    newsId, productId, newsImgPath
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -20,9 +20,9 @@
     where newsId = #{newsid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.News">
-    insert into news (newsId, newsDetail, newsImgPath
+    insert into news (newsId, productId, newsImgPath
       )
-    values (#{newsid,jdbcType=INTEGER}, #{newsdetail,jdbcType=VARCHAR}, #{newsimgpath,jdbcType=VARCHAR}
+    values (#{newsid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{newsimgpath,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.News">
@@ -31,8 +31,8 @@
       <if test="newsid != null">
         newsId,
       </if>
-      <if test="newsdetail != null">
-        newsDetail,
+      <if test="productid != null">
+        productId,
       </if>
       <if test="newsimgpath != null">
         newsImgPath,
@@ -42,8 +42,8 @@
       <if test="newsid != null">
         #{newsid,jdbcType=INTEGER},
       </if>
-      <if test="newsdetail != null">
-        #{newsdetail,jdbcType=VARCHAR},
+      <if test="productid != null">
+        #{productid,jdbcType=INTEGER},
       </if>
       <if test="newsimgpath != null">
         #{newsimgpath,jdbcType=VARCHAR},
@@ -53,8 +53,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.News">
     update news
     <set>
-      <if test="newsdetail != null">
-        newsDetail = #{newsdetail,jdbcType=VARCHAR},
+      <if test="productid != null">
+        productId = #{productid,jdbcType=INTEGER},
       </if>
       <if test="newsimgpath != null">
         newsImgPath = #{newsimgpath,jdbcType=VARCHAR},
@@ -64,7 +64,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.News">
     update news
-    set newsDetail = #{newsdetail,jdbcType=VARCHAR},
+    set productId = #{productid,jdbcType=INTEGER},
       newsImgPath = #{newsimgpath,jdbcType=VARCHAR}
     where newsId = #{newsid,jdbcType=INTEGER}
   </update>

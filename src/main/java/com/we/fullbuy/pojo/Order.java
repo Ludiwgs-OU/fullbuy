@@ -82,18 +82,4 @@ public class Order {
     public void setPostfee(Integer postfee) {
         this.postfee = postfee;
     }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderid='" + orderid + '\'' +
-                ", userid=" + userid +
-                ", skuid=" + skuid +
-                ", totalprice=" + totalprice +
-                ", addressid=" + addressid +
-                ", num=" + num +
-                ", orderdate=" + orderdate +
-                ", postfee=" + postfee +
-                '}';
-    }
 }

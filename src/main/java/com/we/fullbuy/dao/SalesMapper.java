@@ -14,4 +14,7 @@ public interface SalesMapper {
     int updateByPrimaryKeySelective(Sales record);
 
     int updateByPrimaryKey(Sales record);
+
+    /*new*/
+    Sales selectByPhone(String phone);
 }

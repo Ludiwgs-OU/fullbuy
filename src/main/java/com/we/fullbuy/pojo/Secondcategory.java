@@ -30,13 +30,4 @@ public class Secondcategory {
     public void setCategoryid(Integer categoryid) {
         this.categoryid = categoryid;
     }
-
-    @Override
-    public String toString() {
-        return "Secondcategory{" +
-                "secondcategoryid=" + secondcategoryid +
-                ", secondcategoryname='" + secondcategoryname + '\'' +
-                ", categoryid=" + categoryid +
-                '}';
-    }
 }

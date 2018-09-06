@@ -20,12 +20,4 @@ public class Item {
     public void setItemname(String itemname) {
         this.itemname = itemname == null ? null : itemname.trim();
     }
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "itemid=" + itemid +
-                ", itemname='" + itemname + '\'' +
-                '}';
-    }
 }

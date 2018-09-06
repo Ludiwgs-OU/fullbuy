@@ -1,7 +1,6 @@
 package com.we.fullbuy.dao;
 
 import com.we.fullbuy.pojo.User;
-import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userid);

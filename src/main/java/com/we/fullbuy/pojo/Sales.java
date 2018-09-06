@@ -13,6 +13,14 @@ public class Sales {
 
     private String salesdetail;
 
+    private Integer salesstatus;
+
+    private String salesemail;
+
+    private Integer black;
+
+    private String loginphone;
+
     public Integer getSalesid() {
         return salesid;
     }
@@ -61,15 +69,35 @@ public class Sales {
         this.salesdetail = salesdetail == null ? null : salesdetail.trim();
     }
 
-    @Override
-    public String toString() {
-        return "Sales{" +
-                "salesid=" + salesid +
-                ", salaespwd='" + salaespwd + '\'' +
-                ", salaesname='" + salaesname + '\'' +
-                ", salesphone='" + salesphone + '\'' +
-                ", salesaddress='" + salesaddress + '\'' +
-                ", salesdetail='" + salesdetail + '\'' +
-                '}';
+    public Integer getSalesstatus() {
+        return salesstatus;
+    }
+
+    public void setSalesstatus(Integer salesstatus) {
+        this.salesstatus = salesstatus;
+    }
+
+    public String getSalesemail() {
+        return salesemail;
+    }
+
+    public void setSalesemail(String salesemail) {
+        this.salesemail = salesemail == null ? null : salesemail.trim();
+    }
+
+    public Integer getBlack() {
+        return black;
+    }
+
+    public void setBlack(Integer black) {
+        this.black = black;
+    }
+
+    public String getLoginphone() {
+        return loginphone;
+    }
+
+    public void setLoginphone(String loginphone) {
+        this.loginphone = loginphone == null ? null : loginphone.trim();
     }
 }

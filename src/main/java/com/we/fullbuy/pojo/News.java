@@ -3,7 +3,7 @@ package com.we.fullbuy.pojo;
 public class News {
     private Integer newsid;
 
-    private String newsdetail;
+    private Integer productid;
 
     private String newsimgpath;
 
@@ -15,12 +15,12 @@ public class News {
         this.newsid = newsid;
     }
 
-    public String getNewsdetail() {
-        return newsdetail;
+    public Integer getProductid() {
+        return productid;
     }
 
-    public void setNewsdetail(String newsdetail) {
-        this.newsdetail = newsdetail == null ? null : newsdetail.trim();
+    public void setProductid(Integer productid) {
+        this.productid = productid;
     }
 
     public String getNewsimgpath() {
@@ -29,14 +29,5 @@ public class News {
 
     public void setNewsimgpath(String newsimgpath) {
         this.newsimgpath = newsimgpath == null ? null : newsimgpath.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "News{" +
-                "newsid=" + newsid +
-                ", newsdetail='" + newsdetail + '\'' +
-                ", newsimgpath='" + newsimgpath + '\'' +
-                '}';
     }
 }

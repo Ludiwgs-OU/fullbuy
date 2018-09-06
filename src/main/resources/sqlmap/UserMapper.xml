@@ -3,8 +3,7 @@
 <mapper namespace="com.we.fullbuy.dao.UserMapper">
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.User">
     <id column="userId" jdbcType="INTEGER" property="userid" />
-    <result column="loginName" jdbcType="VARCHAR" property="loginname" />
-    <result column="loginPwd" jdbcType="VARCHAR" property="loginpwd" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="userName" jdbcType="VARCHAR" property="username" />
     <result column="userType" jdbcType="INTEGER" property="usertype" />
     <result column="userQQ" jdbcType="VARCHAR" property="userqq" />
@@ -12,12 +11,12 @@
     <result column="userEmail" jdbcType="VARCHAR" property="useremail" />
     <result column="sex" jdbcType="CHAR" property="sex" />
     <result column="userScore" jdbcType="INTEGER" property="userscore" />
-    <result column="userStatus" jdbcType="INTEGER" property="userstatus" />
     <result column="lastLoginTime" jdbcType="TIMESTAMP" property="lastlogintime" />
+    <result column="black" jdbcType="INTEGER" property="black" />
   </resultMap>
   <sql id="Base_Column_List">
-    userId, loginName, loginPwd, userName, userType, userQQ, userPhone, userEmail, sex, 
-    userScore, userStatus, lastLoginTime
+    userId, password, userName, userType, userQQ, userPhone, userEmail, sex, userScore, 
+    lastLoginTime, black
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -30,16 +29,14 @@
     where userId = #{userid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.User">
-    insert into user (userId, loginName, loginPwd, 
-      userName, userType, userQQ, 
-      userPhone, userEmail, sex, 
-      userScore, userStatus, lastLoginTime
-      )
-    values (#{userid,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{loginpwd,jdbcType=VARCHAR}, 
-      #{username,jdbcType=VARCHAR}, #{usertype,jdbcType=INTEGER}, #{userqq,jdbcType=VARCHAR}, 
-      #{userphone,jdbcType=CHAR}, #{useremail,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, 
-      #{userscore,jdbcType=INTEGER}, #{userstatus,jdbcType=INTEGER}, #{lastlogintime,jdbcType=TIMESTAMP}
-      )
+    insert into user (userId, password, userName, 
+      userType, userQQ, userPhone, 
+      userEmail, sex, userScore, 
+      lastLoginTime, black)
+    values (#{userid,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{usertype,jdbcType=INTEGER}, #{userqq,jdbcType=VARCHAR}, #{userphone,jdbcType=CHAR}, 
+      #{useremail,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{userscore,jdbcType=INTEGER}, 
+      #{lastlogintime,jdbcType=TIMESTAMP}, #{black,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.User">
     insert into user
@@ -47,11 +44,8 @@
       <if test="userid != null">
         userId,
       </if>
-      <if test="loginname != null">
-        loginName,
-      </if>
-      <if test="loginpwd != null">
-        loginPwd,
+      <if test="password != null">
+        password,
       </if>
       <if test="username != null">
         userName,
@@ -74,22 +68,19 @@
       <if test="userscore != null">
         userScore,
       </if>
-      <if test="userstatus != null">
-        userStatus,
-      </if>
       <if test="lastlogintime != null">
         lastLoginTime,
+      </if>
+      <if test="black != null">
+        black,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userid != null">
         #{userid,jdbcType=INTEGER},
       </if>
-      <if test="loginname != null">
-        #{loginname,jdbcType=VARCHAR},
-      </if>
-      <if test="loginpwd != null">
-        #{loginpwd,jdbcType=VARCHAR},
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
       </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
@@ -112,22 +103,19 @@
       <if test="userscore != null">
         #{userscore,jdbcType=INTEGER},
       </if>
-      <if test="userstatus != null">
-        #{userstatus,jdbcType=INTEGER},
-      </if>
       <if test="lastlogintime != null">
         #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="black != null">
+        #{black,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.User">
     update user
     <set>
-      <if test="loginname != null">
-        loginName = #{loginname,jdbcType=VARCHAR},
-      </if>
-      <if test="loginpwd != null">
-        loginPwd = #{loginpwd,jdbcType=VARCHAR},
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
       </if>
       <if test="username != null">
         userName = #{username,jdbcType=VARCHAR},
@@ -150,19 +138,18 @@
       <if test="userscore != null">
         userScore = #{userscore,jdbcType=INTEGER},
       </if>
-      <if test="userstatus != null">
-        userStatus = #{userstatus,jdbcType=INTEGER},
-      </if>
       <if test="lastlogintime != null">
         lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="black != null">
+        black = #{black,jdbcType=INTEGER},
       </if>
     </set>
     where userId = #{userid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.User">
     update user
-    set loginName = #{loginname,jdbcType=VARCHAR},
-      loginPwd = #{loginpwd,jdbcType=VARCHAR},
+    set password = #{password,jdbcType=VARCHAR},
       userName = #{username,jdbcType=VARCHAR},
       userType = #{usertype,jdbcType=INTEGER},
       userQQ = #{userqq,jdbcType=VARCHAR},
@@ -170,8 +157,8 @@
       userEmail = #{useremail,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=CHAR},
       userScore = #{userscore,jdbcType=INTEGER},
-      userStatus = #{userstatus,jdbcType=INTEGER},
-      lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP}
+      lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      black = #{black,jdbcType=INTEGER}
     where userId = #{userid,jdbcType=INTEGER}
   </update>
 

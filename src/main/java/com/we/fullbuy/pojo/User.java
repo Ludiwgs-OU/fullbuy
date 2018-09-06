@@ -5,9 +5,7 @@ import java.util.Date;
 public class User {
     private Integer userid;
 
-    private String loginname;
-
-    private String loginpwd;
+    private String password;
 
     private String username;
 
@@ -23,9 +21,9 @@ public class User {
 
     private Integer userscore;
 
-    private Integer userstatus;
-
     private Date lastlogintime;
+
+    private Integer black;
 
     public Integer getUserid() {
         return userid;
@@ -35,20 +33,12 @@ public class User {
         this.userid = userid;
     }
 
-    public String getLoginname() {
-        return loginname;
+    public String getPassword() {
+        return password;
     }
 
-    public void setLoginname(String loginname) {
-        this.loginname = loginname == null ? null : loginname.trim();
-    }
-
-    public String getLoginpwd() {
-        return loginpwd;
-    }
-
-    public void setLoginpwd(String loginpwd) {
-        this.loginpwd = loginpwd == null ? null : loginpwd.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
     public String getUsername() {
@@ -107,14 +97,6 @@ public class User {
         this.userscore = userscore;
     }
 
-    public Integer getUserstatus() {
-        return userstatus;
-    }
-
-    public void setUserstatus(Integer userstatus) {
-        this.userstatus = userstatus;
-    }
-
     public Date getLastlogintime() {
         return lastlogintime;
     }
@@ -123,21 +105,11 @@ public class User {
         this.lastlogintime = lastlogintime;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userid=" + userid +
-                ", loginname='" + loginname + '\'' +
-                ", loginpwd='" + loginpwd + '\'' +
-                ", username='" + username + '\'' +
-                ", usertype=" + usertype +
-                ", userqq='" + userqq + '\'' +
-                ", userphone='" + userphone + '\'' +
-                ", useremail='" + useremail + '\'' +
-                ", sex='" + sex + '\'' +
-                ", userscore=" + userscore +
-                ", userstatus=" + userstatus +
-                ", lastlogintime=" + lastlogintime +
-                '}';
+    public Integer getBlack() {
+        return black;
+    }
+
+    public void setBlack(Integer black) {
+        this.black = black;
     }
 }

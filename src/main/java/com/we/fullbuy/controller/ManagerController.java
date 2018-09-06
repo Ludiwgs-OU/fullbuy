@@ -1,6 +1,5 @@
 package com.we.fullbuy.controller;
 
-import com.we.fullbuy.pojo.Manager;
 import com.we.fullbuy.service.ManagerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

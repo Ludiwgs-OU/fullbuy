@@ -60,16 +60,4 @@ public class Sku {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
-
-    @Override
-    public String toString() {
-        return "Sku{" +
-                "skuid=" + skuid +
-                ", productid=" + productid +
-                ", colorid=" + colorid +
-                ", itemid=" + itemid +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                '}';
-    }
 }

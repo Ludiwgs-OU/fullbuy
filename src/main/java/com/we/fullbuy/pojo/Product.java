@@ -1,7 +1,6 @@
 package com.we.fullbuy.pojo;
 
 import java.util.Date;
-import java.util.List;
 
 public class Product {
     private Integer productid;
@@ -26,9 +25,7 @@ public class Product {
 
     private String detailimgpath;
 
-    private List<Item> items;
-
-    private List<Color> colors;
+    private Integer productstatus;
 
     public Integer getProductid() {
         return productid;
@@ -118,38 +115,11 @@ public class Product {
         this.detailimgpath = detailimgpath == null ? null : detailimgpath.trim();
     }
 
-    public List<Item> getItems() {
-        return items;
+    public Integer getProductstatus() {
+        return productstatus;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
-    public List<Color> getColors() {
-        return colors;
-    }
-
-    public void setColors(List<Color> colors) {
-        this.colors = colors;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productid=" + productid +
-                ", productname='" + productname + '\'' +
-                ", productdetail='" + productdetail + '\'' +
-                ", productscore=" + productscore +
-                ", salesnum=" + salesnum +
-                ", categoryid=" + categoryid +
-                ", salesid=" + salesid +
-                ", posttime=" + posttime +
-                ", mainimgpath='" + mainimgpath + '\'' +
-                ", searchimgpath='" + searchimgpath + '\'' +
-                ", detailimgpath='" + detailimgpath + '\'' +
-                ", items=" + items +
-                ", colors=" + colors +
-                '}';
+    public void setProductstatus(Integer productstatus) {
+        this.productstatus = productstatus;
     }
 }
