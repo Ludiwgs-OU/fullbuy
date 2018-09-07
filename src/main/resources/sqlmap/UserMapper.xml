@@ -163,9 +163,9 @@
   </update>
 
   <!--new-->
-  <select id="selectByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select userId,phone,password
+  <select id="selectByPhone" resultMap="BaseResultMap">
+    select userId,userPhone,password
     from user
-    where phone = #{phone,jdbcType=STRING}
+    where userPhone = #{phone,jdbcType=CHAR}
   </select>
 </mapper>

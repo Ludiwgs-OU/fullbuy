@@ -1,4 +1,4 @@
-/*
+﻿/*
  * 获取路径参数
  */
 function getUrlParam(name) {
@@ -30,8 +30,8 @@ $(document).ready(()=>{
 		var pass = $("#password").val();
 		var type = getUrlParam('type');
 		var passLogin = {
-			"loginName": phone,
-			"loginPwd": pass,
+			"phone": phone,
+			"password": pass,
 			"type": type
 		}
 		
@@ -42,7 +42,7 @@ $(document).ready(()=>{
 		else{
 			$.ajax({
 				type:"post",
-				url:"/userLogin",
+				url:"/user/login",
 				async:true,
 				dataType:"json",
 				data: passLogin,

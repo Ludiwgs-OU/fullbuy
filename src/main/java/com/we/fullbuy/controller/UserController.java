@@ -18,7 +18,7 @@ public class UserController {
     //登录
     @RequestMapping("/login")
     @ResponseBody
-    public String login(@RequestParam("phone") String phone, @RequestParam("password") String password)
+    public int login(@RequestParam("phone") String phone, @RequestParam("password") String password)
     {
 
         //String cpassword = MD5Util.md5(password);
@@ -29,12 +29,12 @@ public class UserController {
         if(user!=null)
         {
             if(user.getPassword().equals(password))
-                return "欢迎回来"+user.getUsername();
+                return 1;
             else
-                return "密码错误，请重新输入密码";
+                return 2;
         }
         else
-            return "账号不存在，请检查";
+            return 0;
     }
 
     //注册
