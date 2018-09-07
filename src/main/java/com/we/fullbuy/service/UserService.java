@@ -9,6 +9,6 @@ public interface UserService {
     int modifyUser(User user);
     /*注册*/
     int registerUser(User user);
-    /*登录*/
+    /*登录以及检查电话是否可用*/
     User login(String phone);
 }

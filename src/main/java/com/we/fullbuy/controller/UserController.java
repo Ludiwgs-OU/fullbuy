@@ -1,6 +1,6 @@
 package com.we.fullbuy.controller;
 
-import com.we.fullbuy.service.SalesService;
+import com.we.fullbuy.pojo.User;
 import com.we.fullbuy.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,34 +14,39 @@ import javax.annotation.Resource;
 public class UserController {
     @Resource
     private UserService userService;
-    @Resource
-    private SalesService salesService;
 
     //登录
     @RequestMapping("/login")
     @ResponseBody
-    public boolean login(@RequestParam("phone") String phone, @RequestParam("password") String password, @RequestParam("type") int type)
+    public String login(@RequestParam("phone") String phone, @RequestParam("password") String password)
     {
 
         //String cpassword = MD5Util.md5(password);
         System.out.println(phone);
         System.out.println(password);
-        if(type==1)
+
+        User user = userService.login(phone);
+        if(user!=null)
         {
-            User user = userService.login(phone);
-            if(user.getLoginpwd().equals(password))
-                return true;
+            if(user.getPassword().equals(password))
+                return "欢迎回来"+user.getUsername();
             else
-                return false;
+                return "密码错误，请重新输入密码";
         }
         else
-        {
-            Sales sales = salesService.login(phone);
-            if(sales.getSalaespwd().equals(password))
-                return true;
-            else
-                return false;
-        }
+            return "账号不存在，请检查";
+    }
 
+    //注册
+    @RequestMapping("/register")
+    @ResponseBody
+    public String register()
+    {
+        User user = new User();
+
+        if(userService.registerUser(user)!=0)
+            return "注册成功啦";
+        else
+            return "失败了诶，好像出了点问题";
     }
 }

@@ -1,5 +1,7 @@
 package com.we.fullbuy.serviceImpl;
 
+import com.we.fullbuy.dao.SalesMapper;
+import com.we.fullbuy.pojo.Sales;
 import com.we.fullbuy.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
