@@ -30,8 +30,9 @@ html,body {
 }
 
 a {
-  color: #000;
-  text-decoration: none;
+	cursor: pointer;
+  	color: #000;
+  	text-decoration: none;
 }
 hr{margin:5px 5px}
 .clear{ clear:both;}
@@ -66,7 +67,8 @@ input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px #fff inset;}
 .verification {position: relative;}
 input#code {width: 80%;}
 #member_btn,
-#merchant_btn {
+#merchant_btn,
+#find_btn{
 	margin-left: 10px;
 	border: 1px solid #DDD;
 	padding: 0px;
@@ -82,6 +84,11 @@ input#code {width: 80%;}
 	top: 78px;
 	right: 10px;
 	bottom: 0px;
+}
+
+#find_btn{
+	top: 166px;
+	right: 20px;
 }
 
 /*修改的样式*/

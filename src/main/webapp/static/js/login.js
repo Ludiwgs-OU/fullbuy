@@ -23,7 +23,7 @@ $(document).ready(()=>{
 	})
 	
 	/*
-	 * 密码登录
+	 * 登录
 	 */
 	$("#login").click(()=>{
 		var phone = $("#user").val();
@@ -56,4 +56,17 @@ $(document).ready(()=>{
 			});
 		}
 	});
+	
+	/*
+	 * 找回密码
+	 */
+	$("#forgetPwd").click(()=>{
+		var type = getUrlParam('type');
+		if(type == 1){
+			window.location.href = "findpwd.html?type=1";
+		}
+		else if(type == 2){
+			window.location.href = "findpwd.html?type=2";
+		}
+	})
 })
