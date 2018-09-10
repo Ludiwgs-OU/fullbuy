@@ -1,41 +1,199 @@
-﻿<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta charset="UTF-8">
-		<title>满团-首页</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>首页</title>
+		<link href="../static/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+		<link href="../static/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+		<link href="../static/css/demo.css" rel="stylesheet" type="text/css" />
+		<link href="../static/css/hmstyle.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-		<script src="../static/js/vue.js"></script>
-		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 	</head>
 	<body>
-		<div class="container-fluid">
-			<div class="row nav">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header">
-					<div class="school">
-                    	<img class="name" src="../static/img/3本.png" />
-                	</div>
-                	<div class="user">
-                   	 	<ul class="user-ul">
-                        	<li class="user-li">
-                        		<a href="login.html?type=1">
-                        			<span class="user-a">会员登录</span>
-                        		</a>
-                        	</li>
-                        	<li class="user-li">
-                        		<a href="login.html?type=2">
-                        			<span class="user-a">商家登录</span>
-                        		</a>
-                        	</li> 
-                    	</ul>
-                	</div>
+		<div class="hmtop">
+			<!--顶部导航条 -->
+			<div class="am-container header" id="headerNav">
+				<ul class="message-l">
+					<div class="topMessage">
+						<div class="menu-hd" v-if="!site.user">
+							<a href="login.html?type=1" target="_top" class="h">会员登录</a>
+							<a href="login.html?type=2" target="_top">商家登录</a>
+						</div>
+						<div class="menu-hd" v-if="site.user">
+							<a target="_top" id="logout">会员注销</a>
+						</div>
+					</div>
+				</ul>
+				<ul class="message-r">
+					<div class="topMessage home">
+						<div class="menu-hd"><a href="home.html" target="_top" class="h">商城首页</a></div>
+					</div>
+					<div class="topMessage my-shangcheng" v-if="site.user">
+						<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+					</div>
+					<div class="topMessage favorite" v-if="site.user">
+						<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+					</div>
+				</ul>
+			</div>
+			<!--悬浮搜索框-->
+			<div class="nav white">
+				<div class="logoBig">
+					<img src="../static/images/1.png" />
+				</div>
+				<div class="search-bar pr">
+					<form>
+						<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+						<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="botton">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="banner" id="slides">
+            <!--轮播 -->
+			<template>
+  				<div class="block">
+    				<el-carousel arrow="never" height="400px">
+      					<el-carousel-item v-for="(site,index) in sites" :key="index"
+      						:style="{'background-color': site.color}">
+      						<a :href="'register.html?pid=' + site.productId">
+        						<img :src="site.mainImgPath" />
+        					</a>
+      					</el-carousel-item>
+    				</el-carousel>
+  				</div>
+			</template>
+		</div>
+		<div class="shopNav">
+			<div class="shopMainbg">
+				<div class="shopMain" id="shopmain">
+					<!--今日推荐 -->
+					<div class="am-g am-g-fixed recommendation" id="today">
+						<div class="clock am-u-sm-3">
+							<img src="../static/images/2016.png "></img>
+							<p>今日<br>推荐</p>
+						</div>
+						<div class="am-u-sm-4 am-u-lg-3" v-for="site in sites">
+							<div class="info">
+								<h3>{{site.h1}}</h3>
+								<h4>{{site.h2}}</h4>
+							</div>
+							<div class="recommendationMain">
+								<a :href="'register.html?sid=' + site.productId">
+									<img :src="site.img"></img>
+								</a>
+							</div>
+						</div>
+					</div>
+					<!--优质商家-->
+					<div class="am-container">
+						<div class="shopTitle">
+							<h4>优质商家</h4>
+						</div>
+					</div>
+					<div class="am-g am-g-fixed floodTwo" id="sales">
+						<div class="am-u-sm-7 am-u-md-4 am-u-lg-3 text-two"
+							 v-for="site in sites" >
+							<div class="outer-con">
+								<div class="title">
+									{{site.salesName }}
+								</div>
+							</div>
+							<a :href="'register.html?sid=' + site.salesId">
+								<img :src="site.salesImg" />
+							</a>						
+						</div>
+						
+					</div>
+
+					<div class="am-container">
+						<div class="shopTitle">
+							<h4>爆款推荐</h4>
+						</div>
+					</div>
+					<div class="am-g am-g-fixed flood method3" id="explosion">
+						<ul class="am-thumbnails">
+							<li v-for="site in sites">
+								<div class="list">
+									<a :href="'register.html?sid=' + site.productId">
+										<img :src="site.searchImgPath" />
+										<div class="pro-title">{{ site.productName }}</div>
+										<span class="e-price">￥{{ site.price }}</span>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 		
-		<link rel="stylesheet" href="../static/css/bootstrap.min.css" />
-		<script type="text/javascript" src="../static/js/jquery-3.3.1.min.js" ></script>
-		<script type="application/javascript" src="../static/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="../static/css/home.css" />
+		<!--菜单 -->
+		<div class="tip">
+			<div id="sidebar">
+				<div id="wrap">
+					<div id="prof" class="item">
+						<a href="#">
+							<span class="setting"></span>
+						</a>
+						<div class="ibar_login_box status_login">
+							<div class="avatar_box" v-if="site.user">
+								<p class="avatar_imgbox"><img :src="site.img" /></p>
+								<ul class="user_info">
+									<li>用户名：{{site.user}}</li>
+									<li>级&nbsp;别：{{site.level}}</li>
+								</ul>
+							</div>
+							<div class="avatar_box" v-if="!site.user">
+								<a href="login.html?type=1">欢迎，请登录</a>
+							</div>
+							<div class="login_btnbox" v-if="site.user">
+								<a href="#" class="login_order">我的订单</a>
+								<a href="#" class="login_favorite">我的收藏</a>
+							</div>
+						</div>
+					</div>
+					<div id="brand" class="item">
+						<a href="#">
+							<span class="wdsc"><img src="../static/images/wdsc.png" /></span>
+						</a>
+						<div class="mp_tooltip">
+							我的收藏
+							<i class="icon_arrow_right_black"></i>
+						</div>
+					</div>
+					
+					<div class="quick_toggle">
+						<li class="qtitem">
+							<a href="#"><span class="kfzx"></span></a>
+							<div class="mp_tooltip">客服中心<i class="icon_arrow_right_black"></i></div>
+						</li>
+						<li class="qtitem">
+							<a href="#top" class="return_top"><span class="top"></span></a>
+						</li>
+					</div>
+
+					<!--回到顶部 -->
+					<div id="quick_links_pop" class="quick_links_pop hide"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer">
+			<div class="phone">
+				<p>联系电话：040-88888888</p>
+			</div>
+			<p>Copyright © 2018 满团队 Inc. 保留所有权利。</p>
+		</div>
+		
+		<script type="text/javascript" src="../static/js/vue.js" ></script>
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+		<script src="../static/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+		<script src="../static/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
+		<script type="text/javascript " src="../static/js/quick_links.js "></script>
 		<script type="text/javascript" src="../static/js/home.js" ></script>
 	</body>
+
 </html>

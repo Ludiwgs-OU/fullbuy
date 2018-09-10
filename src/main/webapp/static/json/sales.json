@@ -1,0 +1,42 @@
+[
+ 	{
+ 		"salesId": "1",
+ 		"salesName": "区嘉浩服饰店",
+ 		"salesImg": "../static/images/5.jpg"
+ 	},
+ 	{
+ 		"salesId": "2",
+ 		"salesName": "区嘉浩服饰店",
+ 		"salesImg": "../static/images/5.jpg"
+ 	},
+ 	{
+ 		"salesId": "3",
+ 		"salesName": "区嘉浩服饰店",
+ 		"salesImg": "../static/images/5.jpg"
+ 	},
+ 	{
+ 		"salesId": "4",
+ 		"salesName": "区嘉浩服饰店",
+ 		"salesImg": "../static/images/5.jpg"
+ 	},
+ 	{
+ 		"salesId": "5",
+ 		"salesName": "区嘉浩服饰店",
+ 		"salesImg": "../static/images/5.jpg"
+ 	},
+ 	{
+ 		"salesId": "6",
+ 		"salesName": "区嘉浩服饰店",
+ 		"salesImg": "../static/images/5.jpg"
+ 	},
+ 	{
+ 		"salesId": "7",
+ 		"salesName": "区嘉浩服饰店",
+ 		"salesImg": "../static/images/5.jpg"
+ 	},
+ 	{
+ 		"salesId": "8",
+ 		"salesName": "区嘉浩服饰店",
+ 		"salesImg": "../static/images/5.jpg"
+ 	}
+]

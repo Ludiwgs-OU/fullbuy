@@ -1,0 +1,22 @@
+[
+ 	{
+ 		"productId": "1",
+ 		"mainImgPath": "../static/images/ad1.jpg",
+ 		"color": "#55be59"
+ 	},
+ 	{
+ 		"productId": "2",
+ 		"mainImgPath": "../static/images/ad2.jpg",
+ 		"color": "#f44661"
+ 	},
+ 	{
+ 		"productId": "3",
+ 		"mainImgPath": "../static/images/ad3.jpg",
+ 		"color": "#0f1024"
+ 	},
+ 	{
+ 		"productId": "4",
+ 		"mainImgPath": "../static/images/ad4.jpg",
+ 		"color": "#ff9801"
+ 	}
+]
