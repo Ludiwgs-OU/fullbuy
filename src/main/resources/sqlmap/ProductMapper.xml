@@ -5,19 +5,29 @@
     <id column="productId" jdbcType="INTEGER" property="productid" />
     <result column="productName" jdbcType="VARCHAR" property="productname" />
     <result column="productDetail" jdbcType="VARCHAR" property="productdetail" />
-    <result column="productScore" jdbcType="DOUBLE" property="productscore" />
+    <result column="productScore" jdbcType="INTEGER" property="productscore" />
     <result column="salesNum" jdbcType="INTEGER" property="salesnum" />
     <result column="categoryId" jdbcType="INTEGER" property="categoryid" />
     <result column="salesId" jdbcType="INTEGER" property="salesid" />
     <result column="postTime" jdbcType="TIMESTAMP" property="posttime" />
-    <result column="mainImgPath" jdbcType="VARCHAR" property="mainimgpath" />
-    <result column="searchImgPath" jdbcType="VARCHAR" property="searchimgpath" />
-    <result column="detailImgPath" jdbcType="VARCHAR" property="detailimgpath" />
     <result column="productStatus" jdbcType="INTEGER" property="productstatus" />
+    <result column="searchImgPath" jdbcType="VARCHAR" property="searchimgpath" />
+    <result column="sImgPath1" jdbcType="VARCHAR" property="simgpath1" />
+    <result column="sImgPath2" jdbcType="VARCHAR" property="simgpath2" />
+    <result column="mImgPath1" jdbcType="VARCHAR" property="mimgpath1" />
+    <result column="mImgPath2" jdbcType="VARCHAR" property="mimgpath2" />
+    <result column="bImgPath1" jdbcType="VARCHAR" property="bimgpath1" />
+    <result column="bImgPath2" jdbcType="VARCHAR" property="bimgpath2" />
+    <result column="DetailImgPath1" jdbcType="VARCHAR" property="detailimgpath1" />
+    <result column="DetailImgPath2" jdbcType="VARCHAR" property="detailimgpath2" />
+    <result column="itemName" jdbcType="VARCHAR" property="itemname" />
+    <result column="secondItemName" jdbcType="VARCHAR" property="seconditemname" />
+    <result column="DetailImgPath3" jdbcType="VARCHAR" property="detailimgpath3" />
   </resultMap>
   <sql id="Base_Column_List">
     productId, productName, productDetail, productScore, salesNum, categoryId, salesId, 
-    postTime, mainImgPath, searchImgPath, detailImgPath, productStatus
+    postTime, productStatus, searchImgPath, sImgPath1, sImgPath2, mImgPath1, mImgPath2, 
+    bImgPath1, bImgPath2, DetailImgPath1, DetailImgPath2, itemName, secondItemName, DetailImgPath3
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -32,13 +42,19 @@
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Product">
     insert into product (productId, productName, productDetail, 
       productScore, salesNum, categoryId, 
-      salesId, postTime, mainImgPath, 
-      searchImgPath, detailImgPath, productStatus
+      salesId, postTime, productStatus, 
+      searchImgPath, sImgPath1, sImgPath2, 
+      mImgPath1, mImgPath2, bImgPath1, 
+      bImgPath2, DetailImgPath1, DetailImgPath2, 
+      itemName, secondItemName, DetailImgPath3
       )
     values (#{productid,jdbcType=INTEGER}, #{productname,jdbcType=VARCHAR}, #{productdetail,jdbcType=VARCHAR}, 
-      #{productscore,jdbcType=DOUBLE}, #{salesnum,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, 
-      #{salesid,jdbcType=INTEGER}, #{posttime,jdbcType=TIMESTAMP}, #{mainimgpath,jdbcType=VARCHAR}, 
-      #{searchimgpath,jdbcType=VARCHAR}, #{detailimgpath,jdbcType=VARCHAR}, #{productstatus,jdbcType=INTEGER}
+      #{productscore,jdbcType=INTEGER}, #{salesnum,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, 
+      #{salesid,jdbcType=INTEGER}, #{posttime,jdbcType=TIMESTAMP}, #{productstatus,jdbcType=INTEGER}, 
+      #{searchimgpath,jdbcType=VARCHAR}, #{simgpath1,jdbcType=VARCHAR}, #{simgpath2,jdbcType=VARCHAR}, 
+      #{mimgpath1,jdbcType=VARCHAR}, #{mimgpath2,jdbcType=VARCHAR}, #{bimgpath1,jdbcType=VARCHAR}, 
+      #{bimgpath2,jdbcType=VARCHAR}, #{detailimgpath1,jdbcType=VARCHAR}, #{detailimgpath2,jdbcType=VARCHAR}, 
+      #{itemname,jdbcType=VARCHAR}, #{seconditemname,jdbcType=VARCHAR}, #{detailimgpath3,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Product">
@@ -68,17 +84,44 @@
       <if test="posttime != null">
         postTime,
       </if>
-      <if test="mainimgpath != null">
-        mainImgPath,
+      <if test="productstatus != null">
+        productStatus,
       </if>
       <if test="searchimgpath != null">
         searchImgPath,
       </if>
-      <if test="detailimgpath != null">
-        detailImgPath,
+      <if test="simgpath1 != null">
+        sImgPath1,
       </if>
-      <if test="productstatus != null">
-        productStatus,
+      <if test="simgpath2 != null">
+        sImgPath2,
+      </if>
+      <if test="mimgpath1 != null">
+        mImgPath1,
+      </if>
+      <if test="mimgpath2 != null">
+        mImgPath2,
+      </if>
+      <if test="bimgpath1 != null">
+        bImgPath1,
+      </if>
+      <if test="bimgpath2 != null">
+        bImgPath2,
+      </if>
+      <if test="detailimgpath1 != null">
+        DetailImgPath1,
+      </if>
+      <if test="detailimgpath2 != null">
+        DetailImgPath2,
+      </if>
+      <if test="itemname != null">
+        itemName,
+      </if>
+      <if test="seconditemname != null">
+        secondItemName,
+      </if>
+      <if test="detailimgpath3 != null">
+        DetailImgPath3,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -92,7 +135,7 @@
         #{productdetail,jdbcType=VARCHAR},
       </if>
       <if test="productscore != null">
-        #{productscore,jdbcType=DOUBLE},
+        #{productscore,jdbcType=INTEGER},
       </if>
       <if test="salesnum != null">
         #{salesnum,jdbcType=INTEGER},
@@ -106,17 +149,44 @@
       <if test="posttime != null">
         #{posttime,jdbcType=TIMESTAMP},
       </if>
-      <if test="mainimgpath != null">
-        #{mainimgpath,jdbcType=VARCHAR},
+      <if test="productstatus != null">
+        #{productstatus,jdbcType=INTEGER},
       </if>
       <if test="searchimgpath != null">
         #{searchimgpath,jdbcType=VARCHAR},
       </if>
-      <if test="detailimgpath != null">
-        #{detailimgpath,jdbcType=VARCHAR},
+      <if test="simgpath1 != null">
+        #{simgpath1,jdbcType=VARCHAR},
       </if>
-      <if test="productstatus != null">
-        #{productstatus,jdbcType=INTEGER},
+      <if test="simgpath2 != null">
+        #{simgpath2,jdbcType=VARCHAR},
+      </if>
+      <if test="mimgpath1 != null">
+        #{mimgpath1,jdbcType=VARCHAR},
+      </if>
+      <if test="mimgpath2 != null">
+        #{mimgpath2,jdbcType=VARCHAR},
+      </if>
+      <if test="bimgpath1 != null">
+        #{bimgpath1,jdbcType=VARCHAR},
+      </if>
+      <if test="bimgpath2 != null">
+        #{bimgpath2,jdbcType=VARCHAR},
+      </if>
+      <if test="detailimgpath1 != null">
+        #{detailimgpath1,jdbcType=VARCHAR},
+      </if>
+      <if test="detailimgpath2 != null">
+        #{detailimgpath2,jdbcType=VARCHAR},
+      </if>
+      <if test="itemname != null">
+        #{itemname,jdbcType=VARCHAR},
+      </if>
+      <if test="seconditemname != null">
+        #{seconditemname,jdbcType=VARCHAR},
+      </if>
+      <if test="detailimgpath3 != null">
+        #{detailimgpath3,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -130,7 +200,7 @@
         productDetail = #{productdetail,jdbcType=VARCHAR},
       </if>
       <if test="productscore != null">
-        productScore = #{productscore,jdbcType=DOUBLE},
+        productScore = #{productscore,jdbcType=INTEGER},
       </if>
       <if test="salesnum != null">
         salesNum = #{salesnum,jdbcType=INTEGER},
@@ -144,17 +214,44 @@
       <if test="posttime != null">
         postTime = #{posttime,jdbcType=TIMESTAMP},
       </if>
-      <if test="mainimgpath != null">
-        mainImgPath = #{mainimgpath,jdbcType=VARCHAR},
+      <if test="productstatus != null">
+        productStatus = #{productstatus,jdbcType=INTEGER},
       </if>
       <if test="searchimgpath != null">
         searchImgPath = #{searchimgpath,jdbcType=VARCHAR},
       </if>
-      <if test="detailimgpath != null">
-        detailImgPath = #{detailimgpath,jdbcType=VARCHAR},
+      <if test="simgpath1 != null">
+        sImgPath1 = #{simgpath1,jdbcType=VARCHAR},
       </if>
-      <if test="productstatus != null">
-        productStatus = #{productstatus,jdbcType=INTEGER},
+      <if test="simgpath2 != null">
+        sImgPath2 = #{simgpath2,jdbcType=VARCHAR},
+      </if>
+      <if test="mimgpath1 != null">
+        mImgPath1 = #{mimgpath1,jdbcType=VARCHAR},
+      </if>
+      <if test="mimgpath2 != null">
+        mImgPath2 = #{mimgpath2,jdbcType=VARCHAR},
+      </if>
+      <if test="bimgpath1 != null">
+        bImgPath1 = #{bimgpath1,jdbcType=VARCHAR},
+      </if>
+      <if test="bimgpath2 != null">
+        bImgPath2 = #{bimgpath2,jdbcType=VARCHAR},
+      </if>
+      <if test="detailimgpath1 != null">
+        DetailImgPath1 = #{detailimgpath1,jdbcType=VARCHAR},
+      </if>
+      <if test="detailimgpath2 != null">
+        DetailImgPath2 = #{detailimgpath2,jdbcType=VARCHAR},
+      </if>
+      <if test="itemname != null">
+        itemName = #{itemname,jdbcType=VARCHAR},
+      </if>
+      <if test="seconditemname != null">
+        secondItemName = #{seconditemname,jdbcType=VARCHAR},
+      </if>
+      <if test="detailimgpath3 != null">
+        DetailImgPath3 = #{detailimgpath3,jdbcType=VARCHAR},
       </if>
     </set>
     where productId = #{productid,jdbcType=INTEGER}
@@ -163,15 +260,24 @@
     update product
     set productName = #{productname,jdbcType=VARCHAR},
       productDetail = #{productdetail,jdbcType=VARCHAR},
-      productScore = #{productscore,jdbcType=DOUBLE},
+      productScore = #{productscore,jdbcType=INTEGER},
       salesNum = #{salesnum,jdbcType=INTEGER},
       categoryId = #{categoryid,jdbcType=INTEGER},
       salesId = #{salesid,jdbcType=INTEGER},
       postTime = #{posttime,jdbcType=TIMESTAMP},
-      mainImgPath = #{mainimgpath,jdbcType=VARCHAR},
+      productStatus = #{productstatus,jdbcType=INTEGER},
       searchImgPath = #{searchimgpath,jdbcType=VARCHAR},
-      detailImgPath = #{detailimgpath,jdbcType=VARCHAR},
-      productStatus = #{productstatus,jdbcType=INTEGER}
+      sImgPath1 = #{simgpath1,jdbcType=VARCHAR},
+      sImgPath2 = #{simgpath2,jdbcType=VARCHAR},
+      mImgPath1 = #{mimgpath1,jdbcType=VARCHAR},
+      mImgPath2 = #{mimgpath2,jdbcType=VARCHAR},
+      bImgPath1 = #{bimgpath1,jdbcType=VARCHAR},
+      bImgPath2 = #{bimgpath2,jdbcType=VARCHAR},
+      DetailImgPath1 = #{detailimgpath1,jdbcType=VARCHAR},
+      DetailImgPath2 = #{detailimgpath2,jdbcType=VARCHAR},
+      itemName = #{itemname,jdbcType=VARCHAR},
+      secondItemName = #{seconditemname,jdbcType=VARCHAR},
+      DetailImgPath3 = #{detailimgpath3,jdbcType=VARCHAR}
     where productId = #{productid,jdbcType=INTEGER}
   </update>
 </mapper>

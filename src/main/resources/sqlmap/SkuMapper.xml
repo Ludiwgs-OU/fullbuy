@@ -4,13 +4,14 @@
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Sku">
     <id column="skuId" jdbcType="INTEGER" property="skuid" />
     <result column="productId" jdbcType="INTEGER" property="productid" />
-    <result column="colorId" jdbcType="INTEGER" property="colorid" />
     <result column="itemId" jdbcType="INTEGER" property="itemid" />
+    <result column="secondItemId" jdbcType="INTEGER" property="seconditemid" />
     <result column="price" jdbcType="DOUBLE" property="price" />
     <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="gbPrice" jdbcType="DOUBLE" property="gbprice" />
   </resultMap>
   <sql id="Base_Column_List">
-    skuId, productId, colorId, itemId, price, quantity
+    skuId, productId, itemId, secondItemId, price, quantity, gbPrice
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -23,12 +24,12 @@
     where skuId = #{skuid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Sku">
-    insert into sku (skuId, productId, colorId, 
-      itemId, price, quantity
-      )
-    values (#{skuid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{colorid,jdbcType=INTEGER}, 
-      #{itemid,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, #{quantity,jdbcType=INTEGER}
-      )
+    insert into sku (skuId, productId, itemId, 
+      secondItemId, price, quantity, 
+      gbPrice)
+    values (#{skuid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{itemid,jdbcType=INTEGER}, 
+      #{seconditemid,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, #{quantity,jdbcType=INTEGER}, 
+      #{gbprice,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Sku">
     insert into sku
@@ -39,17 +40,20 @@
       <if test="productid != null">
         productId,
       </if>
-      <if test="colorid != null">
-        colorId,
-      </if>
       <if test="itemid != null">
         itemId,
+      </if>
+      <if test="seconditemid != null">
+        secondItemId,
       </if>
       <if test="price != null">
         price,
       </if>
       <if test="quantity != null">
         quantity,
+      </if>
+      <if test="gbprice != null">
+        gbPrice,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -59,17 +63,20 @@
       <if test="productid != null">
         #{productid,jdbcType=INTEGER},
       </if>
-      <if test="colorid != null">
-        #{colorid,jdbcType=INTEGER},
-      </if>
       <if test="itemid != null">
         #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="seconditemid != null">
+        #{seconditemid,jdbcType=INTEGER},
       </if>
       <if test="price != null">
         #{price,jdbcType=DOUBLE},
       </if>
       <if test="quantity != null">
         #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="gbprice != null">
+        #{gbprice,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -79,11 +86,11 @@
       <if test="productid != null">
         productId = #{productid,jdbcType=INTEGER},
       </if>
-      <if test="colorid != null">
-        colorId = #{colorid,jdbcType=INTEGER},
-      </if>
       <if test="itemid != null">
         itemId = #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="seconditemid != null">
+        secondItemId = #{seconditemid,jdbcType=INTEGER},
       </if>
       <if test="price != null">
         price = #{price,jdbcType=DOUBLE},
@@ -91,16 +98,20 @@
       <if test="quantity != null">
         quantity = #{quantity,jdbcType=INTEGER},
       </if>
+      <if test="gbprice != null">
+        gbPrice = #{gbprice,jdbcType=DOUBLE},
+      </if>
     </set>
     where skuId = #{skuid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Sku">
     update sku
     set productId = #{productid,jdbcType=INTEGER},
-      colorId = #{colorid,jdbcType=INTEGER},
       itemId = #{itemid,jdbcType=INTEGER},
+      secondItemId = #{seconditemid,jdbcType=INTEGER},
       price = #{price,jdbcType=DOUBLE},
-      quantity = #{quantity,jdbcType=INTEGER}
+      quantity = #{quantity,jdbcType=INTEGER},
+      gbPrice = #{gbprice,jdbcType=DOUBLE}
     where skuId = #{skuid,jdbcType=INTEGER}
   </update>
 </mapper>

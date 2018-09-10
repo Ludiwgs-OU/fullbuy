@@ -5,13 +5,15 @@ public class Sku {
 
     private Integer productid;
 
-    private Integer colorid;
-
     private Integer itemid;
+
+    private Integer seconditemid;
 
     private Double price;
 
     private Integer quantity;
+
+    private Double gbprice;
 
     public Integer getSkuid() {
         return skuid;
@@ -29,20 +31,20 @@ public class Sku {
         this.productid = productid;
     }
 
-    public Integer getColorid() {
-        return colorid;
-    }
-
-    public void setColorid(Integer colorid) {
-        this.colorid = colorid;
-    }
-
     public Integer getItemid() {
         return itemid;
     }
 
     public void setItemid(Integer itemid) {
         this.itemid = itemid;
+    }
+
+    public Integer getSeconditemid() {
+        return seconditemid;
+    }
+
+    public void setSeconditemid(Integer seconditemid) {
+        this.seconditemid = seconditemid;
     }
 
     public Double getPrice() {
@@ -59,5 +61,13 @@ public class Sku {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Double getGbprice() {
+        return gbprice;
+    }
+
+    public void setGbprice(Double gbprice) {
+        this.gbprice = gbprice;
     }
 }

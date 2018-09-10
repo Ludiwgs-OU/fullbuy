@@ -19,6 +19,8 @@ public class Groudbuy {
 
     private Integer salesid;
 
+    private String bgcolor;
+
     public Integer getGbid() {
         return gbid;
     }
@@ -81,5 +83,13 @@ public class Groudbuy {
 
     public void setSalesid(Integer salesid) {
         this.salesid = salesid;
+    }
+
+    public String getBgcolor() {
+        return bgcolor;
+    }
+
+    public void setBgcolor(String bgcolor) {
+        this.bgcolor = bgcolor == null ? null : bgcolor.trim();
     }
 }

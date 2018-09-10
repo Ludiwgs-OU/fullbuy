@@ -19,6 +19,8 @@ public class Order {
 
     private Integer postfee;
 
+    private Integer orderstatus;
+
     public String getOrderid() {
         return orderid;
     }
@@ -81,5 +83,13 @@ public class Order {
 
     public void setPostfee(Integer postfee) {
         this.postfee = postfee;
+    }
+
+    public Integer getOrderstatus() {
+        return orderstatus;
+    }
+
+    public void setOrderstatus(Integer orderstatus) {
+        this.orderstatus = orderstatus;
     }
 }

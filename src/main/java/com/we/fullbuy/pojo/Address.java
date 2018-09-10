@@ -11,6 +11,8 @@ public class Address {
 
     private String phone;
 
+    private String name;
+
     public Integer getAddressid() {
         return addressid;
     }
@@ -49,5 +51,13 @@ public class Address {
 
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 }

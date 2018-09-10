@@ -9,7 +9,7 @@ public class Product {
 
     private String productdetail;
 
-    private Double productscore;
+    private Integer productscore;
 
     private Integer salesnum;
 
@@ -19,13 +19,31 @@ public class Product {
 
     private Date posttime;
 
-    private String mainimgpath;
+    private Integer productstatus;
 
     private String searchimgpath;
 
-    private String detailimgpath;
+    private String simgpath1;
 
-    private Integer productstatus;
+    private String simgpath2;
+
+    private String mimgpath1;
+
+    private String mimgpath2;
+
+    private String bimgpath1;
+
+    private String bimgpath2;
+
+    private String detailimgpath1;
+
+    private String detailimgpath2;
+
+    private String itemname;
+
+    private String seconditemname;
+
+    private String detailimgpath3;
 
     public Integer getProductid() {
         return productid;
@@ -51,11 +69,11 @@ public class Product {
         this.productdetail = productdetail == null ? null : productdetail.trim();
     }
 
-    public Double getProductscore() {
+    public Integer getProductscore() {
         return productscore;
     }
 
-    public void setProductscore(Double productscore) {
+    public void setProductscore(Integer productscore) {
         this.productscore = productscore;
     }
 
@@ -91,12 +109,12 @@ public class Product {
         this.posttime = posttime;
     }
 
-    public String getMainimgpath() {
-        return mainimgpath;
+    public Integer getProductstatus() {
+        return productstatus;
     }
 
-    public void setMainimgpath(String mainimgpath) {
-        this.mainimgpath = mainimgpath == null ? null : mainimgpath.trim();
+    public void setProductstatus(Integer productstatus) {
+        this.productstatus = productstatus;
     }
 
     public String getSearchimgpath() {
@@ -107,19 +125,91 @@ public class Product {
         this.searchimgpath = searchimgpath == null ? null : searchimgpath.trim();
     }
 
-    public String getDetailimgpath() {
-        return detailimgpath;
+    public String getSimgpath1() {
+        return simgpath1;
     }
 
-    public void setDetailimgpath(String detailimgpath) {
-        this.detailimgpath = detailimgpath == null ? null : detailimgpath.trim();
+    public void setSimgpath1(String simgpath1) {
+        this.simgpath1 = simgpath1 == null ? null : simgpath1.trim();
     }
 
-    public Integer getProductstatus() {
-        return productstatus;
+    public String getSimgpath2() {
+        return simgpath2;
     }
 
-    public void setProductstatus(Integer productstatus) {
-        this.productstatus = productstatus;
+    public void setSimgpath2(String simgpath2) {
+        this.simgpath2 = simgpath2 == null ? null : simgpath2.trim();
+    }
+
+    public String getMimgpath1() {
+        return mimgpath1;
+    }
+
+    public void setMimgpath1(String mimgpath1) {
+        this.mimgpath1 = mimgpath1 == null ? null : mimgpath1.trim();
+    }
+
+    public String getMimgpath2() {
+        return mimgpath2;
+    }
+
+    public void setMimgpath2(String mimgpath2) {
+        this.mimgpath2 = mimgpath2 == null ? null : mimgpath2.trim();
+    }
+
+    public String getBimgpath1() {
+        return bimgpath1;
+    }
+
+    public void setBimgpath1(String bimgpath1) {
+        this.bimgpath1 = bimgpath1 == null ? null : bimgpath1.trim();
+    }
+
+    public String getBimgpath2() {
+        return bimgpath2;
+    }
+
+    public void setBimgpath2(String bimgpath2) {
+        this.bimgpath2 = bimgpath2 == null ? null : bimgpath2.trim();
+    }
+
+    public String getDetailimgpath1() {
+        return detailimgpath1;
+    }
+
+    public void setDetailimgpath1(String detailimgpath1) {
+        this.detailimgpath1 = detailimgpath1 == null ? null : detailimgpath1.trim();
+    }
+
+    public String getDetailimgpath2() {
+        return detailimgpath2;
+    }
+
+    public void setDetailimgpath2(String detailimgpath2) {
+        this.detailimgpath2 = detailimgpath2 == null ? null : detailimgpath2.trim();
+    }
+
+    public String getItemname() {
+        return itemname;
+    }
+
+    public void setItemname(String itemname) {
+        this.itemname = itemname == null ? null : itemname.trim();
+    }
+
+    public String getSeconditemname() {
+        return seconditemname;
+    }
+
+    public void setSeconditemname(String seconditemname) {
+        this.seconditemname = seconditemname == null ? null : seconditemname.trim();
+    }
+
+    public String getDetailimgpath3() {
+        return detailimgpath3;
+    }
+
+    public void setDetailimgpath3(String detailimgpath3) {
+        this.detailimgpath3 = detailimgpath3 == null ? null : detailimgpath3.trim();
     }
 }

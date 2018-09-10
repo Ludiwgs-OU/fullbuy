@@ -10,9 +10,10 @@
     <result column="endTime" jdbcType="TIMESTAMP" property="endtime" />
     <result column="gbStatus" jdbcType="INTEGER" property="gbstatus" />
     <result column="salesId" jdbcType="INTEGER" property="salesid" />
+    <result column="bgColor" jdbcType="VARCHAR" property="bgcolor" />
   </resultMap>
   <sql id="Base_Column_List">
-    gbId, productId, minPeople, maxPeople, beginTime, endTime, gbStatus, salesId
+    gbId, productId, minPeople, maxPeople, beginTime, endTime, gbStatus, salesId, bgColor
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -27,10 +28,12 @@
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Groudbuy">
     insert into groudbuy (gbId, productId, minPeople, 
       maxPeople, beginTime, endTime, 
-      gbStatus, salesId)
+      gbStatus, salesId, bgColor
+      )
     values (#{gbid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{minpeople,jdbcType=INTEGER}, 
       #{maxpeople,jdbcType=INTEGER}, #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
-      #{gbstatus,jdbcType=INTEGER}, #{salesid,jdbcType=INTEGER})
+      #{gbstatus,jdbcType=INTEGER}, #{salesid,jdbcType=INTEGER}, #{bgcolor,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Groudbuy">
     insert into groudbuy
@@ -59,6 +62,9 @@
       <if test="salesid != null">
         salesId,
       </if>
+      <if test="bgcolor != null">
+        bgColor,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="gbid != null">
@@ -84,6 +90,9 @@
       </if>
       <if test="salesid != null">
         #{salesid,jdbcType=INTEGER},
+      </if>
+      <if test="bgcolor != null">
+        #{bgcolor,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -111,6 +120,9 @@
       <if test="salesid != null">
         salesId = #{salesid,jdbcType=INTEGER},
       </if>
+      <if test="bgcolor != null">
+        bgColor = #{bgcolor,jdbcType=VARCHAR},
+      </if>
     </set>
     where gbId = #{gbid,jdbcType=INTEGER}
   </update>
@@ -122,7 +134,8 @@
       beginTime = #{begintime,jdbcType=TIMESTAMP},
       endTime = #{endtime,jdbcType=TIMESTAMP},
       gbStatus = #{gbstatus,jdbcType=INTEGER},
-      salesId = #{salesid,jdbcType=INTEGER}
+      salesId = #{salesid,jdbcType=INTEGER},
+      bgColor = #{bgcolor,jdbcType=VARCHAR}
     where gbId = #{gbid,jdbcType=INTEGER}
   </update>
 </mapper>

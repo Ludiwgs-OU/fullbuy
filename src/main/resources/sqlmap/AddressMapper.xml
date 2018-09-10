@@ -7,9 +7,10 @@
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="postCode" jdbcType="VARCHAR" property="postcode" />
     <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
   <sql id="Base_Column_List">
-    addressId, userId, address, postCode, phone
+    addressId, userId, address, postCode, phone, name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -23,9 +24,9 @@
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Address">
     insert into address (addressId, userId, address, 
-      postCode, phone)
+      postCode, phone, name)
     values (#{addressid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
-      #{postcode,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR})
+      #{postcode,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, #{name,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Address">
     insert into address
@@ -45,6 +46,9 @@
       <if test="phone != null">
         phone,
       </if>
+      <if test="name != null">
+        name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="addressid != null">
@@ -61,6 +65,9 @@
       </if>
       <if test="phone != null">
         #{phone,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -79,6 +86,9 @@
       <if test="phone != null">
         phone = #{phone,jdbcType=CHAR},
       </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
     </set>
     where addressId = #{addressid,jdbcType=INTEGER}
   </update>
@@ -87,7 +97,8 @@
     set userId = #{userid,jdbcType=INTEGER},
       address = #{address,jdbcType=VARCHAR},
       postCode = #{postcode,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=CHAR}
+      phone = #{phone,jdbcType=CHAR},
+      name = #{name,jdbcType=VARCHAR}
     where addressId = #{addressid,jdbcType=INTEGER}
   </update>
 
