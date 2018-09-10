@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 @Controller
+//用户
 @RequestMapping("/user")
 public class UserController {
     @Resource
@@ -82,10 +83,5 @@ public class UserController {
        return userService.modifyUser(user);
     }
 
-    //注销
-    @RequestMapping("/logout")
-    @ResponseBody
-    public void logout(HttpSession session) {
-        session.invalidate();
-    }
+
 }

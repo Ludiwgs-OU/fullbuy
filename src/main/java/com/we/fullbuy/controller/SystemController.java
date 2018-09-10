@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/sys")
 public class SystemController {
@@ -20,5 +22,12 @@ public class SystemController {
             return "redirect:/user/login";
         else
             return "redirect:/sales/login";
+    }
+
+    //注销
+    @RequestMapping("/logout")
+    @ResponseBody
+    public void logout(HttpSession session) {
+        session.invalidate();
     }
 }
