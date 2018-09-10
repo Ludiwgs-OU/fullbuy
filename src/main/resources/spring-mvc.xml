@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -9,6 +9,7 @@
                             http://www.springframework.org/schema/context/spring-context-3.1.xsd
                             http://www.springframework.org/schema/mvc
                             http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
     <context:component-scan base-package="com.we.fullbuy.controller" />
 
@@ -17,21 +18,31 @@
 
     <!-- 访问静态资源 -->
     <mvc:default-servlet-handler />
+    <!-- 静态资源解析，包括js,css,img... -->
+    <!--<mvc:resources location="/static/cropper/" mapping="/static/cropper/**"/>-->
+    <!--<mvc:resources location="/static1/css/" mapping="/static1/css/**"/>
+    <mvc:resources location="/static1/fonts/" mapping="/static1/fonts/**"/>-->
+    <!--<mvc:resources location="/static/img/" mapping="/static/img/**"/>-->
+    <!--<mvc:resources location="/static1/js/" mapping="/static1/js/**"/>-->
+    <!--<mvc:resources location="/static/sitelogo/" mapping="/static/sitelogo/**"/>-->
+
+
+    <!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->
+    <!--废弃的org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter
+   最新使用org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="mappingJacksonHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
 
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
                 <value>application/json;charset=UTF-8</value>
-            </list>
-        </property>
-    </bean>
-
-    <!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-        <property name="messageConverters">
-            <list>
-                <ref bean="mappingJacksonHttpMessageConverter"/>
             </list>
         </property>
     </bean>
