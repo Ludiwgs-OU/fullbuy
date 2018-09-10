@@ -18,5 +18,6 @@ public interface AddressMapper {
     int updateByPrimaryKey(Address record);
 
     /*new*/
+    /*显示用户收藏夹*/
     List<Address> selectByUserId(Integer userid);
 }

@@ -18,15 +18,15 @@ public class SalesController {
     //登录
     @RequestMapping("/login")
     @ResponseBody
-    public String login(@RequestParam("phone") String phone, @RequestParam("password") String password) {
+    public int login(@RequestParam("phone") String phone, @RequestParam("password") String password) {
         Sales sales = salesService.login(phone);
 
         if (sales != null) {
             if (sales.getSalaespwd().equals(password))
-                return "欢迎回来" + sales.getSalaesname();
+                return 1;
             else
-                return "密码错误，请重新输入密码";
+                return 2;
         } else
-            return "账号不存在，请检查";
+            return 0;
     }
 }

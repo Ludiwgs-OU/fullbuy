@@ -37,8 +37,8 @@ public class FavorServiceImpl implements FavorService {
         return favorMapper.selectByUserId(userId);
     }
 
-    @Override
+/*    @Override
     public List<Favor> searchFavor(String keyword, int userId) {
         return null;
-    }
+    }*/
 }

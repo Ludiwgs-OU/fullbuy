@@ -13,6 +13,6 @@ public interface FavorService {
     int deleteFavors(List<Integer> favorId);
     /*查看收藏夹*/
     List<Favor> displayFavor(int userId);
-    /*搜索收藏夹*/
-    List<Favor> searchFavor(String keyword, int userId);
+    /*搜索收藏夹*//*
+    List<Favor> searchFavor(String keyword, int userId);*/
 }
