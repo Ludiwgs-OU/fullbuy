@@ -11,4 +11,7 @@ import javax.annotation.Resource;
 public class ProductController {
     @Resource
     private ProductService productService;
+
+    //商品浏览主页
+
 }

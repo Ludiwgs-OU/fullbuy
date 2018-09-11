@@ -13,6 +13,8 @@ public class Address {
 
     private String name;
 
+    private int defaultaddress;
+
     public Integer getAddressid() {
         return addressid;
     }
@@ -59,5 +61,13 @@ public class Address {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public int getDefaultaddress() {
+        return defaultaddress;
+    }
+
+    public void setDefaultaddress(int defaultaddress) {
+        this.defaultaddress = defaultaddress;
     }
 }

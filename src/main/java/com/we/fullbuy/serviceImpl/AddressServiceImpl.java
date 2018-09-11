@@ -43,4 +43,10 @@ public class AddressServiceImpl implements AddressService {
     public Address displayAddressDetail(int addressId) {
         return addressMapper.selectByPrimaryKey(addressId);
     }
+
+    @Override
+    @Transactional
+    public Address searchDefaultAddress() {
+        return addressMapper.searchDefaultAddress();
+    }
 }

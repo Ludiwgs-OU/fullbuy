@@ -8,9 +8,10 @@
     <result column="postCode" jdbcType="VARCHAR" property="postcode" />
     <result column="phone" jdbcType="CHAR" property="phone" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="defaultAddress" jdbcType="INTEGER" property="defaultaddress" />
   </resultMap>
   <sql id="Base_Column_List">
-    addressId, userId, address, postCode, phone, name
+    addressId, userId, address, postCode, phone, name, defaultaddress
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -26,7 +27,7 @@
     insert into address (addressId, userId, address, 
       postCode, phone, name)
     values (#{addressid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
-      #{postcode,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, #{name,jdbcType=VARCHAR})
+      #{postcode,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}), #{defaultaddress,jdbcType=INTEGER}
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Address">
     insert into address
@@ -49,6 +50,9 @@
       <if test="name != null">
         name,
       </if>
+      <if test="defaultaddress != null">
+        defaultaddress,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="addressid != null">
@@ -68,6 +72,9 @@
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultaddress != null">
+        #{addressid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -89,6 +96,9 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="defaultaddress != null">
+        defaultAddress = #{addressid,jdbcType=INTEGER},
+      </if>
     </set>
     where addressId = #{addressid,jdbcType=INTEGER}
   </update>
@@ -98,7 +108,8 @@
       address = #{address,jdbcType=VARCHAR},
       postCode = #{postcode,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=CHAR},
-      name = #{name,jdbcType=VARCHAR}
+      name = #{name,jdbcType=VARCHAR},
+      defaultAddress = #{defaultaddress,jdbcType=INTEGER}
     where addressId = #{addressid,jdbcType=INTEGER}
   </update>
 
@@ -107,5 +118,11 @@
     select *
     from address
     where userid = #{userid,jdbcType=INTEGER}
+  </select>
+
+  <select id="searchDefaultAddress"  resultMap="BaseResultMap">
+    select addressId
+    from address
+    where defaultAddress = 1
   </select>
 </mapper>

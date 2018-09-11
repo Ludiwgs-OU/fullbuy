@@ -9,5 +9,7 @@ public interface SkuService {
     int deleteSku(int skuId);
     /*查询Sku*/
     Sku showSku(int skuId);
+    /*更新Sku*/
+    int updateSku(Sku sku);
 
 }

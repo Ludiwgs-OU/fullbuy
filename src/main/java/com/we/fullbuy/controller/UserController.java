@@ -44,7 +44,7 @@ public class UserController {
         {
             if(user.getBlack()==0)
             {
-                if(user.getPassword().equals(password))
+                if(user.getPassword().equals(cpassword))
                 {
                     session.setAttribute("userId",user.getUserid());
                     return 1;//登录成功
