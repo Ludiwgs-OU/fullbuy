@@ -69,9 +69,13 @@ $(document).ready(function() {
 	$('#LikBasket').click(()=>{
 		var sku = $("#skuId").text();
 		var num = $("#text_box").val();
+		var user = $("#userName").text();
 		
 		if(!sku){
 			alert("请选择规格！");
+		}
+		else if(!user){
+			alert("请先登录！");
 		}
 		else{
 			var buy = {
@@ -96,26 +100,69 @@ $(document).ready(function() {
 	})
 	
 	/*
+	 * 团购
+	 */
+	$('#groupBuy').click(()=>{
+		var sku = $("#skuId").text();
+		var gid = getUrlParam('gid');
+		var user = $("#userName").text();
+		
+		if(!sku){
+			alert("请选择规格！");
+		}
+		else if(!user){
+			alert("请先登录！");
+		}
+		else{
+			var buy = {
+				"skuId": sku,
+				"groupbuyId": gid
+			}
+		
+			$.ajax({
+				type:"post",
+				url:"#",
+				async:true,
+				dataType:"json",
+				data: buy,
+				success:function(result){
+					window.location.href = "#";
+				},
+				error:function(inf){
+					alert("获取数据失败！");
+				},
+			});
+		}
+	})
+	
+	/*
 	 * 加入收藏夹
 	 */
 	
 	$("#collAdd").click(()=>{
 		var pid = getUrlParam('pid');
-		$.ajax({
-			type:"post",
-			url:"#",
-			async:true,
-			dataType:"json",
-			data: {
-				"productId": pid
-			},
-			success:function(result){
-				alert("加入收藏夹成功！");
-			},
-			error:function(inf){
-				alert("加入收藏夹失败！");
-			},
-		});
+		var user = $("#userName").text();
+		
+		if(!user){
+			alert("请先登录！");
+		}
+		else{
+			$.ajax({
+				type:"post",
+				url:"#",
+				async:true,
+				dataType:"json",
+				data: {
+					"productId": pid
+				},
+				success:function(result){
+					alert("加入收藏夹成功！");
+				},
+				error:function(inf){
+					alert("加入收藏夹失败！");
+				},
+			});
+		}
 	})
 	
 });
@@ -336,5 +383,32 @@ new Vue({
 				});
    			}
    		}
+   	}
+})
+
+/*
+ * 团购详情
+ */
+new Vue({
+	el: '#groupbuyInfo',
+	data:function(){
+   		return {
+   			site: ""
+   	 	}
+ 	},
+	created: function(){
+    	var self = this;
+   		$.ajax({
+			type:"get",
+			url:"../static/json/groupbuy.json",
+			async:true,
+			dataType:"json",
+			success:function(inf){
+				self.site = inf;
+			},
+			error:function(inf){
+				alert("获取数据失败！");
+			},
+		});
    	}
 })
