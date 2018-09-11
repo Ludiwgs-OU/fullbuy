@@ -21,6 +21,8 @@ public class Groudbuy {
 
     private String bgcolor;
 
+    private Integer nowpeople;
+
     public Integer getGbid() {
         return gbid;
     }
@@ -91,5 +93,14 @@ public class Groudbuy {
 
     public void setBgcolor(String bgcolor) {
         this.bgcolor = bgcolor == null ? null : bgcolor.trim();
+    }
+
+
+    public Integer getNowpeople() {
+        return nowpeople;
+    }
+
+    public void setNowpeople(Integer nowpeople) {
+        this.nowpeople = nowpeople;
     }
 }

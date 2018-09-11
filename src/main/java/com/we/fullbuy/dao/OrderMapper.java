@@ -2,6 +2,8 @@ package com.we.fullbuy.dao;
 
 import com.we.fullbuy.pojo.Order;
 
+import java.util.List;
+
 public interface OrderMapper {
     int deleteByPrimaryKey(String orderid);
 
@@ -14,4 +16,11 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    /*new*/
+    //根据商家ID查找订单
+    List<Order> selectBySalesId(Integer salesid);
+    //根据用户ID查找订单
+    List<Order> selectByUserId(Integer userid);
+
 }

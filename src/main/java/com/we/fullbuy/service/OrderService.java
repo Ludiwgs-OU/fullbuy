@@ -7,8 +7,10 @@ import java.util.List;
 public interface OrderService {
     /*生成订单*/
     int addOrder(Order order);
-    /*显示订单列表*/
-    List<Order> showOrder(int id);
+    /*显示商家订单列表*/
+    List<Order> showSalesOrder(int salesId);
+    /*显示用户订单列表*/
+    List<Order> showUserOrder(int userId);
     /*订单详情*/
     Order showOrderDetail(String orderId);
     /*删除订单*/

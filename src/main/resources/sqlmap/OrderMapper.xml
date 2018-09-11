@@ -138,4 +138,18 @@
       orderStatus = #{orderstatus,jdbcType=INTEGER}
     where orderId = #{orderid,jdbcType=VARCHAR}
   </update>
+
+
+  <!--new-->
+  <select id="selectBySalesId" resultMap="BaseResultMap">
+    select *
+    from `order`
+    where salesId = #{salesid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByUserId" resultMap="BaseResultMap">
+    select *
+    from `order`
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
 </mapper>
