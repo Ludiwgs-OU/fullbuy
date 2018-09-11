@@ -16,23 +16,5 @@
  		"productName": "区嘉浩凤爪",
  		"price": "100",
  		"searchImgPath": "../static/images/cp.jpg"
- 	},
- 	{
- 		"productId": "4",
- 		"productName": "区嘉浩凤爪",
- 		"price": "100",
- 		"searchImgPath": "../static/images/cp.jpg"
- 	},
- 	{
- 		"productId": "5",
- 		"productName": "区嘉浩凤爪",
- 		"price": "100",
- 		"searchImgPath": "../static/images/cp.jpg"
- 	},
- 	{
- 		"productId": "6",
- 		"productName": "区嘉浩凤爪",
- 		"price": "100",
- 		"searchImgPath": "../static/images/cp.jpg"
  	}
 ]

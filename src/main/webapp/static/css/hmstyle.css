@@ -209,7 +209,7 @@ text-align: center;float:none}
 .shopTitle{background: #fff;}
 .hmtop{background: #fff;}
 .am-container {padding-left:0px;padding-right:0px ;}
-.am-container.header{padding-left:21px; padding-right:40px ; border-bottom: 2px solid #E3E3E3;}
+.am-container.header{padding-left:21px; padding-right:40px ;}
 .shopMainbg{width:100%;background:#fff;overflow:visible;}
 .slideall{position: relative;}
 .shopNav{margin-top:0px;}
@@ -790,6 +790,11 @@ filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#f8c375',endCo
 
 }
 
+.clearfixLeft,
+.clearfixRight{
+	margin-top: 80px;
+}
+
 .recommendation{
 	margin-top: 500px;
 }
@@ -834,15 +839,4 @@ filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#f8c375',endCo
 	left: -30px;
 	top: 20px;
 	height: 100px;
-}
-
-.avatar_box a{
-	font-size: 15px;
-	left: 80px;
-	top: 80px;
-	width: 100px;
-}
-
-.avatar_box a:hover{
-	color: #0087E5;
 }

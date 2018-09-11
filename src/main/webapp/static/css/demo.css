@@ -334,3 +334,68 @@ background:url(../images/ibar_sprites.png) no-repeat;background-position:0px -23
 .am-article-title.blog-title{font-size:24px;line-height: 1.15;font-weight: normal;margin: 10px 0px 20px;}
 .blog-content p{margin: 0 0 1.6rem 0;font-size:14px;}
 
+.clearfixLeft,
+.clearfixRight{
+	margin-top: 80px;
+}
+
+.recommendation{
+	margin-top: 500px;
+}
+
+.menu-hd a{
+	margin-left: 20px;
+}
+
+.menu-hd a:hover{
+	color: #009CDA;
+}
+
+.logoBig img{
+	height: 150px;
+}
+
+.search-bar form{
+	margin-top: 30px;
+}
+
+.block img{
+	margin-left: 20%;
+	width: 60%;
+	height: 100%;
+}
+
+.outer-con .title{
+	font-size: 20px;
+}
+
+.phone{
+	border-bottom: 1px solid #FD7A72;
+}
+
+.footer p{
+	font-size: 12px;
+	padding: 5px 10px;
+}
+
+.footer{
+	position: relative;
+	left: -30px;
+	top: 20px;
+	height: 100px;
+}
+
+.avatar_box a{
+	font-size: 15px;
+	left: 80px;
+	top: 80px;
+	width: 100px;
+}
+
+.avatar_box a:hover{
+	color: #0087E5;
+}
+
+.header{
+	border-bottom: 2px solid #E3E3E3;
+}

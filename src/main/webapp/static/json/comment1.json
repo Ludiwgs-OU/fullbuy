@@ -1,0 +1,35 @@
+[
+ 	{
+ 		"avatar": "../static/images/hwbn40x40.jpg",
+ 		"userName": "区嘉浩",
+ 		"time": "2018-12-12 17:50",
+ 		"commentDetail": "摸起来丝滑柔软，不厚，没色差，颜色好看！买这个衣服还接到诈骗电话，我很好奇他们是怎么知道我买了这件衣服，并且还知道我的电话的！",
+ 		"commentImgPath": "../static/images/02_mid.jpg",
+ 		"itemName1": "颜色分类",
+ 		"itemName2": "尺码",
+ 		"item1": "柠檬黄",
+ 		"item2": "S"
+ 	},
+ 	{
+ 		"avatar": "../static/images/hwbn40x40.jpg",
+ 		"userName": "区嘉浩",
+ 		"time": "2018-12-12 17:50",
+ 		"commentDetail": "摸起来丝滑柔软，不厚，没色差，颜色好看！买这个衣服还接到诈骗电话，我很好奇他们是怎么知道我买了这件衣服，并且还知道我的电话的！",
+ 		"commentImgPath": "",
+ 		"itemName1": "颜色分类",
+ 		"itemName2": "尺码",
+ 		"item1": "柠檬黄",
+ 		"item2": "S"
+ 	},
+ 	{
+ 		"avatar": "../static/images/hwbn40x40.jpg",
+ 		"userName": "区嘉浩",
+ 		"time": "2018-12-12 17:50",
+ 		"commentDetail": "摸起来丝滑柔软，不厚，没色差，颜色好看！买这个衣服还接到诈骗电话，我很好奇他们是怎么知道我买了这件衣服，并且还知道我的电话的！",
+ 		"commentImgPath": "../static/images/02_mid.jpg",
+ 		"itemName1": "颜色分类",
+ 		"itemName2": "尺码",
+ 		"item1": "柠檬黄",
+ 		"item2": "S"
+ 	}
+]

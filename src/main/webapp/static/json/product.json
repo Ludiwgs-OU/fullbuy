@@ -1,0 +1,42 @@
+{
+	"img1_s": "../static/images/01_small.jpg",
+	"img1_m": "../static/images/01_mid.jpg",
+	"img1_l": "../static/images/01.jpg",
+	"img2_s": "../static/images/02_small.jpg",
+	"img2_m": "../static/images/02_mid.jpg",
+	"img2_l": "../static/images/02.jpg",
+	"productName": "良品铺子 手剥松子218g 坚果炒货 巴西松子",
+	"stats": "1",
+	"price": "56.90",
+	"sale": "6015",
+	"evaluation": "640",
+	"item1": "口味",
+	"item2": "包装",
+	"itemtype1": [ 
+	    {
+	    	"itemName": "原味",
+	    	"itemId": "1"
+	    },{
+	    	"itemName": "奶油",
+	    	"itemId": "2"
+	    },{
+	    	"itemName": "炭烧",
+	    	"itemId": "3"
+	    },{
+	    	"itemName": "咸香",
+	    	"itemId": "4"
+	    } ],
+	"itemtype2": [ 
+	    {
+	    	"itemName": "手袋单人份",
+	    	"itemId": "1"
+	    },{
+	    	"itemName": "礼盒双人份",
+	    	"itemId": "2"
+	    },{
+	    	"itemName": "全家福礼包",
+	    	"itemId": "3"
+	    } ],
+	 "stock": "999",
+	 "status": "2"
+}
