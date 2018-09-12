@@ -1,5 +1,7 @@
 package com.we.fullbuy.pojo;
 
+import java.util.List;
+
 public class Sku {
     private Integer skuid;
 
@@ -14,6 +16,10 @@ public class Sku {
     private Integer quantity;
 
     private Double gbprice;
+
+    private List<Item> itemList;
+
+    private List<Seconditem> seconditemList;
 
     public Integer getSkuid() {
         return skuid;
@@ -69,5 +75,36 @@ public class Sku {
 
     public void setGbprice(Double gbprice) {
         this.gbprice = gbprice;
+    }
+
+    public List<Item> getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
+    }
+
+    public List<Seconditem> getSeconditemList() {
+        return seconditemList;
+    }
+
+    public void setSeconditemList(List<Seconditem> seconditemList) {
+        this.seconditemList = seconditemList;
+    }
+
+    @Override
+    public String toString() {
+        return "Sku{" +
+                "skuid=" + skuid +
+                ", productid=" + productid +
+                ", itemid=" + itemid +
+                ", seconditemid=" + seconditemid +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", gbprice=" + gbprice +
+                ", itemList=" + itemList +
+                ", seconditemList=" + seconditemList +
+                '}';
     }
 }

@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product showProductDetail(int productId) {
-        return productMapper.selectByPrimaryKey(productId);
+        return productMapper.displayProductDetail(productId);
     }
 
     @Override

@@ -36,7 +36,6 @@ public class SalesController {
                     session.setAttribute("salesId",sales.getSalesid());
                     return 1;//登录成功
                 }
-
                 else
                     return 2;//密码错误
             }
@@ -52,7 +51,6 @@ public class SalesController {
     public int register()
     {
         Sales sales = new Sales();
-
         Sales check = salesService.login("1");
         if(check==null)
         {
@@ -76,11 +74,16 @@ public class SalesController {
     //修改个人信息
     @RequestMapping("/modifyUser")
     @ResponseBody
-    public int modifyUser(HttpSession session)
+    public boolean modifyUser(HttpSession session)
     {
         Sales sales = new Sales();
         sales.setSalesid((int)session.getAttribute("salesId"));
 
-        return salesService.modifySales(sales);
+        if(salesService.modifySales(sales)!=0)
+            return true;
+        else
+            return false;
     }
+
+
 }

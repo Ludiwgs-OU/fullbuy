@@ -114,4 +114,22 @@
       gbPrice = #{gbprice,jdbcType=DOUBLE}
     where skuId = #{skuid,jdbcType=INTEGER}
   </update>
+
+  <!--new-->
+  <resultMap id="sku-item" type="com.we.fullbuy.pojo.Sku" extends="BaseResultMap">
+    <collection property="itemList" ofType="com.we.fullbuy.pojo.Item">
+      <id column="itemId" jdbcType="INTEGER" property="itemid" />
+      <result column="itemName" jdbcType="VARCHAR" property="itemname" />
+    </collection>
+    <collection property="seconditemList" ofType="com.we.fullbuy.pojo.Seconditem">
+      <id column="secondItemId" jdbcType="INTEGER" property="seconditemid" />
+      <result column="secondItemName" jdbcType="VARCHAR" property="seconditemname" />
+    </collection>
+  </resultMap>
+
+  <select id="selectSkuWithItems" parameterType="java.lang.Integer" resultMap="sku-item">
+    select s.*,i.*,si.*
+    from sku s,item i,seconditem si
+    where skuId = #{skuid,jdbcType=INTEGER} and s.itemId = i.itemId and s.secondItemId = si.secondItemId
+  </select>
 </mapper>

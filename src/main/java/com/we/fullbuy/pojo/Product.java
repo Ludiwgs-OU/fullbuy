@@ -1,6 +1,7 @@
 package com.we.fullbuy.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class Product {
     private Integer productid;
@@ -39,11 +40,17 @@ public class Product {
 
     private String detailimgpath2;
 
-    private String itemname;
+    private String item1;
 
-    private String seconditemname;
+    private String item2;
 
     private String detailimgpath3;
+
+    private Item item;
+
+    private Seconditem seconditem;
+
+    private List<Sku> skuList;
 
     public Integer getProductid() {
         return productid;
@@ -189,27 +196,81 @@ public class Product {
         this.detailimgpath2 = detailimgpath2 == null ? null : detailimgpath2.trim();
     }
 
-    public String getItemname() {
-        return itemname;
-    }
-
-    public void setItemname(String itemname) {
-        this.itemname = itemname == null ? null : itemname.trim();
-    }
-
-    public String getSeconditemname() {
-        return seconditemname;
-    }
-
-    public void setSeconditemname(String seconditemname) {
-        this.seconditemname = seconditemname == null ? null : seconditemname.trim();
-    }
-
     public String getDetailimgpath3() {
         return detailimgpath3;
     }
 
     public void setDetailimgpath3(String detailimgpath3) {
         this.detailimgpath3 = detailimgpath3 == null ? null : detailimgpath3.trim();
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public Seconditem getSeconditem() {
+        return seconditem;
+    }
+
+    public void setSeconditem(Seconditem seconditem) {
+        this.seconditem = seconditem;
+    }
+
+    public List<Sku> getSkuList() {
+        return skuList;
+    }
+
+    public void setSkuList(List<Sku> skuList) {
+        this.skuList = skuList;
+    }
+
+    public String getItem1() {
+        return item1;
+    }
+
+    public void setItem1(String item1) {
+        this.item1 = item1;
+    }
+
+    public String getItem2() {
+        return item2;
+    }
+
+    public void setItem2(String item2) {
+        this.item2 = item2;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productid=" + productid +
+                ", productname='" + productname + '\'' +
+                ", productdetail='" + productdetail + '\'' +
+                ", productscore=" + productscore +
+                ", salesnum=" + salesnum +
+                ", categoryid=" + categoryid +
+                ", salesid=" + salesid +
+                ", posttime=" + posttime +
+                ", productstatus=" + productstatus +
+                ", searchimgpath='" + searchimgpath + '\'' +
+                ", simgpath1='" + simgpath1 + '\'' +
+                ", simgpath2='" + simgpath2 + '\'' +
+                ", mimgpath1='" + mimgpath1 + '\'' +
+                ", mimgpath2='" + mimgpath2 + '\'' +
+                ", bimgpath1='" + bimgpath1 + '\'' +
+                ", bimgpath2='" + bimgpath2 + '\'' +
+                ", detailimgpath1='" + detailimgpath1 + '\'' +
+                ", detailimgpath2='" + detailimgpath2 + '\'' +
+                ", item1='" + item1 + '\'' +
+                ", item2='" + item2 + '\'' +
+                ", detailimgpath3='" + detailimgpath3 + '\'' +
+                ", item=" + item +
+                ", seconditem=" + seconditem +
+                ", skuList=" + skuList +
+                '}';
     }
 }

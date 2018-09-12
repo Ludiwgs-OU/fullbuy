@@ -20,14 +20,14 @@
     <result column="bImgPath2" jdbcType="VARCHAR" property="bimgpath2" />
     <result column="DetailImgPath1" jdbcType="VARCHAR" property="detailimgpath1" />
     <result column="DetailImgPath2" jdbcType="VARCHAR" property="detailimgpath2" />
-    <result column="itemName" jdbcType="VARCHAR" property="itemname" />
-    <result column="secondItemName" jdbcType="VARCHAR" property="seconditemname" />
+    <result column="item1" jdbcType="VARCHAR" property="item1" />
+    <result column="item2" jdbcType="VARCHAR" property="item2" />
     <result column="DetailImgPath3" jdbcType="VARCHAR" property="detailimgpath3" />
   </resultMap>
   <sql id="Base_Column_List">
     productId, productName, productDetail, productScore, salesNum, categoryId, salesId, 
     postTime, productStatus, searchImgPath, sImgPath1, sImgPath2, mImgPath1, mImgPath2, 
-    bImgPath1, bImgPath2, DetailImgPath1, DetailImgPath2, itemName, secondItemName, DetailImgPath3
+    bImgPath1, bImgPath2, DetailImgPath1, DetailImgPath2, item1, item2, DetailImgPath3
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -46,7 +46,7 @@
       searchImgPath, sImgPath1, sImgPath2, 
       mImgPath1, mImgPath2, bImgPath1, 
       bImgPath2, DetailImgPath1, DetailImgPath2, 
-      itemName, secondItemName, DetailImgPath3
+      item1, item2, DetailImgPath3
       )
     values (#{productid,jdbcType=INTEGER}, #{productname,jdbcType=VARCHAR}, #{productdetail,jdbcType=VARCHAR}, 
       #{productscore,jdbcType=INTEGER}, #{salesnum,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, 
@@ -54,7 +54,7 @@
       #{searchimgpath,jdbcType=VARCHAR}, #{simgpath1,jdbcType=VARCHAR}, #{simgpath2,jdbcType=VARCHAR}, 
       #{mimgpath1,jdbcType=VARCHAR}, #{mimgpath2,jdbcType=VARCHAR}, #{bimgpath1,jdbcType=VARCHAR}, 
       #{bimgpath2,jdbcType=VARCHAR}, #{detailimgpath1,jdbcType=VARCHAR}, #{detailimgpath2,jdbcType=VARCHAR}, 
-      #{itemname,jdbcType=VARCHAR}, #{seconditemname,jdbcType=VARCHAR}, #{detailimgpath3,jdbcType=VARCHAR}
+      #{item1,jdbcType=VARCHAR}, #{item2,jdbcType=VARCHAR}, #{detailimgpath3,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Product">
@@ -114,11 +114,11 @@
       <if test="detailimgpath2 != null">
         DetailImgPath2,
       </if>
-      <if test="itemname != null">
-        itemName,
+      <if test="item1 != null">
+        item1,
       </if>
-      <if test="seconditemname != null">
-        secondItemName,
+      <if test="item2 != null">
+        item2,
       </if>
       <if test="detailimgpath3 != null">
         DetailImgPath3,
@@ -179,11 +179,11 @@
       <if test="detailimgpath2 != null">
         #{detailimgpath2,jdbcType=VARCHAR},
       </if>
-      <if test="itemname != null">
-        #{itemname,jdbcType=VARCHAR},
+      <if test="item1 != null">
+        #{item1,jdbcType=VARCHAR},
       </if>
-      <if test="seconditemname != null">
-        #{seconditemname,jdbcType=VARCHAR},
+      <if test="item2 != null">
+        #{item2,jdbcType=VARCHAR},
       </if>
       <if test="detailimgpath3 != null">
         #{detailimgpath3,jdbcType=VARCHAR},
@@ -244,11 +244,11 @@
       <if test="detailimgpath2 != null">
         DetailImgPath2 = #{detailimgpath2,jdbcType=VARCHAR},
       </if>
-      <if test="itemname != null">
-        itemName = #{itemname,jdbcType=VARCHAR},
+      <if test="item1 != null">
+        item1 = #{item1,jdbcType=VARCHAR},
       </if>
-      <if test="seconditemname != null">
-        secondItemName = #{seconditemname,jdbcType=VARCHAR},
+      <if test="item2 != null">
+        item2 = #{item2,jdbcType=VARCHAR},
       </if>
       <if test="detailimgpath3 != null">
         DetailImgPath3 = #{detailimgpath3,jdbcType=VARCHAR},
@@ -275,9 +275,38 @@
       bImgPath2 = #{bimgpath2,jdbcType=VARCHAR},
       DetailImgPath1 = #{detailimgpath1,jdbcType=VARCHAR},
       DetailImgPath2 = #{detailimgpath2,jdbcType=VARCHAR},
-      itemName = #{itemname,jdbcType=VARCHAR},
-      secondItemName = #{seconditemname,jdbcType=VARCHAR},
+      item1 = #{item1,jdbcType=VARCHAR},
+      item2 = #{item2,jdbcType=VARCHAR},
       DetailImgPath3 = #{detailimgpath3,jdbcType=VARCHAR}
     where productId = #{productid,jdbcType=INTEGER}
   </update>
+
+
+  <!--new-->
+  <resultMap id="productDetail" type="com.we.fullbuy.pojo.Product" extends="BaseResultMap">
+    <collection property="skuList" ofType="com.we.fullbuy.pojo.Sku">
+      <id column="skuId" jdbcType="INTEGER" property="skuid" />
+      <result column="productId" jdbcType="INTEGER" property="productid" />
+      <result column="itemId" jdbcType="INTEGER" property="itemid" />
+      <result column="secondItemId" jdbcType="INTEGER" property="seconditemid" />
+      <result column="price" jdbcType="DOUBLE" property="price" />
+      <result column="quantity" jdbcType="INTEGER" property="quantity" />
+      <result column="gbPrice" jdbcType="DOUBLE" property="gbprice" />
+      <collection property="itemList" ofType="com.we.fullbuy.pojo.Item">
+        <id column="itemId" jdbcType="INTEGER" property="itemid" />
+        <result column="itemName" jdbcType="VARCHAR" property="itemname" />
+      </collection>
+      <collection property="seconditemList" ofType="com.we.fullbuy.pojo.Seconditem">
+        <id column="secondItemId" jdbcType="INTEGER" property="seconditemid" />
+        <result column="secondItemName" jdbcType="VARCHAR" property="seconditemname" />
+      </collection>
+    </collection>
+  </resultMap>
+
+  <select id="displayProductDetail" parameterType="java.lang.Integer" resultMap="productDetail">
+    select p.*,s.*,i.*,si.*
+    from product p, sku s, item i, seconditem si
+    where p.productId = #{productid,jdbcType=INTEGER} and s.productId = p.productId and s.itemId = i.itemId and s.secondItemId = si.secondItemId
+  </select>
+
 </mapper>

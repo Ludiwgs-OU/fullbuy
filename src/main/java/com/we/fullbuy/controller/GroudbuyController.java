@@ -23,6 +23,7 @@ public class GroudbuyController {
     @ResponseBody
     public int addGroudbuy(Groudbuy groudbuy)
     {
+
         return groudbuyService.addGroudbuy(groudbuy);
     }
 
@@ -61,7 +62,7 @@ public class GroudbuyController {
     }
 
     //用户查询团购活动
-    @RequestMapping("/displaySalesGroudbuy")
+    @RequestMapping("/displayUserGroudbuy")
     @ResponseBody
     public List<Groudbuy> displayUserGroudbuy(HttpSession session)
     {

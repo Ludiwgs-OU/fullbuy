@@ -40,8 +40,9 @@ public class OrderController {
         String orderId = userId + cdate;
         System.out.println("订单编号：" + orderId);
 
+        //时间格式转换
         Date date = new Date();
-        Timestamp timestamp = new Timestamp(date.getTime());//时间格式转换
+        Timestamp timestamp = new Timestamp(date.getTime());
 
         Sku sku = skuService.showSku(skuId);
         if(num<sku.getQuantity())//库存量比较
@@ -62,14 +63,14 @@ public class OrderController {
                 sku.setQuantity(sku.getQuantity()-num);
                 int s = skuService.updateSku(sku);
                 if(s!=0)
-                    System.out.println("sku Success");//减库存量
+                    System.out.println("-Quantity Success");//减库存量
 
                 Product product = new Product();
                 product.setProductid(sku.getProductid());
                 product.setSalesnum(product.getSalesnum()+num);//增加销售量
                 int p = productService.modifyProduct(product);
                 if(p!=0)
-                    System.out.println("pro success");
+                    System.out.println("+Salesnum success");
 
                 return 1;//订单生成成功
             }
@@ -107,13 +108,17 @@ public class OrderController {
         order.setSkuid(skuId);
         if(orderService.addOrder(order)==1)
         {
-            sku.setQuantity(sku.getQuantity());
+            sku.setQuantity(sku.getQuantity()-1);
+            int s = skuService.updateSku(sku);
+            if(s!=0)
+                System.out.println("-Quantity Success");//减库存量
+
             Product product = new Product();
             product.setProductid(sku.getProductid());
             product.setSalesnum(product.getSalesnum()+1);//增加销售量
             int p = productService.modifyProduct(product);
             if(p!=0)
-                System.out.println("pro success");
+                System.out.println("+Salesnum success");
             Groudbuy groudbuy = new Groudbuy();
             groudbuy.setNowpeople(groudbuy.getNowpeople()+1);
             groudbuy.setGbid(groudbuyId);
@@ -126,14 +131,14 @@ public class OrderController {
             return 2;//订单生成失败
     }
 
-    //显示商家订单列表
+    //显示商家的订单列表
     @RequestMapping("/displaySalesOrder")
     @ResponseBody
     public List<Order> displaySalesOrder(HttpSession session){
         return orderService.showSalesOrder((int)session.getAttribute("salesId"));
     }
 
-    //显示商家订单列表
+    //显示用户的订单列表
     @RequestMapping("/displayUserOrder")
     @ResponseBody
     public List<Order> displayUserOrder(HttpSession session){

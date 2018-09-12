@@ -134,11 +134,10 @@ public class UserController {
     //修改收货地址
     @RequestMapping("/modifyAddress")
     @ResponseBody
-    public boolean modifyAddress(@RequestParam("addressId") int addressId, HttpSession session)
+    public boolean modifyAddress(@RequestParam("addressId") int addressId)
     {
         Address address = new Address();
         address.setAddressid(addressId);
-        address.setUserid((int)session.getAttribute("userId"));
         if(addressService.modifyAddress(address)!=0)
             return true;
         else
@@ -190,7 +189,7 @@ public class UserController {
             return false;
     }
 
-    //批量删除收藏夹商品
+    /*//批量删除收藏夹商品
     @RequestMapping("/deleteFavor")
     @ResponseBody
     public boolean deleteFavor(@RequestParam("favorId") List<Integer> favorId)
@@ -199,7 +198,7 @@ public class UserController {
             return true;
         else
             return false;
-    }
+    }*/
 
 
 }
