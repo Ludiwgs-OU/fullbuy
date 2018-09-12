@@ -5,6 +5,7 @@ import com.we.fullbuy.pojo.Sales;
 import com.we.fullbuy.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("SalesService")
 public class SalesServiceImpl implements SalesService {
@@ -17,11 +18,13 @@ public class SalesServiceImpl implements SalesService {
     }
 
     @Override
+    @Transactional
     public int modifySales(Sales sales) {
         return salesMapper.updateByPrimaryKeySelective(sales);
     }
 
     @Override
+    @Transactional
     public int registerSales(Sales sales) {
         return salesMapper.insert(sales);
     }

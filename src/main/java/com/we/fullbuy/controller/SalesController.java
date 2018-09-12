@@ -4,6 +4,7 @@ import com.we.fullbuy.pojo.Sales;
 import com.we.fullbuy.service.SalesService;
 import com.we.fullbuy.utils.MD5Util;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,9 +49,8 @@ public class SalesController {
     //注册
     @RequestMapping("/register")
     @ResponseBody
-    public int register()
+    public int register(@RequestBody Sales sales)
     {
-        Sales sales = new Sales();
         Sales check = salesService.login("1");
         if(check==null)
         {
@@ -63,20 +63,19 @@ public class SalesController {
             return 2;//账号已存在
     }
 
-    //查看个人信息
-    @RequestMapping("/displayUserDetail")
+    //查看商家信息
+    @RequestMapping("/displaySalesDetail")
     @ResponseBody
-    public Sales displayUserDetail(HttpSession session)
+    public Sales displaySalesDetail(HttpSession session)
     {
         return salesService.displaySalesDetail((int)session.getAttribute("salesId"));
     }
 
-    //修改个人信息
-    @RequestMapping("/modifyUser")
+    //修改商家信息
+    @RequestMapping("/modifySales")
     @ResponseBody
-    public boolean modifyUser(HttpSession session)
+    public boolean modifySales(@RequestBody Sales sales, HttpSession session)
     {
-        Sales sales = new Sales();
         sales.setSalesid((int)session.getAttribute("salesId"));
 
         if(salesService.modifySales(sales)!=0)

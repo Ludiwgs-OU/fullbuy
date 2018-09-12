@@ -13,7 +13,6 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    @Transactional
     public User displayUserDetail(int userId) {
         return userMapper.selectByPrimaryKey(userId);
     }
@@ -31,7 +30,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public User login(String phone) {
         return userMapper.selectByPhone(phone);
     }

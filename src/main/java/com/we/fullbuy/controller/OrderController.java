@@ -142,7 +142,7 @@ public class OrderController {
     @RequestMapping("/displayUserOrder")
     @ResponseBody
     public List<Order> displayUserOrder(HttpSession session){
-        return orderService.showSalesOrder((int)session.getAttribute("userId"));
+        return orderService.showUserOrder((int)session.getAttribute("userId"));
     }
 
     //订单详情

@@ -4,6 +4,7 @@ package com.we.fullbuy.controller;
 import com.we.fullbuy.pojo.Groudbuy;
 import com.we.fullbuy.service.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,9 +22,8 @@ public class GroudbuyController {
     //增加团购活动
     @RequestMapping("/addGroudbuy")
     @ResponseBody
-    public int addGroudbuy(Groudbuy groudbuy)
+    public int addGroudbuy(@RequestBody Groudbuy groudbuy)
     {
-
         return groudbuyService.addGroudbuy(groudbuy);
     }
 
@@ -38,10 +38,8 @@ public class GroudbuyController {
     //修改团购活动
     @RequestMapping("/modifyGroudbuy")
     @ResponseBody
-    public int modifyGroudbuy(@RequestParam("groudbuyId") int groudbuyId)
+    public int modifyGroudbuy(@RequestBody Groudbuy groudbuy)
     {
-        Groudbuy groudbuy = new Groudbuy();
-        groudbuy.setGbid(groudbuyId);
         return groudbuyService.modifyGroudbuy(groudbuy);
     }
 
@@ -61,12 +59,12 @@ public class GroudbuyController {
         return groudbuyService.showGroudbuyBySalesId((int)session.getAttribute("salesId"));
     }
 
-    //用户查询团购活动
+    /*//用户查询团购活动
     @RequestMapping("/displayUserGroudbuy")
     @ResponseBody
-    public List<Groudbuy> displayUserGroudbuy(HttpSession session)
+    public List<Groudbuy> displayUserGroudbuy(String keyword)
     {
         return groudbuyService.showGroudbuyBySalesId((int)session.getAttribute("userId"));
     }
-
+*/
 }

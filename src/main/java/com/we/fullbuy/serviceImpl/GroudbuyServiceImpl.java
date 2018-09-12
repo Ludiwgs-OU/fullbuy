@@ -26,19 +26,16 @@ public class GroudbuyServiceImpl implements GroudbuyService {
     }
 
     @Override
-    @Transactional
     public List<Groudbuy> showGroudbuyBySalesId(int salesId) {
         return groudbuyMapper.selectBySalesId(salesId);
     }
 
     @Override
-    @Transactional
     public List<Groudbuy> showAllGroudbuy() {
         return groudbuyMapper.showAllGroudbuy();
     }
 
     @Override
-    @Transactional
     public List<Groudbuy> searchGroudbuy(String keyword) {
         return groudbuyMapper.searchGroudbuy(keyword);
     }
@@ -50,7 +47,6 @@ public class GroudbuyServiceImpl implements GroudbuyService {
     }
 
     @Override
-    @Transactional
     public Groudbuy showGroudbuyDetail(int groudbuyId) {
         return groudbuyMapper.selectByPrimaryKey(groudbuyId);
     }

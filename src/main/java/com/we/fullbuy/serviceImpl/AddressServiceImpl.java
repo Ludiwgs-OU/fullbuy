@@ -33,19 +33,16 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    @Transactional
     public List<Address> displayAddress(int userId) {
         return addressMapper.selectByUserId(userId);
     }
 
     @Override
-    @Transactional
     public Address displayAddressDetail(int addressId) {
         return addressMapper.selectByPrimaryKey(addressId);
     }
 
     @Override
-    @Transactional
     public Address searchDefaultAddress() {
         return addressMapper.searchDefaultAddress();
     }

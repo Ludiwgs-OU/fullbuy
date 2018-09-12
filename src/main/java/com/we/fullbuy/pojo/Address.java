@@ -1,6 +1,8 @@
 package com.we.fullbuy.pojo;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     private Integer addressid;
 
     private Integer userid;

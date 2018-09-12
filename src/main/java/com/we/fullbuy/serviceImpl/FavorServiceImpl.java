@@ -32,7 +32,6 @@ public class FavorServiceImpl implements FavorService {
     }
 
     @Override
-    @Transactional
     public List<Favor> displayFavor(int userId) {
         return favorMapper.selectByUserId(userId);
     }

@@ -1,6 +1,8 @@
 package com.we.fullbuy.pojo;
 
-public class Sales {
+import java.io.Serializable;
+
+public class Sales implements Serializable {
     private Integer salesid;
 
     private String salaespwd;

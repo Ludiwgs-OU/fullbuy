@@ -1,6 +1,8 @@
 package com.we.fullbuy.pojo;
 
-public class Favor {
+import java.io.Serializable;
+
+public class Favor implements Serializable {
     private Integer favorid;
 
     private Integer userid;

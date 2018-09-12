@@ -1,6 +1,8 @@
 package com.we.fullbuy.pojo;
 
-public class Secondcategory {
+import java.io.Serializable;
+
+public class Secondcategory implements Serializable {
     private Integer secondcategoryid;
 
     private String secondcategoryname;

@@ -1,8 +1,9 @@
 package com.we.fullbuy.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Sku {
+public class Sku implements Serializable {
     private Integer skuid;
 
     private Integer productid;

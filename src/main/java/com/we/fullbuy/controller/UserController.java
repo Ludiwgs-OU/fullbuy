@@ -9,6 +9,7 @@ import com.we.fullbuy.service.UserService;
 import com.we.fullbuy.utils.MD5Util;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -63,10 +64,8 @@ public class UserController {
     //注册
     @RequestMapping("/register")
     @ResponseBody
-    public int register()
+    public int register(@RequestBody User user)
     {
-        User user = new User();
-
         User check = userService.login("1");
         if(check==null)
         {
@@ -90,9 +89,8 @@ public class UserController {
     //修改个人信息
     @RequestMapping("/modifyUser")
     @ResponseBody
-    public Boolean modifyUser(HttpSession session)
+    public Boolean modifyUser(@RequestBody User user, HttpSession session)
     {
-        User user = new User();
         user.setUserid((int)session.getAttribute("userId"));
 
         if (userService.modifyUser(user)!=0)
@@ -121,9 +119,8 @@ public class UserController {
     //添加收货地址
     @RequestMapping("/addAddress")
     @ResponseBody
-    public boolean addAddress(HttpSession session)
+    public boolean addAddress(@RequestBody Address address, HttpSession session)
     {
-        Address address = new Address();
         address.setUserid((int)session.getAttribute("userId"));
         if(addressService.addAddress(address)!=0)
             return true;
@@ -134,10 +131,8 @@ public class UserController {
     //修改收货地址
     @RequestMapping("/modifyAddress")
     @ResponseBody
-    public boolean modifyAddress(@RequestParam("addressId") int addressId)
+    public boolean modifyAddress(@RequestBody Address address)
     {
-        Address address = new Address();
-        address.setAddressid(addressId);
         if(addressService.modifyAddress(address)!=0)
             return true;
         else

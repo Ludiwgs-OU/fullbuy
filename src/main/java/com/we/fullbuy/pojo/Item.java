@@ -1,6 +1,8 @@
 package com.we.fullbuy.pojo;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
     private Integer itemid;
 
     private String itemname;

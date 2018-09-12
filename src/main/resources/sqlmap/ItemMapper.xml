@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.ItemMapper">
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Item">
     <id column="itemId" jdbcType="INTEGER" property="itemid" />
     <result column="itemName" jdbcType="VARCHAR" property="itemname" />

@@ -1,6 +1,8 @@
 package com.we.fullbuy.pojo;
 
-public class Comment {
+import java.io.Serializable;
+
+public class Comment implements Serializable {
     private Integer commentid;
 
     private Integer productid;

@@ -5,6 +5,7 @@ import com.we.fullbuy.pojo.Product;
 import com.we.fullbuy.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,16 +15,19 @@ public class ProductServiceImpl implements ProductService {
     private ProductMapper productMapper;
 
     @Override
+    @Transactional
     public int addProduct(Product product) {
         return productMapper.insert(product);
     }
 
     @Override
+    @Transactional
     public int modifyProduct(Product product) {
         return productMapper.updateByPrimaryKeySelective(product);
     }
 
     @Override
+    @Transactional
     public int deleteProduct(int productId) {
         return productMapper.deleteByPrimaryKey(productId);
     }

@@ -21,7 +21,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Transactional
     public Order showOrderDetail(String orderId) {
         return orderMapper.selectByPrimaryKey(orderId);
     }
@@ -51,13 +50,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Transactional
     public List<Order> showSalesOrder(int salesId) {
         return orderMapper.selectBySalesId(salesId);
     }
 
     @Override
-    @Transactional
     public List<Order> showUserOrder(int userId) {
         return orderMapper.selectByUserId(userId);
     }

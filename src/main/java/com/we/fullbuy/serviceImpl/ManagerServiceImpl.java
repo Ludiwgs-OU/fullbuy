@@ -14,7 +14,6 @@ public class ManagerServiceImpl implements ManagerService {
     private ManagerMapper managerMapper;
 
     @Override
-    @Transactional
     public Manager login(int managerId) {
          return managerMapper.selectByPrimaryKey(managerId);
     }

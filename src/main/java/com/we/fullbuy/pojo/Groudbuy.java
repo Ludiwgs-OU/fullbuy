@@ -1,8 +1,9 @@
 package com.we.fullbuy.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Groudbuy {
+public class Groudbuy implements Serializable {
     private Integer gbid;
 
     private Integer productid;

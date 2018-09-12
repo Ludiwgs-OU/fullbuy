@@ -1,6 +1,8 @@
 package com.we.fullbuy.pojo;
 
-public class Manager {
+import java.io.Serializable;
+
+public class Manager implements Serializable {
     private Integer managerid;
 
     private String managerpwd;

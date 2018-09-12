@@ -1,6 +1,8 @@
 package com.we.fullbuy.pojo;
 
-public class Category {
+import java.io.Serializable;
+
+public class Category implements Serializable {
     private Integer categoryid;
 
     private String categoryname;
