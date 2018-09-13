@@ -22,4 +22,12 @@ public class Category implements Serializable {
     public void setCategoryname(String categoryname) {
         this.categoryname = categoryname == null ? null : categoryname.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryid=" + categoryid +
+                ", categoryname='" + categoryname + '\'' +
+                '}';
+    }
 }

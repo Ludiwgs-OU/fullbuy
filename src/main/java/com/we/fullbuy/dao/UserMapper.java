@@ -16,5 +16,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     /*new*/
+    /*根据用户注册电话搜索*/
     User selectByPhone(String phone);
 }

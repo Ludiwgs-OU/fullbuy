@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.CommentMapper">
-  <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Comment">
     <id column="commentId" jdbcType="INTEGER" property="commentid" />
     <result column="productId" jdbcType="INTEGER" property="productid" />
+    <result column="orderId" jdbcType="VARCHAR" property="orderid" />
     <result column="commentDetail" jdbcType="VARCHAR" property="commentdetail" />
     <result column="commentImgPath" jdbcType="VARCHAR" property="commentimgpath" />
+    <result column="commentTime" jdbcType="TIMESTAMP" property="commenttime" />
   </resultMap>
   <sql id="Base_Column_List">
-    commentId, productId, commentDetail, commentImgPath
+    commentId, productId, orderId, commentDetail, commentImgPath, commentTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -22,10 +24,12 @@
     where commentId = #{commentid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Comment">
-    insert into comment (commentId, productId, commentDetail, 
-      commentImgPath)
-    values (#{commentid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{commentdetail,jdbcType=VARCHAR}, 
-      #{commentimgpath,jdbcType=VARCHAR})
+    insert into comment (commentId, productId, orderId, 
+      commentDetail, commentImgPath, commentTime
+      )
+    values (#{commentid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{orderid,jdbcType=VARCHAR}, 
+      #{commentdetail,jdbcType=VARCHAR}, #{commentimgpath,jdbcType=VARCHAR}, #{commenttime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Comment">
     insert into comment
@@ -36,11 +40,17 @@
       <if test="productid != null">
         productId,
       </if>
+      <if test="orderid != null">
+        orderId,
+      </if>
       <if test="commentdetail != null">
         commentDetail,
       </if>
       <if test="commentimgpath != null">
         commentImgPath,
+      </if>
+      <if test="commenttime != null">
+        commentTime,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -50,11 +60,17 @@
       <if test="productid != null">
         #{productid,jdbcType=INTEGER},
       </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=VARCHAR},
+      </if>
       <if test="commentdetail != null">
         #{commentdetail,jdbcType=VARCHAR},
       </if>
       <if test="commentimgpath != null">
         #{commentimgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="commenttime != null">
+        #{commenttime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -64,11 +80,17 @@
       <if test="productid != null">
         productId = #{productid,jdbcType=INTEGER},
       </if>
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=VARCHAR},
+      </if>
       <if test="commentdetail != null">
         commentDetail = #{commentdetail,jdbcType=VARCHAR},
       </if>
       <if test="commentimgpath != null">
         commentImgPath = #{commentimgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="commenttime != null">
+        commentTime = #{commenttime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where commentId = #{commentid,jdbcType=INTEGER}
@@ -76,8 +98,10 @@
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Comment">
     update comment
     set productId = #{productid,jdbcType=INTEGER},
+      orderId = #{orderid,jdbcType=VARCHAR},
       commentDetail = #{commentdetail,jdbcType=VARCHAR},
-      commentImgPath = #{commentimgpath,jdbcType=VARCHAR}
+      commentImgPath = #{commentimgpath,jdbcType=VARCHAR},
+      commentTime = #{commenttime,jdbcType=TIMESTAMP}
     where commentId = #{commentid,jdbcType=INTEGER}
   </update>
 </mapper>

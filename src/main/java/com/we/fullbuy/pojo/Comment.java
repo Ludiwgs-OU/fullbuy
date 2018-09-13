@@ -1,15 +1,20 @@
 package com.we.fullbuy.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Comment implements Serializable {
     private Integer commentid;
 
     private Integer productid;
 
+    private String orderid;
+
     private String commentdetail;
 
     private String commentimgpath;
+
+    private Date commenttime;
 
     public Integer getCommentid() {
         return commentid;
@@ -27,6 +32,14 @@ public class Comment implements Serializable {
         this.productid = productid;
     }
 
+    public String getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(String orderid) {
+        this.orderid = orderid == null ? null : orderid.trim();
+    }
+
     public String getCommentdetail() {
         return commentdetail;
     }
@@ -41,5 +54,25 @@ public class Comment implements Serializable {
 
     public void setCommentimgpath(String commentimgpath) {
         this.commentimgpath = commentimgpath == null ? null : commentimgpath.trim();
+    }
+
+    public Date getCommenttime() {
+        return commenttime;
+    }
+
+    public void setCommenttime(Date commenttime) {
+        this.commenttime = commenttime;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentid=" + commentid +
+                ", productid=" + productid +
+                ", orderid='" + orderid + '\'' +
+                ", commentdetail='" + commentdetail + '\'' +
+                ", commentimgpath='" + commentimgpath + '\'' +
+                ", commenttime=" + commenttime +
+                '}';
     }
 }

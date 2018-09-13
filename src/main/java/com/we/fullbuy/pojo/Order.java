@@ -18,8 +18,6 @@ public class Order implements Serializable {
 
     private Date orderdate;
 
-    private Integer postfee;
-
     private Integer orderstatus;
 
     public String getOrderid() {
@@ -76,14 +74,6 @@ public class Order implements Serializable {
 
     public void setOrderdate(Date orderdate) {
         this.orderdate = orderdate;
-    }
-
-    public Integer getPostfee() {
-        return postfee;
-    }
-
-    public void setPostfee(Integer postfee) {
-        this.postfee = postfee;
     }
 
     public Integer getOrderstatus() {

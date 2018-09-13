@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.GroudbuyMapper">
-  <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Groudbuy">
     <id column="gbId" jdbcType="INTEGER" property="gbid" />
     <result column="productId" jdbcType="INTEGER" property="productid" />
     <result column="minPeople" jdbcType="INTEGER" property="minpeople" />
     <result column="maxPeople" jdbcType="INTEGER" property="maxpeople" />
+    <result column="nowPeople" jdbcType="INTEGER" property="nowpeople" />
     <result column="beginTime" jdbcType="TIMESTAMP" property="begintime" />
     <result column="endTime" jdbcType="TIMESTAMP" property="endtime" />
     <result column="gbStatus" jdbcType="INTEGER" property="gbstatus" />
     <result column="salesId" jdbcType="INTEGER" property="salesid" />
     <result column="bgColor" jdbcType="VARCHAR" property="bgcolor" />
-    <result column="nowPeople" jdbcType="INTEGER" property="nowpeople" />
   </resultMap>
   <sql id="Base_Column_List">
-    gbId, productId, minPeople, maxPeople, beginTime, endTime, gbStatus, salesId, bgColor, nowPeople
+    gbId, productId, minPeople, maxPeople, nowPeople, beginTime, endTime, gbStatus, salesId, 
+    bgColor
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -29,13 +30,13 @@
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Groudbuy">
     insert into groudbuy (gbId, productId, minPeople, 
-      maxPeople, beginTime, endTime, 
-      gbStatus, salesId, bgColor, nowPeople
-      )
+      maxPeople, nowPeople, beginTime, 
+      endTime, gbStatus, salesId, 
+      bgColor)
     values (#{gbid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{minpeople,jdbcType=INTEGER}, 
-      #{maxpeople,jdbcType=INTEGER}, #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
-      #{gbstatus,jdbcType=INTEGER}, #{salesid,jdbcType=INTEGER}, #{bgcolor,jdbcType=VARCHAR}, #{nowpeople,jdbcType=INTEGER}
-      )
+      #{maxpeople,jdbcType=INTEGER}, #{nowpeople,jdbcType=INTEGER}, #{begintime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{gbstatus,jdbcType=INTEGER}, #{salesid,jdbcType=INTEGER}, 
+      #{bgcolor,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Groudbuy">
     insert into groudbuy
@@ -52,6 +53,9 @@
       <if test="maxpeople != null">
         maxPeople,
       </if>
+      <if test="nowpeople != null">
+        nowPeople,
+      </if>
       <if test="begintime != null">
         beginTime,
       </if>
@@ -67,9 +71,6 @@
       <if test="bgcolor != null">
         bgColor,
       </if>
-      <if test="nowpeople != null">
-        nowPeople,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="gbid != null">
@@ -83,6 +84,9 @@
       </if>
       <if test="maxpeople != null">
         #{maxpeople,jdbcType=INTEGER},
+      </if>
+      <if test="nowpeople != null">
+        #{nowpeople,jdbcType=INTEGER},
       </if>
       <if test="begintime != null">
         #{begintime,jdbcType=TIMESTAMP},
@@ -99,9 +103,6 @@
       <if test="bgcolor != null">
         #{bgcolor,jdbcType=VARCHAR},
       </if>
-      <if test="nowpeople != null">
-        #{nowpeople,jdbcType=INTEGER},
-      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Groudbuy">
@@ -115,6 +116,9 @@
       </if>
       <if test="maxpeople != null">
         maxPeople = #{maxpeople,jdbcType=INTEGER},
+      </if>
+      <if test="nowpeople != null">
+        nowPeople = #{nowpeople,jdbcType=INTEGER},
       </if>
       <if test="begintime != null">
         beginTime = #{begintime,jdbcType=TIMESTAMP},
@@ -131,9 +135,6 @@
       <if test="bgcolor != null">
         bgColor = #{bgcolor,jdbcType=VARCHAR},
       </if>
-      <if test="nowpeople != null">
-        nowPeople = #{nowpeople,jdbcType=INTEGER},
-      </if>
     </set>
     where gbId = #{gbid,jdbcType=INTEGER}
   </update>
@@ -142,15 +143,14 @@
     set productId = #{productid,jdbcType=INTEGER},
       minPeople = #{minpeople,jdbcType=INTEGER},
       maxPeople = #{maxpeople,jdbcType=INTEGER},
+      nowPeople = #{nowpeople,jdbcType=INTEGER},
       beginTime = #{begintime,jdbcType=TIMESTAMP},
       endTime = #{endtime,jdbcType=TIMESTAMP},
       gbStatus = #{gbstatus,jdbcType=INTEGER},
       salesId = #{salesid,jdbcType=INTEGER},
-      bgColor = #{bgcolor,jdbcType=VARCHAR},
-      nowPeople = #{nowpeople,jdbcType=INTEGER}
+      bgColor = #{bgcolor,jdbcType=VARCHAR}
     where gbId = #{gbid,jdbcType=INTEGER}
   </update>
-
 
   <!--new-->
   <select id="selectBySalesId" resultMap="BaseResultMap">

@@ -9,6 +9,8 @@ public class News implements Serializable {
 
     private String newsimgpath;
 
+    private Integer newsstatus;
+
     public Integer getNewsid() {
         return newsid;
     }
@@ -31,5 +33,13 @@ public class News implements Serializable {
 
     public void setNewsimgpath(String newsimgpath) {
         this.newsimgpath = newsimgpath == null ? null : newsimgpath.trim();
+    }
+
+    public Integer getNewsstatus() {
+        return newsstatus;
+    }
+
+    public void setNewsstatus(Integer newsstatus) {
+        this.newsstatus = newsstatus;
     }
 }

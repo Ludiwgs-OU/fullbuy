@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.ProductMapper">
-  <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Product">
     <id column="productId" jdbcType="INTEGER" property="productid" />
     <result column="productName" jdbcType="VARCHAR" property="productname" />
@@ -23,12 +23,12 @@
     <result column="DetailImgPath2" jdbcType="VARCHAR" property="detailimgpath2" />
     <result column="item1" jdbcType="VARCHAR" property="item1" />
     <result column="item2" jdbcType="VARCHAR" property="item2" />
-    <result column="DetailImgPath3" jdbcType="VARCHAR" property="detailimgpath3" />
+    <result column="postfee" jdbcType="INTEGER" property="postfee" />
   </resultMap>
   <sql id="Base_Column_List">
     productId, productName, productDetail, productScore, salesNum, categoryId, salesId, 
     postTime, productStatus, searchImgPath, sImgPath1, sImgPath2, mImgPath1, mImgPath2, 
-    bImgPath1, bImgPath2, DetailImgPath1, DetailImgPath2, item1, item2, DetailImgPath3
+    bImgPath1, bImgPath2, DetailImgPath1, DetailImgPath2, item1, item2, postfee
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -47,7 +47,7 @@
       searchImgPath, sImgPath1, sImgPath2, 
       mImgPath1, mImgPath2, bImgPath1, 
       bImgPath2, DetailImgPath1, DetailImgPath2, 
-      item1, item2, DetailImgPath3
+      item1, item2, postfee
       )
     values (#{productid,jdbcType=INTEGER}, #{productname,jdbcType=VARCHAR}, #{productdetail,jdbcType=VARCHAR}, 
       #{productscore,jdbcType=INTEGER}, #{salesnum,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, 
@@ -55,7 +55,7 @@
       #{searchimgpath,jdbcType=VARCHAR}, #{simgpath1,jdbcType=VARCHAR}, #{simgpath2,jdbcType=VARCHAR}, 
       #{mimgpath1,jdbcType=VARCHAR}, #{mimgpath2,jdbcType=VARCHAR}, #{bimgpath1,jdbcType=VARCHAR}, 
       #{bimgpath2,jdbcType=VARCHAR}, #{detailimgpath1,jdbcType=VARCHAR}, #{detailimgpath2,jdbcType=VARCHAR}, 
-      #{item1,jdbcType=VARCHAR}, #{item2,jdbcType=VARCHAR}, #{detailimgpath3,jdbcType=VARCHAR}
+      #{item1,jdbcType=VARCHAR}, #{item2,jdbcType=VARCHAR}, #{postfee,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Product">
@@ -121,8 +121,8 @@
       <if test="item2 != null">
         item2,
       </if>
-      <if test="detailimgpath3 != null">
-        DetailImgPath3,
+      <if test="postfee != null">
+        postfee,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -186,8 +186,8 @@
       <if test="item2 != null">
         #{item2,jdbcType=VARCHAR},
       </if>
-      <if test="detailimgpath3 != null">
-        #{detailimgpath3,jdbcType=VARCHAR},
+      <if test="postfee != null">
+        #{postfee,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -251,8 +251,8 @@
       <if test="item2 != null">
         item2 = #{item2,jdbcType=VARCHAR},
       </if>
-      <if test="detailimgpath3 != null">
-        DetailImgPath3 = #{detailimgpath3,jdbcType=VARCHAR},
+      <if test="postfee != null">
+        postfee = #{postfee,jdbcType=INTEGER},
       </if>
     </set>
     where productId = #{productid,jdbcType=INTEGER}
@@ -278,10 +278,9 @@
       DetailImgPath2 = #{detailimgpath2,jdbcType=VARCHAR},
       item1 = #{item1,jdbcType=VARCHAR},
       item2 = #{item2,jdbcType=VARCHAR},
-      DetailImgPath3 = #{detailimgpath3,jdbcType=VARCHAR}
+      postfee = #{postfee,jdbcType=INTEGER}
     where productId = #{productid,jdbcType=INTEGER}
   </update>
-
 
   <!--new-->
   <resultMap id="productDetail" type="com.we.fullbuy.pojo.Product" extends="BaseResultMap">
@@ -309,5 +308,4 @@
     from product p, sku s, item i, seconditem si
     where p.productId = #{productid,jdbcType=INTEGER} and s.productId = p.productId and s.itemId = i.itemId and s.secondItemId = si.secondItemId
   </select>
-
 </mapper>

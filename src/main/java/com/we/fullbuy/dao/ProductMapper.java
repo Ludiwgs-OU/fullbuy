@@ -16,5 +16,6 @@ public interface ProductMapper {
     int updateByPrimaryKey(Product record);
 
     /*new*/
+    /*显示商品详情*/
     Product displayProductDetail(Integer productid);
 }

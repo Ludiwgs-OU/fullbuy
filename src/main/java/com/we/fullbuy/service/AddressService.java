@@ -15,6 +15,5 @@ public interface AddressService {
     List<Address> displayAddress(int userId);
     /*地址详情*/
     Address displayAddressDetail(int addressId);
-    /*查找默认地址*/
-    Address searchDefaultAddress();
+
 }

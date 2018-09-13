@@ -7,7 +7,7 @@ public class Address implements Serializable {
 
     private Integer userid;
 
-    private String address;
+    private String addressdetail;
 
     private String postcode;
 
@@ -15,7 +15,13 @@ public class Address implements Serializable {
 
     private String name;
 
-    private int defaultaddress;
+    private Integer defaultaddress;
+
+    private String province;
+
+    private String city;
+
+    private String street;
 
     public Integer getAddressid() {
         return addressid;
@@ -33,12 +39,12 @@ public class Address implements Serializable {
         this.userid = userid;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAddressdetail() {
+        return addressdetail;
     }
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+    public void setAddressdetail(String addressdetail) {
+        this.addressdetail = addressdetail == null ? null : addressdetail.trim();
     }
 
     public String getPostcode() {
@@ -65,11 +71,51 @@ public class Address implements Serializable {
         this.name = name == null ? null : name.trim();
     }
 
-    public int getDefaultaddress() {
+    public Integer getDefaultaddress() {
         return defaultaddress;
     }
 
-    public void setDefaultaddress(int defaultaddress) {
+    public void setDefaultaddress(Integer defaultaddress) {
         this.defaultaddress = defaultaddress;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province == null ? null : province.trim();
+    }
+
+    public String getcity() {
+        return city;
+    }
+
+    public void setcity(String city) {
+        this.city = city == null ? null : city.trim();
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street == null ? null : street.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "addressid=" + addressid +
+                ", userid=" + userid +
+                ", addressdetail='" + addressdetail + '\'' +
+                ", postcode='" + postcode + '\'' +
+                ", phone='" + phone + '\'' +
+                ", name='" + name + '\'' +
+                ", defaultaddress=" + defaultaddress +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                '}';
     }
 }

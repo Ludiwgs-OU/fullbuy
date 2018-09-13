@@ -32,4 +32,13 @@ public class Favor implements Serializable {
     public void setProductid(Integer productid) {
         this.productid = productid;
     }
+
+    @Override
+    public String toString() {
+        return "Favor{" +
+                "favorid=" + favorid +
+                ", userid=" + userid +
+                ", productid=" + productid +
+                '}';
+    }
 }

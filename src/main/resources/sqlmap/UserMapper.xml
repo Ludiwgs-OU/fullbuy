@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.UserMapper">
-  <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.User">
     <id column="userId" jdbcType="INTEGER" property="userid" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -11,13 +11,14 @@
     <result column="userPhone" jdbcType="CHAR" property="userphone" />
     <result column="userEmail" jdbcType="VARCHAR" property="useremail" />
     <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="userProfile" jdbcType="VARCHAR" property="userprofile" />
     <result column="userScore" jdbcType="INTEGER" property="userscore" />
     <result column="lastLoginTime" jdbcType="TIMESTAMP" property="lastlogintime" />
     <result column="black" jdbcType="INTEGER" property="black" />
   </resultMap>
   <sql id="Base_Column_List">
-    userId, password, userName, userType, userQQ, userPhone, userEmail, sex, userScore, 
-    lastLoginTime, black
+    userId, password, userName, userType, userQQ, userPhone, userEmail, sex, userProfile, 
+    userScore, lastLoginTime, black
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -32,12 +33,14 @@
   <insert id="insert" parameterType="com.we.fullbuy.pojo.User">
     insert into user (userId, password, userName, 
       userType, userQQ, userPhone, 
-      userEmail, sex, userScore, 
-      lastLoginTime, black)
+      userEmail, sex, userProfile, 
+      userScore, lastLoginTime, black
+      )
     values (#{userid,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{usertype,jdbcType=INTEGER}, #{userqq,jdbcType=VARCHAR}, #{userphone,jdbcType=CHAR}, 
-      #{useremail,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{userscore,jdbcType=INTEGER}, 
-      #{lastlogintime,jdbcType=TIMESTAMP}, #{black,jdbcType=INTEGER})
+      #{useremail,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{userprofile,jdbcType=VARCHAR}, 
+      #{userscore,jdbcType=INTEGER}, #{lastlogintime,jdbcType=TIMESTAMP}, #{black,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.User">
     insert into user
@@ -65,6 +68,9 @@
       </if>
       <if test="sex != null">
         sex,
+      </if>
+      <if test="userprofile != null">
+        userProfile,
       </if>
       <if test="userscore != null">
         userScore,
@@ -101,6 +107,9 @@
       <if test="sex != null">
         #{sex,jdbcType=CHAR},
       </if>
+      <if test="userprofile != null">
+        #{userprofile,jdbcType=VARCHAR},
+      </if>
       <if test="userscore != null">
         #{userscore,jdbcType=INTEGER},
       </if>
@@ -136,6 +145,9 @@
       <if test="sex != null">
         sex = #{sex,jdbcType=CHAR},
       </if>
+      <if test="userprofile != null">
+        userProfile = #{userprofile,jdbcType=VARCHAR},
+      </if>
       <if test="userscore != null">
         userScore = #{userscore,jdbcType=INTEGER},
       </if>
@@ -157,6 +169,7 @@
       userPhone = #{userphone,jdbcType=CHAR},
       userEmail = #{useremail,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=CHAR},
+      userProfile = #{userprofile,jdbcType=VARCHAR},
       userScore = #{userscore,jdbcType=INTEGER},
       lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
       black = #{black,jdbcType=INTEGER}

@@ -20,6 +20,4 @@ public interface AddressMapper {
     /*new*/
     /*显示用户收藏夹*/
     List<Address> selectByUserId(Integer userid);
-    //查找默认地址
-    Address searchDefaultAddress();
 }

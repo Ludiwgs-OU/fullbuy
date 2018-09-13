@@ -53,10 +53,8 @@ public class OrderController {
             order.setOrderstatus(0);
             order.setNum(num);
             order.setUserid(userId);
-            order.setPostfee(6);
-            order.setTotalprice(sku.getPrice() * num + order.getPostfee());
-            Address address = addressService.searchDefaultAddress();
-            order.setAddressid(address.getAddressid());
+            order.setTotalprice(sku.getPrice() * num);
+            //order.setAddressid();
             order.setSkuid(skuId);
             if(orderService.addOrder(order)==1)
             {
@@ -101,10 +99,9 @@ public class OrderController {
         order.setOrderdate(timestamp);
         order.setOrderstatus(0);
         order.setUserid(userId);
-        order.setPostfee(6);
-        order.setTotalprice(sku.getGbprice() + order.getPostfee());
-        Address address = addressService.searchDefaultAddress();
-        order.setAddressid(address.getAddressid());
+        order.setTotalprice(sku.getGbprice());
+        //Address address = addressService.searchDefaultAddress();
+        //order.setAddressid(address.getAddressid());
         order.setSkuid(skuId);
         if(orderService.addOrder(order)==1)
         {

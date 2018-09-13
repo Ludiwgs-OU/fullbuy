@@ -12,6 +12,8 @@ public class Groudbuy implements Serializable {
 
     private Integer maxpeople;
 
+    private Integer nowpeople;
+
     private Date begintime;
 
     private Date endtime;
@@ -21,8 +23,6 @@ public class Groudbuy implements Serializable {
     private Integer salesid;
 
     private String bgcolor;
-
-    private Integer nowpeople;
 
     public Integer getGbid() {
         return gbid;
@@ -54,6 +54,14 @@ public class Groudbuy implements Serializable {
 
     public void setMaxpeople(Integer maxpeople) {
         this.maxpeople = maxpeople;
+    }
+
+    public Integer getNowpeople() {
+        return nowpeople;
+    }
+
+    public void setNowpeople(Integer nowpeople) {
+        this.nowpeople = nowpeople;
     }
 
     public Date getBegintime() {
@@ -97,11 +105,4 @@ public class Groudbuy implements Serializable {
     }
 
 
-    public Integer getNowpeople() {
-        return nowpeople;
-    }
-
-    public void setNowpeople(Integer nowpeople) {
-        this.nowpeople = nowpeople;
-    }
 }

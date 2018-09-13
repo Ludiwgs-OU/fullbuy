@@ -17,6 +17,4 @@ public interface SkuMapper {
 
     int updateByPrimaryKey(Sku record);
 
-    /*new*/
-    List<Sku> selectSkuByproductId(Integer productid);
 }

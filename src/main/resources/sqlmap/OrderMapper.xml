@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.OrderMapper">
-  <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Order">
     <id column="orderId" jdbcType="VARCHAR" property="orderid" />
     <result column="userId" jdbcType="INTEGER" property="userid" />
@@ -10,11 +10,10 @@
     <result column="addressId" jdbcType="INTEGER" property="addressid" />
     <result column="num" jdbcType="INTEGER" property="num" />
     <result column="orderDate" jdbcType="TIMESTAMP" property="orderdate" />
-    <result column="postfee" jdbcType="INTEGER" property="postfee" />
     <result column="orderStatus" jdbcType="INTEGER" property="orderstatus" />
   </resultMap>
   <sql id="Base_Column_List">
-    orderId, userId, skuId, totalPrice, addressId, num, orderDate, postfee, orderStatus
+    orderId, userId, skuId, totalPrice, addressId, num, orderDate, orderStatus
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -29,12 +28,10 @@
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Order">
     insert into order (orderId, userId, skuId, 
       totalPrice, addressId, num, 
-      orderDate, postfee, orderStatus
-      )
+      orderDate, orderStatus)
     values (#{orderid,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{skuid,jdbcType=INTEGER}, 
       #{totalprice,jdbcType=DOUBLE}, #{addressid,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, 
-      #{orderdate,jdbcType=TIMESTAMP}, #{postfee,jdbcType=INTEGER}, #{orderstatus,jdbcType=INTEGER}
-      )
+      #{orderdate,jdbcType=TIMESTAMP}, #{orderstatus,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Order">
     insert into order
@@ -59,9 +56,6 @@
       </if>
       <if test="orderdate != null">
         orderDate,
-      </if>
-      <if test="postfee != null">
-        postfee,
       </if>
       <if test="orderstatus != null">
         orderStatus,
@@ -89,9 +83,6 @@
       <if test="orderdate != null">
         #{orderdate,jdbcType=TIMESTAMP},
       </if>
-      <if test="postfee != null">
-        #{postfee,jdbcType=INTEGER},
-      </if>
       <if test="orderstatus != null">
         #{orderstatus,jdbcType=INTEGER},
       </if>
@@ -118,9 +109,6 @@
       <if test="orderdate != null">
         orderDate = #{orderdate,jdbcType=TIMESTAMP},
       </if>
-      <if test="postfee != null">
-        postfee = #{postfee,jdbcType=INTEGER},
-      </if>
       <if test="orderstatus != null">
         orderStatus = #{orderstatus,jdbcType=INTEGER},
       </if>
@@ -135,11 +123,9 @@
       addressId = #{addressid,jdbcType=INTEGER},
       num = #{num,jdbcType=INTEGER},
       orderDate = #{orderdate,jdbcType=TIMESTAMP},
-      postfee = #{postfee,jdbcType=INTEGER},
       orderStatus = #{orderstatus,jdbcType=INTEGER}
     where orderId = #{orderid,jdbcType=VARCHAR}
   </update>
-
 
   <!--new-->
   <select id="selectBySalesId" resultMap="BaseResultMap">

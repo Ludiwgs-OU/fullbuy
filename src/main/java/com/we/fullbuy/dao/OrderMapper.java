@@ -18,9 +18,8 @@ public interface OrderMapper {
     int updateByPrimaryKey(Order record);
 
     /*new*/
-    //根据商家ID查找订单
+    /*根据商家ID查找订单*/
     List<Order> selectBySalesId(Integer salesid);
-    //根据用户ID查找订单
+    /*根据用户ID查找订单*/
     List<Order> selectByUserId(Integer userid);
-
 }

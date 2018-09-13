@@ -18,9 +18,10 @@ public interface GroudbuyMapper {
     int updateByPrimaryKey(Groudbuy record);
 
     /*new*/
+    /*商家查看团购*/
     List<Groudbuy> selectBySalesId(Integer salesid);
-
+    /*根据关键字搜索团购活动*/
     List<Groudbuy> searchGroudbuy(String keyword);
-
+    /*显示所有团购*/
     List<Groudbuy> showAllGroudbuy();
 }

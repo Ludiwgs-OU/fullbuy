@@ -45,11 +45,7 @@ public class Product implements Serializable {
 
     private String item2;
 
-    private String detailimgpath3;
-
-    private Item item;
-
-    private Seconditem seconditem;
+    private Integer postfee;
 
     private List<Sku> skuList;
 
@@ -197,28 +193,28 @@ public class Product implements Serializable {
         this.detailimgpath2 = detailimgpath2 == null ? null : detailimgpath2.trim();
     }
 
-    public String getDetailimgpath3() {
-        return detailimgpath3;
+    public String getItem1() {
+        return item1;
     }
 
-    public void setDetailimgpath3(String detailimgpath3) {
-        this.detailimgpath3 = detailimgpath3 == null ? null : detailimgpath3.trim();
+    public void setItem1(String item1) {
+        this.item1 = item1 == null ? null : item1.trim();
     }
 
-    public Item getItem() {
-        return item;
+    public String getItem2() {
+        return item2;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setItem2(String item2) {
+        this.item2 = item2 == null ? null : item2.trim();
     }
 
-    public Seconditem getSeconditem() {
-        return seconditem;
+    public Integer getPostfee() {
+        return postfee;
     }
 
-    public void setSeconditem(Seconditem seconditem) {
-        this.seconditem = seconditem;
+    public void setPostfee(Integer postfee) {
+        this.postfee = postfee;
     }
 
     public List<Sku> getSkuList() {
@@ -227,51 +223,5 @@ public class Product implements Serializable {
 
     public void setSkuList(List<Sku> skuList) {
         this.skuList = skuList;
-    }
-
-    public String getItem1() {
-        return item1;
-    }
-
-    public void setItem1(String item1) {
-        this.item1 = item1;
-    }
-
-    public String getItem2() {
-        return item2;
-    }
-
-    public void setItem2(String item2) {
-        this.item2 = item2;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productid=" + productid +
-                ", productname='" + productname + '\'' +
-                ", productdetail='" + productdetail + '\'' +
-                ", productscore=" + productscore +
-                ", salesnum=" + salesnum +
-                ", categoryid=" + categoryid +
-                ", salesid=" + salesid +
-                ", posttime=" + posttime +
-                ", productstatus=" + productstatus +
-                ", searchimgpath='" + searchimgpath + '\'' +
-                ", simgpath1='" + simgpath1 + '\'' +
-                ", simgpath2='" + simgpath2 + '\'' +
-                ", mimgpath1='" + mimgpath1 + '\'' +
-                ", mimgpath2='" + mimgpath2 + '\'' +
-                ", bimgpath1='" + bimgpath1 + '\'' +
-                ", bimgpath2='" + bimgpath2 + '\'' +
-                ", detailimgpath1='" + detailimgpath1 + '\'' +
-                ", detailimgpath2='" + detailimgpath2 + '\'' +
-                ", item1='" + item1 + '\'' +
-                ", item2='" + item2 + '\'' +
-                ", detailimgpath3='" + detailimgpath3 + '\'' +
-                ", item=" + item +
-                ", seconditem=" + seconditem +
-                ", skuList=" + skuList +
-                '}';
     }
 }

@@ -18,7 +18,8 @@ public interface FavorMapper {
     int updateByPrimaryKey(Favor record);
 
     /*new*/
+    /*删除收藏夹*/
     int deleteFavors(List<Integer> favorid);
-
+    /*显示用户收藏夹*/
     List<Favor> selectByUserId(Integer userid);
 }

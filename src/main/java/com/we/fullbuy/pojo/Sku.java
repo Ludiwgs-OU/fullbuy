@@ -14,9 +14,9 @@ public class Sku implements Serializable {
 
     private Double price;
 
-    private Integer quantity;
-
     private Double gbprice;
+
+    private Integer quantity;
 
     private List<Item> itemList;
 
@@ -62,20 +62,20 @@ public class Sku implements Serializable {
         this.price = price;
     }
 
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
     public Double getGbprice() {
         return gbprice;
     }
 
     public void setGbprice(Double gbprice) {
         this.gbprice = gbprice;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public List<Item> getItemList() {
@@ -92,20 +92,5 @@ public class Sku implements Serializable {
 
     public void setSeconditemList(List<Seconditem> seconditemList) {
         this.seconditemList = seconditemList;
-    }
-
-    @Override
-    public String toString() {
-        return "Sku{" +
-                "skuid=" + skuid +
-                ", productid=" + productid +
-                ", itemid=" + itemid +
-                ", seconditemid=" + seconditemid +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", gbprice=" + gbprice +
-                ", itemList=" + itemList +
-                ", seconditemList=" + seconditemList +
-                '}';
     }
 }

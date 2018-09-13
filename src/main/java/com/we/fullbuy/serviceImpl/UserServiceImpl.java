@@ -4,6 +4,7 @@ import com.we.fullbuy.dao.UserMapper;
 import com.we.fullbuy.pojo.User;
 import com.we.fullbuy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
+    @Cacheable("UserDetail")
     public User displayUserDetail(int userId) {
         return userMapper.selectByPrimaryKey(userId);
     }

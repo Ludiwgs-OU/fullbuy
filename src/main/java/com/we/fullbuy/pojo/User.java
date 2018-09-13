@@ -20,6 +20,8 @@ public class User implements Serializable {
 
     private String sex;
 
+    private String userprofile;
+
     private Integer userscore;
 
     private Date lastlogintime;
@@ -88,6 +90,14 @@ public class User implements Serializable {
 
     public void setSex(String sex) {
         this.sex = sex == null ? null : sex.trim();
+    }
+
+    public String getUserprofile() {
+        return userprofile;
+    }
+
+    public void setUserprofile(String userprofile) {
+        this.userprofile = userprofile == null ? null : userprofile.trim();
     }
 
     public Integer getUserscore() {

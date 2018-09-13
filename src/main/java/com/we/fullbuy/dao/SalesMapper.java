@@ -16,5 +16,6 @@ public interface SalesMapper {
     int updateByPrimaryKey(Sales record);
 
     /*new*/
+    /*根据商家注册电话搜索*/
     Sales selectByPhone(String phone);
 }

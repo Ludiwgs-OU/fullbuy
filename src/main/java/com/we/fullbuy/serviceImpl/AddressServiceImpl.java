@@ -42,8 +42,4 @@ public class AddressServiceImpl implements AddressService {
         return addressMapper.selectByPrimaryKey(addressId);
     }
 
-    @Override
-    public Address searchDefaultAddress() {
-        return addressMapper.searchDefaultAddress();
-    }
 }
