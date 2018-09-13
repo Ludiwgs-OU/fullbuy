@@ -1,0 +1,33 @@
+[
+ 	{
+ 		"addressId": "1",
+ 		"userId": "1",
+ 		"name": "区嘉浩",
+ 		"phone": "12345678910",
+ 		"province": "广东省",
+ 		"city": "肇庆市",
+ 		"area": "端州区",
+ 		"address": "肇庆学院主校区",
+ 		"postCode": "515154"
+ 	},{
+ 		"addressId": "2",
+ 		"userId": "1",
+ 		"name": "陈进雄",
+ 		"phone": "32145987910",
+ 		"province": "广东省",
+ 		"city": "肇庆市",
+ 		"area": "端州区",
+ 		"address": "肇庆学院主校区",
+ 		"postCode": "515154"
+ 	},{
+ 		"addressId": "3",
+ 		"userId": "1",
+ 		"name": "黄俊杰",
+ 		"phone": "36985214720",
+ 		"province": "广东省",
+ 		"city": "肇庆市",
+ 		"area": "端州区",
+ 		"address": "肇庆学院主校区",
+ 		"postCode": "515154"
+ 	}
+]
