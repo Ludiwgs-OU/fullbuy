@@ -365,13 +365,17 @@ $(document).ready(function(){
 		var price = $("#sum").text();
 		var num = type == 1? $("#number").val() : 1;
 		var status = 2;
+		var oneprice = $("#onePrice").text();
+		var postage = $("#postage").text();
 		
 		var orderInfo = {
 			"skuId": sku,
 			"totalPrice": price,
 			"addressId": address,
 			"num": num,
-			"orderStatus": status
+			"orderStatus": status,
+			"oneprice": oneprice,
+			"postage": postage
 		}
 		
 		$.ajax({
@@ -382,11 +386,10 @@ $(document).ready(function(){
 			data: orderInfo,
 			success:function(inf){
 				alert("支付成功！");
-				window.location.href = "#";
+				window.location.href = "orderinfo.html?oid="+inf;
 			},
 			error:function(inf){
 				alert("支付失败！");
-				window.location.href = "#";
 			},
 		});
 	})
@@ -401,13 +404,17 @@ $(document).ready(function(){
 		var price = $("#sum").text();
 		var num = type == 1? $("#number").val() : 1;
 		var status = 1;
+		var oneprice = $("#onePrice").text();
+		var postage = $("#postage").text();
 		
 		var orderInfo = {
 			"skuId": sku,
 			"totalPrice": price,
 			"addressId": address,
 			"num": num,
-			"orderStatus": status
+			"orderStatus": status,
+			"oneprice": oneprice,
+			"postage": postage
 		}
 		
 		$.ajax({
@@ -417,7 +424,7 @@ $(document).ready(function(){
 			dataType:"json",
 			data: orderInfo,
 			success:function(inf){
-				window.location.href = "#";
+				window.location.href = "orderinfo.html?oid="+inf;
 			},
 			error:function(inf){
 				alert("生成订单失败！");

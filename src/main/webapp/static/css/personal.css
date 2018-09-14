@@ -238,7 +238,7 @@ b.line{display: block;width:100%;height:2px ;border-bottom:2px solid #d2364c;}
 .long-title {width:180px;}
 .nav-cont {padding-left: 180px;}
 /*固定框架*/
-.center{width:96%;max-width:1200px; margin:0px auto;min-height: 1px;margin-top:15px ;}
+.center{width:96%;max-width:1200px; margin:0px auto;min-height: 1px;margin-top:50px ;}
 aside {width: 160px;}
 .main-wrap {margin-left: 180px;}
 .am-container , .bloglist{max-width: 1200px;}
@@ -246,3 +246,58 @@ aside {width: 160px;}
 .blog-main{margin-top:30px ;}
    }
 
+.menu-hd a{
+	margin-left: 20px;
+}
+
+.menu-hd a:hover{
+	color: #009CDA;
+}
+
+.logoBig img{
+	height: 150px;
+}
+
+.search-bar form{
+	margin-top: 30px;
+}
+
+.block img{
+	margin-left: 20%;
+	width: 60%;
+	height: 100%;
+}
+
+.outer-con .title{
+	font-size: 20px;
+}
+
+.phone{
+	border-bottom: 1px solid #757575;
+}
+
+.footer p{
+	font-size: 12px;
+	padding: 5px 10px;
+}
+
+.footer{
+	position: relative;
+	top: 20px;
+	height: 100px;
+}
+
+.avatar_box a{
+	font-size: 15px;
+	left: 80px;
+	top: 80px;
+	width: 100px;
+}
+
+.header{
+	border-bottom: 2px solid #E3E3E3;
+}
+
+a{
+	cursor: pointer;
+}
