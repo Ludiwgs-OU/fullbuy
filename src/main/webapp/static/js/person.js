@@ -7,14 +7,6 @@ function getUrlParam(name) {
     if (r != null) return decodeURI(r[2]); return null; 
 }
 
-$(document).ready(()=>{
-	
-	$(()=>{
-		
-	})
-	
-})
-
 new Vue({
 	el: '#headerNav',
 	data:function(){
