@@ -286,9 +286,9 @@ div.zoomMask { position:absolute; background:url(../images/mask.png)repeat scrol
  /*价格*/	
 .tb-detail-hd h1 {font-size:18px;}
 
-.tb-detail-price{background: #F7F7F7;overflow: hidden;height:100px;padding-top:40px ;}
-.tb-detail-price li {display: block;margin:15px 10px;}
-.tb-detail-price li  dt {width: 70px;float:left;text-align: left;margin-top:2px;}
+.tb-detail-price{background: #F7F7F7;overflow: hidden;height:100px;padding-top:30px ;}
+.tb-detail-price li {display: block;margin:0px 10px;}
+.tb-detail-price li  dt {width: 70px;float:left;text-align: left;margin-top:0px;}
 .price.iteminfo_price dt{margin-top:5px ;}
 .sys_item_price{font-size: 24px;font-weight: bold;}
 .sys_item_mktprice{font-size:14px ;}
