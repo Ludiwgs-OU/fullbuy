@@ -160,8 +160,9 @@
   </select>
 
   <select id="searchGroudbuy" resultMap="BaseResultMap">
-    select *
-    from groudbuy
+    select g.*,p.*
+    from groudbuy g,product p
+    where g.productId = p.productId and productName like `%` #{keyword} `%`
   </select>
 
   <select id="showAllGroudbuy" resultMap="BaseResultMap">

@@ -34,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> showProduct() {
-        return null;
+        return productMapper.showProducts();
     }
 
     @Override
@@ -44,11 +44,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> searchProductByKeyword(String keyword) {
-        return null;
+        return productMapper.searchProductByKeyword(keyword);
     }
 
     @Override
-    public List<Product> searchProductByCategory(int categoryId, int secondCategoryId) {
-        return null;
+    public List<Product> searchProductByFirstCategory(int categoryId) {
+        return productMapper.searchProductByFirstCategory(categoryId);
+    }
+
+    @Override
+    public List<Product> searchProductBySecondCategory(int secondCategoryId) {
+        return productMapper.searchProductBySecondCategory(secondCategoryId);
     }
 }

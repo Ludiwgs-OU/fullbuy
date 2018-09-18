@@ -2,6 +2,8 @@ package com.we.fullbuy.dao;
 
 import com.we.fullbuy.pojo.Product;
 
+import java.util.List;
+
 public interface ProductMapper {
     int deleteByPrimaryKey(Integer productid);
 
@@ -18,4 +20,12 @@ public interface ProductMapper {
     /*new*/
     /*显示商品详情*/
     Product displayProductDetail(Integer productid);
+    /*商品列表*/
+    List<Product> showProducts ();
+    /*根据关键字搜索商品*/
+    List<Product> searchProductByKeyword(String keyword);
+    /*根据一级种类搜索商品*/
+    List<Product> searchProductByFirstCategory(Integer categoryId);
+    /*二级种类搜索商品*/
+    List<Product> searchProductBySecondCategory(Integer secondCategoryId);
 }

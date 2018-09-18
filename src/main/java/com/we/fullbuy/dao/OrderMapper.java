@@ -22,4 +22,6 @@ public interface OrderMapper {
     List<Order> selectBySalesId(Integer salesid);
     /*根据用户ID查找订单*/
     List<Order> selectByUserId(Integer userid);
+    /*订单详情*/
+    Order orderDetail(String orderid);
 }

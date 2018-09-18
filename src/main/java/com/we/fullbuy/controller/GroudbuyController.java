@@ -51,7 +51,7 @@ public class GroudbuyController {
         return groudbuyService.showGroudbuyDetail(groudbuyId);
     }
 
-    //商家查询团购活动
+    //商家查询自己团购活动
     @RequestMapping("/displaySalesGroudbuy")
     @ResponseBody
     public List<Groudbuy> displaySalesGroudbuy(HttpSession session)
@@ -59,12 +59,11 @@ public class GroudbuyController {
         return groudbuyService.showGroudbuyBySalesId((int)session.getAttribute("salesId"));
     }
 
-    /*//用户查询团购活动
-    @RequestMapping("/displayUserGroudbuy")
+    //关键字查询团购活动
+    @RequestMapping("/searchGroudbuy")
     @ResponseBody
-    public List<Groudbuy> displayUserGroudbuy(String keyword)
+    public List<Groudbuy> searchGroudbuy(String keyword)
     {
-        return groudbuyService.showGroudbuyBySalesId((int)session.getAttribute("userId"));
+        return groudbuyService.searchGroudbuy(keyword);
     }
-*/
 }

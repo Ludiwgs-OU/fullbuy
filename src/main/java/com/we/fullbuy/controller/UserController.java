@@ -66,7 +66,7 @@ public class UserController {
     @ResponseBody
     public int register(@RequestBody User user)
     {
-        User check = userService.login("1");
+        User check = userService.login(user.getUserphone());
         if(check==null)
         {
             if(userService.registerUser(user)!=0)
@@ -99,7 +99,7 @@ public class UserController {
             return false;
     }
 
-    //显示收货地址
+    //显示用户收货地址
     @RequestMapping("/displayAddress")
     @ResponseBody
     public List<Address> displayAddress(HttpSession session)

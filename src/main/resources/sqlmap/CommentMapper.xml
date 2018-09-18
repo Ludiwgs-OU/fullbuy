@@ -6,12 +6,13 @@
     <id column="commentId" jdbcType="INTEGER" property="commentid" />
     <result column="productId" jdbcType="INTEGER" property="productid" />
     <result column="orderId" jdbcType="VARCHAR" property="orderid" />
+    <result column="userId" jdbcType="INTEGER" property="userid"/>
     <result column="commentDetail" jdbcType="VARCHAR" property="commentdetail" />
     <result column="commentImgPath" jdbcType="VARCHAR" property="commentimgpath" />
     <result column="commentTime" jdbcType="TIMESTAMP" property="commenttime" />
   </resultMap>
   <sql id="Base_Column_List">
-    commentId, productId, orderId, commentDetail, commentImgPath, commentTime
+    commentId, productId, orderId, userId, commentDetail, commentImgPath, commentTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -24,10 +25,10 @@
     where commentId = #{commentid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Comment">
-    insert into comment (commentId, productId, orderId, 
+    insert into comment (commentId, productId, orderId, userId,
       commentDetail, commentImgPath, commentTime
       )
-    values (#{commentid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{orderid,jdbcType=VARCHAR}, 
+    values (#{commentid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{orderid,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER},
       #{commentdetail,jdbcType=VARCHAR}, #{commentimgpath,jdbcType=VARCHAR}, #{commenttime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -42,6 +43,9 @@
       </if>
       <if test="orderid != null">
         orderId,
+      </if>
+      <if test="userid != null">
+        userId,
       </if>
       <if test="commentdetail != null">
         commentDetail,
@@ -63,6 +67,9 @@
       <if test="orderid != null">
         #{orderid,jdbcType=VARCHAR},
       </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
       <if test="commentdetail != null">
         #{commentdetail,jdbcType=VARCHAR},
       </if>
@@ -83,6 +90,9 @@
       <if test="orderid != null">
         orderId = #{orderid,jdbcType=VARCHAR},
       </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
       <if test="commentdetail != null">
         commentDetail = #{commentdetail,jdbcType=VARCHAR},
       </if>
@@ -99,6 +109,7 @@
     update comment
     set productId = #{productid,jdbcType=INTEGER},
       orderId = #{orderid,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
       commentDetail = #{commentdetail,jdbcType=VARCHAR},
       commentImgPath = #{commentimgpath,jdbcType=VARCHAR},
       commentTime = #{commenttime,jdbcType=TIMESTAMP}

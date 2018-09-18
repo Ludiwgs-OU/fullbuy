@@ -3,6 +3,7 @@ package com.we.fullbuy.controller;
 import com.we.fullbuy.pojo.*;
 import com.we.fullbuy.service.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,20 +22,22 @@ public class OrderController {
     @Resource
     private SkuService skuService;
     @Resource
-    private AddressService addressService;
-    @Resource
     private ProductService productService;
     @Resource
     private UserService userService;
-    @Resource
-    private GroudbuyService groudbuyService;
 
     //生成普通订单
     @RequestMapping("/addOrder")
     @ResponseBody
-    public int addOrder(@RequestParam("skuId") int skuId, @RequestParam("num") int num, HttpSession session) {
+    public int addOrder(@RequestParam("skuId") int skuId,
+                        @RequestParam("addressId") int addressId,
+                        @RequestParam("num") int num,
+                        @RequestParam("price") double price,
+                        @RequestParam("totalPrice") double totalPrice,
+                        @RequestParam("orderStatus") int orderStatus,
+                        HttpSession session) {
 
-        //获取订单编号
+        //生成订单编号
         int userId = (int) session.getAttribute("userId");
         String cdate = Long.toString(System.currentTimeMillis());
         String orderId = userId + cdate;
@@ -50,11 +53,12 @@ public class OrderController {
             Order order = new Order();
             order.setOrderid(orderId);
             order.setOrderdate(timestamp);
-            order.setOrderstatus(0);
+            order.setOrderstatus(orderStatus);
             order.setNum(num);
             order.setUserid(userId);
-            order.setTotalprice(sku.getPrice() * num);
-            //order.setAddressid();
+            order.setPrice(price);
+            order.setTotalprice(totalPrice);
+            order.setAddressid(addressId);
             order.setSkuid(skuId);
             if(orderService.addOrder(order)==1)
             {
@@ -79,54 +83,6 @@ public class OrderController {
             return 0;//库存量不足
     }
 
-    //生成团购订单
-    @RequestMapping("/addGroudbuyOrder")
-    @ResponseBody
-    public int addGroudbuyOrder(@RequestParam("skuId") int skuId, @RequestParam("groudbuyId") int groudbuyId, HttpSession session) {
-        //获取订单编号
-        int userId = (int) session.getAttribute("userId");
-        String cdate = Long.toString(System.currentTimeMillis());
-        String orderId = userId + cdate;
-        System.out.println("订单编号：" + orderId);
-
-        Date date = new Date();
-        Timestamp timestamp = new Timestamp(date.getTime());//时间格式转换
-
-        Sku sku = skuService.showSku(skuId);
-
-        Order order = new Order();
-        order.setOrderid(orderId);
-        order.setOrderdate(timestamp);
-        order.setOrderstatus(0);
-        order.setUserid(userId);
-        order.setTotalprice(sku.getGbprice());
-        //Address address = addressService.searchDefaultAddress();
-        //order.setAddressid(address.getAddressid());
-        order.setSkuid(skuId);
-        if(orderService.addOrder(order)==1)
-        {
-            sku.setQuantity(sku.getQuantity()-1);
-            int s = skuService.updateSku(sku);
-            if(s!=0)
-                System.out.println("-Quantity Success");//减库存量
-
-            Product product = new Product();
-            product.setProductid(sku.getProductid());
-            product.setSalesnum(product.getSalesnum()+1);//增加销售量
-            int p = productService.modifyProduct(product);
-            if(p!=0)
-                System.out.println("+Salesnum success");
-            Groudbuy groudbuy = new Groudbuy();
-            groudbuy.setNowpeople(groudbuy.getNowpeople()+1);
-            groudbuy.setGbid(groudbuyId);
-            if(groudbuyService.modifyGroudbuy(groudbuy)!=0)
-                System.out.println("团购人数+1");
-
-            return 1;//订单生成成功
-        }
-        else
-            return 2;//订单生成失败
-    }
 
     //显示商家的订单列表
     @RequestMapping("/displaySalesOrder")
@@ -143,9 +99,9 @@ public class OrderController {
     }
 
     //订单详情
-    @RequestMapping("/displayOrderDetail")
+    @RequestMapping("/displayOrderDetail/{orderId}")
     @ResponseBody
-    public Order displayOrderDetail(@RequestParam("orderId") String orderId)
+    public Order displayOrderDetail(@PathVariable("orderId") String orderId)
     {
         return orderService.showOrderDetail(orderId);
     }

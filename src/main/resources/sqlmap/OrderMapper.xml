@@ -11,30 +11,31 @@
     <result column="num" jdbcType="INTEGER" property="num" />
     <result column="orderDate" jdbcType="TIMESTAMP" property="orderdate" />
     <result column="orderStatus" jdbcType="INTEGER" property="orderstatus" />
+      <result column="price" jdbcType="DOUBLE" property="price" />
   </resultMap>
   <sql id="Base_Column_List">
-    orderId, userId, skuId, totalPrice, addressId, num, orderDate, orderStatus
+    orderId, userId, skuId, totalPrice, addressId, num, orderDate, orderStatus, price
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from order
+    from `order`
     where orderId = #{orderid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from order
+    delete from `order`
     where orderId = #{orderid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Order">
-    insert into order (orderId, userId, skuId, 
+    insert into `order` (orderId, userId, skuId,
       totalPrice, addressId, num, 
-      orderDate, orderStatus)
+      orderDate, orderStatus, price)
     values (#{orderid,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{skuid,jdbcType=INTEGER}, 
       #{totalprice,jdbcType=DOUBLE}, #{addressid,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, 
-      #{orderdate,jdbcType=TIMESTAMP}, #{orderstatus,jdbcType=INTEGER})
+      #{orderdate,jdbcType=TIMESTAMP}, #{orderstatus,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Order">
-    insert into order
+    insert into `order`
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="orderid != null">
         orderId,
@@ -60,6 +61,9 @@
       <if test="orderstatus != null">
         orderStatus,
       </if>
+        <if test="price != null">
+            price,
+        </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderid != null">
@@ -86,10 +90,13 @@
       <if test="orderstatus != null">
         #{orderstatus,jdbcType=INTEGER},
       </if>
+        <if test="price != null">
+            #{price,jdbcType=DOUBLE}
+        </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Order">
-    update order
+    update `order`
     <set>
       <if test="userid != null">
         userId = #{userid,jdbcType=INTEGER},
@@ -112,11 +119,14 @@
       <if test="orderstatus != null">
         orderStatus = #{orderstatus,jdbcType=INTEGER},
       </if>
+        <if test="price != null">
+        price = #{price,jdbcType=DOUBLE}
+        </if>
     </set>
     where orderId = #{orderid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Order">
-    update order
+    update `order`
     set userId = #{userid,jdbcType=INTEGER},
       skuId = #{skuid,jdbcType=INTEGER},
       totalPrice = #{totalprice,jdbcType=DOUBLE},
@@ -124,6 +134,7 @@
       num = #{num,jdbcType=INTEGER},
       orderDate = #{orderdate,jdbcType=TIMESTAMP},
       orderStatus = #{orderstatus,jdbcType=INTEGER}
+      price = #{price,jdbcType=DOUBLE}
     where orderId = #{orderid,jdbcType=VARCHAR}
   </update>
 
@@ -138,5 +149,67 @@
     select *
     from `order`
     where userId = #{userid,jdbcType=INTEGER}
+  </select>
+
+  <resultMap id="orderDetail" type="com.we.fullbuy.pojo.Order" extends="BaseResultMap">
+    <association property="address" javaType="com.we.fullbuy.pojo.Address">
+      <id column="addressId" jdbcType="INTEGER" property="addressid" />
+      <result column="userId" jdbcType="INTEGER" property="userid" />
+      <result column="addressDetail" jdbcType="VARCHAR" property="addressdetail" />
+      <result column="postCode" jdbcType="VARCHAR" property="postcode" />
+      <result column="phone" jdbcType="CHAR" property="phone" />
+      <result column="name" jdbcType="VARCHAR" property="name" />
+      <result column="defaultAddress" jdbcType="INTEGER" property="defaultaddress" />
+      <result column="province" jdbcType="VARCHAR" property="province" />
+      <result column="city" jdbcType="VARCHAR" property="city" />
+      <result column="street" jdbcType="VARCHAR" property="street" />
+    </association>
+    <association property="product" javaType="com.we.fullbuy.pojo.Product">
+        <id column="productId" jdbcType="INTEGER" property="productid" />
+        <result column="productName" jdbcType="VARCHAR" property="productname" />
+        <result column="productDetail" jdbcType="VARCHAR" property="productdetail" />
+        <result column="productScore" jdbcType="INTEGER" property="productscore" />
+        <result column="salesNum" jdbcType="INTEGER" property="salesnum" />
+        <result column="categoryId" jdbcType="INTEGER" property="categoryid" />
+        <result column="salesId" jdbcType="INTEGER" property="salesid" />
+        <result column="postTime" jdbcType="TIMESTAMP" property="posttime" />
+        <result column="productStatus" jdbcType="INTEGER" property="productstatus" />
+        <result column="searchImgPath" jdbcType="VARCHAR" property="searchimgpath" />
+        <result column="sImgPath1" jdbcType="VARCHAR" property="simgpath1" />
+        <result column="sImgPath2" jdbcType="VARCHAR" property="simgpath2" />
+        <result column="mImgPath1" jdbcType="VARCHAR" property="mimgpath1" />
+        <result column="mImgPath2" jdbcType="VARCHAR" property="mimgpath2" />
+        <result column="bImgPath1" jdbcType="VARCHAR" property="bimgpath1" />
+        <result column="bImgPath2" jdbcType="VARCHAR" property="bimgpath2" />
+        <result column="DetailImgPath1" jdbcType="VARCHAR" property="detailimgpath1" />
+        <result column="DetailImgPath2" jdbcType="VARCHAR" property="detailimgpath2" />
+        <result column="item1" jdbcType="VARCHAR" property="item1" />
+        <result column="item2" jdbcType="VARCHAR" property="item2" />
+        <result column="postfee" jdbcType="INTEGER" property="postfee" />
+        <collection property="skuList" ofType="com.we.fullbuy.pojo.Sku">
+            <id column="skuId" jdbcType="INTEGER" property="skuid" />
+            <result column="productId" jdbcType="INTEGER" property="productid" />
+            <result column="itemId" jdbcType="INTEGER" property="itemid" />
+            <result column="secondItemId" jdbcType="INTEGER" property="seconditemid" />
+            <result column="price" jdbcType="DOUBLE" property="price" />
+            <result column="quantity" jdbcType="INTEGER" property="quantity" />
+            <result column="gbPrice" jdbcType="DOUBLE" property="gbprice" />
+            <collection property="itemList" ofType="com.we.fullbuy.pojo.Item">
+                <id column="itemId" jdbcType="INTEGER" property="itemid" />
+                <result column="itemName" jdbcType="VARCHAR" property="itemname" />
+            </collection>
+            <collection property="seconditemList" ofType="com.we.fullbuy.pojo.Seconditem">
+                <id column="secondItemId" jdbcType="INTEGER" property="seconditemid" />
+                <result column="secondItemName" jdbcType="VARCHAR" property="seconditemname" />
+            </collection>
+        </collection>
+    </association>
+  </resultMap>
+
+  <select id="orderDetail" parameterType="java.lang.String" resultMap="orderDetail">
+    select *
+    from `order` o,product p,address a,sku s,item i,seconditem si
+    where orderId = #{orderid,jdbcType=VARCHAR} and a.addressId = o.addressId and s.skuId = o.skuId
+          and p.productId = s.productId and i.itemId = s.itemId and si.secondItemId = s.secondItemId
   </select>
 </mapper>

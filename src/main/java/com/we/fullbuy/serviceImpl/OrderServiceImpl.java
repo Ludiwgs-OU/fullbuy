@@ -22,7 +22,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order showOrderDetail(String orderId) {
-        return orderMapper.selectByPrimaryKey(orderId);
+        return orderMapper.orderDetail(orderId);
     }
 
     @Override

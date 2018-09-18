@@ -20,6 +20,12 @@ public class Order implements Serializable {
 
     private Integer orderstatus;
 
+    private Double price;
+
+    private Product product;
+
+    private Address address;
+
     public String getOrderid() {
         return orderid;
     }
@@ -82,5 +88,29 @@ public class Order implements Serializable {
 
     public void setOrderstatus(Integer orderstatus) {
         this.orderstatus = orderstatus;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

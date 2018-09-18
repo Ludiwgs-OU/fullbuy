@@ -17,6 +17,9 @@ public interface ProductService {
     Product showProductDetail(int productId);
     /*关键字搜索商品*/
     List<Product> searchProductByKeyword(String keyword);
-    /*根据种类搜索商品*/
-    List<Product> searchProductByCategory(int categoryId, int secondCategoryId);
+    /*根据一级种类搜索商品*/
+    List<Product> searchProductByFirstCategory(int categoryId);
+    /*二级种类搜索商品*/
+    List<Product> searchProductBySecondCategory(int secondCategoryId);
+
 }

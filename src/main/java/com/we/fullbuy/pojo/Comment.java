@@ -10,6 +10,8 @@ public class Comment implements Serializable {
 
     private String orderid;
 
+    private Integer userid;
+
     private String commentdetail;
 
     private String commentimgpath;
@@ -64,15 +66,11 @@ public class Comment implements Serializable {
         this.commenttime = commenttime;
     }
 
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "commentid=" + commentid +
-                ", productid=" + productid +
-                ", orderid='" + orderid + '\'' +
-                ", commentdetail='" + commentdetail + '\'' +
-                ", commentimgpath='" + commentimgpath + '\'' +
-                ", commenttime=" + commenttime +
-                '}';
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 }
