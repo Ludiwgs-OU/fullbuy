@@ -84,7 +84,7 @@ $(document).ready(()=>{
 	$(()=>{
 		var nowdate = new Date();
 		var year = nowdate.getFullYear();
-		var month = nowdate.getMonth();
+		var month = nowdate.getMonth()+1;
 		var day = nowdate.getDay();
 		var x;
 		switch(day){

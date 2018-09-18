@@ -102,4 +102,35 @@ $(document).ready(()=>{
         });
 	})
 	
+	$("#changePwd").click(()=>{
+		var oldpwd = $("#user-old-password").val();
+		var newPwd = $("#user-new-password").val();
+		var rePwd = $("#user-confirm-password").val();
+		
+		var pwd = {
+			"oldPwd": oldpwd,
+			"newPwd": newPwd
+		}
+		
+		if(newPwd != rePwd){
+			alert("两次密码输入不正确！");
+		}
+		else{
+			$.ajax({
+	            type:"post",
+				url:"#",
+				async:true,
+				dataType:"json",
+				data: pwd,
+				success:function(inf){
+					alert(inf);
+					window.reload();
+				},
+				error:function(inf){
+					alert("修改失败！");
+				}
+	        });
+		}
+	})
+	
 })
