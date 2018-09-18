@@ -1,3 +1,15 @@
+function getObjectURL(file) {  
+    var url = null;  
+    if (window.createObjcectURL != undefined) {  
+        url = window.createOjcectURL(file);  
+    } else if (window.URL != undefined) {  
+        url = window.URL.createObjectURL(file);  
+    } else if (window.webkitURL != undefined) {  
+        url = window.webkitURL.createObjectURL(file);  
+    }  
+    return url;  
+}
+
 new Vue({
 	el: '#headerNav',
 	data:function(){
@@ -81,20 +93,19 @@ $(document).ready(()=>{
 	$("#profile").change(()=>{
 		
 		var profile = document.getElementById("profile").files[0];
-	    var reader = new FileReader();
-	    reader.readAsDataURL(profile);
-		
+		var imgUrl = getObjectURL(profile);
+	    
 		$.ajax({
             type: "post",
             url: "#",
             contentType: false,
             processData: false,
-            data: profile,
+            data: {
+            	"userprofile": imgUrl
+            },
             success: function(result){
             	alert("头像修改成功");
-            	reader.onload=function(e){
-	        		document.getElementById("profileImg").src = this.result;
-	    		}
+            	document.getElementById("profileImg").src = imgUrl;
             },
             error: function(result){
             	alert("头像修改失败！");
