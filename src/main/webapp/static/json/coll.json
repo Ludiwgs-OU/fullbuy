@@ -3,26 +3,31 @@
  		"productId": "1",
  		"productName": "包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰",
  		"img": "../static/images/0-item_pic.jpg_220x220.jpg",
- 		"price": "42.50"
+ 		"price": "42.50",
+ 		"favorId": "1"
  	},{
  		"productId": "2",
  		"productName": "包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰",
  		"img": "../static/images/0-item_pic.jpg_220x220.jpg",
- 		"price": "42.50"
+ 		"price": "42.50",
+ 		"favorId": "2"
  	},{
  		"productId": "3",
  		"productName": "包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰",
  		"img": "../static/images/0-item_pic.jpg_220x220.jpg",
- 		"price": "42.50"
+ 		"price": "42.50",
+ 		"favorId": "3"
  	},{
  		"productId": "4",
  		"productName": "包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰",
  		"img": "../static/images/0-item_pic.jpg_220x220.jpg",
- 		"price": "42.50"
+ 		"price": "42.50",
+ 		"favorId": "4"
  	},{
- 		"productId": "4",
+ 		"productId": "5",
  		"productName": "包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰",
  		"img": "../static/images/0-item_pic.jpg_220x220.jpg",
- 		"price": "42.50"
+ 		"price": "42.50",
+ 		"favorId": "5"
  	}
 ]
