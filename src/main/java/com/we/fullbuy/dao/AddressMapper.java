@@ -20,4 +20,5 @@ public interface AddressMapper {
     /*new*/
     /*显示用户收藏夹*/
     List<Address> selectByUserId(Integer userid);
+
 }

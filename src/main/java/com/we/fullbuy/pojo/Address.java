@@ -1,8 +1,6 @@
 package com.we.fullbuy.pojo;
 
-import java.io.Serializable;
-
-public class Address implements Serializable {
+public class Address {
     private Integer addressid;
 
     private Integer userid;
@@ -19,9 +17,9 @@ public class Address implements Serializable {
 
     private String province;
 
-    private String city;
-
     private String street;
+
+    private String city;
 
     public Integer getAddressid() {
         return addressid;
@@ -87,14 +85,6 @@ public class Address implements Serializable {
         this.province = province == null ? null : province.trim();
     }
 
-    public String getcity() {
-        return city;
-    }
-
-    public void setcity(String city) {
-        this.city = city == null ? null : city.trim();
-    }
-
     public String getStreet() {
         return street;
     }
@@ -103,19 +93,11 @@ public class Address implements Serializable {
         this.street = street == null ? null : street.trim();
     }
 
-    @Override
-    public String toString() {
-        return "Address{" +
-                "addressid=" + addressid +
-                ", userid=" + userid +
-                ", addressdetail='" + addressdetail + '\'' +
-                ", postcode='" + postcode + '\'' +
-                ", phone='" + phone + '\'' +
-                ", name='" + name + '\'' +
-                ", defaultaddress=" + defaultaddress +
-                ", province='" + province + '\'' +
-                ", city='" + city + '\'' +
-                ", street='" + street + '\'' +
-                '}';
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city == null ? null : city.trim();
     }
 }

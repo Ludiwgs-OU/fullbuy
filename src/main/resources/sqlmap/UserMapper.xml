@@ -178,7 +178,7 @@
 
   <!--new-->
   <select id="selectByPhone" resultMap="BaseResultMap">
-    select userId,userPhone,password
+    select *
     from user
     where userPhone = #{phone,jdbcType=CHAR}
   </select>

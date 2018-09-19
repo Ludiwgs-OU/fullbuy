@@ -71,7 +71,7 @@
 			selectByExampleQueryId="false">
 			<!-- 不要生成Example实例-->
 		</table>
-		<table tableName="category"
+<!--		<table tableName="category"
 			   enableCountByExample="false" enableUpdateByExample="false"
 			   enableDeleteByExample="false" enableSelectByExample="false"
 			   selectByExampleQueryId="false">
@@ -152,6 +152,6 @@
 			   enableCountByExample="false" enableUpdateByExample="false"
 			   enableDeleteByExample="false" enableSelectByExample="false"
 			   selectByExampleQueryId="false">
-		</table>
+		</table>-->
 	</context>
 </generatorConfiguration>  

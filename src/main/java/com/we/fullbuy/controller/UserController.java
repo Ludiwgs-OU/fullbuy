@@ -7,12 +7,8 @@ import com.we.fullbuy.service.AddressService;
 import com.we.fullbuy.service.FavorService;
 import com.we.fullbuy.service.UserService;
 import com.we.fullbuy.utils.MD5Util;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -32,7 +28,7 @@ public class UserController {
     //登录
     @RequestMapping("/login")
     @ResponseBody
-    public int login(@RequestParam("phone") String phone, @RequestParam("password") String password,HttpSession session)
+    public String login(@RequestParam("phone") String phone, @RequestParam("password") String password,HttpSession session)
     {
 
         String cpassword = MD5Util.md5(password);
@@ -48,34 +44,34 @@ public class UserController {
                 if(user.getPassword().equals(cpassword))
                 {
                     session.setAttribute("userId",user.getUserid());
-                    return 1;//登录成功
+                    return "登录成功，欢迎回来"+user.getUsername();//登录成功
                 }
 
                 else
-                    return 2;//密码错误
+                    return "密码好像输错了，再想想";//密码错误
             }
             else
-                return 3;//处于黑名单
+                return "对不起，您处于我们的黑名单";//处于黑名单
         }
         else
-            return 0;//账号不存在
+            return "不存在的，你输入的账号不存在";//账号不存在
     }
 
     //注册
     @RequestMapping("/register")
     @ResponseBody
-    public int register(@RequestBody User user)
+    public String register(@RequestBody User user)
     {
         User check = userService.login(user.getUserphone());
         if(check==null)
         {
             if(userService.registerUser(user)!=0)
-                return 1;//注册成功
+                return "注册成功~欢迎你加入满团大家庭";//注册成功
             else
-                return 0;//注册失败
+                return "GG！注册失败了诶";//注册失败
         }
         else
-            return 2;//账号已存在
+            return "账号好像已经有别的用户使用了哦";//账号已存在
     }
 
     //查看个人信息
@@ -152,36 +148,37 @@ public class UserController {
 
 
     //查看收藏夹
-    @RequestMapping("/displayFavor")
+    @RequestMapping("/displayFavor/{uid}")
     @ResponseBody
-    public List<Favor> displayFavor(HttpSession session)
+    public List<Favor> displayFavor(/*HttpSession session*/@PathVariable("uid") Integer userId)
     {
-        return favorService.displayFavor((int)session.getAttribute("userId"));
+        /*return favorService.displayFavor((int)session.getAttribute("userId"));*/
+        return favorService.displayFavor(userId);
     }
 
     //添加到收藏夹
     @RequestMapping("/addFavor")
     @ResponseBody
-    public boolean addFavor(@RequestParam("productId") int productId, HttpSession session)
+    public String addFavor(@RequestParam("productId") int productId, HttpSession session)
     {
         Favor favor = new Favor();
         favor.setUserid((int)session.getAttribute("userId"));
         favor.setProductid(productId);
         if(favorService.addFavor(favor)!=0)
-            return true;
+            return "已帮您添加到收藏夹啦";
         else
-            return false;
+            return "好像出了点问题，收藏不了商品";
     }
 
     //删除收藏夹单个商品
     @RequestMapping("/deleteSingleFavor")
     @ResponseBody
-    public boolean deleteSingleFavor(@RequestParam("favorId") int favorId)
+    public String deleteSingleFavor(@RequestParam("favorId") int favorId)
     {
         if(favorService.deleteSingleFavor(favorId)!=0)
-            return true;
+            return "删除成功！商品已离去";
         else
-            return false;
+            return "好像出了点问题，商品仍留在原地";
     }
 
     /*//批量删除收藏夹商品

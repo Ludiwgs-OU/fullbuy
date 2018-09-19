@@ -27,7 +27,11 @@ public class SystemController {
     //注销
     @RequestMapping("/logout")
     @ResponseBody
-    public void logout(HttpSession session) {
+    public String logout(HttpSession session) {
         session.invalidate();
+        if(session == null)
+            return "注销成功";
+        else
+            return "注销失败";
     }
 }

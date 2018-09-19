@@ -76,9 +76,19 @@
     where favorId = #{favorid}
   </delete>
 
-  <select id="selectByUserId" parameterType="java.lang.Integer">
-    select *
-    from favor
-    where userId = #{userid,jdbcType=INTEGER}
+  <resultMap id="Favor" type="com.we.fullbuy.pojo.Favor" extends="BaseResultMap">
+    <collection property="productList" ofType="com.we.fullbuy.pojo.Product">
+      <id column="productId" jdbcType="INTEGER" property="productid" />
+      <result column="productName" jdbcType="VARCHAR" property="productname" />
+      <result column="productScore" jdbcType="INTEGER" property="productscore" />
+      <result column="salesNum" jdbcType="INTEGER" property="salesnum" />
+      <result column="searchImgPath" jdbcType="VARCHAR" property="searchimgpath" />
+    </collection>
+  </resultMap>
+
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="Favor">
+    select f.*, p.*
+    from favor f, product p
+    where f.userId = #{userid,jdbcType=INTEGER} and p.productId = f.productId
   </select>
 </mapper>
