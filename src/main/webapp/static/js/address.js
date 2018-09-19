@@ -9,7 +9,6 @@ $(document).ready(function() {
 	}
 	
 	var $ww = $(window).width();
-	
 	$('.theme-poptit .close').click(function() {
 		$(document.body).css("overflow","visible");
 		$('#add-part').slideUp(200);

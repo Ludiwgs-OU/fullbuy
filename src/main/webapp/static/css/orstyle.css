@@ -163,9 +163,36 @@ ul.td-changeorder {width:20%}
 }
 
 
+.item-operation span{
+	cursor: pointer;
+}
+
+.theme-popover{display: none;}
+.theme-popover{z-index:10000009;position:fixed;bottom:50%;left:40%;width:600px;height:450px;margin-bottom:-200px;margin-left:-250px;display:none;background:#fff;overflow: hidden;}
+.am-form{
+	padding: 0 40px 0 50px;
+}
 
 
+.am-form-group a{
+	margin-left: 150px;
+}
 
+.eval-p{
+	font-size: 20px;
+}
 
+.evalImg{
+	cursor: pointer;
+	position: absolute;
+	opacity:0;
+	ilter:alpha(opacity=0);
+	width: 150px;
+	height: 150px;
+}
 
+.forEvalImg{
+	width: 150px;
+	height: 150px;
+}
 
