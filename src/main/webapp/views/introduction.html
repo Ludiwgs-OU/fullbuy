@@ -27,10 +27,10 @@
 					<div class="menu-hd"><a href="home.html" target="_top" class="h">商城首页</a></div>
 				</div>
 				<div class="topMessage my-shangcheng" v-if="site.user">
-					<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+					<div class="menu-hd MyShangcheng"><a href="personalcenter.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 				</div>
 				<div class="topMessage favorite" v-if="site.user">
-					<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+					<div class="menu-hd"><a href="collection.html" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 				</div>
 			</ul>
 		</div>
@@ -53,21 +53,21 @@
 			<div class="clearfixLeft" id="clearcontent">
 				<div class="box">
 					<div class="tb-booth tb-pic tb-s310">
-						<a href="../static/images/01.jpg">
+						<a>
 							<img :src="site.img1_m" alt="细节展示放大镜特效" :rel="site.img1_l" class="jqzoom" />
 						</a>
 					</div>
 					<ul class="tb-thumb" id="thumblist">
 						<li class="tb-selected">
 							<div class="tb-pic tb-s40">
-								<a href="#">
+								<a>
 									<img :src="site.img1_s" :mid="site.img1_m" :big="site.img1_l">
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="tb-pic tb-s40">
-								<a href="#">
+								<a>
 									<img :src="site.img2_s" :mid="site.img2_m" :big="site.img2_l">
 								</a>
 							</div>
@@ -162,17 +162,17 @@
 				<div class="pay">
 					<li>
 						<div class="clearfix tb-btn tb-btn-buy theme-login" v-if="site.status == 2">
-							<a id="LikBuy" href="#">前往团购页面</a>
+							<a id="LikBuy">前往团购页面</a>
 						</div>
 					</li>
 					<li>
 						<div class="clearfix tb-btn tb-btn-buy theme-login">
-							<a id="LikBasket" href="#"><i></i>原价购买</a>
+							<a id="LikBasket"><i></i>原价购买</a>
 						</div>
 					</li>
 					<li>
 						<div class="clearfix tb-btn tb-btn-basket theme-login">
-							<a id="collAdd" href="#"><i></i>加入收藏夹</a>
+							<a id="collAdd"><i></i>加入收藏夹</a>
 						</div>
 					</li>
 				</div>
@@ -194,12 +194,12 @@
 						</div>
 						<li v-for="site in sites">
 						    <div class="p-img">
-						    	<a :href="'register.html?pid=' + site.productId" >
+						    	<a :href="'introduction.html?pid=' + site.productId" >
 						      		<img :src="site.searchImgPath">
 						      	</a>
 						    </div>
 						    <div class="p-name">
-						    	<a :href="'register.html?pid=' + site.productId" >
+						    	<a :href="'introduction.html?pid=' + site.productId" >
 							      	{{ site.productName }}
 						      	</a>
 							</div>
@@ -212,12 +212,12 @@
 				<div class="am-tabs" data-am-tabs>
 					<ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs">
 						<li class="am-active">
-							<a href="#">
+							<a>
 								<span class="index-needs-dt-txt">宝贝详情</span>
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a>
 								<span class="index-needs-dt-txt">全部评价</span>
 							</a>
 						</li>
@@ -254,7 +254,7 @@
 					<div class="am-tab-panel am-fade" id="commentDetail">
 						<ul class="am-comments-list am-comments-list-flip">
 							<li class="am-comment" v-for="site in sites.commentInfo">
-								<a href="">
+								<a>
 									<img class="am-comment-avatar" :src="site.avatar" />
 								</a>
 								<div class="am-comment-main">
@@ -300,7 +300,7 @@
 			<div id="sidebar">
 				<div id="wrap">
 					<div id="prof" class="item">
-						<a href="#">
+						<a href="personalcenter.html">
 							<span class="setting"></span>
 						</a>
 						<div class="ibar_login_box status_login">
@@ -315,13 +315,13 @@
 								<a href="login.html?type=1">欢迎，请登录</a>
 							</div>
 							<div class="login_btnbox" v-if="site.user">
-								<a href="#" class="login_order">我的订单</a>
-								<a href="#" class="login_favorite">我的收藏</a>
+								<a href="order.html" class="login_order">我的订单</a>
+								<a href="collection.html" class="login_favorite">我的收藏</a>
 							</div>
 						</div>
 					</div>
 					<div id="brand" class="item">
-						<a href="#">
+						<a href="collection.html">
 							<span class="wdsc"><img src="../static/images/wdsc.png" /></span>
 						</a>
 						<div class="mp_tooltip">

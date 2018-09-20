@@ -141,3 +141,23 @@ new Vue({
 		});
    	}
 })
+
+$(document).ready(()=>{
+	
+	$("#logout").click(()=>{
+		$.ajax({
+			type:"post",
+			url:"#",
+			async:true,
+			dataType:"json",
+			success:function(result){
+				alert(result);
+				window.reload();
+			},
+			error:function(result){
+				alert("获取数据失败！");
+			},
+		});
+	})
+	
+})

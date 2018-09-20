@@ -47,7 +47,7 @@ $(document).ready(()=>{
 				dataType:"json",
 				data: passLogin,
 				success:function(result){
-					alert("登录成功！");
+					alert(result);
 					window.location.href = "home.html";
 				},
 				error:function(result){

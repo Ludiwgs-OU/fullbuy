@@ -19,7 +19,7 @@
 									<a href="login.html?type=2" target="_top">商家登录</a>
 								</div>
 								<div class="menu-hd" v-if="site.user">
-									<a target="_top" id="logout">会员注销</a>
+									<a target="_top" id="logout" href="">会员注销</a>
 								</div>
 							</div>
 						</ul>
@@ -28,10 +28,10 @@
 								<div class="menu-hd"><a href="home.html" target="_top" class="h">商城首页</a></div>
 							</div>
 							<div class="topMessage my-shangcheng" v-if="site.user">
-								<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+								<div class="menu-hd MyShangcheng"><a href="personalcenter.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
 							<div class="topMessage favorite" v-if="site.user">
-								<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+								<div class="menu-hd"><a href="collection.html" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 							</div>
 						</ul>
 					</div>
@@ -72,11 +72,11 @@
 								<div><b>用户名：<i>{{ site.userName }}</i></b></div>
 								<div class="u-level">
 									<span class="rank r2">
-							           	会员等级：<s class="vip1"></s><a class="classes" href="#">{{ site.level }}</a>
+							           	会员等级：<s class="vip1"></s><a href="" class="classes">{{ site.level }}</a>
 						            </span>
 								</div>
 								<div class="u-safety">
-									<a href="safety.html">
+									<a href="">
 									 账户积分：
 									<span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">{{ site.userScore }}分</i></span>
 									</a>
@@ -97,6 +97,12 @@
 								<div class="am-form-group">
 									<label class="am-form-label">性别</label>
 									<div class="am-form-content sex">
+										<label class="am-radio-inline">
+											{{ site.Sex }}
+										</label>
+										<label class="am-radio-inline">
+											请点击修改：
+										</label>
 										<label class="am-radio-inline">
 											<input type="radio" name="radio" value="male" data-am-ucheck> 男
 										</label>
@@ -137,10 +143,10 @@
 			<aside class="menu">
 				<ul>
 					<li class="person">
-						<a href="index.html">个人中心</a>
+						<a href="personalcenter.html">个人中心</a>
 					</li>
 					<li class="person">
-						<a href="#">个人资料</a>
+						<a>个人资料</a>
 						<ul>
 							<li class="active"> <a href="information.html">个人信息</a></li>
 							<li> <a href="safety.html">安全设置</a></li>
@@ -148,15 +154,13 @@
 						</ul>
 					</li>
 					<li class="person">
-						<a href="#">我的交易</a>
+						<a>我的交易</a>
 						<ul>
 							<li><a href="order.html">订单管理</a></li>
-							<li> <a href="change.html">退款售后</a></li>
-							<li> <a href="change.html">积分详情</a></li>
 						</ul>
 					</li>
 					<li class="person">
-						<a href="#">我的小窝</a>
+						<a>我的小窝</a>
 						<ul>
 							<li> <a href="collection.html">收藏</a></li>
 							<li> <a href="comment.html">评价</a></li>

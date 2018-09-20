@@ -57,7 +57,7 @@ $(document).ready(function() {
 				dataType:"json",
 				data: addressInfo,
 				success:function(inf){
-					alert("添加成功！");
+					alert(inf);
 					window.reload();
 				},
 				error:function(inf){
@@ -204,7 +204,6 @@ new Vue({
 					},
 				});
 			}
-			
    		}
    	}
 })

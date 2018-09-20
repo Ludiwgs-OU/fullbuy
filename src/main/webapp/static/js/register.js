@@ -22,7 +22,7 @@ $(document).ready(()=>{
 					"phone": phone
 				},
 				success:function(result){
-					alert("已发送验证码，请注意查收！");
+					alert(result);
 				},
 				error:function(result){
 					alert("验证码发送失败！");
@@ -46,7 +46,7 @@ $(document).ready(()=>{
 					"phone": phone
 				},
 				success:function(result){
-					alert("已发送验证码，请注意查收！");
+					alert(result);
 				},
 				error:function(result){
 					alert("验证码发送失败！");
@@ -81,7 +81,7 @@ $(document).ready(()=>{
 				dataType:"json",
 				data: User,
 				success:function(result){
-					alert("注册成功！");
+					alert(result);
 					window.location.href = "login.html?type=1";
 				},
 				error:function(result){
@@ -118,22 +118,20 @@ $(document).ready(()=>{
 			alert("请填写完整的资料");
 		}
 		else{
-			alert("注册成功！");
-			window.location.href = "login.html?type=2";
-//			$.ajax({
-//				type:"post",
-//				url:"/salesRegister",
-//				async:true,
-//				dataType:"json",
-//				data: Sales,
-//				success:function(result){
-//					alert("注册成功！");
-//					window.location.href = "login.html?type=2";
-//				},
-//				error:function(result){
-//					alert("注册失败！");
-//				}
-//			});
+			$.ajax({
+				type:"post",
+				url:"#",
+				async:true,
+				dataType:"json",
+				data: Sales,
+				success:function(result){
+					alert(result);
+					window.location.href = "login.html?type=2";
+				},
+				error:function(result){
+					alert("注册失败！");
+				}
+			});
 		}
 	})
 	

@@ -85,7 +85,7 @@ new Vue({
 					"addressId": id
 				},
 				success:function(inf){
-					alert("删除成功！");
+					alert(inf);
 					window.reload();
 				},
 				error:function(inf){
@@ -135,7 +135,7 @@ new Vue({
 					dataType:"json",
 					data: addressInfo,
 					success:function(inf){
-						alert("修改成功！");
+						alert(inf);
 						window.reload();
 					},
 					error:function(inf){
@@ -179,10 +179,11 @@ new Vue({
    			var postage = Number($("#postage").text());
    			var price1 = price.toFixed(2);
    			var sum = Number(price+postage).toFixed(2);
-   			if(price<0){
-   				price = 0;
+   			if(price1<=0){
+   				price1 = 0;
+   				sum = 0;
    			}
-   			
+   		
    			document.getElementById("allPrice").innerHTML = price1;
    			document.getElementById("sum").innerHTML = sum;
    			document.getElementById("J_ActualFee").innerHTML = sum;
@@ -214,23 +215,7 @@ $(document).ready(function(){
          	if(parseInt(t.val())<0){
           		t.val(0);
           	}
-       	})
-      	
-//    	$(".defaultAddr").find(".buy-user").attr("id","checkBuyer");
-//    	$(".defaultAddr").find(".buy-phone").attr("id","checkPhone");
-//    	$(".defaultAddr").find(".buy-province").attr("id","checkProvince");
-//		$(".defaultAddr").find(".buy-city").attr("id","checkCity");
-//		$(".defaultAddr").find(".buy-area").attr("id","checkArea");
-//    	$(".defaultAddr").find(".buy-address").attr("id","checkAddress");
-//    	$(".defaultAddr").find(".buy-addressid").attr("id","checkAddressid");
-//    	
-//    	document.getElementById("buyer-name").innerHTML = $("#checkBuyer").text();
-//    	document.getElementById("buyer-phone").innerHTML = $("#checkPhone").text();
-//    	document.getElementById("buyer-province").innerHTML = $("#checkProvince").text();
-//    	document.getElementById("buyer-city").innerHTML = $("#checkCity").text();
-//    	document.getElementById("buyer-area").innerHTML = $("#checkArea").text();
-//    	document.getElementById("buyer-address").innerHTML = $("#checkAddress").text();
-//    	document.getElementById("buyer-addressid").innerHTML = $("#checkAddressid").text();
+       })
       	
       	var price = Number($("#onePrice").text());
    		var postage = Number($("#postage").text());
@@ -339,7 +324,7 @@ $(document).ready(function(){
 				dataType:"json",
 				data: addressInfo,
 				success:function(inf){
-					alert("添加成功！");
+					alert(inf);
 					window.reload();
 				},
 				error:function(inf){
@@ -350,8 +335,15 @@ $(document).ready(function(){
 	})
 	
 	$("#J_Go").click(()=>{
-		$(document.body).css("overflow","hidden");
-		$('#pay-part').slideDown(200);
+		var num = $("#number").val();
+		if(num == 0){
+			alert("请选择数量！");
+		}
+		else{
+			$(document.body).css("overflow","hidden");
+			$('#pay-part').slideDown(200);
+		}
+		
 	})
 	
 	
@@ -385,7 +377,7 @@ $(document).ready(function(){
 			dataType:"json",
 			data: orderInfo,
 			success:function(inf){
-				alert("支付成功！");
+				alert(inf);
 				window.location.href = "orderinfo.html?oid="+inf;
 			},
 			error:function(inf){
