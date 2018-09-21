@@ -113,9 +113,17 @@ public class ProductController {
     //按销售量推荐
     @RequestMapping("/displayBySalesnum")
     @ResponseBody
-    public void displayBySalesnum()
+    public List<Product> displayBySalesnum()
     {
+        return productService.displayBySalesnum();
+    }
 
+    //按评分推荐
+    @RequestMapping("/displayByScore")
+    @ResponseBody
+    public List<Product> displayByScore()
+    {
+        return productService.displayByScore();
     }
 
 }

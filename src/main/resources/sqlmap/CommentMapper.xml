@@ -115,4 +115,21 @@
       commentTime = #{commenttime,jdbcType=TIMESTAMP}
     where commentId = #{commentid,jdbcType=INTEGER}
   </update>
+
+  <!--new-->
+  <resultMap id="CommentWithOrder" type="com.we.fullbuy.pojo.Comment" extends="BaseResultMap">
+    <association property="order" javaType="com.we.fullbuy.pojo.Order" column="orderId" select="com.we.fullbuy.dao.OrderMapper.orderDetail"/>
+  </resultMap>
+
+  <select id="displayCommentByUserId" parameterType="java.lang.Integer" resultMap="CommentWithOrder">
+    select *
+    from comment c,`order` o
+    where c.userId = #{userid,jdbcType=INTEGER} and o.orderId = c.orderId
+  </select>
+
+  <select id="showProductComment" parameterType="java.lang.Integer" resultMap="CommentWithOrder">
+    select *
+    from comment c
+    where c.productId = #{productid,jdbcType=INTEGER}
+  </select>
 </mapper>

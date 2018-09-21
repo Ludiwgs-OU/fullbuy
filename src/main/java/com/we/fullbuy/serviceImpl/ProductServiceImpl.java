@@ -62,4 +62,13 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.searchBySkuId(skuId);
     }
 
+    @Override
+    public List<Product> displayBySalesnum() {
+        return productMapper.displayBySalesnum();
+    }
+
+    @Override
+    public List<Product> displayByScore() {
+        return productMapper.displayByScore();
+    }
 }

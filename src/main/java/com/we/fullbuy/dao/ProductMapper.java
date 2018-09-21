@@ -30,6 +30,8 @@ public interface ProductMapper {
     List<Product> searchProductBySecondCategory(Integer secondCategoryId);
     /*根据skuID查商品信息*/
     Product searchBySkuId(Integer skuid);
-    /*根据销量查询商品*/
+    /*根据销量显示商品*/
     List<Product> displayBySalesnum();
+    /*根据评分显示商品*/
+    List<Product> displayByScore();
 }

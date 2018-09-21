@@ -7,9 +7,10 @@
     <result column="productId" jdbcType="INTEGER" property="productid" />
     <result column="newsImgPath" jdbcType="VARCHAR" property="newsimgpath" />
     <result column="newsStatus" jdbcType="INTEGER" property="newsstatus" />
+    <result column="bgColor" jdbcType="VARCHAR" property="bgcolor" />
   </resultMap>
   <sql id="Base_Column_List">
-    newsId, productId, newsImgPath, newsStatus
+    newsId, productId, newsImgPath, newsStatus, bgColor
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -23,9 +24,9 @@
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.News">
     insert into news (newsId, productId, newsImgPath, 
-      newsStatus)
+      newsStatus, bgColor)
     values (#{newsid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{newsimgpath,jdbcType=VARCHAR}, 
-      #{newsstatus,jdbcType=INTEGER})
+      #{newsstatus,jdbcType=INTEGER}), #{bgcolor,jdbcType=VARCHAR}
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.News">
     insert into news
@@ -42,6 +43,9 @@
       <if test="newsstatus != null">
         newsStatus,
       </if>
+      <if test="bgcolor != null">
+        bgColor,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="newsid != null">
@@ -55,6 +59,9 @@
       </if>
       <if test="newsstatus != null">
         #{newsstatus,jdbcType=INTEGER},
+      </if>
+      <if test="bgcolor != null">
+        #{bgcolor,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -70,6 +77,9 @@
       <if test="newsstatus != null">
         newsStatus = #{newsstatus,jdbcType=INTEGER},
       </if>
+      <if test="bgcolor != null">
+        bgColor = #{bgcolor,jdbcType=VARCHAR}
+      </if>
     </set>
     where newsId = #{newsid,jdbcType=INTEGER}
   </update>
@@ -77,7 +87,8 @@
     update news
     set productId = #{productid,jdbcType=INTEGER},
       newsImgPath = #{newsimgpath,jdbcType=VARCHAR},
-      newsStatus = #{newsstatus,jdbcType=INTEGER}
+      newsStatus = #{newsstatus,jdbcType=INTEGER},
+      bgColor = #{bgcolor,jdbcType=VARCHAR}
     where newsId = #{newsid,jdbcType=INTEGER}
   </update>
 </mapper>

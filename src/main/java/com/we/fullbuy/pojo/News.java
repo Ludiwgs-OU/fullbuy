@@ -11,6 +11,8 @@ public class News implements Serializable {
 
     private Integer newsstatus;
 
+    private String bgcolor;
+
     public Integer getNewsid() {
         return newsid;
     }
@@ -41,5 +43,13 @@ public class News implements Serializable {
 
     public void setNewsstatus(Integer newsstatus) {
         this.newsstatus = newsstatus;
+    }
+
+    public String getBgcolor() {
+        return bgcolor;
+    }
+
+    public void setBgcolor(String bgcolor) {
+        this.bgcolor = bgcolor;
     }
 }

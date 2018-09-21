@@ -332,5 +332,9 @@
     order by salesNum desc
   </select>
 
-
+  <select id="displayByScore" resultMap="BaseResultMap">
+    select *
+    from product
+    order by productScore desc
+  </select>
 </mapper>
