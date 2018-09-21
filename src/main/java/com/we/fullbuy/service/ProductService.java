@@ -21,5 +21,7 @@ public interface ProductService {
     List<Product> searchProductByFirstCategory(int categoryId);
     /*二级种类搜索商品*/
     List<Product> searchProductBySecondCategory(int secondCategoryId);
+    /*根据skuID查商品信息*/
+    Product searchBySkuId(int skuId);
 
 }

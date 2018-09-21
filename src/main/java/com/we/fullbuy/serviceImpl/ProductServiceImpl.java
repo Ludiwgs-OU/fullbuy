@@ -56,4 +56,10 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> searchProductBySecondCategory(int secondCategoryId) {
         return productMapper.searchProductBySecondCategory(secondCategoryId);
     }
+
+    @Override
+    public Product searchBySkuId(int skuId) {
+        return productMapper.searchBySkuId(skuId);
+    }
+
 }

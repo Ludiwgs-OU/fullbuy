@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,11 +26,32 @@ public class OrderController {
     private ProductService productService;
     @Resource
     private UserService userService;
+    @Resource
+    private AddressService addressService;
+
+    //确认订单信息
+    @RequestMapping("/checkOrder")
+    @ResponseBody
+    public List checkOrder(@RequestParam("skuId") int skuId,
+                           @RequestParam("num") int num,
+                           @RequestParam("price") double price,
+                           HttpSession session)
+    {
+        Product product = productService.searchBySkuId(skuId);
+        List<Address> address = addressService.displayAddress((int) session.getAttribute("userId"));
+        List list  = new ArrayList();
+        list.add(product);
+        list.add(address);
+        list.add(num);
+        list.add(price);
+        return list;
+    }
+
 
     //生成普通订单
     @RequestMapping("/addOrder")
     @ResponseBody
-    public int addOrder(@RequestParam("skuId") int skuId,
+    public String addOrder(@RequestParam("skuId") int skuId,
                         @RequestParam("addressId") int addressId,
                         @RequestParam("num") int num,
                         @RequestParam("price") double price,
@@ -74,13 +96,13 @@ public class OrderController {
                 if(p!=0)
                     System.out.println("+Salesnum success");
 
-                return 1;//订单生成成功
+                return orderId;//订单生成成功
             }
             else
-                return 2;//订单生成失败
+                return "订单生成失败";//订单生成失败
         }
         else
-            return 0;//库存量不足
+            return "库存量不足";//库存量不足
     }
 
 
@@ -121,69 +143,54 @@ public class OrderController {
     //支付
     @RequestMapping("/pay")
     @ResponseBody
-    public boolean pay(@RequestParam("orderId") String orderId, HttpSession session)
+    public String pay(@RequestParam("orderId") String orderId, HttpSession session)
     {
         Order order = orderService.showOrderDetail(orderId);
         order.setOrderstatus(1);
         if(orderService.Pay(order)!=0)
         {
-            System.out.println("订单已支付");
             User user = new User();
             user.setUserid((int)session.getAttribute("userId"));
             user.setUserscore(user.getUserscore()+(int)(order.getTotalprice()*0.1));
-            if(userService.modifyUser(user)!=0)
-                System.out.println("积分已增加");
-            return true;
+            userService.modifyUser(user);
+            return "订单已支付";
         }
+
         else
-        {
-            System.out.println("订单支付失败");
-            return false;
-        }
+            return "订单支付失败";
     }
 
     //确认收货
     @RequestMapping("/confirm")
     @ResponseBody
-    public boolean confirm(@RequestParam("orderId") String orderId)
+    public String confirm(@RequestParam("orderId") String orderId)
     {
         Order order = new Order();
         order.setOrderid(orderId);
         order.setOrderstatus(3);
         if(orderService.confirm(order)!=0)
-        {
-            System.out.println("订单已收货");
-            return true;
-        }
+            return "已确认收货咯";
         else
-        {
-            System.out.println("订单收货失败");
-            return false;
-        }
+            return "订单收货失败";
     }
 
     //申请退款
     @RequestMapping("/refund")
     @ResponseBody
-    public boolean refund(@RequestParam("orderId") String orderId, HttpSession session)
+    public String refund(@RequestParam("orderId") String orderId, HttpSession session)
     {
         Order order = new Order();
         order.setOrderid(orderId);
         order.setOrderstatus(5);
         if(orderService.refund(order)!=0)
         {
-            System.out.println("订单申请退款");
             User user = new User();
             user.setUserid((int)session.getAttribute("userId"));
             user.setUserscore(user.getUserscore()-(int)(order.getTotalprice()*0.1));
-            if(userService.modifyUser(user)!=0)
-                System.out.println("积分已回退");
-            return true;
+            userService.modifyUser(user);
+            return "订单申请退款并积分已回退";
         }
         else
-        {
-            System.out.println("订单申请退款失败");
-            return false;
-        }
+            return "订单申请退款失败";
     }
 }
