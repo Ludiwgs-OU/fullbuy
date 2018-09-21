@@ -77,7 +77,7 @@ new Vue({
 					"orderId": id
 				},
 				success:function(inf){
-					alert("已申请退款！");
+					alert(inf);
 				},
 				error:function(inf){
 					alert("申请退款失败！");
@@ -94,10 +94,27 @@ new Vue({
 					"orderId": id
 				},
 				success:function(inf){
-					alert("已申请退款/退货！");
+					alert(inf);
 				},
 				error:function(inf){
 					alert("申请退款/退货失败！");
+				},
+			});
+   		},
+   		pay: function(id){
+   			$.ajax({
+				type:"post",
+				url:"#",
+				async:true,
+				dataType:"json",
+				data: {
+					"orderId": id
+				},
+				success:function(inf){
+					alert(inf);
+				},
+				error:function(inf){
+					alert(inf);
 				},
 			});
    		},
@@ -114,7 +131,7 @@ new Vue({
 					"orderId": id
 				},
 				success:function(inf){
-					alert("确认收货成功！");
+					alert(inf);
 				},
 				error:function(inf){
 					alert("确认收货失败！");
@@ -131,7 +148,7 @@ new Vue({
 					"orderId": id
 				},
 				success:function(inf){
-					alert("删除订单成功！");
+					alert(inf);
 				},
 				error:function(inf){
 					alert("删除订单失败！");
@@ -169,7 +186,7 @@ new Vue({
 				dataType:"json",
 				data: evaluation,
 				success:function(inf){
-					alert("评价成功！");
+					alert(inf);
 				},
 				error:function(inf){
 					alert("评价失败！");

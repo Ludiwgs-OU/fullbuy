@@ -21,14 +21,14 @@ $(document).ready(()=>{
 		else{
 			$.ajax({
 				type:"post",
-				url:"",
+				url:"#",
 				async:true,
 				dataType:"json",
 				data: {
 					"phone": phone
 				},
 				success:function(result){
-					alert("已发送验证码，请注意查收！");
+					alert(result);
 				},
 				error:function(result){
 					alert("验证码发送失败！");
@@ -50,7 +50,8 @@ $(document).ready(()=>{
 		var User = {
 			"loginName": phone,
 			"code": code,
-			"password": pwd
+			"password": pwd,
+			"type": type
 		};
 		
 		if(pwd != repwd){
@@ -64,7 +65,7 @@ $(document).ready(()=>{
 				dataType:"json",
 				data: User,
 				success:function(result){
-					alert("修改成功！");
+					alert(result);
 					window.location.href = "login.html?type=" + type;
 				},
 				error:function(result){

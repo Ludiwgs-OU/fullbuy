@@ -22,7 +22,7 @@
 									<a href="login.html?type=2" target="_top">商家登录</a>
 								</div>
 								<div class="menu-hd" v-if="site.user">
-									<a target="_top" id="logout">会员注销</a>
+									<a target="_top" id="logout" href="">会员注销</a>
 								</div>
 							</div>
 						</ul>
@@ -31,10 +31,10 @@
 								<div class="menu-hd"><a href="home.html" target="_top" class="h">商城首页</a></div>
 							</div>
 							<div class="topMessage my-shangcheng" v-if="site.user">
-								<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+								<div class="menu-hd MyShangcheng"><a href="personalcenter.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
 							<div class="topMessage favorite" v-if="site.user">
-								<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+								<div class="menu-hd"><a href="collection.html" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 							</div>
 						</ul>
 					</div>
@@ -126,10 +126,10 @@
 			<aside class="menu">
 				<ul>
 					<li class="person">
-						<a href="index.html">个人中心</a>
+						<a href="personalcenter.html">个人中心</a>
 					</li>
 					<li class="person">
-						<a href="#">个人资料</a>
+						<a href="">个人资料</a>
 						<ul>
 							<li> <a href="information.html">个人信息</a></li>
 							<li> <a href="safety.html">安全设置</a></li>
@@ -137,13 +137,13 @@
 						</ul>
 					</li>
 					<li class="person">
-						<a href="#">我的交易</a>
+						<a href="">我的交易</a>
 						<ul>
 							<li> <a href="order.html">订单管理</a></li>
 						</ul>
 					</li>
 					<li class="person">
-						<a href="#">我的小窝</a>
+						<a href="">我的小窝</a>
 						<ul>
 							<li> <a href="collection.html">收藏</a></li>
 							<li class="active"> <a href="comment.html">评价</a></li>

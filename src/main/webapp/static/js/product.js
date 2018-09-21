@@ -38,7 +38,7 @@ $(document).ready(function() {
 						document.getElementById("stock").innerHTML = result.stock;
 						document.getElementById("skuId").innerHTML = result.skuId;
 					},
-					error:function(inf){
+					error:function(result){
 						alert("获取数据失败！");
 					},
 				});
@@ -60,7 +60,7 @@ $(document).ready(function() {
 	 */
 	$("#LikBuy").click(()=>{
 		var pid = getUrlParam('pid');
-		window.open("#.html?pid=" + pid);
+		window.open("groupbuy.html?pid=" + pid);
 	})
 	
 	/*
@@ -90,7 +90,7 @@ $(document).ready(function() {
 				dataType:"json",
 				data: buy,
 				success:function(result){
-					window.location.href = "#";
+					window.location.href = "pay.html?oid="+result+"&type=1";
 				},
 				error:function(inf){
 					alert("获取数据失败！");
@@ -126,7 +126,7 @@ $(document).ready(function() {
 				dataType:"json",
 				data: buy,
 				success:function(result){
-					window.location.href = "#";
+					window.location.href = "pay.html?oid="+result+"&type=2";
 				},
 				error:function(inf){
 					alert("获取数据失败！");
@@ -156,13 +156,32 @@ $(document).ready(function() {
 					"productId": pid
 				},
 				success:function(result){
-					alert("加入收藏夹成功！");
+					alert(result);
 				},
 				error:function(inf){
 					alert("加入收藏夹失败！");
 				},
 			});
 		}
+	})
+	
+	/*
+	 * 注销
+	 */
+	$("#logout").click(()=>{
+		$.ajax({
+			type:"post",
+			url:"#",
+			async:true,
+			dataType:"json",
+			success:function(result){
+				alert(result);
+				window.reload();
+			},
+			error:function(result){
+				alert("获取数据失败！");
+			},
+		});
 	})
 	
 });
@@ -229,18 +248,22 @@ new Vue({
 
 new Vue({
 	el: '#productinfo',
-	data:function(){
+	data: function(){
    		return {
    			site: ""
    	 	}
  	},
 	created: function(){
+		var pid = getUrlParam('pid');
     	var self = this;
    		$.ajax({
-			type:"get",
+			type:"post",
 			url:"../static/json/product.json",
 			async:true,
 			dataType:"json",
+			data: {
+				"productId": pid
+			},
 			success:function(inf){
 				self.site = inf;
 			},
@@ -291,11 +314,15 @@ new Vue({
  	},
 	created: function(){
     	var self = this;
+    	var pid = getUrlParam('pid');
    		$.ajax({
 			type:"get",
 			url:"../static/json/introductionImg.json",
 			async:true,
 			dataType:"json",
+			data: {
+				"productId": pid
+			},
 			success:function(inf){
 				self.sites = inf;
 			},
@@ -317,12 +344,16 @@ new Vue({
    	 	}
  	},
 	created: function(){
+		var pid = getUrlParam('pid');
     	var self = this;
    		$.ajax({
-			type:"get",
+			type:"post",
 			url:"../static/json/comment.json",
 			async:true,
 			dataType:"json",
+			data: {
+				"productId": pid
+			},
 			success:function(inf){
 				self.sites = inf;
 			},
@@ -333,23 +364,27 @@ new Vue({
    	},
    	methods: {
    		lastPage: function(){
+   			var pid = getUrlParam('pid');
    			var page = document.getElementById("nowPage").innerText;
    			if(page == 1){
    				alert("已经是首页了");
    			}
    			else{
+   				page = page - 1;
+	   			var lastpage = {
+	   				"productId": pid,
+	   				"page": page
+	   			}
    				var self = this;
    				$.ajax({
 					type:"post",
 					url:"#",
 					async:true,
 					dataType:"json",
-					data:{
-						"page": page
-					},
+					data: lastpage,
 					success:function(inf){
 						self.sites = inf;
-						document.getElementById("nowPage").innerHTML = page - 1;
+						document.getElementById("nowPage").innerHTML = page;
 					},
 					error:function(inf){
 						alert("获取数据失败！");
@@ -364,15 +399,18 @@ new Vue({
    				alert("已经是末页了");
    			}
    			else{
+   				page = page + 1;
+	   			var nextpage = {
+	   				"productId": pid,
+	   				"page": page
+	   			}
    				var self = this;
    				$.ajax({
 					type:"post",
 					url:"#",
 					async:true,
 					dataType:"json",
-					data:{
-						"page": page
-					},
+					data: nextpage,
 					success:function(inf){
 						self.sites = inf;
 						document.getElementById("nowPage").innerHTML = Number(page + 1);
@@ -397,12 +435,16 @@ new Vue({
    	 	}
  	},
 	created: function(){
+		var pid = getUrlParam('pid');
     	var self = this;
    		$.ajax({
-			type:"get",
+			type:"post",
 			url:"../static/json/groupbuy.json",
 			async:true,
 			dataType:"json",
+			data: {
+				"productId": pid
+			},
 			success:function(inf){
 				self.site = inf;
 			},

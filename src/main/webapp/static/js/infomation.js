@@ -81,7 +81,7 @@ $(document).ready(()=>{
 			dataType:"json",
 			data: info,
 			success:function(inf){
-				alert("修改成功！");
+				alert(inf);
 				window.reload();
 			},
 			error:function(inf){
@@ -104,7 +104,7 @@ $(document).ready(()=>{
             	"userprofile": imgUrl
             },
             success: function(result){
-            	alert("头像修改成功");
+            	alert(result);
             	document.getElementById("profileImg").src = imgUrl;
             },
             error: function(result){

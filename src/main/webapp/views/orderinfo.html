@@ -30,10 +30,10 @@
 								<div class="menu-hd"><a href="home.html" target="_top" class="h">商城首页</a></div>
 							</div>
 							<div class="topMessage my-shangcheng" v-if="site.user">
-								<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+								<div class="menu-hd MyShangcheng"><a href="personalcenter.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
 							<div class="topMessage favorite" v-if="site.user">
-								<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+								<div class="menu-hd"><a href="collection.html" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 							</div>
 						</ul>
 					</div>
@@ -77,7 +77,7 @@
 										<span class="package-detail">物流：天天快递</span>
 										<span class="package-detail">快递单号: </span>
 										<span class="package-number">373269427868</span>
-										<a href="logistics.html">查看</a>
+										<a>查看</a>
 									</div>
 								</div>
 								<span class="am-icon-angle-right icon"></span>
@@ -133,7 +133,7 @@
 							<div class="order-main">
 								<div class="order-status3">
 									<div class="order-title">
-										<div class="dd-num">订单编号：<a href="javascript:;">{{ site.orderId }}</a></div>
+										<div class="dd-num">订单编号：{{ site.orderId }}</div>
 										<span>成交时间：{{ site.date }}</span>
 									</div>
 									<div class="order-content">
@@ -141,13 +141,13 @@
 											<ul class="item-list">
 												<li class="td td-item">
 													<div class="item-pic">
-														<a href="#" class="J_MakePoint">
+														<a :href="'introduction.html?pid='+site.productId" class="J_MakePoint">
 															<img :src="site.sImgPath1" class="itempic J_ItemImg">
 														</a>
 													</div>
 													<div class="item-info">
 														<div class="item-basic-info">
-															<a href="#">
+															<a :href="'introduction.html?pid='+site.productId">
 																<p>{{ site.productName }}</p>
 																<p class="info-little">{{ site.itemName1 }}：{{ site.item1 }}
 																	<br/>{{ site.itemName2 }}：{{ site.item2 }} </p>
@@ -166,8 +166,11 @@
 													</div>
 												</li>
 												<li class="td td-operation">
-													<div class="item-operation">
-														<a href="">退款/退货</a>
+													<div class="item-operation" v-if="site.status==2">
+														<span @click="refund(site.orderId)">退款</span>
+													</div>
+													<div class="item-operation" v-if="site.status==3">
+														<span @click="returned(site.orderId)">退款/退货</span>
 													</div>
 												</li>
 											</ul>
@@ -201,9 +204,50 @@
 													</div>
 												</li>
 												<li class="td td-change">
-													<div class="am-btn am-btn-danger anniu" v-if="site.status==3">确认收货</div>
+													<div class="am-btn am-btn-danger anniu" v-if="site.status==1">
+														<span @click="pay(site.orderId)">确认支付</span>
+													</div>
+													<div class="am-btn am-btn-danger anniu" v-if="site.status==2">
+														<span @click="remind">提醒发货</span>
+													</div>
+													<div class="am-btn am-btn-danger anniu" v-if="site.status==3">
+														<span @click="receipt(site.orderId)">确认收货</span>
+													</div>
+													<div class="am-btn am-btn-danger anniu" v-if="site.status==4">
+														<span @click="eval(site.productId)">评价商品</span>
+													</div>
+													<div class="am-btn am-btn-danger anniu" v-if="site.status==5">
+														<span @click="dele(site.orderId)">删除订单</span>
+													</div>
 												</li>
 											</div>
+										</div>
+									</div>
+									<div class="theme-popover" :id="'eval'+site.productId">
+										<!--标题 -->
+										<div class="am-cf am-padding">
+											<div class="am-fl am-cf">
+												<strong class="am-text-danger am-text-lg" id="update-text">商品评价</strong> / <small>Product Review</small>
+											</div>
+										</div>
+										<hr/>
+										<div class="am-u-md-12">
+											<form class="am-form am-form-horizontal">
+												<div class="am-form-group">
+													<p class="eval-p">请写出您对于此商品的评价:</p>
+													<br />
+													<textarea rows="5" :id="'evalu'+site.productId"></textarea>
+													<p class="eval-p">晒图:</p>
+													<input type="file" class="evalImg" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" id="profile">
+													<img class="forEvalImg" id="profileImg" src="../static/images/123.png"/>
+												</div>
+												<div class="am-form-group theme-poptit">
+													<div class="am-u-sm-9 am-u-sm-push-3">
+														<div class="am-btn am-btn-danger" @click="sub(site.productId,site.orderId)">提交</div>
+														<div class="am-btn am-btn-danger" @click="hide(site.productId)">取消</div>
+													</div>
+												</div>
+											</form>
 										</div>
 									</div>
 								</div>
@@ -224,10 +268,10 @@
 			<aside class="menu">
 				<ul>
 					<li class="person">
-						<a href="index.html">个人中心</a>
+						<a href="personalcenter.html">个人中心</a>
 					</li>
 					<li class="person">
-						<a href="#">个人资料</a>
+						<a>个人资料</a>
 						<ul>
 							<li> <a href="information.html">个人信息</a></li>
 							<li> <a href="safety.html">安全设置</a></li>
@@ -235,24 +279,20 @@
 						</ul>
 					</li>
 					<li class="person">
-						<a href="#">我的交易</a>
+						<a>我的交易</a>
 						<ul>
 							<li class="active"><a href="order.html">订单管理</a></li>
-							<li> <a href="change.html">退款售后</a></li>
-							<li> <a href="change.html">积分详情</a></li>
 						</ul>
 					</li>
 					<li class="person">
-						<a href="#">我的小窝</a>
+						<a>我的小窝</a>
 						<ul>
 							<li> <a href="collection.html">收藏</a></li>
 							<li> <a href="comment.html">评价</a></li>
-							<li> <a href="news.html">消息</a></li>
+							<li> <a>消息</a></li>
 						</ul>
 					</li>
-
 				</ul>
-
 			</aside>
 		</div>
 		

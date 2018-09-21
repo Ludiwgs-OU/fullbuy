@@ -55,7 +55,7 @@ new Vue({
 					"favorId": id
 				},
 				success:function(inf){
-					alert("取消收藏成功！");
+					alert(inf);
 					window.reload();
 				},
 				error:function(inf){
