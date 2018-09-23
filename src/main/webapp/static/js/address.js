@@ -24,14 +24,14 @@ $(document).ready(function() {
 		var area = $("#user-area").val();
 		var address = $("#user-address").val();
 		
-		var addressInfo = {
+		var Address = {
 			"name": name,
 			"phone": phone,
 			"postCode": code,
 			"province": province,
 			"city": city,
-			"area": area,
-			"address": address
+			"street": area,
+			"addressDetail": address
 		}
 		
 		var pattern1 = /^\d{6}$/;
@@ -52,7 +52,7 @@ $(document).ready(function() {
 		else{
 			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/user/addAddress",
 				async:true,
 				dataType:"json",
 				data: addressInfo,
@@ -104,7 +104,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/address.json",
+			url:"/user/displayAddress",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -120,7 +120,7 @@ new Vue({
 			var self = this;
 			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/user/displayAddressDetail",
 				async:true,
 				dataType:"json",
 				data: {
@@ -163,15 +163,15 @@ new Vue({
 			var area = $("#u-area").val();
 			var address = $("#u-address").val();
 			
-			var addressInfo = {
+			var Address = {
 				"addressId": id,
 				"name": name,
 				"phone": phone,
 				"postCode": code,
 				"province": province,
 				"city": city,
-				"area": area,
-				"address": address
+				"street": area,
+				"addressDetail": address
 			};
 			
 			var pattern1 = /^\d{6}$/;
@@ -191,7 +191,7 @@ new Vue({
 			else{
 				$.ajax({
 					type:"post",
-					url:"#",
+					url:"/user/modifyAddress",
 					async:true,
 					dataType:"json",
 					data: addressInfo,

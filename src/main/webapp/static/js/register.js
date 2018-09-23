@@ -30,6 +30,7 @@ $(document).ready(()=>{
 			});
 		}
 	})
+	
 	$("#merchant_btn").click(()=>{
 		var phone = $("#merchant_phone").val();
 		var pattern = /^\d{11}$/;
@@ -65,8 +66,8 @@ $(document).ready(()=>{
 		var repwd = $("#member_repwd").val();
 		
 		var User = {
-			"loginName": phone,
-			"code": code,
+			"phone": phone,
+			"verificationCode": code,
 			"password": pwd
 		};
 		
@@ -76,7 +77,7 @@ $(document).ready(()=>{
 		else{
 			$.ajax({
 				type:"post",
-				url:"/userRegister",
+				url:"/user/register",
 				async:true,
 				dataType:"json",
 				data: User,
@@ -104,10 +105,10 @@ $(document).ready(()=>{
 		
 		var Sales = {
 			"salesName": name,
-			"selesPhone": phone,
+			"loginPhone": phone,
 			"salesAddress": address,
-			"salesPwd": pwd,
-			"code": code
+			"password": pwd,
+			"verificationCode": code
 		};
 		
 		if(pwd != repwd){
@@ -120,7 +121,7 @@ $(document).ready(()=>{
 		else{
 			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/sales/register",
 				async:true,
 				dataType:"json",
 				data: Sales,

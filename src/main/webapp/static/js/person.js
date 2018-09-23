@@ -64,7 +64,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"post",
-			url:"../static/json/orderinfo.json",
+			url:"/order/displayOrderDetail",
 			async:true,
 			dataType:"json",
 			data: {
@@ -82,7 +82,7 @@ new Vue({
    		refund: function(id){
    			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/order/refund",
 				async:true,
 				dataType:"json",
 				data: {
@@ -99,7 +99,7 @@ new Vue({
    		returned: function(id){
    			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/order/refund",
 				async:true,
 				dataType:"json",
 				data: {
@@ -136,7 +136,7 @@ new Vue({
    		receipt: function(id){
    			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/order/confirm",
 				async:true,
 				dataType:"json",
 				data: {
@@ -153,7 +153,7 @@ new Vue({
    		dele: function(id){
    			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/order/deleteOrder",
 				async:true,
 				dataType:"json",
 				data: {
@@ -185,7 +185,7 @@ new Vue({
 				imgUrl = "";
 			}
 			
-   			var evaluation = {
+   			var Comment = {
    				"commentDetail": eval,
    				"productId": pid,
    				"orderId": oid,
@@ -193,7 +193,7 @@ new Vue({
    			}
    			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/comment/addComment",
 				async:true,
 				dataType:"json",
 				data: evaluation,

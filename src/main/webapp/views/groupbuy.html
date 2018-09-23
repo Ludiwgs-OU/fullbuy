@@ -10,11 +10,11 @@
 		<div class="am-container header" id="headerNav">
 			<ul class="message-l">
 				<div class="topMessage">
-					<div class="menu-hd" v-if="!site.user">
+					<div class="menu-hd" v-if="!site.userName">
 						<a href="login.html?type=1" target="_top" class="h">会员登录</a>
 						<a href="login.html?type=2" target="_top">商家登录</a>
 					</div>
-					<div class="menu-hd" v-if="site.user">
+					<div class="menu-hd" v-if="site.userName">
 						<a target="_top" id="logout">会员注销</a>
 					</div>
 				</div>
@@ -51,21 +51,21 @@
 				<div class="box">
 					<div class="tb-booth tb-pic tb-s310">
 						<a>
-							<img :src="site.img1_m" alt="细节展示放大镜特效" :rel="site.img1_l" class="jqzoom" />
+							<img :src="site.mImgPath1" alt="细节展示放大镜特效" :rel="site.bImgPath1" class="jqzoom" />
 						</a>
 					</div>
 					<ul class="tb-thumb" id="thumblist">
 						<li class="tb-selected">
 							<div class="tb-pic tb-s40">
 								<a>
-									<img :src="site.img1_s" :mid="site.img1_m" :big="site.img1_l">
+									<img :src="site.sImgPath1" :mid="site.mImgPath1" :big="site.bImgPath1">
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="tb-pic tb-s40">
 								<a>
-									<img :src="site.img2_s" :mid="site.img2_m" :big="site.img2_l">
+									<img :src="site.sImgPath2" :mid="site.mImgPath2" :big="site.bImgPath2">
 								</a>
 							</div>
 						</li>
@@ -93,13 +93,13 @@
 					<!--销量-->
 					<ul class="tm-ind-panel">
 						<li class="tm-ind-item tm-ind-sumCount canClick">
-							<div class="tm-indcon"><span class="tm-label">团购人数：</span><span class="tm-count">{{ site.minNum }}~{{ site.maxNum }}</span></div>
+							<div class="tm-indcon"><span class="tm-label">团购人数：</span><span class="tm-count">{{ site.minPeople }}~{{ site.maxPeople }}</span></div>
 						</li>
 						<li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
-							<div class="tm-indcon"><span class="tm-label">团购时间：</span><span class="tm-count">{{ site.startTime }} 至  {{ site.endTime }}</span></div>
+							<div class="tm-indcon"><span class="tm-label">团购时间：</span><span class="tm-count">{{ site.beginTime }} 至  {{ site.endTime }}</span></div>
 						</li>
 						<li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
-							<div class="tm-indcon"><span class="tm-label">当前团购人数：</span><span class="tm-count">{{ site.nowNum }}</span></div>
+							<div class="tm-indcon"><span class="tm-label">当前团购人数：</span><span class="tm-count">{{ site.nowPeople }}</span></div>
 						</li>
 					</ul>
 					<!--各种规格-->
@@ -114,16 +114,16 @@
 											<div class="theme-options">
 												<div class="cart-title">{{ site.item1 }}</div>
 												<ul class="dowebok">
-													<li v-for="(item,index) in site.itemtype1">
-														<input type="radio" name="item1" :value="item.itemId" :data-labelauty="item.itemName">
+													<li v-for="(item,index) in site.item" :key="index">
+														<input class="gbitem" type="radio" name="item1" :value="item.itemId" :data-labelauty="item.itemName">
 													</li>
 												</ul>
 											</div>
 											<div class="theme-options">
 												<div class="cart-title">{{ site.item2 }}</div>
 												<ul class="dowebok">
-													<li v-for="(item,index) in site.itemtype2">
-														<input type="radio" name="item2" :value="item.itemId" :data-labelauty="item.itemName">
+													<li v-for="(item,index) in site.secondItem" :key="index">
+														<input class="gbitem" type="radio" name="item2" :value="item.secondItemId" :data-labelauty="item.secondItemName">
 													</li>
 												</ul>
 											</div>
@@ -136,7 +136,7 @@
 													<input id="min" class="am-btn am-btn-default" name="" type="button" value="-" />
 													<input id="text_box" name="" type="text" value="1" style="width:30px;" />
 													<input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
-													<span id="Stock" class="tb-hidden">库存<span id="stock" class="stock">{{ site.stock }}</span>件</span>
+													<span id="Stock" class="tb-hidden">库存<span id="stock" class="stock">{{ site.quantity }}</span>件</span>
 												</dd>
 											</div>
 										</div>
@@ -149,10 +149,10 @@
 					<div class="shopPromotion gold">
 						<div class="hot">
 							<dt class="tb-metatit">活动</dt>
-							<div class="gold-list" v-if="site.status == 2">
+							<div class="gold-list" v-if="site.productStatus == 2">
 								<p>此商品正在举行团购活动</p>
 							</div>
-							<div class="gold-list" v-if="site.status == 1">
+							<div class="gold-list" v-if="site.productStatus == 1">
 								<p>此商品暂无团购活动</p>
 							</div>
 						</div>
@@ -161,7 +161,7 @@
 				<br />
 				<div class="pay">
 					<li>
-						<div class="clearfix tb-btn tb-btn-buy theme-login" v-if="site.status == 2">
+						<div class="clearfix tb-btn tb-btn-buy theme-login" v-if="site.productStatus == 2">
 							<a id="groupBuy">参与团购</a>
 						</div>
 					</li>
@@ -179,17 +179,17 @@
 							<span class="setting"></span>
 						</a>
 						<div class="ibar_login_box status_login">
-							<div class="avatar_box" v-if="site.user">
+							<div class="avatar_box" v-if="site.userName">
 								<p class="avatar_imgbox"><img :src="site.img" /></p>
 								<ul class="user_info">
-									<li>用户名：{{site.user}}</li>
-									<li>级&nbsp;别：{{site.level}}</li>
+									<li>用户名：{{site.userName}}</li>
+									<li>级&nbsp;别：{{site.userType}}</li>
 								</ul>
 							</div>
-							<div class="avatar_box" v-if="!site.user">
+							<div class="avatar_box" v-if="!site.userName">
 								<a href="login.html?type=1">欢迎，请登录</a>
 							</div>
-							<div class="login_btnbox" v-if="site.user">
+							<div class="login_btnbox" v-if="site.userName">
 								<a href="order.html" class="login_order">我的订单</a>
 								<a href="collection.html" class="login_favorite">我的收藏</a>
 							</div>

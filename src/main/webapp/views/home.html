@@ -16,11 +16,11 @@
 			<div class="am-container header" id="headerNav">
 				<ul class="message-l">
 					<div class="topMessage">
-						<div class="menu-hd" v-if="!site.user">
+						<div class="menu-hd" v-if="!site.userName">
 							<a href="login.html?type=1" target="_top" class="h">会员登录</a>
 							<a href="login.html?type=2" target="_top">商家登录</a>
 						</div>
-						<div class="menu-hd" v-if="site.user">
+						<div class="menu-hd" v-if="site.userName">
 							<a target="_top" id="logout">会员注销</a>
 						</div>
 					</div>
@@ -29,10 +29,10 @@
 					<div class="topMessage home">
 						<div class="menu-hd"><a href="home.html" target="_top" class="h">商城首页</a></div>
 					</div>
-					<div class="topMessage my-shangcheng" v-if="site.user">
+					<div class="topMessage my-shangcheng" v-if="site.userName">
 						<div class="menu-hd MyShangcheng"><a href="personalcenter.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 					</div>
-					<div class="topMessage favorite" v-if="site.user">
+					<div class="topMessage favorite" v-if="site.userName">
 						<div class="menu-hd"><a href="collection.html" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 					</div>
 				</ul>
@@ -59,7 +59,7 @@
       					<el-carousel-item v-for="(site,index) in sites" :key="index"
       						:style="{'background-color': site.color}">
       						<a :href="'introduction.html?pid=' + site.productId">
-        						<img :src="site.mainImgPath" />
+        						<img :src="site.newsImgPath" />
         					</a>
       					</el-carousel-item>
     				</el-carousel>
@@ -77,11 +77,11 @@
 						</div>
 						<div class="am-u-sm-4 am-u-lg-3" v-for="site in sites">
 							<div class="info">
-								<h3>{{site.h1}}</h3>
+								<h3>{{site.productName}}</h3>
 							</div>
 							<div class="recommendationMain">
 								<a :href="'introduction.html?sid=' + site.productId">
-									<img :src="site.img"></img>
+									<img :src="site.searchImgPath"></img>
 								</a>
 							</div>
 						</div>
@@ -138,17 +138,17 @@
 							<span class="setting"></span>
 						</a>
 						<div class="ibar_login_box status_login">
-							<div class="avatar_box" v-if="site.user">
-								<p class="avatar_imgbox"><img :src="site.img" /></p>
+							<div class="avatar_box" v-if="site.userName">
+								<p class="avatar_imgbox"><img :src="site.userProfile" /></p>
 								<ul class="user_info">
-									<li>用户名：{{site.user}}</li>
-									<li>级&nbsp;别：{{site.level}}</li>
+									<li>用户名：{{site.userName}}</li>
+									<li>级&nbsp;别：{{site.userType}}</li>
 								</ul>
 							</div>
-							<div class="avatar_box" v-if="!site.user">
+							<div class="avatar_box" v-if="!site.userName">
 								<a href="login.html?type=1">欢迎，请登录</a>
 							</div>
-							<div class="login_btnbox" v-if="site.user">
+							<div class="login_btnbox" v-if="site.userName">
 								<a href="order.html" class="login_order">我的订单</a>
 								<a href="collection.html" class="login_favorite">我的收藏</a>
 							</div>

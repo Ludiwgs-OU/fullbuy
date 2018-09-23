@@ -81,7 +81,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/explosion.json",
+			url:"/product/displayBySalesnum",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -144,10 +144,14 @@ new Vue({
 
 $(document).ready(()=>{
 	
+	
+	/*
+	 * 注销
+	 */
 	$("#logout").click(()=>{
 		$.ajax({
-			type:"post",
-			url:"#",
+			type:"get",
+			url:"/sys/logout",
 			async:true,
 			dataType:"json",
 			success:function(result){
@@ -160,4 +164,11 @@ $(document).ready(()=>{
 		});
 	})
 	
+	/*
+	 * 搜索
+	 */
+	$("#ai-topsearch").click(()=>{
+		var info = $("#searchInput").val();
+		window.open("search.html?info=" + info);
+	})
 })

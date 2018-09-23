@@ -33,7 +33,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/commList.json",
+			url:"/comment/displayCommentByUserId",
 			async:true,
 			dataType:"json",
 			success:function(inf){

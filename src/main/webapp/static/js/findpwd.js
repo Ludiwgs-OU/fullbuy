@@ -48,8 +48,8 @@ $(document).ready(()=>{
 		var type = getUrlParam('type');
 		
 		var User = {
-			"loginName": phone,
-			"code": code,
+			"phone": phone,
+			"verificationCode": code,
 			"password": pwd,
 			"type": type
 		};

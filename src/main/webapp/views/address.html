@@ -16,11 +16,11 @@
 					<div class="am-container header" id="headerNav">
 						<ul class="message-l">
 							<div class="topMessage">
-								<div class="menu-hd" v-if="!site.user">
+								<div class="menu-hd" v-if="!site.userName">
 									<a href="login.html?type=1" target="_top" class="h">会员登录</a>
 									<a href="login.html?type=2" target="_top">商家登录</a>
 								</div>
-								<div class="menu-hd" v-if="site.user">
+								<div class="menu-hd" v-if="site.userName">
 									<a target="_top" id="logout" href="">会员注销</a>
 								</div>
 							</div>
@@ -29,10 +29,10 @@
 							<div class="topMessage home">
 								<div class="menu-hd"><a href="home.html" target="_top" class="h">商城首页</a></div>
 							</div>
-							<div class="topMessage my-shangcheng" v-if="site.user">
+							<div class="topMessage my-shangcheng" v-if="site.userName">
 								<div class="menu-hd MyShangcheng"><a href="personalcenter.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
-							<div class="topMessage favorite" v-if="site.user">
+							<div class="topMessage favorite" v-if="site.userName">
 								<div class="menu-hd"><a href="collection.html" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 							</div>
 						</ul>
@@ -73,8 +73,8 @@
 										<span class="title">地址：</span>
 										<span class="province">{{ site.province }}</span>
 										<span class="city">{{ site.city }}</span>
-										<span class="dist">{{ site.area }}</span>
-										<span class="street">{{ site.address }}</span></p>
+										<span class="dist">{{ site.street }}</span>
+										<span class="street">{{ site.addressDetail }}</span></p>
 								</div>
 								<div class="new-addr-btn">
 									<a @click="upd(site.addressId)"><i class="am-icon-edit"></i>编辑</a>
@@ -84,7 +84,7 @@
 							</li>
 						</ul>
 						<div class="clear"></div>
-						<!--例子-->
+						<!--新增-->
 						<div class="am-modal am-modal-no-btn" id="doc-modal-1">
 							<div class="add-dress">
 								<!--标题 -->
@@ -144,7 +144,7 @@
 					</div>
 					
 					<div class="theme-popover" id="update-part">
-						<!--标题 -->
+						<!--修改 -->
 						<div class="am-cf am-padding">
 							<div class="am-fl am-cf">
 								<strong class="am-text-danger am-text-lg" id="update-text">编辑地址</strong> / <small>Update address</small>
@@ -184,7 +184,7 @@
 								<div class="am-form-group">
 									<label class="am-form-label">详细地址</label>
 									<div class="am-form-content">
-										<textarea rows="3" id="u-address" :value="info.address" ></textarea>
+										<textarea rows="3" id="u-address" :value="info.addressDetail" ></textarea>
 										<small>100字以内写出你的详细地址...</small>
 									</div>
 								</div>

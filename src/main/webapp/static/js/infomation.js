@@ -45,7 +45,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/userinfo.json",
+			url:"/user/displayUserDetail",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -68,7 +68,7 @@ $(document).ready(()=>{
 		
 		var info = {
 			"userName": name,
-			"Sex": sex,
+			"sex": sex,
 			"userPhone": phone,
 			"userEmail": email
 		}
@@ -76,7 +76,7 @@ $(document).ready(()=>{
 		
 		$.ajax({
 			type:"post",
-			url:"#",
+			url:"/user/modifyUser",
 			async:true,
 			dataType:"json",
 			data: info,
@@ -97,11 +97,11 @@ $(document).ready(()=>{
 	    
 		$.ajax({
             type: "post",
-            url: "#",
+            url: "/user/modifyUserProfile",
             contentType: false,
             processData: false,
             data: {
-            	"userprofile": imgUrl
+            	"userProfile": imgUrl
             },
             success: function(result){
             	alert(result);
@@ -119,8 +119,8 @@ $(document).ready(()=>{
 		var rePwd = $("#user-confirm-password").val();
 		
 		var pwd = {
-			"oldPwd": oldpwd,
-			"newPwd": newPwd
+			"oldPaaword": oldpwd,
+			"newPaaword": newPwd
 		}
 		
 		if(newPwd != rePwd){
@@ -129,7 +129,7 @@ $(document).ready(()=>{
 		else{
 			$.ajax({
 	            type:"post",
-				url:"#",
+				url:"/user/modifyPassword,
 				async:true,
 				dataType:"json",
 				data: pwd,

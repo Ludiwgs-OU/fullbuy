@@ -33,7 +33,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/coll.json",
+			url:"/user/displayFavor",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -48,7 +48,7 @@ new Vue({
    		calColl: function(id){
    			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/user/deleteSingleFavor",
 				async:true,
 				dataType:"json",
 				data: {

@@ -1,0 +1,21 @@
+[	
+ 	{
+		"categoryId": "1",
+		"categoryName": "男装"
+	},{
+		"categoryId": "2",
+		"categoryName": "女装"
+	},{
+		"categoryId": "3",
+		"categoryName": "零食"
+	},{
+		"categoryId": "4",
+		"categoryName": "电器"
+	},{
+		"categoryId": "5",
+		"categoryName": "电子商品"
+	},{
+		"categoryId": "6",
+		"categoryName": "清洁"
+	}
+]

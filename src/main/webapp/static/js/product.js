@@ -14,28 +14,71 @@ $(document).ready(function() {
 		 * 单选框初始化
 		 */
 		$(':input').labelauty();
+		
+		/*
+		 * 搜索
+		 */
+		$("#ai-topsearch").click(()=>{
+			var info = $("#searchInput").val();
+			window.open("search.html?info=" + info);
+		})
+		
 		/*
 		 * 动态显示价格
 		 */
-		$("input:radio").click(()=>{
+		$(".initem").click(()=>{
 			var item1 = $("input[name='item1']:checked").val();
 			var item2 = $("input[name='item2']:checked").val();
+			var pid = getUrlParam('pid');
 			
 			var item = {
-				"item1": item1,
-				"item2": item2
+				"productId": pid,
+				"itemId": item1,
+				"secondItemId": item2,
+				"type": 0
 			}
 			
 			if(item1 && item2){
 				$.ajax({
 					type:"post",
-					url:"#",
+					url:"../static/json/price.json",
 					async:true,
 					dataType:"json",
 					data: item,
 					success:function(result){
 						document.getElementById("price").innerHTML = result.price;
-						document.getElementById("stock").innerHTML = result.stock;
+						document.getElementById("stock").innerHTML = result.quantity;
+						document.getElementById("skuId").innerHTML = result.skuId;
+					},
+					error:function(result){
+						alert("获取数据失败！");
+					},
+				});
+			}
+		})
+		
+		$(".gbitem").click(()=>{
+			var item1 = $("input[name='item1']:checked").val();
+			var item2 = $("input[name='item2']:checked").val();
+			var pid = getUrlParam('pid');
+			
+			var item = {
+				"productId": pid,
+				"itemId": item1,
+				"secondItemId": item2,
+				"type": 1
+			}
+			
+			if(item1 && item2){
+				$.ajax({
+					type:"post",
+					url:"../static/json/price.json",
+					async:true,
+					dataType:"json",
+					data: item,
+					success:function(result){
+						document.getElementById("price").innerHTML = result.price;
+						document.getElementById("stock").innerHTML = result.quantity;
 						document.getElementById("skuId").innerHTML = result.skuId;
 					},
 					error:function(result){
@@ -70,6 +113,7 @@ $(document).ready(function() {
 		var sku = $("#skuId").text();
 		var num = $("#text_box").val();
 		var user = $("#userName").text();
+		var price1 = $("#price").text();
 		
 		if(!sku){
 			alert("请选择规格！");
@@ -78,17 +122,16 @@ $(document).ready(function() {
 			alert("请先登录！");
 		}
 		else{
-			var buy = {
-				"skuId": sku,
-				"num": num
-			}
-		
 			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/order/checkOrder",
 				async:true,
 				dataType:"json",
-				data: buy,
+				data: {
+					"skuId": sku,
+					"num": num,
+					"price": price1
+				},
 				success:function(result){
 					window.location.href = "pay.html?oid="+result+"&type=1";
 				},
@@ -149,7 +192,7 @@ $(document).ready(function() {
 		else{
 			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/user/addFavor",
 				async:true,
 				dataType:"json",
 				data: {
@@ -170,8 +213,8 @@ $(document).ready(function() {
 	 */
 	$("#logout").click(()=>{
 		$.ajax({
-			type:"post",
-			url:"#",
+			type:"get",
+			url:"/sys/logout",
 			async:true,
 			dataType:"json",
 			success:function(result){
@@ -258,7 +301,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"post",
-			url:"../static/json/product.json",
+			url:"/product/displayProductDetailWithSku",
 			async:true,
 			dataType:"json",
 			data: {

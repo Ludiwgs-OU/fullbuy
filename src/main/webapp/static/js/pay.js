@@ -360,19 +360,19 @@ $(document).ready(function(){
 		var oneprice = $("#onePrice").text();
 		var postage = $("#postage").text();
 		
-		var orderInfo = {
+		var Order = {
 			"skuId": sku,
 			"totalPrice": price,
 			"addressId": address,
 			"num": num,
 			"orderStatus": status,
-			"oneprice": oneprice,
-			"postage": postage
+			"price": oneprice,
+			"postfee": postage
 		}
 		
 		$.ajax({
 			type:"post",
-			url:"#",
+			url:"/order/addOrder",
 			async:true,
 			dataType:"json",
 			data: orderInfo,
@@ -405,13 +405,13 @@ $(document).ready(function(){
 			"addressId": address,
 			"num": num,
 			"orderStatus": status,
-			"oneprice": oneprice,
-			"postage": postage
+			"price": oneprice,
+			"postfee": postage
 		}
 		
 		$.ajax({
 			type:"post",
-			url:"#",
+			url:"/order/addOrder",
 			async:true,
 			dataType:"json",
 			data: orderInfo,

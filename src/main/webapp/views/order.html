@@ -15,11 +15,11 @@
 					<div class="am-container header" id="headerNav">
 						<ul class="message-l">
 							<div class="topMessage">
-								<div class="menu-hd" v-if="!site.user">
+								<div class="menu-hd" v-if="!site.userName">
 									<a href="login.html?type=1" target="_top" class="h">会员登录</a>
 									<a href="login.html?type=2" target="_top">商家登录</a>
 								</div>
-								<div class="menu-hd" v-if="site.user">
+								<div class="menu-hd" v-if="site.userName">
 									<a target="_top" id="logout" href="">会员注销</a>
 								</div>
 							</div>
@@ -28,10 +28,10 @@
 							<div class="topMessage home">
 								<div class="menu-hd"><a href="home.html" target="_top" class="h">商城首页</a></div>
 							</div>
-							<div class="topMessage my-shangcheng" v-if="site.user">
+							<div class="topMessage my-shangcheng" v-if="site.userName">
 								<div class="menu-hd MyShangcheng"><a href="personalcenter.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
-							<div class="topMessage favorite" v-if="site.user">
+							<div class="topMessage favorite" v-if="site.userName">
 								<div class="menu-hd"><a href="collection.html" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 							</div>
 						</ul>
@@ -55,9 +55,7 @@
 		<div class="center">
 			<div class="col-main">
 				<div class="main-wrap">
-
 					<div class="user-order">
-
 						<!--标题 -->
 						<div class="am-cf am-padding">
 							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">订单管理</strong> / <small>Order</small></div>
@@ -106,7 +104,7 @@
 											<div class="order-status5" v-for="site in sites">
 												<div class="order-title">
 													<div class="dd-num">订单编号：{{ site.orderId }}</div>
-													<span>成交时间：{{ site.date }}</span>
+													<span>成交时间：{{ site.orderDate }}</span>
 												</div>
 												<div class="order-content">
 													<div class="order-left">
@@ -114,22 +112,22 @@
 															<li class="td td-item">
 																<div class="item-pic">
 																	<a :href="'introduction.html?pid='+site.productId" class="J_MakePoint">
-																		<img :src="site.sImgPath1" class="itempic J_ItemImg">
+																		<img :src="site.searchImgPath" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info">
 																	<div class="item-basic-info">
 																		<a :href="'introduction.html?pid='+site.productId">
 																			<p>{{ site.productName }}</p>
-																			<p class="info-little">{{ site.itemName1 }}：{{ site.item1 }}
-																				<br/>{{ site.itemName2 }}：{{ site.item2 }} </p>
+																			<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
+																				<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
 																		</a>
 																	</div>
 																</div>
 															</li>
 															<li class="td td-price">
 																<div class="item-price">
-																	{{ site.oneprice }}
+																	{{ site.price }}
 																</div>
 															</li>
 															<li class="td td-number">
@@ -138,10 +136,10 @@
 																</div>
 															</li>
 															<li class="td td-operation">
-																<div class="item-operation" v-if="site.status==2">
+																<div class="item-operation" v-if="site.orderStatus==2">
 																	<span @click="refund(site.orderId)">退款</span>
 																</div>
-																<div class="item-operation" v-if="site.status==3">
+																<div class="item-operation" v-if="site.orderStatus==3">
 																	<span @click="returned(site.orderId)">退款/退货</span>
 																</div>
 															</li>
@@ -150,36 +148,36 @@
 													<div class="order-right">
 														<li class="td td-amount">
 															<div class="item-amount">
-																合计：{{ site.price }}
-																<p>含运费：<span>{{ site.postage }}</span></p>
+																合计：{{ site.totalPrice }}
+																<p>含运费：<span>{{ site.postfee }}</span></p>
 															</div>
 														</li>
 														<div class="move-right">
 															<li class="td td-status">
 																<div class="item-status">
-																	<p class="Mystatus" v-if="site.status==1">待付款</p>
-																	<p class="Mystatus" v-if="site.status==2">待发货</p>
-																	<p class="Mystatus" v-if="site.status==3">待收货</p>
-																	<p class="Mystatus" v-if="site.status==4">待评价</p>
-																	<p class="Mystatus" v-if="site.status==5">已完成</p>
-																	<p class="Mystatus" v-if="site.status==6">退款中</p>
-																	<p class="order-info"><a :href="'orderinfo.html?oid='+site.orderId">订单详情</a></p>
+																	<p class="Mystatus" v-if="site.orderStatus==1">待付款</p>
+																	<p class="Mystatus" v-if="site.orderStatus==2">待发货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==3">待收货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
+																	<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
+																	<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
+																	<p class="order-info"><a :href="'orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																</div>
 															</li>
 															<li class="td td-change">
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==1">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
 																	<span @click="pay(site.orderId)">确认支付</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==2">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
 																	<span @click="remind">提醒发货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==3">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
 																	<span @click="receipt(site.orderId)">确认收货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==4">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
 																	<span @click="eval(site.productId)">评价商品</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==5">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
 																	<span @click="dele(site.orderId)">删除订单</span>
 																</div>
 															</li>
@@ -244,12 +242,12 @@
 									</div>
 
 									<div class="order-main">
-										<div class="order-main">
+										<div class="order-main"> 
 											<div class="order-list">
-												<div class="order-status5" v-if="site.status==1" v-for="site in sites">
+												<div class="order-status5" v-if="site.orderStatus==1" v-for="site in sites">
 													<div class="order-title">
 														<div class="dd-num">订单编号：{{ site.orderId }}</div>
-														<span>成交时间：{{ site.date }}</span>
+														<span>成交时间：{{ site.orderDate }}</span>
 													</div>
 													<div class="order-content">
 														<div class="order-left">
@@ -264,15 +262,15 @@
 																		<div class="item-basic-info">
 																			<a :href="'introduction.html?pid='+site.productId">
 																				<p>{{ site.productName }}</p>
-																				<p class="info-little">{{ site.itemName1 }}：{{ site.item1 }}
-																					<br/>{{ site.itemName2 }}：{{ site.item2 }} </p>
+																				<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
+																					<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
 																			</a>
 																		</div>
 																	</div>
 																</li>
 																<li class="td td-price">
 																	<div class="item-price">
-																		{{ site.oneprice }}
+																		{{ site.price }}
 																	</div>
 																</li>
 																<li class="td td-number">
@@ -281,10 +279,10 @@
 																	</div>
 																</li>
 																<li class="td td-operation">
-																	<div class="item-operation" v-if="site.status==2">
+																	<div class="item-operation" v-if="site.orderStatus==2">
 																		<span @click="refund(site.orderId)">退款</span>
 																	</div>
-																	<div class="item-operation" v-if="site.status==3">
+																	<div class="item-operation" v-if="site.orderStatus==3">
 																		<span @click="returned(site.orderId)">退款/退货</span>
 																	</div>
 																</li>
@@ -293,36 +291,36 @@
 														<div class="order-right">
 															<li class="td td-amount">
 																<div class="item-amount">
-																	合计：{{ site.price }}
-																	<p>含运费：<span>{{ site.postage }}</span></p>
+																	合计：{{ site.totalPrice }}
+																	<p>含运费：<span>{{ site.postfee }}</span></p>
 																</div>
 															</li>
 															<div class="move-right">
 																<li class="td td-status">
 																	<div class="item-status">
-																		<p class="Mystatus" v-if="site.status==1">待付款</p>
-																		<p class="Mystatus" v-if="site.status==2">待发货</p>
-																		<p class="Mystatus" v-if="site.status==3">待收货</p>
-																		<p class="Mystatus" v-if="site.status==4">待评价</p>
-																		<p class="Mystatus" v-if="site.status==5">已完成</p>
-																		<p class="Mystatus" v-if="site.status==6">退款中</p>
-																		<p class="order-info"><a :href="'orderinfo.html?oid='site.orderId">订单详情</a></p>
+																		<p class="Mystatus" v-if="site.orderStatus==1">待付款</p>
+																		<p class="Mystatus" v-if="site.orderStatus==2">待发货</p>
+																		<p class="Mystatus" v-if="site.orderStatus==3">待收货</p>
+																		<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
+																		<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
+																		<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
+																		<p class="order-info"><a :href="'orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																	</div>
 																</li>
 																<li class="td td-change">
-																	<div class="am-btn am-btn-danger anniu" v-if="site.status==1">
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
 																		<span @click="pay(site.orderId)">确认支付</span>
 																	</div>
-																	<div class="am-btn am-btn-danger anniu" v-if="site.status==2">
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
 																		<span @click="remind">提醒发货</span>
 																	</div>
-																	<div class="am-btn am-btn-danger anniu" v-if="site.status==3">
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
 																		<span @click="receipt(site.orderId)">确认收货</span>
 																	</div>
-																	<div class="am-btn am-btn-danger anniu" v-if="site.status==4">
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
 																		<span @click="eval(site.productId)">评价商品</span>
 																	</div>
-																	<div class="am-btn am-btn-danger anniu" v-if="site.status==5">
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
 																		<span @click="dele(site.orderId)">删除订单</span>
 																	</div>
 																</li>
@@ -363,10 +361,10 @@
 
 									<div class="order-main">
 										<div class="order-list">
-											<div class="order-status5" v-if="site.status==2" v-for="site in sites">
+											<div class="order-status5" v-if="site.orderStatus==2" v-for="site in sites">
 												<div class="order-title">
 													<div class="dd-num">订单编号：{{ site.orderId }}</div>
-													<span>成交时间：{{ site.date }}</span>
+													<span>成交时间：{{ site.orderDate }}</span>
 												</div>
 												<div class="order-content">
 													<div class="order-left">
@@ -381,15 +379,15 @@
 																	<div class="item-basic-info">
 																		<a :href="'introduction.html?pid='+site.productId">
 																			<p>{{ site.productName }}</p>
-																			<p class="info-little">{{ site.itemName1 }}：{{ site.item1 }}
-																				<br/>{{ site.itemName2 }}：{{ site.item2 }} </p>
+																			<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
+																				<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
 																		</a>
 																	</div>
 																</div>
 															</li>
 															<li class="td td-price">
 																<div class="item-price">
-																	{{ site.oneprice }}
+																	{{ site.price }}
 																</div>
 															</li>
 															<li class="td td-number">
@@ -398,10 +396,10 @@
 																</div>
 															</li>
 															<li class="td td-operation">
-																<div class="item-operation" v-if="site.status==2">
+																<div class="item-operation" v-if="site.orderStatus==2">
 																	<span @click="refund(site.orderId)">退款</span>
 																</div>
-																<div class="item-operation" v-if="site.status==3">
+																<div class="item-operation" v-if="site.orderStatus==3">
 																	<span @click="returned(site.orderId)">退款/退货</span>
 																</div>
 															</li>
@@ -410,36 +408,36 @@
 													<div class="order-right">
 														<li class="td td-amount">
 															<div class="item-amount">
-																合计：{{ site.price }}
-																<p>含运费：<span>{{ site.postage }}</span></p>
+																合计：{{ site.totalPrice }}
+																<p>含运费：<span>{{ site.postfee }}</span></p>
 															</div>
 														</li>
 														<div class="move-right">
 															<li class="td td-status">
 																<div class="item-status">
-																	<p class="Mystatus" v-if="site.status==1">待付款</p>
-																	<p class="Mystatus" v-if="site.status==2">待发货</p>
-																	<p class="Mystatus" v-if="site.status==3">待收货</p>
-																	<p class="Mystatus" v-if="site.status==4">待评价</p>
-																	<p class="Mystatus" v-if="site.status==5">已完成</p>
-																	<p class="Mystatus" v-if="site.status==6">退款中</p>
-																	<p class="order-info"><a :href="'orderinfo.html?oid='+site.orderId">订单详情</a></p>
+																	<p class="Mystatus" v-if="site.orderStatus==1">待付款</p>
+																	<p class="Mystatus" v-if="site.orderStatus==2">待发货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==3">待收货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
+																	<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
+																	<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
+																	<p class="order-info"><a :href="'orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																</div>
 															</li>
 															<li class="td td-change">
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==1">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
 																	<span @click="pay(site.orderId)">确认支付</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==2">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
 																	<span @click="remind">提醒发货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==3">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
 																	<span @click="receipt(site.orderId)">确认收货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==4">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
 																	<span @click="eval(site.productId)">评价商品</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==5">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
 																	<span @click="dele(site.orderId)">删除订单</span>
 																</div>
 															</li>
@@ -477,10 +475,10 @@
 
 									<div class="order-main">
 										<div class="order-list">
-											<div class="order-status5" v-if="site.status==3" v-for="site in sites">
+											<div class="order-status5" v-if="site.orderStatus==3" v-for="site in sites">
 												<div class="order-title">
 													<div class="dd-num">订单编号：{{ site.orderId }}</div>
-													<span>成交时间：{{ site.date }}</span>
+													<span>成交时间：{{ site.orderDate }}</span>
 												</div>
 												<div class="order-content">
 													<div class="order-left">
@@ -495,15 +493,15 @@
 																	<div class="item-basic-info">
 																		<a :href="'introduction.html?pid='+site.productId">
 																			<p>{{ site.productName }}</p>
-																			<p class="info-little">{{ site.itemName1 }}：{{ site.item1 }}
-																				<br/>{{ site.itemName2 }}：{{ site.item2 }} </p>
+																			<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
+																				<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
 																		</a>
 																	</div>
 																</div>
 															</li>
 															<li class="td td-price">
 																<div class="item-price">
-																	{{ site.oneprice }}
+																	{{ site.price }}
 																</div>
 															</li>
 															<li class="td td-number">
@@ -512,10 +510,10 @@
 																</div>
 															</li>
 															<li class="td td-operation">
-																<div class="item-operation" v-if="site.status==2">
+																<div class="item-operation" v-if="site.orderStatus==2">
 																	<span @click="refund(site.orderId)">退款</span>
 																</div>
-																<div class="item-operation" v-if="site.status==3">
+																<div class="item-operation" v-if="site.orderStatus==3">
 																	<span @click="returned(site.orderId)">退款/退货</span>
 																</div>
 															</li>
@@ -524,36 +522,36 @@
 													<div class="order-right">
 														<li class="td td-amount">
 															<div class="item-amount">
-																合计：{{ site.price }}
-																<p>含运费：<span>{{ site.postage }}</span></p>
+																合计：{{ site.totalPrice }}
+																<p>含运费：<span>{{ site.postfee }}</span></p>
 															</div>
 														</li>
 														<div class="move-right">
 															<li class="td td-status">
 																<div class="item-status">
-																	<p class="Mystatus" v-if="site.status==1">待付款</p>
-																	<p class="Mystatus" v-if="site.status==2">待发货</p>
-																	<p class="Mystatus" v-if="site.status==3">待收货</p>
-																	<p class="Mystatus" v-if="site.status==4">待评价</p>
-																	<p class="Mystatus" v-if="site.status==5">已完成</p>
-																	<p class="Mystatus" v-if="site.status==6">退款中</p>
-																	<p class="order-info"><a :href="'orderinfo.html?oid='+site.orderId">订单详情</a></p>
+																	<p class="Mystatus" v-if="site.orderStatus==1">待付款</p>
+																	<p class="Mystatus" v-if="site.orderStatus==2">待发货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==3">待收货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
+																	<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
+																	<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
+																	<p class="order-info"><a :href="'orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																</div>
 															</li>
 															<li class="td td-change">
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==1">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
 																	<span @click="pay(site.orderId)">确认支付</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==2">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
 																	<span @click="remind">提醒发货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==3">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
 																	<span @click="receipt(site.orderId)">确认收货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==4">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
 																	<span @click="eval(site.productId)">评价商品</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==5">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
 																	<span @click="dele(site.orderId)">删除订单</span>
 																</div>
 															</li>
@@ -591,10 +589,10 @@
 
 									<div class="order-main">
 										<div class="order-list">
-											<div class="order-status5" v-if="site.status==5" v-for="site in sites">
+											<div class="order-status5" v-if="site.orderStatus==5" v-for="site in sites">
 												<div class="order-title">
 													<div class="dd-num">订单编号：{{ site.orderId }}</div>
-													<span>成交时间：{{ site.date }}</span>
+													<span>成交时间：{{ site.orderDate }}</span>
 												</div>
 												<div class="order-content">
 													<div class="order-left">
@@ -609,15 +607,15 @@
 																	<div class="item-basic-info">
 																		<a :href="'introduction.html?pid='+site.productId">
 																			<p>{{ site.productName }}</p>
-																			<p class="info-little">{{ site.itemName1 }}：{{ site.item1 }}
-																				<br/>{{ site.itemName2 }}：{{ site.item2 }} </p>
+																			<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
+																				<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
 																		</a>
 																	</div>
 																</div>
 															</li>
 															<li class="td td-price">
 																<div class="item-price">
-																	{{ site.oneprice }}
+																	{{ site.price }}
 																</div>
 															</li>
 															<li class="td td-number">
@@ -626,10 +624,10 @@
 																</div>
 															</li>
 															<li class="td td-operation">
-																<div class="item-operation" v-if="site.status==2">
+																<div class="item-operation" v-if="site.orderStatus==2">
 																	<span @click="refund(site.orderId)">退款</span>
 																</div>
-																<div class="item-operation" v-if="site.status==3">
+																<div class="item-operation" v-if="site.orderStatus==3">
 																	<span @click="returned(site.orderId)">退款/退货</span>
 																</div>
 															</li>
@@ -638,36 +636,36 @@
 													<div class="order-right">
 														<li class="td td-amount">
 															<div class="item-amount">
-																合计：{{ site.price }}
-																<p>含运费：<span>{{ site.postage }}</span></p>
+																合计：{{ site.totalPrice }}
+																<p>含运费：<span>{{ site.postfee }}</span></p>
 															</div>
 														</li>
 														<div class="move-right">
 															<li class="td td-status">
 																<div class="item-status">
-																	<p class="Mystatus" v-if="site.status==1">待付款</p>
-																	<p class="Mystatus" v-if="site.status==2">待发货</p>
-																	<p class="Mystatus" v-if="site.status==3">待收货</p>
-																	<p class="Mystatus" v-if="site.status==4">待评价</p>
-																	<p class="Mystatus" v-if="site.status==5">已完成</p>
-																	<p class="Mystatus" v-if="site.status==6">退款中</p>
-																	<p class="order-info"><a :href="'orderinfo.html?oid='+site.orderId">订单详情</a></p>
+																	<p class="Mystatus" v-if="site.orderStatus==1">待付款</p>
+																	<p class="Mystatus" v-if="site.orderStatus==2">待发货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==3">待收货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
+																	<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
+																	<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
+																	<p class="order-info"><a :href="'orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																</div>
 															</li>
 															<li class="td td-change">
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==1">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
 																	<span @click="pay(site.orderId)">确认支付</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==2">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
 																	<span @click="remind">提醒发货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==3">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
 																	<span @click="receipt(site.orderId)">确认收货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==4">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
 																	<span @click="eval(site.productId)">评价商品</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.status==5">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
 																	<span @click="dele(site.orderId)">删除订单</span>
 																</div>
 															</li>
