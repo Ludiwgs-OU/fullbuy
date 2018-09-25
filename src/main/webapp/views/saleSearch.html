@@ -4,8 +4,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<title>搜索页面</title>
-		
+		<title>本店搜索</title>
 	</head>
 
 	<body>
@@ -42,7 +41,7 @@
 			</div>
 			<div class="search-bar pr">
 				<form>
-					<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+					<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="店内搜索" autocomplete="off">
 					<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="botton">
 				</form>
 			</div>
@@ -52,25 +51,7 @@
 			<div class="search-list">
 					<div class="am-g am-g-fixed">
 						<div class="am-u-sm-12 am-u-md-12">
-		                  	<div class="theme-popover">
-		                  		<div class="select1">
-		                  			<ul class="dowebok">
-		                  				<li><span class="item">类型：</span></li>
-										<li v-for="item in items">
-											<input class="radio1" type="radio" name="radio1" :data-labelauty="item.categoryName" @click="getItem(item.categoryId)">
-										</li>
-									</ul>
-		                  		</div>
-								<div class="select2">
-		                  			<ul class="dowebok">
-		                  				<li><span class="item">种类：</span></li>
-		                  				<li v-for="item in secItems" class="itemli">
-											<input class="radio2" type="radio" name="radio2" :data-labelauty="item.secondCategoryName" @click="getInfo(item.secondCategoryId)">
-										</li>
-									</ul>
-		                  		</div>
-	                        </div>
-							<div class="search-content">
+							<div class="search-content" id="sc">
 								<div class="sort">
 									<li id="sort1" class="sortLi first" @click="zhSort(1)"><a title="综合">综合排序</a></li>
 									<li id="sort2" class="sortLi" @click="xlSort(2)"><a title="销量">销量排序</a></li>
@@ -78,11 +59,10 @@
 									<li id="sort4" class="sortLi" @click="pjSort(4)"><a title="评价">评价为主</a></li>
 								</div>
 								<div class="clear"></div>
-
 								<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
 									<li v-for="pro in sites.pro">
 										<div class="i-pic limit">
-											<img :src="pro.img" />											
+											<img :src="pro.img" />
 											<p class="title fl">
 												<a :href="'introduction.html?pid=' + pro.productId">
 													{{ pro.productName }}
@@ -99,13 +79,6 @@
 									</li>
 								</ul>
 							</div>
-							<!--分页 -->
-							<ul class="am-pagination am-pagination-right">
-								<li><a id="lastPage" @click="lastPage">上一页</a></li>
-									第<span id="nowPage">1</span>页
-								<li><a id="nextPage" @click="nextPage">下一页</a></li>
-									共<span id="pageNum">{{ sites.pageNum }}</span>页
-							</ul>
 						</div>
 					</div>
 					
@@ -179,7 +152,7 @@
 		<script type="text/javascript" src="../static/js/vue.js" ></script>
 		<script type="text/javascript" src="../static/js/quick_links.js"></script>
 		<script type="text/javascript" src="../static/js/jquery-labelauty.js" ></script>
-		<script type="text/javascript" src="../static/js/search.js"></script>
+		<script type="text/javascript" src="../static/js/saleSearch.js"></script>
 	</body>
 
 </html>

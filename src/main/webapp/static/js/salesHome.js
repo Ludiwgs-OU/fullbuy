@@ -1,3 +1,12 @@
+/*
+ * 获取路径参数
+ */
+function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return decodeURI(r[2]); return null; 
+}
+
 new Vue({
     el: '#slides',
     data() {
@@ -10,78 +19,6 @@ new Vue({
    		$.ajax({
 			type:"get",
 			url:"../static/json/banner.json",
-			async:true,
-			dataType:"json",
-			success:function(inf){
-				self.sites = inf;
-			},
-			error:function(inf){
-				alert("获取数据失败！");
-			},
-		});
- 	}
-})
-
-new Vue({
-	el: '#today',
-	data:function(){
-   		return {
-   			sites: ""
-   	 	}
- 	},
-  	created: function(){
-    	var self = this;
-   		$.ajax({
-			type:"get",
-			url:"../static/json/today.json",
-			async:true,
-			dataType:"json",
-			success:function(inf){
-				self.sites = inf;
-			},
-			error:function(inf){
-				alert("获取数据失败！");
-			},
-		});
- 	}
-})
-
-new Vue({
-	el: '#sales',
-	data:function(){
-   		return {
-   			sites: ""
-   	 	}
- 	},
-  	created: function(){
-    	var self = this;
-   		$.ajax({
-			type:"get",
-			url:"../static/json/sales.json",
-			async:true,
-			dataType:"json",
-			success:function(inf){
-				self.sites = inf;
-			},
-			error:function(inf){
-				alert("获取数据失败！");
-			},
-		});
- 	}
-})
-
-new Vue({
-	el: '#explosion',
-	data:function(){
-   		return {
-   			sites: ""
-   	 	}
- 	},
-  	created: function(){
-    	var self = this;
-   		$.ajax({
-			type:"get",
-			url:"/product/displayBySalesnum",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -157,6 +94,54 @@ new Vue({
 			},
 		});
    	}
+})
+
+new Vue({
+    el: '#salesIntroduction',
+    data() {
+        return {
+        	site: ""
+        }
+    },
+    created: function(){
+    	var self = this;
+   		$.ajax({
+			type:"get",
+			url:"../static/json/sale.json",
+			async:true,
+			dataType:"json",
+			success:function(inf){
+				self.site = inf;
+			},
+			error:function(inf){
+				alert("获取数据失败！");
+			},
+		});
+ 	}
+})
+
+new Vue({
+	el: '#recommend',
+	data:function(){
+   		return {
+   			sites: ""
+   	 	}
+ 	},
+  	created: function(){
+    	var self = this;
+   		$.ajax({
+			type:"get",
+			url:"../static/json/explosion.json",
+			async:true,
+			dataType:"json",
+			success:function(inf){
+				self.sites = inf;
+			},
+			error:function(inf){
+				alert("获取数据失败！");
+			},
+		});
+ 	}
 })
 
 $(document).ready(()=>{
