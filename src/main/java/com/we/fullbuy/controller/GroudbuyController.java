@@ -46,9 +46,9 @@ public class GroudbuyController {
     //团购活动详情
     @RequestMapping("/displayGroudbuyDetail")
     @ResponseBody
-    public Groudbuy displayGroudbuyDetail(@RequestParam("groudbuyId") int groudbuyId)
+    public Groudbuy displayGroudbuyDetail(@RequestParam("productId") int productId)
     {
-        return groudbuyService.showGroudbuyDetail(groudbuyId);
+        return groudbuyService.showGroudbuyDetail(productId);
     }
 
     //商家查询自己团购活动

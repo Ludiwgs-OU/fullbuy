@@ -18,5 +18,5 @@ public interface GroudbuyService {
     /*删除团购活动*/
     int deleteGroudbuy(int groudbuyId);
     /*团购活动详情*/
-    Groudbuy showGroudbuyDetail(int groudbuyId);
+    Groudbuy showGroudbuyDetail(int productId);
 }

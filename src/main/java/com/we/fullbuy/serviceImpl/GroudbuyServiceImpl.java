@@ -47,7 +47,7 @@ public class GroudbuyServiceImpl implements GroudbuyService {
     }
 
     @Override
-    public Groudbuy showGroudbuyDetail(int groudbuyId) {
-        return groudbuyMapper.selectByPrimaryKey(groudbuyId);
+    public Groudbuy showGroudbuyDetail(int productId) {
+        return groudbuyMapper.showGroudbuyDetail(productId);
     }
 }

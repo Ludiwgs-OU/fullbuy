@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service("SalesService")
 public class SalesServiceImpl implements SalesService {
     @Autowired
@@ -32,5 +34,10 @@ public class SalesServiceImpl implements SalesService {
     @Override
     public Sales login(String phone) {
         return salesMapper.selectByPhone(phone);
+    }
+
+    @Override
+    public List<Sales> displayRecommend() {
+        return salesMapper.displayRecommend();
     }
 }

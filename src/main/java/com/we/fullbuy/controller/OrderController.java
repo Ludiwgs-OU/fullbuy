@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -28,14 +29,17 @@ public class OrderController {
     private UserService userService;
     @Resource
     private AddressService addressService;
+    @Resource
+    private GroudbuyService groudbuyService;
 
     //确认订单信息
     @RequestMapping("/checkOrder")
     @ResponseBody
-    public List checkOrder(@RequestParam("skuId") int skuId,
+    public String checkOrder(@RequestParam("skuId") int skuId,
                            @RequestParam("num") int num,
                            @RequestParam("price") double price,
-                           HttpSession session)
+                           @RequestParam("gbId") int gbId,
+                           HttpSession session, RedirectAttributes attributes)
     {
         Product product = productService.searchBySkuId(skuId);
         List<Address> address = addressService.displayAddress((int) session.getAttribute("userId"));
@@ -44,6 +48,18 @@ public class OrderController {
         list.add(address);
         list.add(num);
         list.add(price);
+        list.add(gbId);
+        attributes.addAttribute("list",list);
+
+        return "redirect:/Order/preOrder";
+
+    }
+
+    //返回订单信息列表
+    @RequestMapping("/preOrder")
+    @ResponseBody
+    public List preOrder(@RequestParam("list") List list)
+    {
         return list;
     }
 
@@ -52,11 +68,12 @@ public class OrderController {
     @RequestMapping("/addOrder")
     @ResponseBody
     public String addOrder(@RequestParam("skuId") int skuId,
-                        @RequestParam("addressId") int addressId,
-                        @RequestParam("num") int num,
-                        @RequestParam("price") double price,
-                        @RequestParam("totalPrice") double totalPrice,
-                        @RequestParam("orderStatus") int orderStatus,
+                           @RequestParam("addressId") int addressId,
+                           @RequestParam("num") int num,
+                           @RequestParam("price") double price,
+                           @RequestParam("totalPrice") double totalPrice,
+                           @RequestParam("orderStatus") int orderStatus,
+                           @RequestParam("gbId") int gbId,
                         HttpSession session) {
 
         //生成订单编号
@@ -84,17 +101,30 @@ public class OrderController {
             order.setSkuid(skuId);
             if(orderService.addOrder(order)==1)
             {
-                sku.setQuantity(sku.getQuantity()-num);
-                int s = skuService.updateSku(sku);
-                if(s!=0)
-                    System.out.println("-Quantity Success");//减库存量
+                if(orderStatus==1)
+                {
+                    sku.setQuantity(sku.getQuantity()-num);
+                    int s = skuService.updateSku(sku);
+                    if(s!=0)
+                        System.out.println("-Quantity Success");//减库存量
 
-                Product product = new Product();
-                product.setProductid(sku.getProductid());
-                product.setSalesnum(product.getSalesnum()+num);//增加销售量
-                int p = productService.modifyProduct(product);
-                if(p!=0)
-                    System.out.println("+Salesnum success");
+                    Product product = new Product();
+                    product.setProductid(sku.getProductid());
+                    product.setSalesnum(product.getSalesnum()+num);//增加销售量
+                    int p = productService.modifyProduct(product);
+                    if(p!=0)
+                        System.out.println("+Salesnum success");
+
+                    if(gbId!=0)
+                    {
+                        Groudbuy groudbuy = new Groudbuy();
+                        groudbuy.setGbid(gbId);
+                        groudbuy.setNowpeople(groudbuy.getNowpeople()+1);
+                        groudbuyService.modifyGroudbuy(groudbuy);
+                    }
+
+
+                }
 
                 return orderId;//订单生成成功
             }

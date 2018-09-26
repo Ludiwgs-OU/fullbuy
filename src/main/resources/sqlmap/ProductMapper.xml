@@ -329,12 +329,35 @@
   <select id="displayBySalesnum" resultMap="BaseResultMap">
     select *
     from product
-    order by salesNum desc
+    order by salesNum desc limit 12
   </select>
 
   <select id="displayByScore" resultMap="BaseResultMap">
     select *
     from product
     order by productScore desc
+  </select>
+
+  <select id="displayByPosttime" resultMap="BaseResultMap">
+    select *
+    from product
+    order by posttime desc limit 3
+  </select>
+
+  <select id="detailImgPth" resultMap="BaseResultMap">
+    select DetailImgPath1,DetailImgPath2
+    from product
+    where productId = #{productid,jdbcType=INTEGER}
+  </select>
+
+  <select id="relatedProduct" resultMap="BaseResultMap">
+    SELECT *
+	FROM product
+	WHERE categoryId IN
+	(
+		SELECT categoryId
+		FROM prodcuct
+		WHERE productId = #{productid,jdbcType=INTEGER}
+	)
   </select>
 </mapper>

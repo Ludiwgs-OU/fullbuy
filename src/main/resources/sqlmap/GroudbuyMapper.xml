@@ -169,4 +169,53 @@
     select *
     from groudbuy
   </select>
+
+  <resultMap id="GroudbuyWithProduct" type="com.we.fullbuy.pojo.Groudbuy" extends="BaseResultMap">
+    <association property="product" javaType="com.we.fullbuy.pojo.Product">
+      <id column="productId" jdbcType="INTEGER" property="productid" />
+      <result column="productName" jdbcType="VARCHAR" property="productname" />
+      <result column="productDetail" jdbcType="VARCHAR" property="productdetail" />
+      <result column="productScore" jdbcType="INTEGER" property="productscore" />
+      <result column="salesNum" jdbcType="INTEGER" property="salesnum" />
+      <result column="categoryId" jdbcType="INTEGER" property="categoryid" />
+      <result column="salesId" jdbcType="INTEGER" property="salesid" />
+      <result column="postTime" jdbcType="TIMESTAMP" property="posttime" />
+      <result column="productStatus" jdbcType="INTEGER" property="productstatus" />
+      <result column="searchImgPath" jdbcType="VARCHAR" property="searchimgpath" />
+      <result column="sImgPath1" jdbcType="VARCHAR" property="simgpath1" />
+      <result column="sImgPath2" jdbcType="VARCHAR" property="simgpath2" />
+      <result column="mImgPath1" jdbcType="VARCHAR" property="mimgpath1" />
+      <result column="mImgPath2" jdbcType="VARCHAR" property="mimgpath2" />
+      <result column="bImgPath1" jdbcType="VARCHAR" property="bimgpath1" />
+      <result column="bImgPath2" jdbcType="VARCHAR" property="bimgpath2" />
+      <result column="DetailImgPath1" jdbcType="VARCHAR" property="detailimgpath1" />
+      <result column="DetailImgPath2" jdbcType="VARCHAR" property="detailimgpath2" />
+      <result column="item1" jdbcType="VARCHAR" property="item1" />
+      <result column="item2" jdbcType="VARCHAR" property="item2" />
+      <result column="postfee" jdbcType="INTEGER" property="postfee" />
+      <collection property="skuList" ofType="com.we.fullbuy.pojo.Sku">
+        <id column="skuId" jdbcType="INTEGER" property="skuid" />
+        <result column="productId" jdbcType="INTEGER" property="productid" />
+        <result column="itemId" jdbcType="INTEGER" property="itemid" />
+        <result column="secondItemId" jdbcType="INTEGER" property="seconditemid" />
+        <result column="price" jdbcType="DOUBLE" property="price" />
+        <result column="quantity" jdbcType="INTEGER" property="quantity" />
+        <result column="gbPrice" jdbcType="DOUBLE" property="gbprice" />
+        <collection property="itemList" ofType="com.we.fullbuy.pojo.Item">
+          <id column="itemId" jdbcType="INTEGER" property="itemid" />
+          <result column="itemName" jdbcType="VARCHAR" property="itemname" />
+        </collection>
+        <collection property="seconditemList" ofType="com.we.fullbuy.pojo.Seconditem">
+          <id column="secondItemId" jdbcType="INTEGER" property="seconditemid" />
+          <result column="secondItemName" jdbcType="VARCHAR" property="seconditemname" />
+        </collection>
+      </collection>
+    </association>
+  </resultMap>
+
+  <select id="showGroudbuyDetail" resultMap="GroudbuyWithProduct">
+    select g.*,p.*
+    from groudbuy g,product p
+    where g.productId = #{productid,jdbcType=INTEGER} and p.productId = g.productId and p.productStatus = 2 and g.gbStatus = 1
+  </select>
 </mapper>

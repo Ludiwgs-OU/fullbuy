@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 @Controller
 @RequestMapping("/sys")
@@ -33,5 +34,16 @@ public class SystemController {
             return "注销成功";
         else
             return "注销失败";
+    }
+
+    //返回用户信息
+    @RequestMapping("/navi")
+    @ResponseBody
+    public HashMap navi(HttpSession session){
+        HashMap map = new HashMap();
+        map.put("userName",session.getAttribute("userName"));
+        map.put("userType",session.getAttribute("userType"));
+        map.put("userProfile",session.getAttribute("userProfile"));
+        return map;
     }
 }

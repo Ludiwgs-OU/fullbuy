@@ -77,7 +77,7 @@
 
   <!-- 欢迎页面-->
   <welcome-file-list>
-    <welcome-file>/views/login.html</welcome-file>
+    <welcome-file>/views/home.html</welcome-file>
   </welcome-file-list>
 
   <!--404错误展示页面，可自行配置-->
