@@ -1,5 +1,7 @@
 package com.we.fullbuy.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.we.fullbuy.pojo.Comment;
 import com.we.fullbuy.service.CommentService;
 import org.springframework.stereotype.Controller;
@@ -29,10 +31,13 @@ public class CommentController {
     //显示商品评论
     @RequestMapping("/showProductComment")
     @ResponseBody
-    public List<Comment> showProductComment(@RequestParam("productId") int productId)
-    {
-        return commentService.showProductComment(productId);
+    public PageInfo showProductComment(@RequestParam("productId") int productId,
+                                       @RequestParam(value = "pageNo",defaultValue ="1") Integer pageNo){
+        int pageSize = 5;
+        PageHelper.startPage(pageNo,pageSize);
+        return new PageInfo(commentService.showProductComment(productId));
     }
+
 
     //添加评论
     @RequestMapping("/addComment")

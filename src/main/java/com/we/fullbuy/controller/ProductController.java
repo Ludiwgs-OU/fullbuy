@@ -1,5 +1,7 @@
 package com.we.fullbuy.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.we.fullbuy.pojo.Product;
 import com.we.fullbuy.pojo.Sku;
 import com.we.fullbuy.service.ProductService;
@@ -41,10 +43,10 @@ public class ProductController {
     //根据关键字搜索商品
     @RequestMapping("/serachByKeyword")
     @ResponseBody
-    public List<Product> serachByKeyword(@RequestParam("keyword") String keyword, HttpSession session)
-    {
-        session.setAttribute("keyword",keyword);
-        return productService.searchProductByKeyword(keyword);
+    public PageInfo serachByKeyword(@RequestParam("keyword") String keyword, @RequestParam(value = "pageNo",defaultValue ="1") Integer pageNo){
+        int pageSize = 8;
+        PageHelper.startPage(pageNo,pageSize);
+        return new PageInfo(productService.searchProductByKeyword(keyword));
     }
 
 
@@ -126,6 +128,8 @@ public class ProductController {
     {
         return productService.displayBySalesnum();
     }
+
+
 
     //按评分推荐
     @RequestMapping("/displayByScore")
