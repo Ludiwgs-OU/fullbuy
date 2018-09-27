@@ -12,13 +12,12 @@
 		<div class="am-container header" id="headerNav">
 			<ul class="message-l">
 				<div class="topMessage">
-					<p id="userName" style="display: none;">{{ site.user }}</p>
-					<div class="menu-hd" v-if="!site.user">
+					<div class="menu-hd" v-if="!site.userName">
 						<a href="login.html?type=1" target="_top" class="h">会员登录</a>
 						<a href="login.html?type=2" target="_top">商家登录</a>
 					</div>
-					<div class="menu-hd" v-if="site.user">
-						<a target="_top" id="logout">会员注销</a>
+					<div class="menu-hd" v-if="site.userName">
+						<a target="_top" id="logout" @click="logout">会员注销</a>
 					</div>
 				</div>
 			</ul>
@@ -26,10 +25,10 @@
 				<div class="topMessage home">
 					<div class="menu-hd"><a href="home.html" target="_top" class="h">商城首页</a></div>
 				</div>
-				<div class="topMessage my-shangcheng" v-if="site.user">
+				<div class="topMessage my-shangcheng" v-if="site.userName">
 					<div class="menu-hd MyShangcheng"><a href="personalcenter.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 				</div>
-				<div class="topMessage favorite" v-if="site.user">
+				<div class="topMessage favorite" v-if="site.userName">
 					<div class="menu-hd"><a href="collection.html" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 				</div>
 			</ul>
@@ -86,7 +85,7 @@
 					<div class="tb-detail-price">
 						<li class="price iteminfo_price">
 							<dt>原价</dt>
-							<dd><em>¥</em><b class="sys_item_price" id="price">{{ site.price }}</b></dd>                                 
+							<dd><em>¥</em><b class="sys_item_price" id="price">{{ site.price }}</b></dd>
 						</li>
 						<li class="price iteminfo_mktprice">
 							<dt>店铺</dt>
@@ -247,7 +246,8 @@
 								<h4>商品细节</h4>
 							</div>
 							<div class="twlistNews" id="introductionImg">
-								<img v-for="site in sites" :src="site.img" />
+								<img :src="site.DetailImgPath1" />
+								<img :src="site.DetailImgPath2" />
 							</div>
 						</div>
 					</div>
@@ -332,7 +332,7 @@
 					
 					<div class="quick_toggle">
 						<li class="qtitem">
-							<a href="#"><span class="kfzx"></span></a>
+							<a href=""><span class="kfzx"></span></a>
 							<div class="mp_tooltip">客服中心<i class="icon_arrow_right_black"></i></div>
 						</li>
 						<li class="qtitem">

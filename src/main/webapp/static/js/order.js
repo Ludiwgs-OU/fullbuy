@@ -18,6 +18,14 @@ $(document).ready(()=>{
 		document.getElementById("profileImg").src = imgUrl;
 	})
 	
+	/*
+	 * 搜索
+	 */
+	$("#ai-topsearch").click(()=>{
+		var info = $("#searchInput").val();
+		window.open("search.html?info=" + info);
+	})
+	
 })
 
 new Vue({
@@ -31,7 +39,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -41,6 +49,23 @@ new Vue({
 				alert("获取数据失败！");
 			},
 		});
+  	},
+   	methods: {
+   		logout: function(){
+   			$.ajax({
+				type:"get",
+				url:"/sys/logout",
+				async:true,
+				dataType:"json",
+				success:function(result){
+					alert(result);
+					window.reload();
+				},
+				error:function(result){
+					alert("获取数据失败！");
+				},
+			});
+   		}
    	}
 })
 
@@ -104,7 +129,7 @@ new Vue({
    		pay: function(id){
    			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/order/pay",
 				async:true,
 				dataType:"json",
 				data: {

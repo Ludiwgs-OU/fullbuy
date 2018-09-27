@@ -21,7 +21,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -76,6 +76,14 @@ new Vue({
 })
 
 $(document).ready(()=>{
+	
+	/*
+	 * 搜索
+	 */
+	$("#ai-topsearch").click(()=>{
+		var info = $("#searchInput").val();
+		window.open("search.html?info=" + info);
+	})
 	
 	$("#changeInfo").click(()=>{
 		var name = $("#user-name2").val();
