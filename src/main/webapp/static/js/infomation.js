@@ -31,6 +31,23 @@ new Vue({
 				alert("获取数据失败！");
 			},
 		});
+   	},
+   	methods: {
+   		logout: function(){
+   			$.ajax({
+				type:"get",
+				url:"/sys/logout",
+				async:true,
+				dataType:"json",
+				success:function(result){
+					alert(result);
+					window.reload();
+				},
+				error:function(result){
+					alert("获取数据失败！");
+				},
+			});
+   		}
    	}
 })
 
@@ -129,7 +146,7 @@ $(document).ready(()=>{
 		else{
 			$.ajax({
 	            type:"post",
-				url:"/user/modifyPassword,
+				url:"/user/modifyPassword",
 				async:true,
 				dataType:"json",
 				data: pwd,
