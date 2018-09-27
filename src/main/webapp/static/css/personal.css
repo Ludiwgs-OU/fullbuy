@@ -301,3 +301,9 @@ aside {width: 160px;}
 a{
 	cursor: pointer;
 }
+ .none{
+	display:none;
+}
+#target_1:target {
+     display: block;     
+  }

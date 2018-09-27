@@ -1,0 +1,29 @@
+[
+{
+	"userId":"1",
+  "userName":"111"	,
+  "userType":"会员",
+  "userScore":"19",
+  "userStates":"登录中"
+},
+{
+	"userId":"2",
+  "userName":"111"	,
+  "userType":"会员",
+  "userScore":"19",
+  "userStates":"登录中"
+},{
+	"userId":"3",
+  "userName":"111"	,
+  "userType":"会员",
+  "userScore":"19",
+  "userStates":"登录中"
+},
+{
+	"userId":"4",
+  "userName":"111"	,
+  "userType":"会员",
+  "userScore":"19",
+  "userStates":"登录中"
+}
+]

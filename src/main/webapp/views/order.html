@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
@@ -16,8 +15,8 @@
 						<ul class="message-l">
 							<div class="topMessage">
 								<div class="menu-hd" v-if="!site.userName">
-									<a href="login.html?type=1" target="_top" class="h">会员登录</a>
-									<a href="login.html?type=2" target="_top">商家登录</a>
+									<a href="../views/login.html?type=1" target="_top" class="h">会员登录</a>
+									<a href="../views/login.html?type=2" target="_top">商家登录</a>
 								</div>
 								<div class="menu-hd" v-if="site.userName">
 									<a target="_top" id="logout" @click="logout">会员注销</a>
@@ -26,13 +25,13 @@
 						</ul>
 						<ul class="message-r">
 							<div class="topMessage home">
-								<div class="menu-hd"><a href="home.html" target="_top" class="h">商城首页</a></div>
+								<div class="menu-hd"><a href="../views/home.html" target="_top" class="h">商城首页</a></div>
 							</div>
 							<div class="topMessage my-shangcheng" v-if="site.userName">
-								<div class="menu-hd MyShangcheng"><a href="personalcenter.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+								<div class="menu-hd MyShangcheng"><a href="../views/personalcenter.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
 							<div class="topMessage favorite" v-if="site.userName">
-								<div class="menu-hd"><a href="collection.html" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+								<div class="menu-hd"><a href="../views/collection.html" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 							</div>
 						</ul>
 					</div>
@@ -111,13 +110,13 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a :href="'introduction.html?pid='+site.productId" class="J_MakePoint">
+																	<a :href="'../views/introduction.html?pid='+site.productId" class="J_MakePoint">
 																		<img :src="site.searchImgPath" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info">
 																	<div class="item-basic-info">
-																		<a :href="'introduction.html?pid='+site.productId">
+																		<a :href="'../views/introduction.html?pid='+site.productId">
 																			<p>{{ site.productName }}</p>
 																			<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
 																				<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
@@ -161,7 +160,7 @@
 																	<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
 																	<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
 																	<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
-																	<p class="order-info"><a :href="'orderinfo.html?oid=' + site.orderId">订单详情</a></p>
+																	<p class="order-info"><a :href="'../views/orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																</div>
 															</li>
 															<li class="td td-change">
@@ -254,13 +253,13 @@
 															<ul class="item-list">
 																<li class="td td-item">
 																	<div class="item-pic">
-																		<a :href="'introduction.html?pid='+site.productId" class="J_MakePoint">
+																		<a :href="'../views/introduction.html?pid='+site.productId" class="J_MakePoint">
 																			<img :src="site.sImgPath1" class="itempic J_ItemImg">
 																		</a>
 																	</div>
 																	<div class="item-info">
 																		<div class="item-basic-info">
-																			<a :href="'introduction.html?pid='+site.productId">
+																			<a :href="'../views/introduction.html?pid='+site.productId">
 																				<p>{{ site.productName }}</p>
 																				<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
 																					<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
@@ -304,7 +303,7 @@
 																		<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
 																		<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
 																		<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
-																		<p class="order-info"><a :href="'orderinfo.html?oid=' + site.orderId">订单详情</a></p>
+																		<p class="order-info"><a :href="'../views/orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																	</div>
 																</li>
 																<li class="td td-change">
@@ -371,13 +370,13 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a :href="'introduction.html?pid='+site.productId" class="J_MakePoint">
+																	<a :href="'../views/introduction.html?pid='+site.productId" class="J_MakePoint">
 																		<img :src="site.sImgPath1" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info">
 																	<div class="item-basic-info">
-																		<a :href="'introduction.html?pid='+site.productId">
+																		<a :href="'../views/introduction.html?pid='+site.productId">
 																			<p>{{ site.productName }}</p>
 																			<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
 																				<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
@@ -421,7 +420,7 @@
 																	<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
 																	<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
 																	<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
-																	<p class="order-info"><a :href="'orderinfo.html?oid=' + site.orderId">订单详情</a></p>
+																	<p class="order-info"><a :href="'../views/orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																</div>
 															</li>
 															<li class="td td-change">
@@ -485,13 +484,13 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a :href="'introduction.html?pid='+site.productId" class="J_MakePoint">
+																	<a :href="'../views/introduction.html?pid='+site.productId" class="J_MakePoint">
 																		<img :src="site.sImgPath1" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info">
 																	<div class="item-basic-info">
-																		<a :href="'introduction.html?pid='+site.productId">
+																		<a :href="'../views/introduction.html?pid='+site.productId">
 																			<p>{{ site.productName }}</p>
 																			<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
 																				<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
@@ -535,7 +534,7 @@
 																	<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
 																	<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
 																	<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
-																	<p class="order-info"><a :href="'orderinfo.html?oid=' + site.orderId">订单详情</a></p>
+																	<p class="order-info"><a :href="'../views/orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																</div>
 															</li>
 															<li class="td td-change">
@@ -599,13 +598,13 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a :href="'introduction.html?pid='+site.productId" class="J_MakePoint">
+																	<a :href="'../views/introduction.html?pid='+site.productId" class="J_MakePoint">
 																		<img :src="site.sImgPath1" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info">
 																	<div class="item-basic-info">
-																		<a :href="'introduction.html?pid='+site.productId">
+																		<a :href="'../views/introduction.html?pid='+site.productId">
 																			<p>{{ site.productName }}</p>
 																			<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
 																				<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
@@ -649,7 +648,7 @@
 																	<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
 																	<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
 																	<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
-																	<p class="order-info"><a :href="'orderinfo.html?oid=' + site.orderId">订单详情</a></p>
+																	<p class="order-info"><a :href="'../views/orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																</div>
 															</li>
 															<li class="td td-change">
@@ -691,28 +690,28 @@
 			<aside class="menu">
 				<ul>
 					<li class="person">
-						<a href="personalcenter.html">个人中心</a>
+						<a href="../views/personalcenter.html">个人中心</a>
 					</li>
 					<li class="person">
 						<a href="">个人资料</a>
 						<ul>
-							<li> <a href="information.html">个人信息</a></li>
-							<li> <a href="safety.html">安全设置</a></li>
-							<li> <a href="address.html">收货地址</a></li>
+							<li> <a href="../views/information.html">个人信息</a></li>
+							<li> <a href="../views/safety.html">安全设置</a></li>
+							<li> <a href="../views/address.html">收货地址</a></li>
 						</ul>
 					</li>
 					<li class="person">
 						<a href="">我的交易</a>
 						<ul>
-							<li class="active"> <a href="order.html">订单管理</a></li>
+							<li class="active"> <a href="../views/order.html">订单管理</a></li>
 						</ul>
 					</li>
 					<li class="person">
 						<a href="">我的小窝</a>
 						<ul>
-							<li> <a href="collection.html">收藏</a></li>
-							<li> <a href="comment.html">评价</a></li>
-							<li> <a href="news.html">消息</a></li>
+							<li> <a href="../views/collection.html">收藏</a></li>
+							<li> <a href="../views/comment.html">评价</a></li>
+							<li> <a href="">消息</a></li>
 						</ul>
 					</li>
 				</ul>

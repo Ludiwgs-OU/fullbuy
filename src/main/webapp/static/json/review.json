@@ -1,0 +1,34 @@
+[
+	{
+		"productId":"1",
+		"productName": "cnm",
+		"salesName": "nmb",
+		"time": "2018-2-5",
+		"bImgPath2":"../static/images/1.jpg",
+		"states": "jj"
+	},
+	{
+		"productId":"2",
+		"productName": "cnm",
+		"salesName": "nmb",
+		"time": "2018-2-5",
+		"bImgPath2":"../static/images/2.jpg",
+		"states": "jj"
+	},
+	{
+		"productId":"3",
+		"productName": "cnm",
+		"salesName": "nmb",
+		"time": "2018-2-5",
+		"bImgPath2":"../static/images/3.jpg",
+		"states": "jj"
+	},{
+		"productId":"4",
+		"productName": "cnm",
+		"salesName": "nmb",
+		"time": "2018-2-5",
+		"bImgPath2":"../static/images/4.jpg",
+		"states": "jj"
+	}
+]
+
