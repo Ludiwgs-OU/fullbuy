@@ -18,7 +18,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -28,6 +28,23 @@ new Vue({
 				alert("获取数据失败！");
 			},
 		});
+   	},
+   	methods: {
+   		logout: function(){
+   			$.ajax({
+				type:"get",
+				url:"/sys/logout",
+				async:true,
+				dataType:"json",
+				success:function(result){
+					alert(result);
+					window.reload();
+				},
+				error:function(result){
+					alert("获取数据失败！");
+				},
+			});
+   		}
    	}
 })
 
@@ -43,7 +60,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/address.json",
+			url:"/user/displayAddress",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -59,7 +76,7 @@ new Vue({
 			var self = this;
 			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/user/displayAddressDetail",
 				async:true,
 				dataType:"json",
 				data: {
@@ -78,7 +95,7 @@ new Vue({
    		del: function(id){
    			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/user/deleteAddress",
 				async:true,
 				dataType:"json",
 				data: {
@@ -102,15 +119,15 @@ new Vue({
 			var area = $("#u-area").val();
 			var address = $("#u-address").val();
 			
-			var addressInfo = {
+			var Address = {
 				"addressId": id,
 				"name": name,
 				"phone": phone,
 				"postCode": code,
 				"province": province,
 				"city": city,
-				"area": area,
-				"address": address
+				"street": area,
+				"addressDetail": address
 			};
 			
 			var pattern1 = /^\d{6}$/;
@@ -130,7 +147,7 @@ new Vue({
 			else{
 				$.ajax({
 					type:"post",
-					url:"#",
+					url:"/user/modifyAddress",
 					async:true,
 					dataType:"json",
 					data: addressInfo,
@@ -160,7 +177,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/order.json",
+			url:"/order/preOrder",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -225,6 +242,13 @@ $(document).ready(function(){
    		
     }) 
 
+	/*
+	 * 搜索
+	 */
+	$("#ai-topsearch").click(()=>{
+		var info = $("#searchInput").val();
+		window.open("search.html?info=" + info);
+	})
 	
 	<!--兼容IE浏览器 -->
 	if (!document.getElementsByClassName) {
@@ -291,14 +315,14 @@ $(document).ready(function(){
 		var area = $("#u-area").val();
 		var address = $("#u-address").val();
 		
-		var addressInfo = {
+		var Address = {
 			"name": name,
 			"phone": phone,
 			"postCode": code,
 			"province": province,
 			"city": city,
-			"area": area,
-			"address": address
+			"street": area,
+			"addressDetail": address
 		}
 		
 		var pattern1 = /^\d{6}$/;
@@ -319,7 +343,7 @@ $(document).ready(function(){
 		else{
 			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/user/addAddress",
 				async:true,
 				dataType:"json",
 				data: addressInfo,
@@ -359,6 +383,7 @@ $(document).ready(function(){
 		var status = 2;
 		var oneprice = $("#onePrice").text();
 		var postage = $("#postage").text();
+		var gid = $("#gbId").text();
 		
 		var Order = {
 			"skuId": sku,
@@ -367,7 +392,8 @@ $(document).ready(function(){
 			"num": num,
 			"orderStatus": status,
 			"price": oneprice,
-			"postfee": postage
+			"postfee": postage,
+			"gbId": gid
 		}
 		
 		$.ajax({
@@ -398,6 +424,7 @@ $(document).ready(function(){
 		var status = 1;
 		var oneprice = $("#onePrice").text();
 		var postage = $("#postage").text();
+		var gid = $("#gbId").text();
 		
 		var orderInfo = {
 			"skuId": sku,
@@ -406,7 +433,8 @@ $(document).ready(function(){
 			"num": num,
 			"orderStatus": status,
 			"price": oneprice,
-			"postfee": postage
+			"postfee": postage,
+			"gbId": gid
 		}
 		
 		$.ajax({

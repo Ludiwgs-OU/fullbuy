@@ -33,7 +33,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/today.json",
+			url:"/product/displayByPosttime",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -57,7 +57,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/sales.json",
+			url:"/sales/displayRecommend",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -105,7 +105,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -146,7 +146,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
