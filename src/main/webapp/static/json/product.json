@@ -13,7 +13,7 @@
 	"evaluation": "640",
 	"item1": "口味",
 	"item2": "包装",
-	"itemtype1": [ 
+	"itemtype1": [
 	    {
 	    	"itemName": "原味",
 	    	"itemId": "1"

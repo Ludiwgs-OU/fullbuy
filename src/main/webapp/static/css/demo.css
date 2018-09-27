@@ -403,3 +403,7 @@ background:url(../images/ibar_sprites.png) no-repeat;background-position:0px -23
 a{
 	cursor: pointer;
 }
+
+#ai-topsearch{
+	outline: none;
+}

@@ -9,7 +9,7 @@
             overflowToDisk="true"
             timeToIdleSeconds="60"
             timeToLiveSeconds="60"
-            diskPersistent="false"
+            diskPersistent="true"
             memoryStoreEvictionPolicy="LRU"
             diskExpiryThreadIntervalSeconds="120"/>
     <!--

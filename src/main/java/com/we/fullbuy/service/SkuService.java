@@ -11,5 +11,7 @@ public interface SkuService {
     Sku showSku(int skuId);
     /*更新Sku*/
     int updateSku(Sku sku);
+    /*获取价格*/
+    Sku getPrice(int productId, int itemId, int secondItemId);
 
 }

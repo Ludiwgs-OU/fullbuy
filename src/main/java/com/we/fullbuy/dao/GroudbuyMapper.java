@@ -24,4 +24,6 @@ public interface GroudbuyMapper {
     List<Groudbuy> searchGroudbuy(String keyword);
     /*显示所有团购*/
     List<Groudbuy> showAllGroudbuy();
+    /*商品团购详情*/
+    Groudbuy showGroudbuyDetail(Integer productid);
 }

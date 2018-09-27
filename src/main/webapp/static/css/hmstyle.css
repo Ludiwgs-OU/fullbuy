@@ -840,3 +840,26 @@ filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#f8c375',endCo
 	top: 20px;
 	height: 100px;
 }
+
+.profile{
+	float: left;
+	width: 150px;
+	margin-left: 40%;
+	margin-bottom: 20px;
+}
+
+.profile img{
+	width: 100px;
+	height: 100px;
+}
+
+.name{
+	margin-top: 10px;
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+.introduction{
+	font-size: 17px;
+	margin-top: 20px;
+}

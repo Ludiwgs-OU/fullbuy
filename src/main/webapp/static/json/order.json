@@ -10,5 +10,6 @@
 	"price2": "88.88",
 	"status": "2",
 	"postage": "6.00",
-	"skuId": "123"
+	"skuId": "123",
+	"gbId": "ss"
 }

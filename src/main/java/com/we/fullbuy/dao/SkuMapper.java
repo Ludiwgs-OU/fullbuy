@@ -17,4 +17,8 @@ public interface SkuMapper {
 
     int updateByPrimaryKey(Sku record);
 
+    /*new*/
+    /*获取价格*/
+    Sku getPrice(Integer productId, Integer itemId, Integer secondItemId);
+
 }

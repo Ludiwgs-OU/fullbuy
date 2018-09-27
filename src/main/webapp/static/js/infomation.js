@@ -21,7 +21,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -31,6 +31,23 @@ new Vue({
 				alert("获取数据失败！");
 			},
 		});
+   	},
+   	methods: {
+   		logout: function(){
+   			$.ajax({
+				type:"get",
+				url:"/sys/logout",
+				async:true,
+				dataType:"json",
+				success:function(result){
+					alert(result);
+					window.reload();
+				},
+				error:function(result){
+					alert("获取数据失败！");
+				},
+			});
+   		}
    	}
 })
 
@@ -45,7 +62,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/userinfo.json",
+			url:"/user/displayUserDetail",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -60,6 +77,14 @@ new Vue({
 
 $(document).ready(()=>{
 	
+	/*
+	 * 搜索
+	 */
+	$("#ai-topsearch").click(()=>{
+		var info = $("#searchInput").val();
+		window.open("search.html?info=" + info);
+	})
+	
 	$("#changeInfo").click(()=>{
 		var name = $("#user-name2").val();
 		var sex = $("input[name='radio']:checked").val();
@@ -68,7 +93,7 @@ $(document).ready(()=>{
 		
 		var info = {
 			"userName": name,
-			"Sex": sex,
+			"sex": sex,
 			"userPhone": phone,
 			"userEmail": email
 		}
@@ -76,7 +101,7 @@ $(document).ready(()=>{
 		
 		$.ajax({
 			type:"post",
-			url:"#",
+			url:"/user/modifyUser",
 			async:true,
 			dataType:"json",
 			data: info,
@@ -97,11 +122,11 @@ $(document).ready(()=>{
 	    
 		$.ajax({
             type: "post",
-            url: "#",
+            url: "/user/modifyUserProfile",
             contentType: false,
             processData: false,
             data: {
-            	"userprofile": imgUrl
+            	"userProfile": imgUrl
             },
             success: function(result){
             	alert(result);
@@ -119,8 +144,8 @@ $(document).ready(()=>{
 		var rePwd = $("#user-confirm-password").val();
 		
 		var pwd = {
-			"oldPwd": oldpwd,
-			"newPwd": newPwd
+			"oldPaaword": oldpwd,
+			"newPaaword": newPwd
 		}
 		
 		if(newPwd != rePwd){
@@ -129,7 +154,7 @@ $(document).ready(()=>{
 		else{
 			$.ajax({
 	            type:"post",
-				url:"#",
+				url:"/user/modifyPassword",
 				async:true,
 				dataType:"json",
 				data: pwd,

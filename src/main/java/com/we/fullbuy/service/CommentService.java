@@ -13,4 +13,6 @@ public interface CommentService {
     List<Comment> searchComment(String keyword);
     /*查看商品评论*/
     List<Comment> showProductComment(int productId);
+    /*我的评论*/
+    List<Comment> CommentWithOrder(int userId);
 }

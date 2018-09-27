@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,12 +11,12 @@
 		<div class="am-container header" id="headerNav">
 			<ul class="message-l">
 				<div class="topMessage">
-					<div class="menu-hd" v-if="!site.user">
+					<div class="menu-hd" v-if="!site.userName">
 						<a href="login.html?type=1" target="_top" class="h">会员登录</a>
 						<a href="login.html?type=2" target="_top">商家登录</a>
 					</div>
-					<div class="menu-hd" v-if="site.user">
-						<a target="_top" id="logout">会员注销</a>
+					<div class="menu-hd" v-if="site.userName">
+						<a target="_top" id="logout" @click="logout">会员注销</a>
 					</div>
 				</div>
 			</ul>
@@ -24,10 +24,10 @@
 				<div class="topMessage home">
 					<div class="menu-hd"><a href="home.html" target="_top" class="h">商城首页</a></div>
 				</div>
-				<div class="topMessage my-shangcheng" v-if="site.user">
+				<div class="topMessage my-shangcheng" v-if="site.userName">
 					<div class="menu-hd MyShangcheng"><a href="personalcenter.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 				</div>
-				<div class="topMessage favorite" v-if="site.user">
+				<div class="topMessage favorite" v-if="site.userName">
 					<div class="menu-hd"><a href="collection.html" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 				</div>
 			</ul>
@@ -75,8 +75,8 @@
 									<span class="buy--address-detail">
 								   		<span class="buy-province">{{ site.province }}</span>
 										<span class="buy-city">{{ site.city }}</span>
-										<span class="buy-area">{{ site.area }}</span>
-										<span class="buy-address">{{ site.address }}</span>
+										<span class="buy-area">{{ site.street }}</span>
+										<span class="buy-address">{{ site.addressDetail }}</span>
 										<span class="buy-addressid" style="display: none;">{{ site.addressId }}</span>
 									</span>
 								</div>
@@ -124,14 +124,14 @@
 										<div data-toggle="distpicker">
 		  									<select id="u-province">{{ info.province }}</select>
 		 									<select id="u-city">{{ info.city }}</select>
-		  									<select id="u-area">{{ info.area }}</select>
+		  									<select id="u-area">{{ info.street }}</select>
 										</div>
 									</div>
 								</div>
 								<div class="am-form-group">
 									<label class="am-form-label">详细地址</label>
 									<div class="am-form-content">
-										<textarea rows="3" id="u-address" :value="info.address" ></textarea>
+										<textarea rows="3" id="u-address" :value="info.addressDetail" ></textarea>
 										<small>100字以内写出你的详细地址...</small>
 									</div>
 								</div>
@@ -188,6 +188,7 @@
 													<a :href="'introduction.html?pid=' + site.productId" target="_blank" class="item-title J_MakePoint" data-point="tbcart.8.11">
 														{{ site.productName }}
 													</a>
+													<span id="gbId" style="display: none;">{{ site.gbId }}</span>
 												</div>
 											</div>
 										</li>

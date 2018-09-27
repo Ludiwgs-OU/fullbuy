@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
@@ -12,13 +12,12 @@
 		<div class="am-container header" id="headerNav">
 			<ul class="message-l">
 				<div class="topMessage">
-					<p id="userName" style="display: none;">{{ site.user }}</p>
-					<div class="menu-hd" v-if="!site.user">
+					<div class="menu-hd" v-if="!site.userName">
 						<a href="login.html?type=1" target="_top" class="h">会员登录</a>
 						<a href="login.html?type=2" target="_top">商家登录</a>
 					</div>
-					<div class="menu-hd" v-if="site.user">
-						<a target="_top" id="logout">会员注销</a>
+					<div class="menu-hd" v-if="site.userName">
+						<a target="_top" id="logout" @click="logout">会员注销</a>
 					</div>
 				</div>
 			</ul>
@@ -26,10 +25,10 @@
 				<div class="topMessage home">
 					<div class="menu-hd"><a href="home.html" target="_top" class="h">商城首页</a></div>
 				</div>
-				<div class="topMessage my-shangcheng" v-if="site.user">
+				<div class="topMessage my-shangcheng" v-if="site.userName">
 					<div class="menu-hd MyShangcheng"><a href="personalcenter.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 				</div>
-				<div class="topMessage favorite" v-if="site.user">
+				<div class="topMessage favorite" v-if="site.userName">
 					<div class="menu-hd"><a href="collection.html" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 				</div>
 			</ul>
@@ -54,21 +53,21 @@
 				<div class="box">
 					<div class="tb-booth tb-pic tb-s310">
 						<a>
-							<img :src="site.img1_m" alt="细节展示放大镜特效" :rel="site.img1_l" class="jqzoom" />
+							<img :src="site.mImgPath1" alt="细节展示放大镜特效" :rel="site.bImgPath1" class="jqzoom" />
 						</a>
 					</div>
 					<ul class="tb-thumb" id="thumblist">
 						<li class="tb-selected">
 							<div class="tb-pic tb-s40">
 								<a>
-									<img :src="site.img1_s" :mid="site.img1_m" :big="site.img1_l">
+									<img :src="site.sImgPath1" :mid="site.mImgPath1" :big="site.bImgPath1">
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="tb-pic tb-s40">
 								<a>
-									<img :src="site.img2_s" :mid="site.img2_m" :big="site.img2_l">
+									<img :src="site.sImgPath2" :mid="site.mImgPath2" :big="site.bImgPath2">
 								</a>
 							</div>
 						</li>
@@ -86,7 +85,7 @@
 					<div class="tb-detail-price">
 						<li class="price iteminfo_price">
 							<dt>原价</dt>
-							<dd><em>¥</em><b class="sys_item_price" id="price">{{ site.price }}</b></dd>                                 
+							<dd><em>¥</em><b class="sys_item_price" id="price">{{ site.price }}</b></dd>
 						</li>
 						<li class="price iteminfo_mktprice">
 							<dt>店铺</dt>
@@ -96,10 +95,10 @@
 					<!--销量-->
 					<ul class="tm-ind-panel">
 						<li class="tm-ind-item tm-ind-sumCount canClick">
-							<div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">{{ site.sale }}</span></div>
+							<div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">{{ site.salesNum }}</span></div>
 						</li>
 						<li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
-							<div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">{{ site.evaluation }}</span></div>
+							<div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">{{ site.commentNum }}</span></div>
 						</li>
 					</ul>
 					<!--各种规格-->
@@ -114,16 +113,16 @@
 											<div class="theme-options">
 												<div class="cart-title">{{ site.item1 }}</div>
 												<ul class="dowebok">
-													<li v-for="(item,index) in site.itemtype1">
-														<input type="radio" name="item1" :value="item.itemId" :data-labelauty="item.itemName">
+													<li v-for="(item,index) in site.item" :key="index">
+														<input class="initem" type="radio" name="item1" :value="item.itemId" :data-labelauty="item.itemName">
 													</li>
 												</ul>
 											</div>
 											<div class="theme-options">
 												<div class="cart-title">{{ site.item2 }}</div>
 												<ul class="dowebok">
-													<li v-for="(item,index) in site.itemtype2">
-														<input type="radio" name="item2" :value="item.itemId" :data-labelauty="item.itemName">
+													<li v-for="(item,index) in site.secondItem" :key="index">
+														<input class="initem" type="radio" name="item2" :value="item.secondItemId" :data-labelauty="item.secondItemName">
 													</li>
 												</ul>
 											</div>
@@ -136,7 +135,7 @@
 													<input id="min" class="am-btn am-btn-default" name="" type="button" value="-" />
 													<input id="text_box" name="" type="text" value="1" style="width:30px;" />
 													<input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
-													<span id="Stock" class="tb-hidden">库存<span id="stock" class="stock">{{ site.stock }}</span>件</span>
+													<span id="Stock" class="tb-hidden">库存<span id="stock" class="stock">{{ site.quantity }}</span>件</span>
 												</dd>
 											</div>
 										</div>
@@ -149,10 +148,10 @@
 					<div class="shopPromotion gold">
 						<div class="hot">
 							<dt class="tb-metatit">活动</dt>
-							<div class="gold-list" v-if="site.status == 2">
+							<div class="gold-list" v-if="site.productStatus == 2">
 								<p>此商品正在举行团购活动</p>
 							</div>
-							<div class="gold-list" v-if="site.status == 1">
+							<div class="gold-list" v-if="site.productStatus == 1">
 								<p>此商品暂无团购活动</p>
 							</div>
 						</div>
@@ -161,7 +160,7 @@
 
 				<div class="pay">
 					<li>
-						<div class="clearfix tb-btn tb-btn-buy theme-login" v-if="site.status == 2">
+						<div class="clearfix tb-btn tb-btn-buy theme-login" v-if="site.productStatus == 2">
 							<a id="LikBuy">前往团购页面</a>
 						</div>
 					</li>
@@ -247,22 +246,23 @@
 								<h4>商品细节</h4>
 							</div>
 							<div class="twlistNews" id="introductionImg">
-								<img v-for="site in sites" :src="site.img" />
+								<img :src="site.DetailImgPath1" />
+								<img :src="site.DetailImgPath2" />
 							</div>
 						</div>
 					</div>
 					<div class="am-tab-panel am-fade" id="commentDetail">
 						<ul class="am-comments-list am-comments-list-flip">
-							<li class="am-comment" v-for="site in sites.commentInfo">
+							<li class="am-comment" v-for="site in sites.CommentList">
 								<a>
-									<img class="am-comment-avatar" :src="site.avatar" />
+									<img class="am-comment-avatar" :src="site.userProfile" />
 								</a>
 								<div class="am-comment-main">
 									<header class="am-comment-hd">
 										<div class="am-comment-meta">
 											<a href="#link-to-user" class="am-comment-author">{{ site.userName }}</a>
 												评论于
-											<time >{{ site.time }}</time>
+											<time >{{ site.commentTime }}</time>
 										</div>
 									</header>
 									<div class="am-comment-bd">
@@ -276,7 +276,7 @@
 											</div>
 											<br />
 											<div class="tb-r-act-bar">
-												{{ site.itemName1 }}：{{ site.item1 }}&nbsp;&nbsp;{{ site.itemName2 }}：{{ site.item2 }}
+												{{ site.item1 }}：{{ site.item2 }}&nbsp;&nbsp;{{ site.itemName }}：{{ site.secondItemName }}
 											</div>
 										</div>
 									</div>
@@ -288,7 +288,7 @@
 							<li><a id="lastPage" @click="lastPage">上一页</a></li>
 							第<span id="nowPage">1</span>页
 							<li><a id="nextPage" @click="nextPage">下一页</a></li>
-							共<span id="pageNum">{{ sites.pageNum }}</span>页
+							共<span id="pageNum">{{ sites.totalPage }}</span>页
 						</ul>
 					</div>
 				</div>
@@ -304,17 +304,17 @@
 							<span class="setting"></span>
 						</a>
 						<div class="ibar_login_box status_login">
-							<div class="avatar_box" v-if="site.user">
-								<p class="avatar_imgbox"><img :src="site.img" /></p>
+							<div class="avatar_box" v-if="site.userName">
+								<p class="avatar_imgbox"><img :src="site.userProfile" /></p>
 								<ul class="user_info">
-									<li>用户名：{{site.user}}</li>
-									<li>级&nbsp;别：{{site.level}}</li>
+									<li>用户名：{{site.userName}}</li>
+									<li>级&nbsp;别：{{site.userType}}</li>
 								</ul>
 							</div>
-							<div class="avatar_box" v-if="!site.user">
+							<div class="avatar_box" v-if="!site.userName">
 								<a href="login.html?type=1">欢迎，请登录</a>
 							</div>
-							<div class="login_btnbox" v-if="site.user">
+							<div class="login_btnbox" v-if="site.userName">
 								<a href="order.html" class="login_order">我的订单</a>
 								<a href="collection.html" class="login_favorite">我的收藏</a>
 							</div>
@@ -332,7 +332,7 @@
 					
 					<div class="quick_toggle">
 						<li class="qtitem">
-							<a href="#"><span class="kfzx"></span></a>
+							<a href=""><span class="kfzx"></span></a>
 							<div class="mp_tooltip">客服中心<i class="icon_arrow_right_black"></i></div>
 						</li>
 						<li class="qtitem">

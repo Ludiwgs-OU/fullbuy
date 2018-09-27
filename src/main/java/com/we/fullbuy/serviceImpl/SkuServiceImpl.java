@@ -34,4 +34,9 @@ public class SkuServiceImpl implements SkuService {
     public int updateSku(Sku sku) {
         return skuMapper.updateByPrimaryKeySelective(sku);
     }
+
+    @Override
+    public Sku getPrice(int productId, int itemId, int secondItemId) {
+        return skuMapper.getPrice(productId,itemId,secondItemId);
+    }
 }

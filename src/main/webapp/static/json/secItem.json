@@ -1,0 +1,30 @@
+[
+ 	{
+ 		"secondCategoryId": "1",
+		"secondCategoryName": "衬衫"
+ 	},
+ 	{
+ 		"secondCategoryId": "2",
+		"secondCategoryName": "夹克"
+ 	},
+ 	{
+ 		"secondCategoryId": "3",
+		"secondCategoryName": "西服"
+ 	},
+ 	{
+ 		"secondCategoryId": "4",
+		"secondCategoryName": "裤子"
+ 	},
+ 	{
+ 		"secondCategoryId": "5",
+		"secondCategoryName": "风衣"
+ 	},
+ 	{
+ 		"secondCategoryId": "6",
+		"secondCategoryName": "内裤"
+ 	},
+ 	{
+ 		"secondCategoryId": "7",
+		"secondCategoryName": "袜子"
+ 	}
+]

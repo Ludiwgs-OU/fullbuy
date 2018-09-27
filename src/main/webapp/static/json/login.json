@@ -1,5 +1,5 @@
 {
-	"user": "区嘉浩",
-	"level": "黄金会员",
-	"img": "../static/images/5.jpg"
+	"userName": "区嘉浩",
+	"userType": "黄金会员",
+	"userProfile": "../static/images/5.jpg"
 }

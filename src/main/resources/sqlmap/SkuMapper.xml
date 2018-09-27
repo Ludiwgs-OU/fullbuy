@@ -133,4 +133,11 @@
     from sku s,item i,seconditem si
     where skuId = #{skuid,jdbcType=INTEGER} and s.itemId = i.itemId and s.secondItemId = si.secondItemId
   </select>
+
+  <select id="getPrice" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from sku
+    where productId = #{sproductid,jdbcType=INTEGER} and itemId = #{itemid,jdbcType=INTEGER} and
+          secondItemId = #{seconditemid,jdbcType=INTEGER}
+  </select>
 </mapper>

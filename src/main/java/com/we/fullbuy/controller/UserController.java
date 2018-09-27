@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -44,6 +45,14 @@ public class UserController {
                 if(user.getPassword().equals(cpassword))
                 {
                     session.setAttribute("userId",user.getUserid());
+                    session.setAttribute("userName",user.getUsername());
+                    String userType;
+                    if(user.getUsertype()==1)
+                        userType="高级会员";
+                    else
+                        userType="普通会员";
+                    session.setAttribute("userType",userType);
+                    session.setAttribute("userProfile",user.getUserprofile());
                     return "登录成功，欢迎回来"+user.getUsername();//登录成功
                 }
 
@@ -85,14 +94,51 @@ public class UserController {
     //修改个人信息
     @RequestMapping("/modifyUser")
     @ResponseBody
-    public Boolean modifyUser(@RequestBody User user, HttpSession session)
+    public String modifyUser(@RequestBody User user, HttpSession session)
     {
         user.setUserid((int)session.getAttribute("userId"));
 
         if (userService.modifyUser(user)!=0)
-            return true;
+            return "修改个人信息成功";
         else
-            return false;
+            return "修改个人信息失败";
+    }
+
+    //修改头像
+    @RequestMapping("/modifyUserProfile")
+    @ResponseBody
+    public String modifyUserProfile(@RequestParam("userProfile") String userProfile, HttpSession session)
+    {
+        User user = new User();
+        user.setUserid((int)session.getAttribute("userId"));
+        user.setUserprofile(userProfile);
+        if (userService.modifyUser(user)!=0)
+            return "修改个人头像成功";
+        else
+            return "修改个人头像成功";
+    }
+
+    //修改密码
+    @RequestMapping("/modifyPassword")
+    @ResponseBody
+    public String modifyPassword(@RequestParam("oldPaaword") String oldPassword,
+                                 @RequestParam("newPaaword") String newPassword,
+                                 HttpSession session)
+    {
+
+        User user = userService.displayUserDetail((int)session.getAttribute("userId"));
+        String cpassword = MD5Util.md5(oldPassword);
+        if(user.getPassword()==cpassword)
+        {
+            user.setPassword(MD5Util.md5(newPassword));
+            if (userService.modifyUser(user)!=0)
+                return "修改密码成功，记得保存好哦";
+            else
+                return "修改密码失败";
+        }
+        else
+            return "旧密码错误哦";
+
     }
 
     //显示用户收货地址
@@ -115,35 +161,35 @@ public class UserController {
     //添加收货地址
     @RequestMapping("/addAddress")
     @ResponseBody
-    public boolean addAddress(@RequestBody Address address, HttpSession session)
+    public String addAddress(@RequestBody Address address, HttpSession session)
     {
         address.setUserid((int)session.getAttribute("userId"));
         if(addressService.addAddress(address)!=0)
-            return true;
+            return "添加收货地址成功";
         else
-            return false;
+            return "添加收货地址失败";
     }
 
     //修改收货地址
     @RequestMapping("/modifyAddress")
     @ResponseBody
-    public boolean modifyAddress(@RequestBody Address address)
+    public String modifyAddress(@RequestBody Address address)
     {
         if(addressService.modifyAddress(address)!=0)
-            return true;
+            return "修改收货地址成功";
         else
-            return false;
+            return "修改收货地址失败";
     }
 
     //删除收货地址
     @RequestMapping("/deleteAddress")
     @ResponseBody
-    public boolean deleteAddress(@RequestParam("addressId") int addressId)
+    public String deleteAddress(@RequestParam("addressId") int addressId)
     {
         if(addressService.deleteAddress(addressId)!=0)
-            return true;
+            return "删除收货地址成功";
         else
-            return false;
+            return "删除收货地址成功";
     }
 
 

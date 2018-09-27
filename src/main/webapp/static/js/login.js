@@ -42,7 +42,7 @@ $(document).ready(()=>{
 		else{
 			$.ajax({
 				type:"post",
-				url:"/user/login",
+				url:"/sys/login",
 				async:true,
 				dataType:"json",
 				data: passLogin,

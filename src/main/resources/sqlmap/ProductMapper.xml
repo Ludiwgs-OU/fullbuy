@@ -9,6 +9,7 @@
     <result column="productScore" jdbcType="INTEGER" property="productscore" />
     <result column="salesNum" jdbcType="INTEGER" property="salesnum" />
     <result column="categoryId" jdbcType="INTEGER" property="categoryid" />
+    <result column="secondCategoryId" jdbcType="INTEGER" property="secondcategoryid" />
     <result column="salesId" jdbcType="INTEGER" property="salesid" />
     <result column="postTime" jdbcType="TIMESTAMP" property="posttime" />
     <result column="productStatus" jdbcType="INTEGER" property="productstatus" />
@@ -26,7 +27,7 @@
     <result column="postfee" jdbcType="INTEGER" property="postfee" />
   </resultMap>
   <sql id="Base_Column_List">
-    productId, productName, productDetail, productScore, salesNum, categoryId, salesId, 
+    productId, productName, productDetail, productScore, salesNum, categoryId, secondCategoryId, salesId,
     postTime, productStatus, searchImgPath, sImgPath1, sImgPath2, mImgPath1, mImgPath2, 
     bImgPath1, bImgPath2, DetailImgPath1, DetailImgPath2, item1, item2, postfee
   </sql>
@@ -42,7 +43,7 @@
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Product">
     insert into product (productId, productName, productDetail, 
-      productScore, salesNum, categoryId, 
+      productScore, salesNum, categoryId, secondCategoryId,
       salesId, postTime, productStatus, 
       searchImgPath, sImgPath1, sImgPath2, 
       mImgPath1, mImgPath2, bImgPath1, 
@@ -50,7 +51,7 @@
       item1, item2, postfee
       )
     values (#{productid,jdbcType=INTEGER}, #{productname,jdbcType=VARCHAR}, #{productdetail,jdbcType=VARCHAR}, 
-      #{productscore,jdbcType=INTEGER}, #{salesnum,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, 
+      #{productscore,jdbcType=INTEGER}, #{salesnum,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, #{secondcategoryid,jdbcType=INTEGER},
       #{salesid,jdbcType=INTEGER}, #{posttime,jdbcType=TIMESTAMP}, #{productstatus,jdbcType=INTEGER}, 
       #{searchimgpath,jdbcType=VARCHAR}, #{simgpath1,jdbcType=VARCHAR}, #{simgpath2,jdbcType=VARCHAR}, 
       #{mimgpath1,jdbcType=VARCHAR}, #{mimgpath2,jdbcType=VARCHAR}, #{bimgpath1,jdbcType=VARCHAR}, 
@@ -78,6 +79,9 @@
       </if>
       <if test="categoryid != null">
         categoryId,
+      </if>
+      <if test="secondcategoryid != null">
+        secondCategoryId,
       </if>
       <if test="salesid != null">
         salesId,
@@ -144,6 +148,9 @@
       <if test="categoryid != null">
         #{categoryid,jdbcType=INTEGER},
       </if>
+      <if test="secondcategoryid != null">
+        #{secondcategoryid,jdbcType=INTEGER},
+      </if>
       <if test="salesid != null">
         #{salesid,jdbcType=INTEGER},
       </if>
@@ -209,6 +216,9 @@
       <if test="categoryid != null">
         categoryId = #{categoryid,jdbcType=INTEGER},
       </if>
+      <if test="SECONDcategoryid != null">
+        secondCategoryId = #{secondcategoryid,jdbcType=INTEGER},
+      </if>
       <if test="salesid != null">
         salesId = #{salesid,jdbcType=INTEGER},
       </if>
@@ -264,6 +274,7 @@
       productScore = #{productscore,jdbcType=INTEGER},
       salesNum = #{salesnum,jdbcType=INTEGER},
       categoryId = #{categoryid,jdbcType=INTEGER},
+      secondCategoryId = #{secondcategoryid,jdbcType=INTEGER},
       salesId = #{salesid,jdbcType=INTEGER},
       postTime = #{posttime,jdbcType=TIMESTAMP},
       productStatus = #{productstatus,jdbcType=INTEGER},
@@ -307,5 +318,46 @@
     select p.*,s.*,i.*,si.*
     from product p, sku s, item i, seconditem si
     where p.productId = #{productid,jdbcType=INTEGER} and s.productId = p.productId and s.itemId = i.itemId and s.secondItemId = si.secondItemId
+  </select>
+
+  <select id="searchBySkuId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select p.*,s.*
+    from product p, sku s
+    where s.skuId = #{skuid,jdbcType=INTEGER} and p.productId = s.productId
+  </select>
+
+  <select id="displayBySalesnum" resultMap="BaseResultMap">
+    select *
+    from product
+    order by salesNum desc limit 12
+  </select>
+
+  <select id="displayByScore" resultMap="BaseResultMap">
+    select *
+    from product
+    order by productScore desc
+  </select>
+
+  <select id="displayByPosttime" resultMap="BaseResultMap">
+    select *
+    from product
+    order by posttime desc limit 3
+  </select>
+
+  <select id="detailImgPth" resultMap="BaseResultMap">
+    select DetailImgPath1,DetailImgPath2
+    from product
+    where productId = #{productid,jdbcType=INTEGER}
+  </select>
+
+  <select id="relatedProduct" resultMap="BaseResultMap">
+    SELECT *
+	FROM product
+	WHERE categoryId IN
+	(
+		SELECT categoryId
+		FROM prodcuct
+		WHERE productId = #{productid,jdbcType=INTEGER}
+	)
   </select>
 </mapper>

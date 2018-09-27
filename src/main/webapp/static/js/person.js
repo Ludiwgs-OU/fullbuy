@@ -28,6 +28,7 @@ $(document).ready(()=>{
 	})
 	
 })
+
 new Vue({
 	el: '#headerNav',
 	data:function(){
@@ -39,7 +40,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -49,6 +50,23 @@ new Vue({
 				alert("获取数据失败！");
 			},
 		});
+   	},
+   	methods: {
+   		logout: function(){
+   			$.ajax({
+				type:"get",
+				url:"/sys/logout",
+				async:true,
+				dataType:"json",
+				success:function(result){
+					alert(result);
+					window.reload();
+				},
+				error:function(result){
+					alert("获取数据失败！");
+				},
+			});
+   		}
    	}
 })
 
@@ -64,7 +82,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"post",
-			url:"../static/json/orderinfo.json",
+			url:"/order/displayOrderDetail",
 			async:true,
 			dataType:"json",
 			data: {
@@ -82,7 +100,7 @@ new Vue({
    		refund: function(id){
    			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/order/refund",
 				async:true,
 				dataType:"json",
 				data: {
@@ -99,7 +117,7 @@ new Vue({
    		returned: function(id){
    			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/order/refund",
 				async:true,
 				dataType:"json",
 				data: {
@@ -116,7 +134,7 @@ new Vue({
    		pay: function(id){
    			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/order/pay",
 				async:true,
 				dataType:"json",
 				data: {
@@ -136,7 +154,7 @@ new Vue({
    		receipt: function(id){
    			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/order/confirm",
 				async:true,
 				dataType:"json",
 				data: {
@@ -153,7 +171,7 @@ new Vue({
    		dele: function(id){
    			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/order/deleteOrder",
 				async:true,
 				dataType:"json",
 				data: {
@@ -185,7 +203,7 @@ new Vue({
 				imgUrl = "";
 			}
 			
-   			var evaluation = {
+   			var Comment = {
    				"commentDetail": eval,
    				"productId": pid,
    				"orderId": oid,
@@ -193,7 +211,7 @@ new Vue({
    			}
    			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/comment/addComment",
 				async:true,
 				dataType:"json",
 				data: evaluation,

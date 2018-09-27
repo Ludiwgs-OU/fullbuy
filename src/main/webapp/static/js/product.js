@@ -14,28 +14,71 @@ $(document).ready(function() {
 		 * 单选框初始化
 		 */
 		$(':input').labelauty();
+		
+		/*
+		 * 搜索
+		 */
+		$("#ai-topsearch").click(()=>{
+			var info = $("#searchInput").val();
+			window.open("search.html?info=" + info);
+		})
+		
 		/*
 		 * 动态显示价格
 		 */
-		$("input:radio").click(()=>{
+		$(".initem").click(()=>{
 			var item1 = $("input[name='item1']:checked").val();
 			var item2 = $("input[name='item2']:checked").val();
+			var pid = getUrlParam('pid');
 			
 			var item = {
-				"item1": item1,
-				"item2": item2
+				"productId": pid,
+				"itemId": item1,
+				"secondItemId": item2,
+				"type": 0
 			}
 			
 			if(item1 && item2){
 				$.ajax({
 					type:"post",
-					url:"#",
+					url:"/product/getPrice",
 					async:true,
 					dataType:"json",
 					data: item,
 					success:function(result){
 						document.getElementById("price").innerHTML = result.price;
-						document.getElementById("stock").innerHTML = result.stock;
+						document.getElementById("stock").innerHTML = result.quantity;
+						document.getElementById("skuId").innerHTML = result.skuId;
+					},
+					error:function(result){
+						alert("获取数据失败！");
+					},
+				});
+			}
+		})
+		
+		$(".gbitem").click(()=>{
+			var item1 = $("input[name='item1']:checked").val();
+			var item2 = $("input[name='item2']:checked").val();
+			var pid = getUrlParam('pid');
+			
+			var item = {
+				"productId": pid,
+				"itemId": item1,
+				"secondItemId": item2,
+				"type": 1
+			}
+			
+			if(item1 && item2){
+				$.ajax({
+					type:"post",
+					url:"/product/getPrice",
+					async:true,
+					dataType:"json",
+					data: item,
+					success:function(result){
+						document.getElementById("price").innerHTML = result.price;
+						document.getElementById("stock").innerHTML = result.quantity;
 						document.getElementById("skuId").innerHTML = result.skuId;
 					},
 					error:function(result){
@@ -70,6 +113,7 @@ $(document).ready(function() {
 		var sku = $("#skuId").text();
 		var num = $("#text_box").val();
 		var user = $("#userName").text();
+		var price1 = $("#price").text();
 		
 		if(!sku){
 			alert("请选择规格！");
@@ -78,19 +122,19 @@ $(document).ready(function() {
 			alert("请先登录！");
 		}
 		else{
-			var buy = {
-				"skuId": sku,
-				"num": num
-			}
-		
 			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/order/checkOrder",
 				async:true,
 				dataType:"json",
-				data: buy,
+				data: {
+					"skuId": sku,
+					"num": num,
+					"price": price1,
+					"gbId": ""
+				},
 				success:function(result){
-					window.location.href = "pay.html?oid="+result+"&type=1";
+					window.location.href = "pay.html?type=1";
 				},
 				error:function(inf){
 					alert("获取数据失败！");
@@ -104,7 +148,8 @@ $(document).ready(function() {
 	 */
 	$('#groupBuy').click(()=>{
 		var sku = $("#skuId").text();
-		var gid = getUrlParam('gid');
+		var gid = $("#gbId").text();
+		var price1 = $("#price").text();
 		var user = $("#userName").text();
 		
 		if(!sku){
@@ -116,17 +161,19 @@ $(document).ready(function() {
 		else{
 			var buy = {
 				"skuId": sku,
-				"groupbuyId": gid
+				"num": 1,
+				"price": price1,
+				"gbId": gid
 			}
 		
 			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/order/checkOrder",
 				async:true,
 				dataType:"json",
 				data: buy,
 				success:function(result){
-					window.location.href = "pay.html?oid="+result+"&type=2";
+					window.location.href = "pay.html?type=2";
 				},
 				error:function(inf){
 					alert("获取数据失败！");
@@ -149,7 +196,7 @@ $(document).ready(function() {
 		else{
 			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/user/addFavor",
 				async:true,
 				dataType:"json",
 				data: {
@@ -163,25 +210,6 @@ $(document).ready(function() {
 				},
 			});
 		}
-	})
-	
-	/*
-	 * 注销
-	 */
-	$("#logout").click(()=>{
-		$.ajax({
-			type:"post",
-			url:"#",
-			async:true,
-			dataType:"json",
-			success:function(result){
-				alert(result);
-				window.reload();
-			},
-			error:function(result){
-				alert("获取数据失败！");
-			},
-		});
 	})
 	
 });
@@ -201,7 +229,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -211,6 +239,23 @@ new Vue({
 				alert("获取数据失败！");
 			},
 		});
+   	},
+   	methods: {
+   		logout: function(){
+   			$.ajax({
+				type:"get",
+				url:"/sys/logout",
+				async:true,
+				dataType:"json",
+				success:function(result){
+					alert(result);
+					window.reload();
+				},
+				error:function(result){
+					alert("获取数据失败！");
+				},
+			});
+   		}
    	}
 })
 
@@ -229,7 +274,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -258,7 +303,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"post",
-			url:"../static/json/product.json",
+			url:"/product/displayProductDetailWithSku",
 			async:true,
 			dataType:"json",
 			data: {
@@ -289,7 +334,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/explosion.json",
+			url:"/product/relatedProduct",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -309,7 +354,7 @@ new Vue({
 	el: '#introductionImg',
 	data:function(){
    		return {
-   			sites: ""
+   			site: ""
    	 	}
  	},
 	created: function(){
@@ -317,14 +362,14 @@ new Vue({
     	var pid = getUrlParam('pid');
    		$.ajax({
 			type:"get",
-			url:"../static/json/introductionImg.json",
+			url:"/product/detailImgPth",
 			async:true,
 			dataType:"json",
 			data: {
 				"productId": pid
 			},
 			success:function(inf){
-				self.sites = inf;
+				self.site = inf;
 			},
 			error:function(inf){
 				alert("获取数据失败！");
@@ -348,7 +393,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"post",
-			url:"../static/json/comment.json",
+			url:"/comment/showProductComment",
 			async:true,
 			dataType:"json",
 			data: {
@@ -439,7 +484,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"post",
-			url:"../static/json/groupbuy.json",
+			url:"/groudbuy/displayGroudbuyDetail",
 			async:true,
 			dataType:"json",
 			data: {

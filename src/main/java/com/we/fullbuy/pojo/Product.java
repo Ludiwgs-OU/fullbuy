@@ -17,6 +17,8 @@ public class Product implements Serializable {
 
     private Integer categoryid;
 
+    private Integer secondcategoryid;
+
     private Integer salesid;
 
     private Date posttime;
@@ -223,5 +225,14 @@ public class Product implements Serializable {
 
     public void setSkuList(List<Sku> skuList) {
         this.skuList = skuList;
+    }
+
+
+    public Integer getSecondcategoryid() {
+        return secondcategoryid;
+    }
+
+    public void setSecondcategoryid(Integer secondcategoryid) {
+        this.secondcategoryid = secondcategoryid;
     }
 }

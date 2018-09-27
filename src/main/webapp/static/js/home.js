@@ -33,7 +33,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/today.json",
+			url:"/product/displayByPosttime",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -57,7 +57,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/sales.json",
+			url:"/sales/displayRecommend",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -81,7 +81,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/explosion.json",
+			url:"/product/displayBySalesnum",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -105,7 +105,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -115,6 +115,23 @@ new Vue({
 				alert("获取数据失败！");
 			},
 		});
+  	},
+   	methods: {
+   		logout: function(){
+   			$.ajax({
+				type:"get",
+				url:"/sys/logout",
+				async:true,
+				dataType:"json",
+				success:function(result){
+					alert(result);
+					window.reload();
+				},
+				error:function(result){
+					alert("获取数据失败！");
+				},
+			});
+   		}
    	}
 })
 
@@ -129,7 +146,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -143,21 +160,11 @@ new Vue({
 })
 
 $(document).ready(()=>{
-	
-	$("#logout").click(()=>{
-		$.ajax({
-			type:"post",
-			url:"#",
-			async:true,
-			dataType:"json",
-			success:function(result){
-				alert(result);
-				window.reload();
-			},
-			error:function(result){
-				alert("获取数据失败！");
-			},
-		});
+	/*
+	 * 搜索
+	 */
+	$("#ai-topsearch").click(()=>{
+		var info = $("#searchInput").val();
+		window.open("search.html?info=" + info);
 	})
-	
 })
