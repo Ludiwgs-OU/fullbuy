@@ -1,25 +1,36 @@
 package com.we.fullbuy.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Item implements Serializable {
-    private Integer itemid;
+    private Integer itemId;
 
-    private String itemname;
+    private String itemName;
 
-    public Integer getItemid() {
-        return itemid;
+    private List<Seconditem> seconditemList;
+
+    public Integer getItemId() {
+        return itemId;
     }
 
-    public void setItemid(Integer itemid) {
-        this.itemid = itemid;
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
     }
 
-    public String getItemname() {
-        return itemname;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setItemname(String itemname) {
-        this.itemname = itemname == null ? null : itemname.trim();
+    public void setItemName(String itemName) {
+        this.itemName = itemName == null ? null : itemName.trim();
+    }
+
+    public List<Seconditem> getSeconditemList() {
+        return seconditemList;
+    }
+
+    public void setSeconditemList(List<Seconditem> seconditemList) {
+        this.seconditemList = seconditemList;
     }
 }

@@ -1,59 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.CategoryMapper">
-  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Category">
-    <id column="categoryId" jdbcType="INTEGER" property="categoryid" />
-    <result column="categoryName" jdbcType="VARCHAR" property="categoryname" />
+    <id column="category_Id" jdbcType="INTEGER" property="categoryId" />
+    <result column="category_Name" jdbcType="VARCHAR" property="categoryName" />
   </resultMap>
   <sql id="Base_Column_List">
-    categoryId, categoryName
+    category_Id, category_Name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from category
-    where categoryId = #{categoryid,jdbcType=INTEGER}
+    where category_Id = #{categoryId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from category
-    where categoryId = #{categoryid,jdbcType=INTEGER}
+    where category_Id = #{categoryId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Category">
-    insert into category (categoryId, categoryName)
-    values (#{categoryid,jdbcType=INTEGER}, #{categoryname,jdbcType=VARCHAR})
+    insert into category (category_Id, category_Name)
+    values (#{categoryId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Category">
     insert into category
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="categoryid != null">
-        categoryId,
+      <if test="categoryId != null">
+        category_Id,
       </if>
-      <if test="categoryname != null">
-        categoryName,
+      <if test="categoryName != null">
+        category_Name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="categoryid != null">
-        #{categoryid,jdbcType=INTEGER},
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
       </if>
-      <if test="categoryname != null">
-        #{categoryname,jdbcType=VARCHAR},
+      <if test="categoryName != null">
+        #{categoryName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Category">
     update category
     <set>
-      <if test="categoryname != null">
-        categoryName = #{categoryname,jdbcType=VARCHAR},
+      <if test="categoryName != null">
+        category_Name = #{categoryName,jdbcType=VARCHAR},
       </if>
     </set>
-    where categoryId = #{categoryid,jdbcType=INTEGER}
+    where category_Id = #{categoryId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Category">
     update category
-    set categoryName = #{categoryname,jdbcType=VARCHAR}
-    where categoryId = #{categoryid,jdbcType=INTEGER}
+    set category_Name = #{categoryName,jdbcType=VARCHAR}
+    where category_Id = #{categoryId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Sku implements Serializable {
-    private Integer skuid;
+    private Integer skuId;
 
-    private Integer productid;
+    private Integer productId;
 
-    private Integer itemid;
+    private Integer itemId;
 
-    private Integer seconditemid;
+    private Integer secondItemId;
 
     private Double price;
 
-    private Double gbprice;
+    private Double gbPrice;
 
     private Integer quantity;
 
@@ -22,36 +22,36 @@ public class Sku implements Serializable {
 
     private List<Seconditem> seconditemList;
 
-    public Integer getSkuid() {
-        return skuid;
+    public Integer getSkuId() {
+        return skuId;
     }
 
-    public void setSkuid(Integer skuid) {
-        this.skuid = skuid;
+    public void setSkuId(Integer skuId) {
+        this.skuId = skuId;
     }
 
-    public Integer getProductid() {
-        return productid;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProductid(Integer productid) {
-        this.productid = productid;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public Integer getItemid() {
-        return itemid;
+    public Integer getItemId() {
+        return itemId;
     }
 
-    public void setItemid(Integer itemid) {
-        this.itemid = itemid;
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
     }
 
-    public Integer getSeconditemid() {
-        return seconditemid;
+    public Integer getSecondItemId() {
+        return secondItemId;
     }
 
-    public void setSeconditemid(Integer seconditemid) {
-        this.seconditemid = seconditemid;
+    public void setSecondItemId(Integer secondItemId) {
+        this.secondItemId = secondItemId;
     }
 
     public Double getPrice() {
@@ -62,12 +62,12 @@ public class Sku implements Serializable {
         this.price = price;
     }
 
-    public Double getGbprice() {
-        return gbprice;
+    public Double getGbPrice() {
+        return gbPrice;
     }
 
-    public void setGbprice(Double gbprice) {
-        this.gbprice = gbprice;
+    public void setGbPrice(Double gbPrice) {
+        this.gbPrice = gbPrice;
     }
 
     public Integer getQuantity() {

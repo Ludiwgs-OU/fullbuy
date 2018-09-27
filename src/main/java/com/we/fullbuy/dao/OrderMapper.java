@@ -5,13 +5,13 @@ import com.we.fullbuy.pojo.Order;
 import java.util.List;
 
 public interface OrderMapper {
-    int deleteByPrimaryKey(String orderid);
+    int deleteByPrimaryKey(String orderId);
 
     int insert(Order record);
 
     int insertSelective(Order record);
 
-    Order selectByPrimaryKey(String orderid);
+    Order selectByPrimaryKey(String orderId);
 
     int updateByPrimaryKeySelective(Order record);
 
@@ -19,9 +19,9 @@ public interface OrderMapper {
 
     /*new*/
     /*根据商家ID查找订单*/
-    List<Order> selectBySalesId(Integer salesid);
+    List<Order> selectBySalesId(Integer salesId);
     /*根据用户ID查找订单*/
-    List<Order> selectByUserId(Integer userid);
+    List<Order> selectByUserId(Integer userId);
     /*订单详情*/
-    Order orderDetail(String orderid);
+    Order orderDetail(String orderId);
 }

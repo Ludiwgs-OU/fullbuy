@@ -5,13 +5,13 @@ import com.we.fullbuy.pojo.Address;
 import java.util.List;
 
 public interface AddressMapper {
-    int deleteByPrimaryKey(Integer addressid);
+    int deleteByPrimaryKey(Integer addressId);
 
     int insert(Address record);
 
     int insertSelective(Address record);
 
-    Address selectByPrimaryKey(Integer addressid);
+    Address selectByPrimaryKey(Integer addressId);
 
     int updateByPrimaryKeySelective(Address record);
 
@@ -19,6 +19,5 @@ public interface AddressMapper {
 
     /*new*/
     /*显示用户收藏夹*/
-    List<Address> selectByUserId(Integer userid);
-
+    List<Address> selectByUserId(Integer userId);
 }

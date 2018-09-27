@@ -4,36 +4,36 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class User implements Serializable {
-    private Integer userid;
+    private Integer userId;
 
     private String password;
 
-    private String username;
+    private String userName;
 
-    private Integer usertype;
+    private Integer userType;
 
-    private String userqq;
+    private String userQq;
 
-    private String userphone;
+    private String userPhone;
 
-    private String useremail;
+    private String userEmail;
 
     private String sex;
 
-    private String userprofile;
+    private String userProfile;
 
-    private Integer userscore;
+    private Integer userScore;
 
-    private Date lastlogintime;
+    private Date lastLoginTime;
 
     private Integer black;
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getPassword() {
@@ -44,44 +44,44 @@ public class User implements Serializable {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
-    public Integer getUsertype() {
-        return usertype;
+    public Integer getUserType() {
+        return userType;
     }
 
-    public void setUsertype(Integer usertype) {
-        this.usertype = usertype;
+    public void setUserType(Integer userType) {
+        this.userType = userType;
     }
 
-    public String getUserqq() {
-        return userqq;
+    public String getUserQq() {
+        return userQq;
     }
 
-    public void setUserqq(String userqq) {
-        this.userqq = userqq == null ? null : userqq.trim();
+    public void setUserQq(String userQq) {
+        this.userQq = userQq == null ? null : userQq.trim();
     }
 
-    public String getUserphone() {
-        return userphone;
+    public String getUserPhone() {
+        return userPhone;
     }
 
-    public void setUserphone(String userphone) {
-        this.userphone = userphone == null ? null : userphone.trim();
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone == null ? null : userPhone.trim();
     }
 
-    public String getUseremail() {
-        return useremail;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setUseremail(String useremail) {
-        this.useremail = useremail == null ? null : useremail.trim();
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail == null ? null : userEmail.trim();
     }
 
     public String getSex() {
@@ -92,28 +92,28 @@ public class User implements Serializable {
         this.sex = sex == null ? null : sex.trim();
     }
 
-    public String getUserprofile() {
-        return userprofile;
+    public String getUserProfile() {
+        return userProfile;
     }
 
-    public void setUserprofile(String userprofile) {
-        this.userprofile = userprofile == null ? null : userprofile.trim();
+    public void setUserProfile(String userProfile) {
+        this.userProfile = userProfile == null ? null : userProfile.trim();
     }
 
-    public Integer getUserscore() {
-        return userscore;
+    public Integer getUserScore() {
+        return userScore;
     }
 
-    public void setUserscore(Integer userscore) {
-        this.userscore = userscore;
+    public void setUserScore(Integer userScore) {
+        this.userScore = userScore;
     }
 
-    public Date getLastlogintime() {
-        return lastlogintime;
+    public Date getLastLoginTime() {
+        return lastLoginTime;
     }
 
-    public void setLastlogintime(Date lastlogintime) {
-        this.lastlogintime = lastlogintime;
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
     }
 
     public Integer getBlack() {

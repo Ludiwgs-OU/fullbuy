@@ -60,6 +60,7 @@
     <load-on-startup>1</load-on-startup>
     <async-supported>true</async-supported>
   </servlet>
+
   <!-- 将前端URL请求和后台处理方法controller建立对应关系-->
   <servlet-mapping>
     <servlet-name>springMVC</servlet-name>

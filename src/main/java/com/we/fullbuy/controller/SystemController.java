@@ -14,11 +14,12 @@ import java.util.HashMap;
 public class SystemController {
     //登录
     @RequestMapping("/login")
-    @ResponseBody
     public String login(@RequestParam ("type") int type, @RequestParam ("phone") String phone,
                         @RequestParam ("password") String password, RedirectAttributes redirectAttributes){
         redirectAttributes.addAttribute("phone", phone);
         redirectAttributes.addAttribute("password", password);
+        System.out.println(password);
+        System.out.println(phone);
         if(type==1)
             return "redirect:/user/login";
         else
@@ -28,12 +29,8 @@ public class SystemController {
     //注销
     @RequestMapping("/logout")
     @ResponseBody
-    public String logout(HttpSession session) {
+    public void logout(HttpSession session) {
         session.invalidate();
-        if(session == null)
-            return "注销成功";
-        else
-            return "注销失败";
     }
 
     //返回用户信息

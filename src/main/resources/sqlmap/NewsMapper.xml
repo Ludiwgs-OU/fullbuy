@@ -1,94 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.NewsMapper">
-  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.News">
-    <id column="newsId" jdbcType="INTEGER" property="newsid" />
-    <result column="productId" jdbcType="INTEGER" property="productid" />
-    <result column="newsImgPath" jdbcType="VARCHAR" property="newsimgpath" />
-    <result column="newsStatus" jdbcType="INTEGER" property="newsstatus" />
-    <result column="bgColor" jdbcType="VARCHAR" property="bgcolor" />
+    <id column="news_Id" jdbcType="INTEGER" property="newsId" />
+    <result column="product_Id" jdbcType="INTEGER" property="productId" />
+    <result column="news_Img_Path" jdbcType="VARCHAR" property="newsImgPath" />
+    <result column="news_Status" jdbcType="INTEGER" property="newsStatus" />
+    <result column="bg_Color" jdbcType="VARCHAR" property="bgColor" />
   </resultMap>
   <sql id="Base_Column_List">
-    newsId, productId, newsImgPath, newsStatus, bgColor
+    news_Id, product_Id, news_Img_Path, news_Status, bg_Color
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from news
-    where newsId = #{newsid,jdbcType=INTEGER}
+    where news_Id = #{newsId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from news
-    where newsId = #{newsid,jdbcType=INTEGER}
+    where news_Id = #{newsId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.News">
-    insert into news (newsId, productId, newsImgPath, 
-      newsStatus, bgColor)
-    values (#{newsid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{newsimgpath,jdbcType=VARCHAR}, 
-      #{newsstatus,jdbcType=INTEGER}), #{bgcolor,jdbcType=VARCHAR}
+    insert into news (news_Id, product_Id, news_Img_Path, 
+      news_Status, bg_Color)
+    values (#{newsId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{newsImgPath,jdbcType=VARCHAR}, 
+      #{newsStatus,jdbcType=INTEGER}, #{bgColor,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.News">
     insert into news
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="newsid != null">
-        newsId,
+      <if test="newsId != null">
+        news_Id,
       </if>
-      <if test="productid != null">
-        productId,
+      <if test="productId != null">
+        product_Id,
       </if>
-      <if test="newsimgpath != null">
-        newsImgPath,
+      <if test="newsImgPath != null">
+        news_Img_Path,
       </if>
-      <if test="newsstatus != null">
-        newsStatus,
+      <if test="newsStatus != null">
+        news_Status,
       </if>
-      <if test="bgcolor != null">
-        bgColor,
+      <if test="bgColor != null">
+        bg_Color,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="newsid != null">
-        #{newsid,jdbcType=INTEGER},
+      <if test="newsId != null">
+        #{newsId,jdbcType=INTEGER},
       </if>
-      <if test="productid != null">
-        #{productid,jdbcType=INTEGER},
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
       </if>
-      <if test="newsimgpath != null">
-        #{newsimgpath,jdbcType=VARCHAR},
+      <if test="newsImgPath != null">
+        #{newsImgPath,jdbcType=VARCHAR},
       </if>
-      <if test="newsstatus != null">
-        #{newsstatus,jdbcType=INTEGER},
+      <if test="newsStatus != null">
+        #{newsStatus,jdbcType=INTEGER},
       </if>
-      <if test="bgcolor != null">
-        #{bgcolor,jdbcType=VARCHAR},
+      <if test="bgColor != null">
+        #{bgColor,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.News">
     update news
     <set>
-      <if test="productid != null">
-        productId = #{productid,jdbcType=INTEGER},
+      <if test="productId != null">
+        product_Id = #{productId,jdbcType=INTEGER},
       </if>
-      <if test="newsimgpath != null">
-        newsImgPath = #{newsimgpath,jdbcType=VARCHAR},
+      <if test="newsImgPath != null">
+        news_Img_Path = #{newsImgPath,jdbcType=VARCHAR},
       </if>
-      <if test="newsstatus != null">
-        newsStatus = #{newsstatus,jdbcType=INTEGER},
+      <if test="newsStatus != null">
+        news_Status = #{newsStatus,jdbcType=INTEGER},
       </if>
-      <if test="bgcolor != null">
-        bgColor = #{bgcolor,jdbcType=VARCHAR}
+      <if test="bgColor != null">
+        bg_Color = #{bgColor,jdbcType=VARCHAR},
       </if>
     </set>
-    where newsId = #{newsid,jdbcType=INTEGER}
+    where news_Id = #{newsId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.News">
     update news
-    set productId = #{productid,jdbcType=INTEGER},
-      newsImgPath = #{newsimgpath,jdbcType=VARCHAR},
-      newsStatus = #{newsstatus,jdbcType=INTEGER},
-      bgColor = #{bgcolor,jdbcType=VARCHAR}
-    where newsId = #{newsid,jdbcType=INTEGER}
+    set product_Id = #{productId,jdbcType=INTEGER},
+      news_Img_Path = #{newsImgPath,jdbcType=VARCHAR},
+      news_Status = #{newsStatus,jdbcType=INTEGER},
+      bg_Color = #{bgColor,jdbcType=VARCHAR}
+    where news_Id = #{newsId,jdbcType=INTEGER}
   </update>
 </mapper>

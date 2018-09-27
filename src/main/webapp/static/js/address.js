@@ -1,4 +1,4 @@
-$(document).ready(function() {							
+﻿$(document).ready(function() {							
 	$(".new-option-r").click(function() {
 		$(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
 	});

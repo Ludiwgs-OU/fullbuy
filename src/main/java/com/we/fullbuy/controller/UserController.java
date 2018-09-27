@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -29,7 +28,7 @@ public class UserController {
     //登录
     @RequestMapping("/login")
     @ResponseBody
-    public String login(@RequestParam("phone") String phone, @RequestParam("password") String password,HttpSession session)
+    public int login(@RequestParam("phone") String phone, @RequestParam("password") String password,HttpSession session)
     {
 
         String cpassword = MD5Util.md5(password);
@@ -44,26 +43,26 @@ public class UserController {
             {
                 if(user.getPassword().equals(cpassword))
                 {
-                    session.setAttribute("userId",user.getUserid());
-                    session.setAttribute("userName",user.getUsername());
+                    session.setAttribute("userId",user.getUserId());
+                    session.setAttribute("userName",user.getUserName());
                     String userType;
-                    if(user.getUsertype()==1)
+                    if(user.getUserType()==1)
                         userType="高级会员";
                     else
                         userType="普通会员";
                     session.setAttribute("userType",userType);
-                    session.setAttribute("userProfile",user.getUserprofile());
-                    return "登录成功，欢迎回来"+user.getUsername();//登录成功
+                    session.setAttribute("userProfile",user.getUserProfile());
+                    return 1;//登录成功
                 }
 
                 else
-                    return "密码好像输错了，再想想";//密码错误
+                    return 2;//密码错误
             }
             else
-                return "对不起，您处于我们的黑名单";//处于黑名单
+                return 3;//处于黑名单
         }
         else
-            return "不存在的，你输入的账号不存在";//账号不存在
+            return 0;//账号不存在
     }
 
     //注册
@@ -71,7 +70,7 @@ public class UserController {
     @ResponseBody
     public String register(@RequestBody User user)
     {
-        User check = userService.login(user.getUserphone());
+        User check = userService.login(user.getUserPhone());
         if(check==null)
         {
             if(userService.registerUser(user)!=0)
@@ -96,7 +95,7 @@ public class UserController {
     @ResponseBody
     public String modifyUser(@RequestBody User user, HttpSession session)
     {
-        user.setUserid((int)session.getAttribute("userId"));
+        user.setUserId((int)session.getAttribute("userId"));
 
         if (userService.modifyUser(user)!=0)
             return "修改个人信息成功";
@@ -110,8 +109,8 @@ public class UserController {
     public String modifyUserProfile(@RequestParam("userProfile") String userProfile, HttpSession session)
     {
         User user = new User();
-        user.setUserid((int)session.getAttribute("userId"));
-        user.setUserprofile(userProfile);
+        user.setUserId((int)session.getAttribute("userId"));
+        user.setUserProfile(userProfile);
         if (userService.modifyUser(user)!=0)
             return "修改个人头像成功";
         else
@@ -163,7 +162,7 @@ public class UserController {
     @ResponseBody
     public String addAddress(@RequestBody Address address, HttpSession session)
     {
-        address.setUserid((int)session.getAttribute("userId"));
+        address.setUserId((int)session.getAttribute("userId"));
         if(addressService.addAddress(address)!=0)
             return "添加收货地址成功";
         else
@@ -208,8 +207,8 @@ public class UserController {
     public String addFavor(@RequestParam("productId") int productId, HttpSession session)
     {
         Favor favor = new Favor();
-        favor.setUserid((int)session.getAttribute("userId"));
-        favor.setProductid(productId);
+        favor.setUserId((int)session.getAttribute("userId"));
+        favor.setProductId(productId);
         if(favorService.addFavor(favor)!=0)
             return "已帮您添加到收藏夹啦";
         else

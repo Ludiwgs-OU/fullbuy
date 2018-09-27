@@ -1,4 +1,4 @@
-$(document).ready(()=>{
+﻿$(document).ready(()=>{
 	
 	$(function() {
 		$('#doc-my-tabs').tabs();

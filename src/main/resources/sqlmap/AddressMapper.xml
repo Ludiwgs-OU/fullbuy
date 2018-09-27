@@ -2,87 +2,87 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.AddressMapper">
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Address">
-    <id column="addressId" jdbcType="INTEGER" property="addressid" />
-    <result column="userId" jdbcType="INTEGER" property="userid" />
-    <result column="addressDetail" jdbcType="VARCHAR" property="addressdetail" />
-    <result column="postCode" jdbcType="VARCHAR" property="postcode" />
+    <id column="address_Id" jdbcType="INTEGER" property="addressId" />
+    <result column="user_Id" jdbcType="INTEGER" property="userId" />
+    <result column="address_Detail" jdbcType="VARCHAR" property="addressDetail" />
+    <result column="post_Code" jdbcType="VARCHAR" property="postCode" />
     <result column="phone" jdbcType="CHAR" property="phone" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="defaultAddress" jdbcType="INTEGER" property="defaultaddress" />
+    <result column="default_Address" jdbcType="INTEGER" property="defaultAddress" />
     <result column="province" jdbcType="VARCHAR" property="province" />
     <result column="street" jdbcType="VARCHAR" property="street" />
     <result column="city" jdbcType="VARCHAR" property="city" />
   </resultMap>
   <sql id="Base_Column_List">
-    addressId, userId, addressDetail, postCode, phone, name, defaultAddress, province, 
-    street, city
+    "address_Id", "user_Id", "address_Detail", "post_Code", "phone", "name", "default_Address", 
+    "province", "street", "city"
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from address
-    where addressId = #{addressid,jdbcType=INTEGER}
+    from "address"
+    where "address_Id" = #{addressId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from address
-    where addressId = #{addressid,jdbcType=INTEGER}
+    delete from "address"
+    where "address_Id" = #{addressId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Address">
-    insert into address (addressId, userId, addressDetail, 
-      postCode, phone, name, 
-      defaultAddress, province, street, 
-      city)
-    values (#{addressid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{addressdetail,jdbcType=VARCHAR}, 
-      #{postcode,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, 
-      #{defaultaddress,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, 
+    insert into "address" ("address_Id", "user_Id", "address_Detail", 
+      "post_Code", "phone", "name", 
+      "default_Address", "province", "street", 
+      "city")
+    values (#{addressId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{addressDetail,jdbcType=VARCHAR}, 
+      #{postCode,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, 
+      #{defaultAddress,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR}, 
       #{city,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Address">
-    insert into address
+    insert into "address"
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="addressid != null">
-        addressId,
+      <if test="addressId != null">
+        "address_Id",
       </if>
-      <if test="userid != null">
-        userId,
+      <if test="userId != null">
+        "user_Id",
       </if>
-      <if test="addressdetail != null">
-        addressDetail,
+      <if test="addressDetail != null">
+        "address_Detail",
       </if>
-      <if test="postcode != null">
-        postCode,
+      <if test="postCode != null">
+        "post_Code",
       </if>
       <if test="phone != null">
-        phone,
+        "phone",
       </if>
       <if test="name != null">
-        name,
+        "name",
       </if>
-      <if test="defaultaddress != null">
-        defaultAddress,
+      <if test="defaultAddress != null">
+        "default_Address",
       </if>
       <if test="province != null">
-        province,
+        "province",
       </if>
       <if test="street != null">
-        street,
+        "street",
       </if>
       <if test="city != null">
-        city,
+        "city",
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="addressid != null">
-        #{addressid,jdbcType=INTEGER},
+      <if test="addressId != null">
+        #{addressId,jdbcType=INTEGER},
       </if>
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
-      <if test="addressdetail != null">
-        #{addressdetail,jdbcType=VARCHAR},
+      <if test="addressDetail != null">
+        #{addressDetail,jdbcType=VARCHAR},
       </if>
-      <if test="postcode != null">
-        #{postcode,jdbcType=VARCHAR},
+      <if test="postCode != null">
+        #{postCode,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
         #{phone,jdbcType=CHAR},
@@ -90,8 +90,8 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="defaultaddress != null">
-        #{defaultaddress,jdbcType=INTEGER},
+      <if test="defaultAddress != null">
+        #{defaultAddress,jdbcType=INTEGER},
       </if>
       <if test="province != null">
         #{province,jdbcType=VARCHAR},
@@ -105,56 +105,56 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Address">
-    update address
+    update "address"
     <set>
-      <if test="userid != null">
-        userId = #{userid,jdbcType=INTEGER},
+      <if test="userId != null">
+        "user_Id" = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="addressdetail != null">
-        addressDetail = #{addressdetail,jdbcType=VARCHAR},
+      <if test="addressDetail != null">
+        "address_Detail" = #{addressDetail,jdbcType=VARCHAR},
       </if>
-      <if test="postcode != null">
-        postCode = #{postcode,jdbcType=VARCHAR},
+      <if test="postCode != null">
+        "post_Code" = #{postCode,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
-        phone = #{phone,jdbcType=CHAR},
+        "phone" = #{phone,jdbcType=CHAR},
       </if>
       <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+        "name" = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="defaultaddress != null">
-        defaultAddress = #{defaultaddress,jdbcType=INTEGER},
+      <if test="defaultAddress != null">
+        "default_Address" = #{defaultAddress,jdbcType=INTEGER},
       </if>
       <if test="province != null">
-        province = #{province,jdbcType=VARCHAR},
+        "province" = #{province,jdbcType=VARCHAR},
       </if>
       <if test="street != null">
-        street = #{street,jdbcType=VARCHAR},
+        "street" = #{street,jdbcType=VARCHAR},
       </if>
       <if test="city != null">
-        city = #{city,jdbcType=VARCHAR},
+        "city" = #{city,jdbcType=VARCHAR},
       </if>
     </set>
-    where addressId = #{addressid,jdbcType=INTEGER}
+    where "address_Id" = #{addressId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Address">
-    update address
-    set userId = #{userid,jdbcType=INTEGER},
-      addressDetail = #{addressdetail,jdbcType=VARCHAR},
-      postCode = #{postcode,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=CHAR},
-      name = #{name,jdbcType=VARCHAR},
-      defaultAddress = #{defaultaddress,jdbcType=INTEGER},
-      province = #{province,jdbcType=VARCHAR},
-      street = #{street,jdbcType=VARCHAR},
-      city = #{city,jdbcType=VARCHAR}
-    where addressId = #{addressid,jdbcType=INTEGER}
+    update "address"
+    set "user_Id" = #{userId,jdbcType=INTEGER},
+      "address_Detail" = #{addressDetail,jdbcType=VARCHAR},
+      "post_Code" = #{postCode,jdbcType=VARCHAR},
+      "phone" = #{phone,jdbcType=CHAR},
+      "name" = #{name,jdbcType=VARCHAR},
+      "default_Address" = #{defaultAddress,jdbcType=INTEGER},
+      "province" = #{province,jdbcType=VARCHAR},
+      "street" = #{street,jdbcType=VARCHAR},
+      "city" = #{city,jdbcType=VARCHAR}
+    where "address_Id" = #{addressId,jdbcType=INTEGER}
   </update>
 
   <!--new-->
   <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select *
         from address
-        where userid = #{userid,jdbcType=INTEGER}
+        where user_Id = #{userId,jdbcType=INTEGER}
     </select>
 </mapper>

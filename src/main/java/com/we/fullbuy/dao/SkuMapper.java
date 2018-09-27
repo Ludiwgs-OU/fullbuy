@@ -2,16 +2,14 @@ package com.we.fullbuy.dao;
 
 import com.we.fullbuy.pojo.Sku;
 
-import java.util.List;
-
 public interface SkuMapper {
-    int deleteByPrimaryKey(Integer skuid);
+    int deleteByPrimaryKey(Integer skuId);
 
     int insert(Sku record);
 
     int insertSelective(Sku record);
 
-    Sku selectByPrimaryKey(Integer skuid);
+    Sku selectByPrimaryKey(Integer skuId);
 
     int updateByPrimaryKeySelective(Sku record);
 
@@ -20,5 +18,4 @@ public interface SkuMapper {
     /*new*/
     /*获取价格*/
     Sku getPrice(Integer productId, Integer itemId, Integer secondItemId);
-
 }

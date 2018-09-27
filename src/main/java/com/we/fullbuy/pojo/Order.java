@@ -4,66 +4,62 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Order implements Serializable {
-    private String orderid;
+    private String orderId;
 
-    private Integer userid;
+    private Integer userId;
 
-    private Integer skuid;
+    private Integer skuId;
 
-    private Double totalprice;
+    private Double totalPrice;
 
-    private Integer addressid;
+    private Integer addressId;
 
     private Integer num;
 
-    private Date orderdate;
+    private Date orderDate;
 
-    private Integer orderstatus;
+    private Integer orderStatus;
 
     private Double price;
 
-    private Product product;
-
-    private Address address;
-
-    public String getOrderid() {
-        return orderid;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setOrderid(String orderid) {
-        this.orderid = orderid == null ? null : orderid.trim();
+    public void setOrderId(String orderId) {
+        this.orderId = orderId == null ? null : orderId.trim();
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getSkuid() {
-        return skuid;
+    public Integer getSkuId() {
+        return skuId;
     }
 
-    public void setSkuid(Integer skuid) {
-        this.skuid = skuid;
+    public void setSkuId(Integer skuId) {
+        this.skuId = skuId;
     }
 
-    public Double getTotalprice() {
-        return totalprice;
+    public Double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotalprice(Double totalprice) {
-        this.totalprice = totalprice;
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public Integer getAddressid() {
-        return addressid;
+    public Integer getAddressId() {
+        return addressId;
     }
 
-    public void setAddressid(Integer addressid) {
-        this.addressid = addressid;
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
     }
 
     public Integer getNum() {
@@ -74,36 +70,20 @@ public class Order implements Serializable {
         this.num = num;
     }
 
-    public Date getOrderdate() {
-        return orderdate;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public void setOrderdate(Date orderdate) {
-        this.orderdate = orderdate;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public Integer getOrderstatus() {
-        return orderstatus;
+    public Integer getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setOrderstatus(Integer orderstatus) {
-        this.orderstatus = orderstatus;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public Double getPrice() {

@@ -1,135 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.CommentMapper">
-  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Comment">
-    <id column="commentId" jdbcType="INTEGER" property="commentid" />
-    <result column="productId" jdbcType="INTEGER" property="productid" />
-    <result column="orderId" jdbcType="VARCHAR" property="orderid" />
-    <result column="userId" jdbcType="INTEGER" property="userid"/>
-    <result column="commentDetail" jdbcType="VARCHAR" property="commentdetail" />
-    <result column="commentImgPath" jdbcType="VARCHAR" property="commentimgpath" />
-    <result column="commentTime" jdbcType="TIMESTAMP" property="commenttime" />
+    <id column="comment_Id" jdbcType="INTEGER" property="commentId" />
+    <result column="product_Id" jdbcType="INTEGER" property="productId" />
+    <result column="user_Id" jdbcType="INTEGER" property="userId" />
+    <result column="order_Id" jdbcType="VARCHAR" property="orderId" />
+    <result column="comment_Detail" jdbcType="VARCHAR" property="commentDetail" />
+    <result column="comment_Img_Path" jdbcType="VARCHAR" property="commentImgPath" />
+    <result column="comment_Time" jdbcType="TIMESTAMP" property="commentTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    commentId, productId, orderId, userId, commentDetail, commentImgPath, commentTime
+    comment_Id, product_Id, user_Id, order_Id, comment_Detail, comment_Img_Path, comment_Time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from comment
-    where commentId = #{commentid,jdbcType=INTEGER}
+    where comment_Id = #{commentId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from comment
-    where commentId = #{commentid,jdbcType=INTEGER}
+    where comment_Id = #{commentId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Comment">
-    insert into comment (commentId, productId, orderId, userId,
-      commentDetail, commentImgPath, commentTime
-      )
-    values (#{commentid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{orderid,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER},
-      #{commentdetail,jdbcType=VARCHAR}, #{commentimgpath,jdbcType=VARCHAR}, #{commenttime,jdbcType=TIMESTAMP}
-      )
+    insert into comment (comment_Id, product_Id, user_Id, 
+      order_Id, comment_Detail, comment_Img_Path, 
+      comment_Time)
+    values (#{commentId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{orderId,jdbcType=VARCHAR}, #{commentDetail,jdbcType=VARCHAR}, #{commentImgPath,jdbcType=VARCHAR}, 
+      #{commentTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Comment">
     insert into comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="commentid != null">
-        commentId,
+      <if test="commentId != null">
+        comment_Id,
       </if>
-      <if test="productid != null">
-        productId,
+      <if test="productId != null">
+        product_Id,
       </if>
-      <if test="orderid != null">
-        orderId,
+      <if test="userId != null">
+        user_Id,
       </if>
-      <if test="userid != null">
-        userId,
+      <if test="orderId != null">
+        order_Id,
       </if>
-      <if test="commentdetail != null">
-        commentDetail,
+      <if test="commentDetail != null">
+        comment_Detail,
       </if>
-      <if test="commentimgpath != null">
-        commentImgPath,
+      <if test="commentImgPath != null">
+        comment_Img_Path,
       </if>
-      <if test="commenttime != null">
-        commentTime,
+      <if test="commentTime != null">
+        comment_Time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="commentid != null">
-        #{commentid,jdbcType=INTEGER},
+      <if test="commentId != null">
+        #{commentId,jdbcType=INTEGER},
       </if>
-      <if test="productid != null">
-        #{productid,jdbcType=INTEGER},
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
       </if>
-      <if test="orderid != null">
-        #{orderid,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
       </if>
-      <if test="commentdetail != null">
-        #{commentdetail,jdbcType=VARCHAR},
+      <if test="commentDetail != null">
+        #{commentDetail,jdbcType=VARCHAR},
       </if>
-      <if test="commentimgpath != null">
-        #{commentimgpath,jdbcType=VARCHAR},
+      <if test="commentImgPath != null">
+        #{commentImgPath,jdbcType=VARCHAR},
       </if>
-      <if test="commenttime != null">
-        #{commenttime,jdbcType=TIMESTAMP},
+      <if test="commentTime != null">
+        #{commentTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Comment">
     update comment
     <set>
-      <if test="productid != null">
-        productId = #{productid,jdbcType=INTEGER},
+      <if test="productId != null">
+        product_Id = #{productId,jdbcType=INTEGER},
       </if>
-      <if test="orderid != null">
-        orderId = #{orderid,jdbcType=VARCHAR},
+      <if test="userId != null">
+        user_Id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="userid != null">
-        userId = #{userid,jdbcType=INTEGER},
+      <if test="orderId != null">
+        order_Id = #{orderId,jdbcType=VARCHAR},
       </if>
-      <if test="commentdetail != null">
-        commentDetail = #{commentdetail,jdbcType=VARCHAR},
+      <if test="commentDetail != null">
+        comment_Detail = #{commentDetail,jdbcType=VARCHAR},
       </if>
-      <if test="commentimgpath != null">
-        commentImgPath = #{commentimgpath,jdbcType=VARCHAR},
+      <if test="commentImgPath != null">
+        comment_Img_Path = #{commentImgPath,jdbcType=VARCHAR},
       </if>
-      <if test="commenttime != null">
-        commentTime = #{commenttime,jdbcType=TIMESTAMP},
+      <if test="commentTime != null">
+        comment_Time = #{commentTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where commentId = #{commentid,jdbcType=INTEGER}
+    where comment_Id = #{commentId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Comment">
     update comment
-    set productId = #{productid,jdbcType=INTEGER},
-      orderId = #{orderid,jdbcType=VARCHAR},
-      userId = #{userid,jdbcType=INTEGER},
-      commentDetail = #{commentdetail,jdbcType=VARCHAR},
-      commentImgPath = #{commentimgpath,jdbcType=VARCHAR},
-      commentTime = #{commenttime,jdbcType=TIMESTAMP}
-    where commentId = #{commentid,jdbcType=INTEGER}
+    set product_Id = #{productId,jdbcType=INTEGER},
+      user_Id = #{userId,jdbcType=INTEGER},
+      order_Id = #{orderId,jdbcType=VARCHAR},
+      comment_Detail = #{commentDetail,jdbcType=VARCHAR},
+      comment_Img_Path = #{commentImgPath,jdbcType=VARCHAR},
+      comment_Time = #{commentTime,jdbcType=TIMESTAMP}
+    where comment_Id = #{commentId,jdbcType=INTEGER}
   </update>
 
   <!--new-->
   <resultMap id="CommentWithOrder" type="com.we.fullbuy.pojo.Comment" extends="BaseResultMap">
-    <association property="order" javaType="com.we.fullbuy.pojo.Order" column="orderId" select="com.we.fullbuy.dao.OrderMapper.orderDetail"/>
+    <association property="order" javaType="com.we.fullbuy.pojo.Order" column="order_Id" select="com.we.fullbuy.dao.OrderMapper.orderDetail"/>
   </resultMap>
 
   <select id="displayCommentByUserId" parameterType="java.lang.Integer" resultMap="CommentWithOrder">
     select *
     from comment c,`order` o
-    where c.userId = #{userid,jdbcType=INTEGER} and o.orderId = c.orderId
+    where c.user_Id = #{userId,jdbcType=INTEGER} and o.order_Id = c.order_Id
   </select>
 
   <select id="showProductComment" parameterType="java.lang.Integer" resultMap="CommentWithOrder">
     select *
     from comment c
-    where c.productId = #{productid,jdbcType=INTEGER}
+    where c.product_Id = #{productId,jdbcType=INTEGER}
   </select>
 </mapper>

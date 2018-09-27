@@ -1,4 +1,4 @@
-$(document).ready(()=>{
+﻿$(document).ready(()=>{
 	/*
 	 * 搜索
 	 */

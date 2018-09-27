@@ -3,23 +3,23 @@ package com.we.fullbuy.pojo;
 import java.io.Serializable;
 
 public class Manager implements Serializable {
-    private Integer managerid;
+    private Integer managerId;
 
-    private String managerpwd;
+    private String managerPwd;
 
-    public Integer getManagerid() {
-        return managerid;
+    public Integer getManagerId() {
+        return managerId;
     }
 
-    public void setManagerid(Integer managerid) {
-        this.managerid = managerid;
+    public void setManagerId(Integer managerId) {
+        this.managerId = managerId;
     }
 
-    public String getManagerpwd() {
-        return managerpwd;
+    public String getManagerPwd() {
+        return managerPwd;
     }
 
-    public void setManagerpwd(String managerpwd) {
-        this.managerpwd = managerpwd == null ? null : managerpwd.trim();
+    public void setManagerPwd(String managerPwd) {
+        this.managerPwd = managerPwd == null ? null : managerPwd.trim();
     }
 }

@@ -3,53 +3,53 @@ package com.we.fullbuy.pojo;
 import java.io.Serializable;
 
 public class News implements Serializable {
-    private Integer newsid;
+    private Integer newsId;
 
-    private Integer productid;
+    private Integer productId;
 
-    private String newsimgpath;
+    private String newsImgPath;
 
-    private Integer newsstatus;
+    private Integer newsStatus;
 
-    private String bgcolor;
+    private String bgColor;
 
-    public Integer getNewsid() {
-        return newsid;
+    public Integer getNewsId() {
+        return newsId;
     }
 
-    public void setNewsid(Integer newsid) {
-        this.newsid = newsid;
+    public void setNewsId(Integer newsId) {
+        this.newsId = newsId;
     }
 
-    public Integer getProductid() {
-        return productid;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProductid(Integer productid) {
-        this.productid = productid;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public String getNewsimgpath() {
-        return newsimgpath;
+    public String getNewsImgPath() {
+        return newsImgPath;
     }
 
-    public void setNewsimgpath(String newsimgpath) {
-        this.newsimgpath = newsimgpath == null ? null : newsimgpath.trim();
+    public void setNewsImgPath(String newsImgPath) {
+        this.newsImgPath = newsImgPath == null ? null : newsImgPath.trim();
     }
 
-    public Integer getNewsstatus() {
-        return newsstatus;
+    public Integer getNewsStatus() {
+        return newsStatus;
     }
 
-    public void setNewsstatus(Integer newsstatus) {
-        this.newsstatus = newsstatus;
+    public void setNewsStatus(Integer newsStatus) {
+        this.newsStatus = newsStatus;
     }
 
-    public String getBgcolor() {
-        return bgcolor;
+    public String getBgColor() {
+        return bgColor;
     }
 
-    public void setBgcolor(String bgcolor) {
-        this.bgcolor = bgcolor;
+    public void setBgColor(String bgColor) {
+        this.bgColor = bgColor == null ? null : bgColor.trim();
     }
 }

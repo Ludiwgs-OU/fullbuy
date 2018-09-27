@@ -3,23 +3,23 @@ package com.we.fullbuy.pojo;
 import java.io.Serializable;
 
 public class Seconditem implements Serializable {
-    private Integer seconditemid;
+    private Integer secondItemId;
 
-    private String seconditemname;
+    private String secondItemName;
 
-    public Integer getSeconditemid() {
-        return seconditemid;
+    public Integer getSecondItemId() {
+        return secondItemId;
     }
 
-    public void setSeconditemid(Integer seconditemid) {
-        this.seconditemid = seconditemid;
+    public void setSecondItemId(Integer secondItemId) {
+        this.secondItemId = secondItemId;
     }
 
-    public String getSeconditemname() {
-        return seconditemname;
+    public String getSecondItemName() {
+        return secondItemName;
     }
 
-    public void setSeconditemname(String seconditemname) {
-        this.seconditemname = seconditemname == null ? null : seconditemname.trim();
+    public void setSecondItemName(String secondItemName) {
+        this.secondItemName = secondItemName == null ? null : secondItemName.trim();
     }
 }

@@ -4,73 +4,73 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Comment implements Serializable {
-    private Integer commentid;
+    private Integer commentId;
 
-    private Integer productid;
+    private Integer productId;
 
-    private String orderid;
+    private Integer userId;
 
-    private Integer userid;
+    private String orderId;
 
-    private String commentdetail;
+    private String commentDetail;
 
-    private String commentimgpath;
+    private String commentImgPath;
 
-    private Date commenttime;
+    private Date commentTime;
 
-    public Integer getCommentid() {
-        return commentid;
+    public Integer getCommentId() {
+        return commentId;
     }
 
-    public void setCommentid(Integer commentid) {
-        this.commentid = commentid;
+    public void setCommentId(Integer commentId) {
+        this.commentId = commentId;
     }
 
-    public Integer getProductid() {
-        return productid;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProductid(Integer productid) {
-        this.productid = productid;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public String getOrderid() {
-        return orderid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setOrderid(String orderid) {
-        this.orderid = orderid == null ? null : orderid.trim();
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getCommentdetail() {
-        return commentdetail;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setCommentdetail(String commentdetail) {
-        this.commentdetail = commentdetail == null ? null : commentdetail.trim();
+    public void setOrderId(String orderId) {
+        this.orderId = orderId == null ? null : orderId.trim();
     }
 
-    public String getCommentimgpath() {
-        return commentimgpath;
+    public String getCommentDetail() {
+        return commentDetail;
     }
 
-    public void setCommentimgpath(String commentimgpath) {
-        this.commentimgpath = commentimgpath == null ? null : commentimgpath.trim();
+    public void setCommentDetail(String commentDetail) {
+        this.commentDetail = commentDetail == null ? null : commentDetail.trim();
     }
 
-    public Date getCommenttime() {
-        return commenttime;
+    public String getCommentImgPath() {
+        return commentImgPath;
     }
 
-    public void setCommenttime(Date commenttime) {
-        this.commenttime = commenttime;
+    public void setCommentImgPath(String commentImgPath) {
+        this.commentImgPath = commentImgPath == null ? null : commentImgPath.trim();
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Date getCommentTime() {
+        return commentTime;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setCommentTime(Date commentTime) {
+        this.commentTime = commentTime;
     }
 }

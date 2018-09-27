@@ -1,4 +1,4 @@
-// JavaScript Document
+﻿// JavaScript Document
 
 //商品规格选择
 $(function() {

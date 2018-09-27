@@ -3,90 +3,90 @@ package com.we.fullbuy.pojo;
 import java.io.Serializable;
 
 public class Sales implements Serializable {
-    private Integer salesid;
+    private Integer salesId;
 
-    private String salaespwd;
+    private String salaesPwd;
 
-    private String salaesname;
+    private String salaesName;
 
-    private String salesphone;
+    private String salesPhone;
 
-    private String salesaddress;
+    private String salesAddress;
 
-    private String salesdetail;
+    private String salesDetail;
 
-    private Integer salesstatus;
+    private Integer salesStatus;
 
-    private String salesemail;
+    private String salesEmail;
 
     private Integer black;
 
-    private String loginphone;
+    private String loginPhone;
 
-    private String salesimgpath;
+    private String salesImgPath;
 
-    public Integer getSalesid() {
-        return salesid;
+    public Integer getSalesId() {
+        return salesId;
     }
 
-    public void setSalesid(Integer salesid) {
-        this.salesid = salesid;
+    public void setSalesId(Integer salesId) {
+        this.salesId = salesId;
     }
 
-    public String getSalaespwd() {
-        return salaespwd;
+    public String getSalaesPwd() {
+        return salaesPwd;
     }
 
-    public void setSalaespwd(String salaespwd) {
-        this.salaespwd = salaespwd == null ? null : salaespwd.trim();
+    public void setSalaesPwd(String salaesPwd) {
+        this.salaesPwd = salaesPwd == null ? null : salaesPwd.trim();
     }
 
-    public String getSalaesname() {
-        return salaesname;
+    public String getSalaesName() {
+        return salaesName;
     }
 
-    public void setSalaesname(String salaesname) {
-        this.salaesname = salaesname == null ? null : salaesname.trim();
+    public void setSalaesName(String salaesName) {
+        this.salaesName = salaesName == null ? null : salaesName.trim();
     }
 
-    public String getSalesphone() {
-        return salesphone;
+    public String getSalesPhone() {
+        return salesPhone;
     }
 
-    public void setSalesphone(String salesphone) {
-        this.salesphone = salesphone == null ? null : salesphone.trim();
+    public void setSalesPhone(String salesPhone) {
+        this.salesPhone = salesPhone == null ? null : salesPhone.trim();
     }
 
-    public String getSalesaddress() {
-        return salesaddress;
+    public String getSalesAddress() {
+        return salesAddress;
     }
 
-    public void setSalesaddress(String salesaddress) {
-        this.salesaddress = salesaddress == null ? null : salesaddress.trim();
+    public void setSalesAddress(String salesAddress) {
+        this.salesAddress = salesAddress == null ? null : salesAddress.trim();
     }
 
-    public String getSalesdetail() {
-        return salesdetail;
+    public String getSalesDetail() {
+        return salesDetail;
     }
 
-    public void setSalesdetail(String salesdetail) {
-        this.salesdetail = salesdetail == null ? null : salesdetail.trim();
+    public void setSalesDetail(String salesDetail) {
+        this.salesDetail = salesDetail == null ? null : salesDetail.trim();
     }
 
-    public Integer getSalesstatus() {
-        return salesstatus;
+    public Integer getSalesStatus() {
+        return salesStatus;
     }
 
-    public void setSalesstatus(Integer salesstatus) {
-        this.salesstatus = salesstatus;
+    public void setSalesStatus(Integer salesStatus) {
+        this.salesStatus = salesStatus;
     }
 
-    public String getSalesemail() {
-        return salesemail;
+    public String getSalesEmail() {
+        return salesEmail;
     }
 
-    public void setSalesemail(String salesemail) {
-        this.salesemail = salesemail == null ? null : salesemail.trim();
+    public void setSalesEmail(String salesEmail) {
+        this.salesEmail = salesEmail == null ? null : salesEmail.trim();
     }
 
     public Integer getBlack() {
@@ -97,19 +97,19 @@ public class Sales implements Serializable {
         this.black = black;
     }
 
-    public String getLoginphone() {
-        return loginphone;
+    public String getLoginPhone() {
+        return loginPhone;
     }
 
-    public void setLoginphone(String loginphone) {
-        this.loginphone = loginphone == null ? null : loginphone.trim();
+    public void setLoginPhone(String loginPhone) {
+        this.loginPhone = loginPhone == null ? null : loginPhone.trim();
     }
 
-    public String getSalesimgpath() {
-        return salesimgpath;
+    public String getSalesImgPath() {
+        return salesImgPath;
     }
 
-    public void setSalesimgpath(String salesimgpath) {
-        this.salesimgpath = salesimgpath;
+    public void setSalesImgPath(String salesImgPath) {
+        this.salesImgPath = salesImgPath == null ? null : salesImgPath.trim();
     }
 }

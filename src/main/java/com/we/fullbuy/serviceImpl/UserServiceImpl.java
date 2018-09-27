@@ -11,10 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("UserService")
 public class UserServiceImpl implements UserService {
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Override
-    @Cacheable("UserDetail")
     public User displayUserDetail(int userId) {
         return userMapper.selectByPrimaryKey(userId);
     }

@@ -1,33 +1,36 @@
 package com.we.fullbuy.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Category implements Serializable {
-    private Integer categoryid;
+    private Integer categoryId;
 
-    private String categoryname;
+    private String categoryName;
 
-    public Integer getCategoryid() {
-        return categoryid;
+    private List<Secondcategory> secondcategoryList;
+
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryid(Integer categoryid) {
-        this.categoryid = categoryid;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getCategoryname() {
-        return categoryname;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategoryname(String categoryname) {
-        this.categoryname = categoryname == null ? null : categoryname.trim();
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName == null ? null : categoryName.trim();
     }
 
-    @Override
-    public String toString() {
-        return "Category{" +
-                "categoryid=" + categoryid +
-                ", categoryname='" + categoryname + '\'' +
-                '}';
+    public List<Secondcategory> getSecondcategoryList() {
+        return secondcategoryList;
+    }
+
+    public void setSecondcategoryList(List<Secondcategory> secondcategoryList) {
+        this.secondcategoryList = secondcategoryList;
     }
 }

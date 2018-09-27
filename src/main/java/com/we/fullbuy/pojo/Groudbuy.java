@@ -4,114 +4,103 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Groudbuy implements Serializable {
-    private Integer gbid;
+    private Integer gbId;
 
-    private Integer productid;
+    private Integer productId;
 
-    private Integer minpeople;
+    private Integer minPeople;
 
-    private Integer maxpeople;
+    private Integer maxPeople;
 
-    private Integer nowpeople;
+    private Integer nowPeople;
 
-    private Date begintime;
+    private Date beginTime;
 
-    private Date endtime;
+    private Date endTime;
 
-    private Integer gbstatus;
+    private Integer gbStatus;
 
-    private Integer salesid;
+    private Integer salesId;
 
-    private String bgcolor;
+    private String bgColor;
 
-    private Product product;
-
-    public Integer getGbid() {
-        return gbid;
+    public Integer getGbId() {
+        return gbId;
     }
 
-    public void setGbid(Integer gbid) {
-        this.gbid = gbid;
+    public void setGbId(Integer gbId) {
+        this.gbId = gbId;
     }
 
-    public Integer getProductid() {
-        return productid;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProductid(Integer productid) {
-        this.productid = productid;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public Integer getMinpeople() {
-        return minpeople;
+    public Integer getMinPeople() {
+        return minPeople;
     }
 
-    public void setMinpeople(Integer minpeople) {
-        this.minpeople = minpeople;
+    public void setMinPeople(Integer minPeople) {
+        this.minPeople = minPeople;
     }
 
-    public Integer getMaxpeople() {
-        return maxpeople;
+    public Integer getMaxPeople() {
+        return maxPeople;
     }
 
-    public void setMaxpeople(Integer maxpeople) {
-        this.maxpeople = maxpeople;
+    public void setMaxPeople(Integer maxPeople) {
+        this.maxPeople = maxPeople;
     }
 
-    public Integer getNowpeople() {
-        return nowpeople;
+    public Integer getNowPeople() {
+        return nowPeople;
     }
 
-    public void setNowpeople(Integer nowpeople) {
-        this.nowpeople = nowpeople;
+    public void setNowPeople(Integer nowPeople) {
+        this.nowPeople = nowPeople;
     }
 
-    public Date getBegintime() {
-        return begintime;
+    public Date getBeginTime() {
+        return beginTime;
     }
 
-    public void setBegintime(Date begintime) {
-        this.begintime = begintime;
+    public void setBeginTime(Date beginTime) {
+        this.beginTime = beginTime;
     }
 
-    public Date getEndtime() {
-        return endtime;
+    public Date getEndTime() {
+        return endTime;
     }
 
-    public void setEndtime(Date endtime) {
-        this.endtime = endtime;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
-    public Integer getGbstatus() {
-        return gbstatus;
+    public Integer getGbStatus() {
+        return gbStatus;
     }
 
-    public void setGbstatus(Integer gbstatus) {
-        this.gbstatus = gbstatus;
+    public void setGbStatus(Integer gbStatus) {
+        this.gbStatus = gbStatus;
     }
 
-    public Integer getSalesid() {
-        return salesid;
+    public Integer getSalesId() {
+        return salesId;
     }
 
-    public void setSalesid(Integer salesid) {
-        this.salesid = salesid;
+    public void setSalesId(Integer salesId) {
+        this.salesId = salesId;
     }
 
-    public String getBgcolor() {
-        return bgcolor;
+    public String getBgColor() {
+        return bgColor;
     }
 
-    public void setBgcolor(String bgcolor) {
-        this.bgcolor = bgcolor == null ? null : bgcolor.trim();
-    }
-
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setBgColor(String bgColor) {
+        this.bgColor = bgColor == null ? null : bgColor.trim();
     }
 }

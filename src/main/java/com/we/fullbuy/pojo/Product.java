@@ -5,43 +5,43 @@ import java.util.Date;
 import java.util.List;
 
 public class Product implements Serializable {
-    private Integer productid;
+    private Integer productId;
 
-    private String productname;
+    private String productName;
 
-    private String productdetail;
+    private String productDetail;
 
-    private Integer productscore;
+    private Integer productScore;
 
-    private Integer salesnum;
+    private Integer salesNum;
 
-    private Integer categoryid;
+    private Integer categoryId;
 
-    private Integer secondcategoryid;
+    private Integer secondCategoryId;
 
-    private Integer salesid;
+    private Integer salesId;
 
-    private Date posttime;
+    private Date postTime;
 
-    private Integer productstatus;
+    private Integer productStatus;
 
-    private String searchimgpath;
+    private String searchImgPath;
 
-    private String simgpath1;
+    private String sImgPath1;
 
-    private String simgpath2;
+    private String sImgPath2;
 
-    private String mimgpath1;
+    private String mImgPath1;
 
-    private String mimgpath2;
+    private String mImgPath2;
 
-    private String bimgpath1;
+    private String bImgPath1;
 
-    private String bimgpath2;
+    private String bImgPath2;
 
-    private String detailimgpath1;
+    private String detailImgPath1;
 
-    private String detailimgpath2;
+    private String detailImgPath2;
 
     private String item1;
 
@@ -51,148 +51,156 @@ public class Product implements Serializable {
 
     private List<Sku> skuList;
 
-    public Integer getProductid() {
-        return productid;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProductid(Integer productid) {
-        this.productid = productid;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public String getProductname() {
-        return productname;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProductname(String productname) {
-        this.productname = productname == null ? null : productname.trim();
+    public void setProductName(String productName) {
+        this.productName = productName == null ? null : productName.trim();
     }
 
-    public String getProductdetail() {
-        return productdetail;
+    public String getProductDetail() {
+        return productDetail;
     }
 
-    public void setProductdetail(String productdetail) {
-        this.productdetail = productdetail == null ? null : productdetail.trim();
+    public void setProductDetail(String productDetail) {
+        this.productDetail = productDetail == null ? null : productDetail.trim();
     }
 
-    public Integer getProductscore() {
-        return productscore;
+    public Integer getProductScore() {
+        return productScore;
     }
 
-    public void setProductscore(Integer productscore) {
-        this.productscore = productscore;
+    public void setProductScore(Integer productScore) {
+        this.productScore = productScore;
     }
 
-    public Integer getSalesnum() {
-        return salesnum;
+    public Integer getSalesNum() {
+        return salesNum;
     }
 
-    public void setSalesnum(Integer salesnum) {
-        this.salesnum = salesnum;
+    public void setSalesNum(Integer salesNum) {
+        this.salesNum = salesNum;
     }
 
-    public Integer getCategoryid() {
-        return categoryid;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryid(Integer categoryid) {
-        this.categoryid = categoryid;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public Integer getSalesid() {
-        return salesid;
+    public Integer getSecondCategoryId() {
+        return secondCategoryId;
     }
 
-    public void setSalesid(Integer salesid) {
-        this.salesid = salesid;
+    public void setSecondCategoryId(Integer secondCategoryId) {
+        this.secondCategoryId = secondCategoryId;
     }
 
-    public Date getPosttime() {
-        return posttime;
+    public Integer getSalesId() {
+        return salesId;
     }
 
-    public void setPosttime(Date posttime) {
-        this.posttime = posttime;
+    public void setSalesId(Integer salesId) {
+        this.salesId = salesId;
     }
 
-    public Integer getProductstatus() {
-        return productstatus;
+    public Date getPostTime() {
+        return postTime;
     }
 
-    public void setProductstatus(Integer productstatus) {
-        this.productstatus = productstatus;
+    public void setPostTime(Date postTime) {
+        this.postTime = postTime;
     }
 
-    public String getSearchimgpath() {
-        return searchimgpath;
+    public Integer getProductStatus() {
+        return productStatus;
     }
 
-    public void setSearchimgpath(String searchimgpath) {
-        this.searchimgpath = searchimgpath == null ? null : searchimgpath.trim();
+    public void setProductStatus(Integer productStatus) {
+        this.productStatus = productStatus;
     }
 
-    public String getSimgpath1() {
-        return simgpath1;
+    public String getSearchImgPath() {
+        return searchImgPath;
     }
 
-    public void setSimgpath1(String simgpath1) {
-        this.simgpath1 = simgpath1 == null ? null : simgpath1.trim();
+    public void setSearchImgPath(String searchImgPath) {
+        this.searchImgPath = searchImgPath == null ? null : searchImgPath.trim();
     }
 
-    public String getSimgpath2() {
-        return simgpath2;
+    public String getsImgPath1() {
+        return sImgPath1;
     }
 
-    public void setSimgpath2(String simgpath2) {
-        this.simgpath2 = simgpath2 == null ? null : simgpath2.trim();
+    public void setsImgPath1(String sImgPath1) {
+        this.sImgPath1 = sImgPath1 == null ? null : sImgPath1.trim();
     }
 
-    public String getMimgpath1() {
-        return mimgpath1;
+    public String getsImgPath2() {
+        return sImgPath2;
     }
 
-    public void setMimgpath1(String mimgpath1) {
-        this.mimgpath1 = mimgpath1 == null ? null : mimgpath1.trim();
+    public void setsImgPath2(String sImgPath2) {
+        this.sImgPath2 = sImgPath2 == null ? null : sImgPath2.trim();
     }
 
-    public String getMimgpath2() {
-        return mimgpath2;
+    public String getmImgPath1() {
+        return mImgPath1;
     }
 
-    public void setMimgpath2(String mimgpath2) {
-        this.mimgpath2 = mimgpath2 == null ? null : mimgpath2.trim();
+    public void setmImgPath1(String mImgPath1) {
+        this.mImgPath1 = mImgPath1 == null ? null : mImgPath1.trim();
     }
 
-    public String getBimgpath1() {
-        return bimgpath1;
+    public String getmImgPath2() {
+        return mImgPath2;
     }
 
-    public void setBimgpath1(String bimgpath1) {
-        this.bimgpath1 = bimgpath1 == null ? null : bimgpath1.trim();
+    public void setmImgPath2(String mImgPath2) {
+        this.mImgPath2 = mImgPath2 == null ? null : mImgPath2.trim();
     }
 
-    public String getBimgpath2() {
-        return bimgpath2;
+    public String getbImgPath1() {
+        return bImgPath1;
     }
 
-    public void setBimgpath2(String bimgpath2) {
-        this.bimgpath2 = bimgpath2 == null ? null : bimgpath2.trim();
+    public void setbImgPath1(String bImgPath1) {
+        this.bImgPath1 = bImgPath1 == null ? null : bImgPath1.trim();
     }
 
-    public String getDetailimgpath1() {
-        return detailimgpath1;
+    public String getbImgPath2() {
+        return bImgPath2;
     }
 
-    public void setDetailimgpath1(String detailimgpath1) {
-        this.detailimgpath1 = detailimgpath1 == null ? null : detailimgpath1.trim();
+    public void setbImgPath2(String bImgPath2) {
+        this.bImgPath2 = bImgPath2 == null ? null : bImgPath2.trim();
     }
 
-    public String getDetailimgpath2() {
-        return detailimgpath2;
+    public String getDetailImgPath1() {
+        return detailImgPath1;
     }
 
-    public void setDetailimgpath2(String detailimgpath2) {
-        this.detailimgpath2 = detailimgpath2 == null ? null : detailimgpath2.trim();
+    public void setDetailImgPath1(String detailImgPath1) {
+        this.detailImgPath1 = detailImgPath1 == null ? null : detailImgPath1.trim();
+    }
+
+    public String getDetailImgPath2() {
+        return detailImgPath2;
+    }
+
+    public void setDetailImgPath2(String detailImgPath2) {
+        this.detailImgPath2 = detailImgPath2 == null ? null : detailImgPath2.trim();
     }
 
     public String getItem1() {
@@ -219,20 +227,12 @@ public class Product implements Serializable {
         this.postfee = postfee;
     }
 
+
     public List<Sku> getSkuList() {
         return skuList;
     }
 
     public void setSkuList(List<Sku> skuList) {
         this.skuList = skuList;
-    }
-
-
-    public Integer getSecondcategoryid() {
-        return secondcategoryid;
-    }
-
-    public void setSecondcategoryid(Integer secondcategoryid) {
-        this.secondcategoryid = secondcategoryid;
     }
 }

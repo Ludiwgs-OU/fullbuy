@@ -1,4 +1,4 @@
-function getObjectURL(file) {  
+﻿function getObjectURL(file) {  
     var url = null;  
     if (window.createObjcectURL != undefined) {  
         url = window.createOjcectURL(file);  
@@ -67,6 +67,7 @@ new Vue({
 			dataType:"json",
 			success:function(inf){
 				self.site = inf;
+				console.log(inf);
 			},
 			error:function(inf){
 				alert("获取数据失败！");

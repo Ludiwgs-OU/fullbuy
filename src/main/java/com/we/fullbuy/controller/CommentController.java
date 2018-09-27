@@ -44,7 +44,7 @@ public class CommentController {
     @ResponseBody
     public String addComment(@RequestBody Comment comment, HttpSession session)
     {
-        comment.setUserid((int)session.getAttribute("userId"));
+        comment.setUserId((int)session.getAttribute("userId"));
 
         if(commentService.addComment(comment)!=0)
             return "评论成功";

@@ -4,36 +4,36 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Favor implements Serializable {
-    private Integer favorid;
+    private Integer favorId;
 
-    private Integer userid;
+    private Integer userId;
 
-    private Integer productid;
+    private Integer productId;
 
     private List<Product> productList;
 
-    public Integer getFavorid() {
-        return favorid;
+    public Integer getFavorId() {
+        return favorId;
     }
 
-    public void setFavorid(Integer favorid) {
-        this.favorid = favorid;
+    public void setFavorId(Integer favorId) {
+        this.favorId = favorId;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getProductid() {
-        return productid;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProductid(Integer productid) {
-        this.productid = productid;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public List<Product> getProductList() {

@@ -1,80 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.SkuMapper">
-  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Sku">
-    <id column="skuId" jdbcType="INTEGER" property="skuid" />
-    <result column="productId" jdbcType="INTEGER" property="productid" />
-    <result column="itemId" jdbcType="INTEGER" property="itemid" />
-    <result column="secondItemId" jdbcType="INTEGER" property="seconditemid" />
+    <id column="sku_Id" jdbcType="INTEGER" property="skuId" />
+    <result column="product_Id" jdbcType="INTEGER" property="productId" />
+    <result column="item_Id" jdbcType="INTEGER" property="itemId" />
+    <result column="second_Item_Id" jdbcType="INTEGER" property="secondItemId" />
     <result column="price" jdbcType="DOUBLE" property="price" />
-    <result column="gbPrice" jdbcType="DOUBLE" property="gbprice" />
+    <result column="gb_Price" jdbcType="DOUBLE" property="gbPrice" />
     <result column="quantity" jdbcType="INTEGER" property="quantity" />
   </resultMap>
   <sql id="Base_Column_List">
-    skuId, productId, itemId, secondItemId, price, gbPrice, quantity
+    sku_Id, product_Id, item_Id, second_Item_Id, price, gb_Price, quantity
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sku
-    where skuId = #{skuid,jdbcType=INTEGER}
+    where sku_Id = #{skuId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sku
-    where skuId = #{skuid,jdbcType=INTEGER}
+    where sku_Id = #{skuId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Sku">
-    insert into sku (skuId, productId, itemId, 
-      secondItemId, price, gbPrice, 
+    insert into sku (sku_Id, product_Id, item_Id, 
+      second_Item_Id, price, gb_Price, 
       quantity)
-    values (#{skuid,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{itemid,jdbcType=INTEGER}, 
-      #{seconditemid,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, #{gbprice,jdbcType=DOUBLE}, 
+    values (#{skuId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}, 
+      #{secondItemId,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, #{gbPrice,jdbcType=DOUBLE}, 
       #{quantity,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Sku">
     insert into sku
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="skuid != null">
-        skuId,
+      <if test="skuId != null">
+        sku_Id,
       </if>
-      <if test="productid != null">
-        productId,
+      <if test="productId != null">
+        product_Id,
       </if>
-      <if test="itemid != null">
-        itemId,
+      <if test="itemId != null">
+        item_Id,
       </if>
-      <if test="seconditemid != null">
-        secondItemId,
+      <if test="secondItemId != null">
+        second_Item_Id,
       </if>
       <if test="price != null">
         price,
       </if>
-      <if test="gbprice != null">
-        gbPrice,
+      <if test="gbPrice != null">
+        gb_Price,
       </if>
       <if test="quantity != null">
         quantity,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="skuid != null">
-        #{skuid,jdbcType=INTEGER},
+      <if test="skuId != null">
+        #{skuId,jdbcType=INTEGER},
       </if>
-      <if test="productid != null">
-        #{productid,jdbcType=INTEGER},
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
       </if>
-      <if test="itemid != null">
-        #{itemid,jdbcType=INTEGER},
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
       </if>
-      <if test="seconditemid != null">
-        #{seconditemid,jdbcType=INTEGER},
+      <if test="secondItemId != null">
+        #{secondItemId,jdbcType=INTEGER},
       </if>
       <if test="price != null">
         #{price,jdbcType=DOUBLE},
       </if>
-      <if test="gbprice != null">
-        #{gbprice,jdbcType=DOUBLE},
+      <if test="gbPrice != null">
+        #{gbPrice,jdbcType=DOUBLE},
       </if>
       <if test="quantity != null">
         #{quantity,jdbcType=INTEGER},
@@ -84,60 +83,62 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Sku">
     update sku
     <set>
-      <if test="productid != null">
-        productId = #{productid,jdbcType=INTEGER},
+      <if test="productId != null">
+        product_Id = #{productId,jdbcType=INTEGER},
       </if>
-      <if test="itemid != null">
-        itemId = #{itemid,jdbcType=INTEGER},
+      <if test="itemId != null">
+        item_Id = #{itemId,jdbcType=INTEGER},
       </if>
-      <if test="seconditemid != null">
-        secondItemId = #{seconditemid,jdbcType=INTEGER},
+      <if test="secondItemId != null">
+        second_Item_Id = #{secondItemId,jdbcType=INTEGER},
       </if>
       <if test="price != null">
         price = #{price,jdbcType=DOUBLE},
       </if>
-      <if test="gbprice != null">
-        gbPrice = #{gbprice,jdbcType=DOUBLE},
+      <if test="gbPrice != null">
+        gb_Price = #{gbPrice,jdbcType=DOUBLE},
       </if>
       <if test="quantity != null">
         quantity = #{quantity,jdbcType=INTEGER},
       </if>
     </set>
-    where skuId = #{skuid,jdbcType=INTEGER}
+    where sku_Id = #{skuId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Sku">
     update sku
-    set productId = #{productid,jdbcType=INTEGER},
-      itemId = #{itemid,jdbcType=INTEGER},
-      secondItemId = #{seconditemid,jdbcType=INTEGER},
+    set product_Id = #{productId,jdbcType=INTEGER},
+      item_Id = #{itemId,jdbcType=INTEGER},
+      second_Item_Id = #{secondItemId,jdbcType=INTEGER},
       price = #{price,jdbcType=DOUBLE},
-      gbPrice = #{gbprice,jdbcType=DOUBLE},
+      gb_Price = #{gbPrice,jdbcType=DOUBLE},
       quantity = #{quantity,jdbcType=INTEGER}
-    where skuId = #{skuid,jdbcType=INTEGER}
+    where sku_Id = #{skuId,jdbcType=INTEGER}
   </update>
+
 
   <!--new-->
   <resultMap id="sku-item" type="com.we.fullbuy.pojo.Sku" extends="BaseResultMap">
     <collection property="itemList" ofType="com.we.fullbuy.pojo.Item">
-      <id column="itemId" jdbcType="INTEGER" property="itemid" />
-      <result column="itemName" jdbcType="VARCHAR" property="itemname" />
+      <id column="item_Id" jdbcType="INTEGER" property="itemId" />
+      <result column="item_Name" jdbcType="VARCHAR" property="itemName" />
     </collection>
     <collection property="seconditemList" ofType="com.we.fullbuy.pojo.Seconditem">
-      <id column="secondItemId" jdbcType="INTEGER" property="seconditemid" />
-      <result column="secondItemName" jdbcType="VARCHAR" property="seconditemname" />
+      <id column="second_Item_Id" jdbcType="INTEGER" property="secondItemId" />
+      <result column="second_Item_Name" jdbcType="VARCHAR" property="secondItemName" />
     </collection>
   </resultMap>
 
   <select id="selectSkuWithItems" parameterType="java.lang.Integer" resultMap="sku-item">
     select s.*,i.*,si.*
     from sku s,item i,seconditem si
-    where skuId = #{skuid,jdbcType=INTEGER} and s.itemId = i.itemId and s.secondItemId = si.secondItemId
+    where sku_Id = #{skuId,jdbcType=INTEGER} and s.item_Id = i.item_Id
+    and s.second_Item_Id = si.second_Item_Id
   </select>
 
   <select id="getPrice" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select *
     from sku
-    where productId = #{sproductid,jdbcType=INTEGER} and itemId = #{itemid,jdbcType=INTEGER} and
-          secondItemId = #{seconditemid,jdbcType=INTEGER}
+    where product_Id = #{productId,jdbcType=INTEGER} and item_Id = #{itemId,jdbcType=INTEGER} and
+          second_Item_Id = #{secondItemId,jdbcType=INTEGER}
   </select>
 </mapper>

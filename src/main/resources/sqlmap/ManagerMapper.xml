@@ -1,59 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.ManagerMapper">
-  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Manager">
-    <id column="managerId" jdbcType="INTEGER" property="managerid" />
-    <result column="managerPwd" jdbcType="VARCHAR" property="managerpwd" />
+    <id column="manager_Id" jdbcType="INTEGER" property="managerId" />
+    <result column="manager_Pwd" jdbcType="VARCHAR" property="managerPwd" />
   </resultMap>
   <sql id="Base_Column_List">
-    managerId, managerPwd
+    manager_Id, manager_Pwd
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from manager
-    where managerId = #{managerid,jdbcType=INTEGER}
+    where manager_Id = #{managerId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from manager
-    where managerId = #{managerid,jdbcType=INTEGER}
+    where manager_Id = #{managerId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Manager">
-    insert into manager (managerId, managerPwd)
-    values (#{managerid,jdbcType=INTEGER}, #{managerpwd,jdbcType=VARCHAR})
+    insert into manager (manager_Id, manager_Pwd)
+    values (#{managerId,jdbcType=INTEGER}, #{managerPwd,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Manager">
     insert into manager
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="managerid != null">
-        managerId,
+      <if test="managerId != null">
+        manager_Id,
       </if>
-      <if test="managerpwd != null">
-        managerPwd,
+      <if test="managerPwd != null">
+        manager_Pwd,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="managerid != null">
-        #{managerid,jdbcType=INTEGER},
+      <if test="managerId != null">
+        #{managerId,jdbcType=INTEGER},
       </if>
-      <if test="managerpwd != null">
-        #{managerpwd,jdbcType=VARCHAR},
+      <if test="managerPwd != null">
+        #{managerPwd,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Manager">
     update manager
     <set>
-      <if test="managerpwd != null">
-        managerPwd = #{managerpwd,jdbcType=VARCHAR},
+      <if test="managerPwd != null">
+        manager_Pwd = #{managerPwd,jdbcType=VARCHAR},
       </if>
     </set>
-    where managerId = #{managerid,jdbcType=INTEGER}
+    where manager_Id = #{managerId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Manager">
     update manager
-    set managerPwd = #{managerpwd,jdbcType=VARCHAR}
-    where managerId = #{managerid,jdbcType=INTEGER}
+    set manager_Pwd = #{managerPwd,jdbcType=VARCHAR}
+    where manager_Id = #{managerId,jdbcType=INTEGER}
   </update>
 </mapper>

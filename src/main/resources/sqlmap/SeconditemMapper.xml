@@ -1,59 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.SeconditemMapper">
-  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Seconditem">
-    <id column="secondItemId" jdbcType="INTEGER" property="seconditemid" />
-    <result column="secondItemName" jdbcType="VARCHAR" property="seconditemname" />
+    <id column="second_Item_Id" jdbcType="INTEGER" property="secondItemId" />
+    <result column="second_Item_Name" jdbcType="VARCHAR" property="secondItemName" />
   </resultMap>
   <sql id="Base_Column_List">
-    secondItemId, secondItemName
+    second_Item_Id, second_Item_Name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from seconditem
-    where secondItemId = #{seconditemid,jdbcType=INTEGER}
+    where second_Item_Id = #{secondItemId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from seconditem
-    where secondItemId = #{seconditemid,jdbcType=INTEGER}
+    where second_Item_Id = #{secondItemId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Seconditem">
-    insert into seconditem (secondItemId, secondItemName)
-    values (#{seconditemid,jdbcType=INTEGER}, #{seconditemname,jdbcType=VARCHAR})
+    insert into seconditem (second_Item_Id, second_Item_Name)
+    values (#{secondItemId,jdbcType=INTEGER}, #{secondItemName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Seconditem">
     insert into seconditem
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="seconditemid != null">
-        secondItemId,
+      <if test="secondItemId != null">
+        second_Item_Id,
       </if>
-      <if test="seconditemname != null">
-        secondItemName,
+      <if test="secondItemName != null">
+        second_Item_Name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="seconditemid != null">
-        #{seconditemid,jdbcType=INTEGER},
+      <if test="secondItemId != null">
+        #{secondItemId,jdbcType=INTEGER},
       </if>
-      <if test="seconditemname != null">
-        #{seconditemname,jdbcType=VARCHAR},
+      <if test="secondItemName != null">
+        #{secondItemName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Seconditem">
     update seconditem
     <set>
-      <if test="seconditemname != null">
-        secondItemName = #{seconditemname,jdbcType=VARCHAR},
+      <if test="secondItemName != null">
+        second_Item_Name = #{secondItemName,jdbcType=VARCHAR},
       </if>
     </set>
-    where secondItemId = #{seconditemid,jdbcType=INTEGER}
+    where second_Item_Id = #{secondItemId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Seconditem">
     update seconditem
-    set secondItemName = #{seconditemname,jdbcType=VARCHAR}
-    where secondItemId = #{seconditemid,jdbcType=INTEGER}
+    set second_Item_Name = #{secondItemName,jdbcType=VARCHAR}
+    where second_Item_Id = #{secondItemId,jdbcType=INTEGER}
   </update>
 </mapper>

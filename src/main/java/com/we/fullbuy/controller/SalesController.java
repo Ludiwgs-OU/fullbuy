@@ -33,9 +33,9 @@ public class SalesController {
 
         if (sales != null) {
             if (sales.getBlack()==0) {
-                if (sales.getSalaespwd().equals(password))
+                if (sales.getSalaesPwd().equals(password))
                 {
-                    session.setAttribute("salesId",sales.getSalesid());
+                    session.setAttribute("salesId",sales.getSalesId());
                     return 1;//登录成功
                 }
                 else
@@ -77,7 +77,7 @@ public class SalesController {
     @ResponseBody
     public boolean modifySales(@RequestBody Sales sales, HttpSession session)
     {
-        sales.setSalesid((int)session.getAttribute("salesId"));
+        sales.setSalesId((int)session.getAttribute("salesId"));
 
         if(salesService.modifySales(sales)!=0)
             return true;

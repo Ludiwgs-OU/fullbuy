@@ -1,4 +1,4 @@
-/*
+﻿/*
  * 获取路径参数
  */
 function getUrlParam(name) {

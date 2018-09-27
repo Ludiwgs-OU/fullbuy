@@ -1,4 +1,4 @@
-function getObjectURL(file) {  
+﻿function getObjectURL(file) {  
     var url = null;  
     if (window.createObjcectURL != undefined) {
         url = window.createOjcectURL(file);

@@ -3,13 +3,13 @@ package com.we.fullbuy.dao;
 import com.we.fullbuy.pojo.Category;
 
 public interface CategoryMapper {
-    int deleteByPrimaryKey(Integer categoryid);
+    int deleteByPrimaryKey(Integer categoryId);
 
     int insert(Category record);
 
     int insertSelective(Category record);
 
-    Category selectByPrimaryKey(Integer categoryid);
+    Category selectByPrimaryKey(Integer categoryId);
 
     int updateByPrimaryKeySelective(Category record);
 

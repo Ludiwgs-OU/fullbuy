@@ -1,120 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.UserMapper">
-  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.User">
-    <id column="userId" jdbcType="INTEGER" property="userid" />
+    <id column="user_Id" jdbcType="INTEGER" property="userId" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="userName" jdbcType="VARCHAR" property="username" />
-    <result column="userType" jdbcType="INTEGER" property="usertype" />
-    <result column="userQQ" jdbcType="VARCHAR" property="userqq" />
-    <result column="userPhone" jdbcType="CHAR" property="userphone" />
-    <result column="userEmail" jdbcType="VARCHAR" property="useremail" />
+    <result column="user_Name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_Type" jdbcType="INTEGER" property="userType" />
+    <result column="user_QQ" jdbcType="VARCHAR" property="userQq" />
+    <result column="user_Phone" jdbcType="CHAR" property="userPhone" />
+    <result column="user_Email" jdbcType="VARCHAR" property="userEmail" />
     <result column="sex" jdbcType="CHAR" property="sex" />
-    <result column="userProfile" jdbcType="VARCHAR" property="userprofile" />
-    <result column="userScore" jdbcType="INTEGER" property="userscore" />
-    <result column="lastLoginTime" jdbcType="TIMESTAMP" property="lastlogintime" />
+    <result column="user_Profile" jdbcType="VARCHAR" property="userProfile" />
+    <result column="user_Score" jdbcType="INTEGER" property="userScore" />
+    <result column="last_Login_Time" jdbcType="TIMESTAMP" property="lastLoginTime" />
     <result column="black" jdbcType="INTEGER" property="black" />
   </resultMap>
   <sql id="Base_Column_List">
-    userId, password, userName, userType, userQQ, userPhone, userEmail, sex, userProfile, 
-    userScore, lastLoginTime, black
+    user_Id, password, user_Name, user_Type, user_QQ, user_Phone, user_Email, sex, user_Profile, 
+    user_Score, last_Login_Time, black
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user
-    where userId = #{userid,jdbcType=INTEGER}
+    where user_Id = #{userId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
-    where userId = #{userid,jdbcType=INTEGER}
+    where user_Id = #{userId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.User">
-    insert into user (userId, password, userName, 
-      userType, userQQ, userPhone, 
-      userEmail, sex, userProfile, 
-      userScore, lastLoginTime, black
+    insert into user (user_Id, password, user_Name, 
+      user_Type, user_QQ, user_Phone, 
+      user_Email, sex, user_Profile, 
+      user_Score, last_Login_Time, black
       )
-    values (#{userid,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
-      #{usertype,jdbcType=INTEGER}, #{userqq,jdbcType=VARCHAR}, #{userphone,jdbcType=CHAR}, 
-      #{useremail,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{userprofile,jdbcType=VARCHAR}, 
-      #{userscore,jdbcType=INTEGER}, #{lastlogintime,jdbcType=TIMESTAMP}, #{black,jdbcType=INTEGER}
+    values (#{userId,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=INTEGER}, #{userQq,jdbcType=VARCHAR}, #{userPhone,jdbcType=CHAR}, 
+      #{userEmail,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{userProfile,jdbcType=VARCHAR}, 
+      #{userScore,jdbcType=INTEGER}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{black,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        userId,
+      <if test="userId != null">
+        user_Id,
       </if>
       <if test="password != null">
         password,
       </if>
-      <if test="username != null">
-        userName,
+      <if test="userName != null">
+        user_Name,
       </if>
-      <if test="usertype != null">
-        userType,
+      <if test="userType != null">
+        user_Type,
       </if>
-      <if test="userqq != null">
-        userQQ,
+      <if test="userQq != null">
+        user_QQ,
       </if>
-      <if test="userphone != null">
-        userPhone,
+      <if test="userPhone != null">
+        user_Phone,
       </if>
-      <if test="useremail != null">
-        userEmail,
+      <if test="userEmail != null">
+        user_Email,
       </if>
       <if test="sex != null">
         sex,
       </if>
-      <if test="userprofile != null">
-        userProfile,
+      <if test="userProfile != null">
+        user_Profile,
       </if>
-      <if test="userscore != null">
-        userScore,
+      <if test="userScore != null">
+        user_Score,
       </if>
-      <if test="lastlogintime != null">
-        lastLoginTime,
+      <if test="lastLoginTime != null">
+        last_Login_Time,
       </if>
       <if test="black != null">
         black,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="usertype != null">
-        #{usertype,jdbcType=INTEGER},
+      <if test="userType != null">
+        #{userType,jdbcType=INTEGER},
       </if>
-      <if test="userqq != null">
-        #{userqq,jdbcType=VARCHAR},
+      <if test="userQq != null">
+        #{userQq,jdbcType=VARCHAR},
       </if>
-      <if test="userphone != null">
-        #{userphone,jdbcType=CHAR},
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=CHAR},
       </if>
-      <if test="useremail != null">
-        #{useremail,jdbcType=VARCHAR},
+      <if test="userEmail != null">
+        #{userEmail,jdbcType=VARCHAR},
       </if>
       <if test="sex != null">
         #{sex,jdbcType=CHAR},
       </if>
-      <if test="userprofile != null">
-        #{userprofile,jdbcType=VARCHAR},
+      <if test="userProfile != null">
+        #{userProfile,jdbcType=VARCHAR},
       </if>
-      <if test="userscore != null">
-        #{userscore,jdbcType=INTEGER},
+      <if test="userScore != null">
+        #{userScore,jdbcType=INTEGER},
       </if>
-      <if test="lastlogintime != null">
-        #{lastlogintime,jdbcType=TIMESTAMP},
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
       </if>
       <if test="black != null">
         #{black,jdbcType=INTEGER},
@@ -127,59 +126,60 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="username != null">
-        userName = #{username,jdbcType=VARCHAR},
+      <if test="userName != null">
+        user_Name = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="usertype != null">
-        userType = #{usertype,jdbcType=INTEGER},
+      <if test="userType != null">
+        user_Type = #{userType,jdbcType=INTEGER},
       </if>
-      <if test="userqq != null">
-        userQQ = #{userqq,jdbcType=VARCHAR},
+      <if test="userQq != null">
+        user_QQ = #{userQq,jdbcType=VARCHAR},
       </if>
-      <if test="userphone != null">
-        userPhone = #{userphone,jdbcType=CHAR},
+      <if test="userPhone != null">
+        user_Phone = #{userPhone,jdbcType=CHAR},
       </if>
-      <if test="useremail != null">
-        userEmail = #{useremail,jdbcType=VARCHAR},
+      <if test="userEmail != null">
+        user_Email = #{userEmail,jdbcType=VARCHAR},
       </if>
       <if test="sex != null">
         sex = #{sex,jdbcType=CHAR},
       </if>
-      <if test="userprofile != null">
-        userProfile = #{userprofile,jdbcType=VARCHAR},
+      <if test="userProfile != null">
+        user_Profile = #{userProfile,jdbcType=VARCHAR},
       </if>
-      <if test="userscore != null">
-        userScore = #{userscore,jdbcType=INTEGER},
+      <if test="userScore != null">
+        user_Score = #{userScore,jdbcType=INTEGER},
       </if>
-      <if test="lastlogintime != null">
-        lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      <if test="lastLoginTime != null">
+        last_Login_Time = #{lastLoginTime,jdbcType=TIMESTAMP},
       </if>
       <if test="black != null">
         black = #{black,jdbcType=INTEGER},
       </if>
     </set>
-    where userId = #{userid,jdbcType=INTEGER}
+    where user_Id = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.User">
     update user
     set password = #{password,jdbcType=VARCHAR},
-      userName = #{username,jdbcType=VARCHAR},
-      userType = #{usertype,jdbcType=INTEGER},
-      userQQ = #{userqq,jdbcType=VARCHAR},
-      userPhone = #{userphone,jdbcType=CHAR},
-      userEmail = #{useremail,jdbcType=VARCHAR},
+      user_Name = #{userName,jdbcType=VARCHAR},
+      user_Type = #{userType,jdbcType=INTEGER},
+      user_QQ = #{userQq,jdbcType=VARCHAR},
+      user_Phone = #{userPhone,jdbcType=CHAR},
+      user_Email = #{userEmail,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=CHAR},
-      userProfile = #{userprofile,jdbcType=VARCHAR},
-      userScore = #{userscore,jdbcType=INTEGER},
-      lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      user_Profile = #{userProfile,jdbcType=VARCHAR},
+      user_Score = #{userScore,jdbcType=INTEGER},
+      last_Login_Time = #{lastLoginTime,jdbcType=TIMESTAMP},
       black = #{black,jdbcType=INTEGER}
-    where userId = #{userid,jdbcType=INTEGER}
+    where user_Id = #{userId,jdbcType=INTEGER}
   </update>
+
 
   <!--new-->
   <select id="selectByPhone" resultMap="BaseResultMap">
     select *
     from user
-    where userPhone = #{phone,jdbcType=CHAR}
+    where user_Phone = #{phone,jdbcType=CHAR}
   </select>
 </mapper>

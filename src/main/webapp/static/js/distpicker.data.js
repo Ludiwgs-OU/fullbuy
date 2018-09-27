@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Distpicker v1.0.4
  * https://github.com/fengyuanchen/distpicker
  *

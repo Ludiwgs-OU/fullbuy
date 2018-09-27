@@ -1,4 +1,4 @@
-new Vue({
+﻿new Vue({
 	el: '#headerNav',
 	data:function(){
    		return {

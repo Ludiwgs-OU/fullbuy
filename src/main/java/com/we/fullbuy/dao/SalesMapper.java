@@ -5,13 +5,13 @@ import com.we.fullbuy.pojo.Sales;
 import java.util.List;
 
 public interface SalesMapper {
-    int deleteByPrimaryKey(Integer salesid);
+    int deleteByPrimaryKey(Integer salesId);
 
     int insert(Sales record);
 
     int insertSelective(Sales record);
 
-    Sales selectByPrimaryKey(Integer salesid);
+    Sales selectByPrimaryKey(Integer salesId);
 
     int updateByPrimaryKeySelective(Sales record);
 

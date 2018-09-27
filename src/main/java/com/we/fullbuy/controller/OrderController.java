@@ -90,15 +90,15 @@ public class OrderController {
         if(num<sku.getQuantity())//库存量比较
         {
             Order order = new Order();
-            order.setOrderid(orderId);
-            order.setOrderdate(timestamp);
-            order.setOrderstatus(orderStatus);
+            order.setOrderId(orderId);
+            order.setOrderDate(timestamp);
+            order.setOrderStatus(orderStatus);
             order.setNum(num);
-            order.setUserid(userId);
+            order.setUserId(userId);
             order.setPrice(price);
-            order.setTotalprice(totalPrice);
-            order.setAddressid(addressId);
-            order.setSkuid(skuId);
+            order.setTotalPrice(totalPrice);
+            order.setAddressId(addressId);
+            order.setSkuId(skuId);
             if(orderService.addOrder(order)==1)
             {
                 if(orderStatus==1)
@@ -109,8 +109,8 @@ public class OrderController {
                         System.out.println("-Quantity Success");//减库存量
 
                     Product product = new Product();
-                    product.setProductid(sku.getProductid());
-                    product.setSalesnum(product.getSalesnum()+num);//增加销售量
+                    product.setProductId(sku.getProductId());
+                    product.setSalesNum(product.getSalesNum()+num);//增加销售量
                     int p = productService.modifyProduct(product);
                     if(p!=0)
                         System.out.println("+Salesnum success");
@@ -118,8 +118,8 @@ public class OrderController {
                     if(gbId!=0)
                     {
                         Groudbuy groudbuy = new Groudbuy();
-                        groudbuy.setGbid(gbId);
-                        groudbuy.setNowpeople(groudbuy.getNowpeople()+1);
+                        groudbuy.setGbId(gbId);
+                        groudbuy.setNowPeople(groudbuy.getNowPeople()+1);
                         groudbuyService.modifyGroudbuy(groudbuy);
                     }
 
@@ -176,12 +176,12 @@ public class OrderController {
     public String pay(@RequestParam("orderId") String orderId, HttpSession session)
     {
         Order order = orderService.showOrderDetail(orderId);
-        order.setOrderstatus(1);
+        order.setOrderStatus(1);
         if(orderService.Pay(order)!=0)
         {
             User user = new User();
-            user.setUserid((int)session.getAttribute("userId"));
-            user.setUserscore(user.getUserscore()+(int)(order.getTotalprice()*0.1));
+            user.setUserId((int)session.getAttribute("userId"));
+            user.setUserScore(user.getUserScore()+(int)(order.getTotalPrice()*0.1));
             userService.modifyUser(user);
             return "订单已支付";
         }
@@ -196,8 +196,8 @@ public class OrderController {
     public String confirm(@RequestParam("orderId") String orderId)
     {
         Order order = new Order();
-        order.setOrderid(orderId);
-        order.setOrderstatus(3);
+        order.setOrderId(orderId);
+        order.setOrderStatus(3);
         if(orderService.confirm(order)!=0)
             return "已确认收货咯";
         else
@@ -210,13 +210,13 @@ public class OrderController {
     public String refund(@RequestParam("orderId") String orderId, HttpSession session)
     {
         Order order = new Order();
-        order.setOrderid(orderId);
-        order.setOrderstatus(5);
+        order.setOrderId(orderId);
+        order.setOrderStatus(5);
         if(orderService.refund(order)!=0)
         {
             User user = new User();
-            user.setUserid((int)session.getAttribute("userId"));
-            user.setUserscore(user.getUserscore()-(int)(order.getTotalprice()*0.1));
+            user.setUserId((int)session.getAttribute("userId"));
+            user.setUserScore(user.getUserScore()-(int)(order.getTotalPrice()*0.1));
             userService.modifyUser(user);
             return "订单申请退款并积分已回退";
         }

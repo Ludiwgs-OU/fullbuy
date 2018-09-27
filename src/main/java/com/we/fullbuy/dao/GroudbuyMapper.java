@@ -5,13 +5,13 @@ import com.we.fullbuy.pojo.Groudbuy;
 import java.util.List;
 
 public interface GroudbuyMapper {
-    int deleteByPrimaryKey(Integer gbid);
+    int deleteByPrimaryKey(Integer gbId);
 
     int insert(Groudbuy record);
 
     int insertSelective(Groudbuy record);
 
-    Groudbuy selectByPrimaryKey(Integer gbid);
+    Groudbuy selectByPrimaryKey(Integer gbId);
 
     int updateByPrimaryKeySelective(Groudbuy record);
 
@@ -19,11 +19,11 @@ public interface GroudbuyMapper {
 
     /*new*/
     /*商家查看团购*/
-    List<Groudbuy> selectBySalesId(Integer salesid);
+    List<Groudbuy> selectBySalesId(Integer salesId);
     /*根据关键字搜索团购活动*/
     List<Groudbuy> searchGroudbuy(String keyword);
     /*显示所有团购*/
     List<Groudbuy> showAllGroudbuy();
     /*商品团购详情*/
-    Groudbuy showGroudbuyDetail(Integer productid);
+    Groudbuy showGroudbuyDetail(Integer productId);
 }

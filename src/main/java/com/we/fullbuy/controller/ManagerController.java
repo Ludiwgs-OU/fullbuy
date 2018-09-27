@@ -27,7 +27,7 @@ public class ManagerController {
         System.out.println(password);
         int id = Integer.valueOf(managerId);
         Manager manager = managerService.login(id);
-        if(manager.getManagerpwd().equals(password))
+        if(manager.getManagerPwd().equals(password))
             return 1;
         else
             return 0;

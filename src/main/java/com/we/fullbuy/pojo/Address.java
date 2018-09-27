@@ -3,19 +3,19 @@ package com.we.fullbuy.pojo;
 import java.io.Serializable;
 
 public class Address implements Serializable {
-    private Integer addressid;
+    private Integer addressId;
 
-    private Integer userid;
+    private Integer userId;
 
-    private String addressdetail;
+    private String addressDetail;
 
-    private String postcode;
+    private String postCode;
 
     private String phone;
 
     private String name;
 
-    private Integer defaultaddress;
+    private Integer defaultAddress;
 
     private String province;
 
@@ -23,36 +23,36 @@ public class Address implements Serializable {
 
     private String city;
 
-    public Integer getAddressid() {
-        return addressid;
+    public Integer getAddressId() {
+        return addressId;
     }
 
-    public void setAddressid(Integer addressid) {
-        this.addressid = addressid;
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getAddressdetail() {
-        return addressdetail;
+    public String getAddressDetail() {
+        return addressDetail;
     }
 
-    public void setAddressdetail(String addressdetail) {
-        this.addressdetail = addressdetail == null ? null : addressdetail.trim();
+    public void setAddressDetail(String addressDetail) {
+        this.addressDetail = addressDetail == null ? null : addressDetail.trim();
     }
 
-    public String getPostcode() {
-        return postcode;
+    public String getPostCode() {
+        return postCode;
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode == null ? null : postcode.trim();
+    public void setPostCode(String postCode) {
+        this.postCode = postCode == null ? null : postCode.trim();
     }
 
     public String getPhone() {
@@ -71,12 +71,12 @@ public class Address implements Serializable {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getDefaultaddress() {
-        return defaultaddress;
+    public Integer getDefaultAddress() {
+        return defaultAddress;
     }
 
-    public void setDefaultaddress(Integer defaultaddress) {
-        this.defaultaddress = defaultaddress;
+    public void setDefaultAddress(Integer defaultAddress) {
+        this.defaultAddress = defaultAddress;
     }
 
     public String getProvince() {

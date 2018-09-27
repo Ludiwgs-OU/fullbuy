@@ -1,173 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.we.fullbuy.dao.SalesMapper">
-  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Sales">
-    <id column="salesId" jdbcType="INTEGER" property="salesid" />
-    <result column="salaesPwd" jdbcType="VARCHAR" property="salaespwd" />
-    <result column="salaesName" jdbcType="VARCHAR" property="salaesname" />
-    <result column="salesPhone" jdbcType="CHAR" property="salesphone" />
-    <result column="salesAddress" jdbcType="VARCHAR" property="salesaddress" />
-    <result column="salesDetail" jdbcType="VARCHAR" property="salesdetail" />
-    <result column="salesStatus" jdbcType="INTEGER" property="salesstatus" />
-    <result column="salesEmail" jdbcType="VARCHAR" property="salesemail" />
+    <id column="sales_Id" jdbcType="INTEGER" property="salesId" />
+    <result column="salaes_Pwd" jdbcType="VARCHAR" property="salaesPwd" />
+    <result column="salaes_Name" jdbcType="VARCHAR" property="salaesName" />
+    <result column="sales_Phone" jdbcType="CHAR" property="salesPhone" />
+    <result column="sales_Address" jdbcType="VARCHAR" property="salesAddress" />
+    <result column="sales_Detail" jdbcType="VARCHAR" property="salesDetail" />
+    <result column="sales_Status" jdbcType="INTEGER" property="salesStatus" />
+    <result column="sales_Email" jdbcType="VARCHAR" property="salesEmail" />
     <result column="black" jdbcType="INTEGER" property="black" />
-    <result column="loginPhone" jdbcType="CHAR" property="loginphone" />
-    <result column="salesImgPath" jdbcType="VARCHAR" property="salesimgpath" />
+    <result column="login_Phone" jdbcType="CHAR" property="loginPhone" />
+    <result column="sales_Img_Path" jdbcType="VARCHAR" property="salesImgPath" />
   </resultMap>
   <sql id="Base_Column_List">
-    salesId, salaesPwd, salaesName, salesPhone, salesAddress, salesDetail, salesStatus, 
-    salesEmail, black, loginPhone, salesImgPath
+    sales_Id, salaes_Pwd, salaes_Name, sales_Phone, sales_Address, sales_Detail, sales_Status, 
+    sales_Email, black, login_Phone, sales_Img_Path
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sales
-    where salesId = #{salesid,jdbcType=INTEGER}
+    where sales_Id = #{salesId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sales
-    where salesId = #{salesid,jdbcType=INTEGER}
+    where sales_Id = #{salesId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Sales">
-    insert into sales (salesId, salaesPwd, salaesName, 
-      salesPhone, salesAddress, salesDetail, 
-      salesStatus, salesEmail, black, 
-      loginPhone, salesImgPath)
-    values (#{salesid,jdbcType=INTEGER}, #{salaespwd,jdbcType=VARCHAR}, #{salaesname,jdbcType=VARCHAR}, 
-      #{salesphone,jdbcType=CHAR}, #{salesaddress,jdbcType=VARCHAR}, #{salesdetail,jdbcType=VARCHAR}, 
-      #{salesstatus,jdbcType=INTEGER}, #{salesemail,jdbcType=VARCHAR}, #{black,jdbcType=INTEGER}, 
-      #{loginphone,jdbcType=CHAR}), #{salesimgpath,jdbcType=VARCHAR}
+    insert into sales (sales_Id, salaes_Pwd, salaes_Name, 
+      sales_Phone, sales_Address, sales_Detail, 
+      sales_Status, sales_Email, black, 
+      login_Phone, sales_Img_Path)
+    values (#{salesId,jdbcType=INTEGER}, #{salaesPwd,jdbcType=VARCHAR}, #{salaesName,jdbcType=VARCHAR}, 
+      #{salesPhone,jdbcType=CHAR}, #{salesAddress,jdbcType=VARCHAR}, #{salesDetail,jdbcType=VARCHAR}, 
+      #{salesStatus,jdbcType=INTEGER}, #{salesEmail,jdbcType=VARCHAR}, #{black,jdbcType=INTEGER}, 
+      #{loginPhone,jdbcType=CHAR}, #{salesImgPath,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Sales">
     insert into sales
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="salesid != null">
-        salesId,
+      <if test="salesId != null">
+        sales_Id,
       </if>
-      <if test="salaespwd != null">
-        salaesPwd,
+      <if test="salaesPwd != null">
+        salaes_Pwd,
       </if>
-      <if test="salaesname != null">
-        salaesName,
+      <if test="salaesName != null">
+        salaes_Name,
       </if>
-      <if test="salesphone != null">
-        salesPhone,
+      <if test="salesPhone != null">
+        sales_Phone,
       </if>
-      <if test="salesaddress != null">
-        salesAddress,
+      <if test="salesAddress != null">
+        sales_Address,
       </if>
-      <if test="salesdetail != null">
-        salesDetail,
+      <if test="salesDetail != null">
+        sales_Detail,
       </if>
-      <if test="salesstatus != null">
-        salesStatus,
+      <if test="salesStatus != null">
+        sales_Status,
       </if>
-      <if test="salesemail != null">
-        salesEmail,
+      <if test="salesEmail != null">
+        sales_Email,
       </if>
       <if test="black != null">
         black,
       </if>
-      <if test="loginphone != null">
-        loginPhone,
+      <if test="loginPhone != null">
+        login_Phone,
       </if>
-      <if test="salesimgpath != null">
-        salesImgPath,
+      <if test="salesImgPath != null">
+        sales_Img_Path,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="salesid != null">
-        #{salesid,jdbcType=INTEGER},
+      <if test="salesId != null">
+        #{salesId,jdbcType=INTEGER},
       </if>
-      <if test="salaespwd != null">
-        #{salaespwd,jdbcType=VARCHAR},
+      <if test="salaesPwd != null">
+        #{salaesPwd,jdbcType=VARCHAR},
       </if>
-      <if test="salaesname != null">
-        #{salaesname,jdbcType=VARCHAR},
+      <if test="salaesName != null">
+        #{salaesName,jdbcType=VARCHAR},
       </if>
-      <if test="salesphone != null">
-        #{salesphone,jdbcType=CHAR},
+      <if test="salesPhone != null">
+        #{salesPhone,jdbcType=CHAR},
       </if>
-      <if test="salesaddress != null">
-        #{salesaddress,jdbcType=VARCHAR},
+      <if test="salesAddress != null">
+        #{salesAddress,jdbcType=VARCHAR},
       </if>
-      <if test="salesdetail != null">
-        #{salesdetail,jdbcType=VARCHAR},
+      <if test="salesDetail != null">
+        #{salesDetail,jdbcType=VARCHAR},
       </if>
-      <if test="salesstatus != null">
-        #{salesstatus,jdbcType=INTEGER},
+      <if test="salesStatus != null">
+        #{salesStatus,jdbcType=INTEGER},
       </if>
-      <if test="salesemail != null">
-        #{salesemail,jdbcType=VARCHAR},
+      <if test="salesEmail != null">
+        #{salesEmail,jdbcType=VARCHAR},
       </if>
       <if test="black != null">
         #{black,jdbcType=INTEGER},
       </if>
-      <if test="loginphone != null">
-        #{loginphone,jdbcType=CHAR},
-      </if>salesimgpath
-      <if test="salesimgpath != null">
-        #{salesimgpath,jdbcType=VARCHAR},
+      <if test="loginPhone != null">
+        #{loginPhone,jdbcType=CHAR},
+      </if>
+      <if test="salesImgPath != null">
+        #{salesImgPath,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Sales">
     update sales
     <set>
-      <if test="salaespwd != null">
-        salaesPwd = #{salaespwd,jdbcType=VARCHAR},
+      <if test="salaesPwd != null">
+        salaes_Pwd = #{salaesPwd,jdbcType=VARCHAR},
       </if>
-      <if test="salaesname != null">
-        salaesName = #{salaesname,jdbcType=VARCHAR},
+      <if test="salaesName != null">
+        salaes_Name = #{salaesName,jdbcType=VARCHAR},
       </if>
-      <if test="salesphone != null">
-        salesPhone = #{salesphone,jdbcType=CHAR},
+      <if test="salesPhone != null">
+        sales_Phone = #{salesPhone,jdbcType=CHAR},
       </if>
-      <if test="salesaddress != null">
-        salesAddress = #{salesaddress,jdbcType=VARCHAR},
+      <if test="salesAddress != null">
+        sales_Address = #{salesAddress,jdbcType=VARCHAR},
       </if>
-      <if test="salesdetail != null">
-        salesDetail = #{salesdetail,jdbcType=VARCHAR},
+      <if test="salesDetail != null">
+        sales_Detail = #{salesDetail,jdbcType=VARCHAR},
       </if>
-      <if test="salesstatus != null">
-        salesStatus = #{salesstatus,jdbcType=INTEGER},
+      <if test="salesStatus != null">
+        sales_Status = #{salesStatus,jdbcType=INTEGER},
       </if>
-      <if test="salesemail != null">
-        salesEmail = #{salesemail,jdbcType=VARCHAR},
+      <if test="salesEmail != null">
+        sales_Email = #{salesEmail,jdbcType=VARCHAR},
       </if>
       <if test="black != null">
         black = #{black,jdbcType=INTEGER},
       </if>
-      <if test="loginphone != null">
-        loginPhone = #{loginphone,jdbcType=CHAR},
+      <if test="loginPhone != null">
+        login_Phone = #{loginPhone,jdbcType=CHAR},
       </if>
-      <if test="salesimgpath != null">
-        salesImgPath = #{salesimgpath,jdbcType=VARCHAR},
+      <if test="salesImgPath != null">
+        sales_Img_Path = #{salesImgPath,jdbcType=VARCHAR},
       </if>
     </set>
-    where salesId = #{salesid,jdbcType=INTEGER}
+    where sales_Id = #{salesId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Sales">
     update sales
-    set salaesPwd = #{salaespwd,jdbcType=VARCHAR},
-      salaesName = #{salaesname,jdbcType=VARCHAR},
-      salesPhone = #{salesphone,jdbcType=CHAR},
-      salesAddress = #{salesaddress,jdbcType=VARCHAR},
-      salesDetail = #{salesdetail,jdbcType=VARCHAR},
-      salesStatus = #{salesstatus,jdbcType=INTEGER},
-      salesEmail = #{salesemail,jdbcType=VARCHAR},
+    set salaes_Pwd = #{salaesPwd,jdbcType=VARCHAR},
+      salaes_Name = #{salaesName,jdbcType=VARCHAR},
+      sales_Phone = #{salesPhone,jdbcType=CHAR},
+      sales_Address = #{salesAddress,jdbcType=VARCHAR},
+      sales_Detail = #{salesDetail,jdbcType=VARCHAR},
+      sales_Status = #{salesStatus,jdbcType=INTEGER},
+      sales_Email = #{salesEmail,jdbcType=VARCHAR},
       black = #{black,jdbcType=INTEGER},
-      loginPhone = #{loginphone,jdbcType=CHAR},
-      salesImgPath = #{salesimgpath,jdbcType=VARCHAR}
-    where salesId = #{salesid,jdbcType=INTEGER}
+      login_Phone = #{loginPhone,jdbcType=CHAR},
+      sales_Img_Path = #{salesImgPath,jdbcType=VARCHAR}
+    where sales_Id = #{salesId,jdbcType=INTEGER}
   </update>
+
 
   <!--new-->
   <select id="selectByPhone" parameterType="java.lang.String">
     select *
     from sales
-    where loginPhone = #{phone,jdbcType=CHAR}
+    where login_Phone = #{phone,jdbcType=CHAR}
   </select>
 
   <select id="displayRecommend" resultMap="BaseResultMap">

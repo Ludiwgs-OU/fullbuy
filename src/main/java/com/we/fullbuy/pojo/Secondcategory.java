@@ -3,33 +3,33 @@ package com.we.fullbuy.pojo;
 import java.io.Serializable;
 
 public class Secondcategory implements Serializable {
-    private Integer secondcategoryid;
+    private Integer secondCategoryId;
 
-    private String secondcategoryname;
+    private String secondCategoryName;
 
-    private Integer categoryid;
+    private Integer categoryId;
 
-    public Integer getSecondcategoryid() {
-        return secondcategoryid;
+    public Integer getSecondCategoryId() {
+        return secondCategoryId;
     }
 
-    public void setSecondcategoryid(Integer secondcategoryid) {
-        this.secondcategoryid = secondcategoryid;
+    public void setSecondCategoryId(Integer secondCategoryId) {
+        this.secondCategoryId = secondCategoryId;
     }
 
-    public String getSecondcategoryname() {
-        return secondcategoryname;
+    public String getSecondCategoryName() {
+        return secondCategoryName;
     }
 
-    public void setSecondcategoryname(String secondcategoryname) {
-        this.secondcategoryname = secondcategoryname == null ? null : secondcategoryname.trim();
+    public void setSecondCategoryName(String secondCategoryName) {
+        this.secondCategoryName = secondCategoryName == null ? null : secondCategoryName.trim();
     }
 
-    public Integer getCategoryid() {
-        return categoryid;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryid(Integer categoryid) {
-        this.categoryid = categoryid;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 }

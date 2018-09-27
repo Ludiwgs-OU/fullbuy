@@ -114,9 +114,9 @@ public class ProductController {
         if(type==0)
             map.put("price",sku.getPrice());
         else
-            map.put("price",sku.getGbprice());
+            map.put("price",sku.getGbPrice());
         map.put("quantity",sku.getQuantity());
-        map.put("skuId",sku.getSkuid());
+        map.put("skuId",sku.getSkuId());
 
         return map;
     }
@@ -154,8 +154,8 @@ public class ProductController {
     {
         Product product =  productService.detailImgPth(productId);
         HashMap map = new HashMap();
-        map.put("DetailImgPath1",product.getDetailimgpath1());
-        map.put("DetailImgPath2",product.getDetailimgpath2());
+        map.put("DetailImgPath1",product.getDetailImgPath1());
+        map.put("DetailImgPath2",product.getDetailImgPath2());
         return map;
     }
 
