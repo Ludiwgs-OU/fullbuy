@@ -37,20 +37,29 @@ public class ProductController {
         return productService.showProduct();
     }
 
+
     //根据关键字搜索商品
+    @RequestMapping("/serachByKeyword")
+    @ResponseBody
     public List<Product> serachByKeyword(@RequestParam("keyword") String keyword, HttpSession session)
     {
         session.setAttribute("keyword",keyword);
         return productService.searchProductByKeyword(keyword);
     }
 
+
     //根据一级种类显示商品
+    @RequestMapping("/serachByFirstCategory")
+    @ResponseBody
     public List<Product> serachByFirstCategory(@RequestParam("categoryId") int categoryId)
     {
         return productService.searchProductByFirstCategory(categoryId);
     }
 
+
     //根据二级种类显示商品
+    @RequestMapping("/serachBySecondCategory")
+    @ResponseBody
     public List<Product> serachBySecondCategory(@RequestParam("secondCategoryId") int secondCategoryId)
     {
         return productService.searchProductBySecondCategory(secondCategoryId);
@@ -126,4 +135,31 @@ public class ProductController {
         return productService.displayByScore();
     }
 
+    //按上传的时间推荐商品
+    @RequestMapping("/displayByPosttime")
+    @ResponseBody
+    public List<Product> displayByPosttime()
+    {
+        return productService.displayByPosttime();
+    }
+
+    //详情图片
+    @RequestMapping("/detailImgPth")
+    @ResponseBody
+    public HashMap detailImgPth(@RequestParam("productId") int productId)
+    {
+        Product product =  productService.detailImgPth(productId);
+        HashMap map = new HashMap();
+        map.put("DetailImgPath1",product.getDetailimgpath1());
+        map.put("DetailImgPath2",product.getDetailimgpath2());
+        return map;
+    }
+
+    //相关推荐商品
+    @RequestMapping("/relatedProduct")
+    @ResponseBody
+    public List<Product> relatedProduct(@RequestParam("productId") int productId)
+    {
+        return productService.relatedProduct(productId);
+    }
 }

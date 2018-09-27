@@ -24,6 +24,8 @@ public class Groudbuy implements Serializable {
 
     private String bgcolor;
 
+    private Product product;
+
     public Integer getGbid() {
         return gbid;
     }
@@ -105,4 +107,11 @@ public class Groudbuy implements Serializable {
     }
 
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }

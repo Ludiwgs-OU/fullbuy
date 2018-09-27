@@ -2,6 +2,8 @@ package com.we.fullbuy.dao;
 
 import com.we.fullbuy.pojo.Sales;
 
+import java.util.List;
+
 public interface SalesMapper {
     int deleteByPrimaryKey(Integer salesid);
 
@@ -18,4 +20,6 @@ public interface SalesMapper {
     /*new*/
     /*根据商家注册电话搜索*/
     Sales selectByPhone(String phone);
+    /*推荐商家*/
+    List<Sales> displayRecommend();
 }

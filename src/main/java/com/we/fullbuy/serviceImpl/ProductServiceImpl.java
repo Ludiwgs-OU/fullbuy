@@ -71,4 +71,19 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> displayByScore() {
         return productMapper.displayByScore();
     }
+
+    @Override
+    public List<Product> displayByPosttime() {
+        return productMapper.displayByPosttime();
+    }
+
+    @Override
+    public Product detailImgPth(int productId) {
+        return productMapper.detailImgPth(productId);
+    }
+
+    @Override
+    public List<Product> relatedProduct(int productId) {
+        return productMapper.relatedProduct(productId);
+    }
 }

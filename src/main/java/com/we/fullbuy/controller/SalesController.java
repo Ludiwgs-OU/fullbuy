@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/sales")
@@ -84,5 +85,11 @@ public class SalesController {
             return false;
     }
 
-
+    //推荐商家
+    @RequestMapping("/displayRecommend")
+    @ResponseBody
+    public List<Sales> displayRecommend(HttpSession session)
+    {
+        return salesService.displayRecommend();
+    }
 }

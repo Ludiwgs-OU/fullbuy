@@ -13,10 +13,11 @@
     <result column="salesEmail" jdbcType="VARCHAR" property="salesemail" />
     <result column="black" jdbcType="INTEGER" property="black" />
     <result column="loginPhone" jdbcType="CHAR" property="loginphone" />
+    <result column="salesImgPath" jdbcType="VARCHAR" property="salesimgpath" />
   </resultMap>
   <sql id="Base_Column_List">
     salesId, salaesPwd, salaesName, salesPhone, salesAddress, salesDetail, salesStatus, 
-    salesEmail, black, loginPhone
+    salesEmail, black, loginPhone, salesImgPath
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -32,11 +33,11 @@
     insert into sales (salesId, salaesPwd, salaesName, 
       salesPhone, salesAddress, salesDetail, 
       salesStatus, salesEmail, black, 
-      loginPhone)
+      loginPhone, salesImgPath)
     values (#{salesid,jdbcType=INTEGER}, #{salaespwd,jdbcType=VARCHAR}, #{salaesname,jdbcType=VARCHAR}, 
       #{salesphone,jdbcType=CHAR}, #{salesaddress,jdbcType=VARCHAR}, #{salesdetail,jdbcType=VARCHAR}, 
       #{salesstatus,jdbcType=INTEGER}, #{salesemail,jdbcType=VARCHAR}, #{black,jdbcType=INTEGER}, 
-      #{loginphone,jdbcType=CHAR})
+      #{loginphone,jdbcType=CHAR}), #{salesimgpath,jdbcType=VARCHAR}
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Sales">
     insert into sales
@@ -71,6 +72,9 @@
       <if test="loginphone != null">
         loginPhone,
       </if>
+      <if test="salesimgpath != null">
+        salesImgPath,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="salesid != null">
@@ -102,6 +106,9 @@
       </if>
       <if test="loginphone != null">
         #{loginphone,jdbcType=CHAR},
+      </if>salesimgpath
+      <if test="salesimgpath != null">
+        #{salesimgpath,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -135,6 +142,9 @@
       <if test="loginphone != null">
         loginPhone = #{loginphone,jdbcType=CHAR},
       </if>
+      <if test="salesimgpath != null">
+        salesImgPath = #{salesimgpath,jdbcType=VARCHAR},
+      </if>
     </set>
     where salesId = #{salesid,jdbcType=INTEGER}
   </update>
@@ -148,7 +158,8 @@
       salesStatus = #{salesstatus,jdbcType=INTEGER},
       salesEmail = #{salesemail,jdbcType=VARCHAR},
       black = #{black,jdbcType=INTEGER},
-      loginPhone = #{loginphone,jdbcType=CHAR}
+      loginPhone = #{loginphone,jdbcType=CHAR},
+      salesImgPath = #{salesimgpath,jdbcType=VARCHAR}
     where salesId = #{salesid,jdbcType=INTEGER}
   </update>
 
@@ -157,5 +168,10 @@
     select *
     from sales
     where loginPhone = #{phone,jdbcType=CHAR}
+  </select>
+
+  <select id="displayRecommend" resultMap="BaseResultMap">
+    select *
+    from sales limit 6
   </select>
 </mapper>

@@ -27,5 +27,11 @@ public interface ProductService {
     List<Product> displayBySalesnum();
     /*根据评分显示商品*/
     List<Product> displayByScore();
+    /*根据上传时间显示商品*/
+    List<Product> displayByPosttime();
+    /*详情图片*/
+    Product detailImgPth(int productId);
+    /*相关商品推荐*/
+    List<Product> relatedProduct(int productId);
 
 }

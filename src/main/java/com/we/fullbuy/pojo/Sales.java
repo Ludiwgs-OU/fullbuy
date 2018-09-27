@@ -23,6 +23,8 @@ public class Sales implements Serializable {
 
     private String loginphone;
 
+    private String salesimgpath;
+
     public Integer getSalesid() {
         return salesid;
     }
@@ -101,5 +103,13 @@ public class Sales implements Serializable {
 
     public void setLoginphone(String loginphone) {
         this.loginphone = loginphone == null ? null : loginphone.trim();
+    }
+
+    public String getSalesimgpath() {
+        return salesimgpath;
+    }
+
+    public void setSalesimgpath(String salesimgpath) {
+        this.salesimgpath = salesimgpath;
     }
 }
