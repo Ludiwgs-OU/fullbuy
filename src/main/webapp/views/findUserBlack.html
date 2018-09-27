@@ -5,30 +5,52 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
 
-		<title>管理员中心</title>
+		<title>用户管理</title>
 		<link href="../static/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
 		<link href="../static/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 		<link href="../static/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="../static/css/systyle.css" rel="stylesheet" type="text/css">
+		 
+		
 	</head>
 
 	<body>
 	
             <div class="nav-table">
-					   <div class="long-title"><span class="all-goods">欢迎来到后台管理</span></div>
-					  
+					<div class="long-title"><span class="all-goods">欢迎来到后台管理</span></div>					  
 			</div>
 			<b class="line"></b>
 		<div class="center">
-			<div class="col-main">
-				<div class="main-wrap">
+			<div class="col-main" >
+				<div class="main-wrap" id="userBlackTable">
 					<div class="wrap-left">	
-						
-					<img  src="../static/images/1.png" class="am-img-thumbnail am-circle"/>
-						
+					<!--用户黑名单数据表 及操作-->
+					<table class="am-table am-table-striped am-table-hover">
+					   <thead>
+                             <tr>
+                                 <th>用户名称</th>
+                                 <th>用户类型</th>
+                                 <th>个人积分</th>
+                                 <th>登录状态</th>
+                                 <th>操作</th>
+                             </tr>
+                     
+                        </thead>
+                        <tr v-for="site in sites">
+                        	<td>{{site.userName}}</td>
+                        	<td>{{site.userType}}</td>
+                        	<td>{{site.userScore}}</td>
+                        	<td class="am-danger">黑名单中</td>
+                        	<td> 
+                        		<button type="button" class="am-btn am-btn-primary" @click="back(site.userId)">
+                        			撤销黑名单
+                        		</button>                               
+                           </td>                            
+                        </tr>                       
+					</table>
+										
 					</div>
 				</div>					
-
 			</div>
 
 			<aside class="menu">
@@ -40,7 +62,7 @@
 					<li class="person">
 						<a href="#"><span class="am-icon-shopping-basket am-icon-sm"></span>商品管理</a>
 						<ul >
-							<li class="person active"> <a href="reviewGoods.html">审核商品</a></li>
+							<li> <a href="reviewGoods.html">审核商品</a></li>
 							<li> <a href="passProduct.html">合格商品</a></li>	
 							<li> <a href="nopassProduct.html">不合格商品</a></li>
 						</ul>
@@ -55,9 +77,9 @@
 					<li class="person">
 						<a href="#"><span class="am-icon-user am-icon-sm"></span>用户管理</a>
 						<ul>
-							<li> <a href="">黑名单设置</a></li>
+							<li> <a href="setUserBlack.html">黑名单设置</a></li>
 							<li> <a href="#">用户登录情况</a></li>
-							<li> <a href="#">黑名单查询</a></li>
+							<li class="person active"> <a href="findUserBlack.html">黑名单查询</a></li>
 						</ul>
 					</li>
 
@@ -90,11 +112,9 @@
 		</div>
 		
 	</body>
-	
-        
+	    <script type="text/javascript" src="../static/js/vue.js" ></script>  
         <script src="../static/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 		<script src="../static/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
 		<script src="../static/AmazeUI-2.4.2/assets/js/handlebars.min.js"></script>
-		<script type="text/javascript" src="../static/js/reviewGoods.js" ></script>
-		
+		<script type="text/javascript" src="../static/js/userBlack.js" ></script>		
 </html>

@@ -5,31 +5,47 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
 
-		<title>管理员中心</title>
+		<title>商家管理</title>
 		<link href="../static/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
 		<link href="../static/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 		<link href="../static/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="../static/css/systyle.css" rel="stylesheet" type="text/css">
+		 
+		
 	</head>
 
 	<body>
 	
             <div class="nav-table">
-					   <div class="long-title"><span class="all-goods">欢迎来到后台管理</span></div>
-					  
+					<div class="long-title"><span class="all-goods">欢迎来到后台管理</span></div>					  
 			</div>
 			<b class="line"></b>
 		<div class="center">
-			<div class="col-main">
-				<div class="main-wrap">
+			<div class="col-main" >
+				<div class="main-wrap" id="pass">
 					<div class="wrap-left">	
-						
-					<img  src="../static/images/1.png" class="am-img-thumbnail am-circle"/>
-						
-					</div>
-				</div>					
-
-			</div>
+						<!-- 合格商家数据表-->
+					<table class="am-table am-table-striped am-table-hover">
+					   <thead>
+                             <tr>
+                                 <th>商家名称</th>
+                                 <th>商家详情</th> 
+                                 <th>操作</th>
+                             </tr>                     
+                       </thead>
+                        <tr v-for="site in sites">
+                        	<td>{{site.salesName}}</td>
+                        	<td>{{site.salesDetail}}</td> 
+                        	<td>
+                        		<button type="button" class="am-btn am-btn-primary"  @click="cancel(inf.salesId)">
+	                    				注销商家
+	                    		</button> 
+                        	</td>
+                        </tr>                        
+					</table>			
+				</div>
+			</div>					
+		</div>
 
 			<aside class="menu">
 		
@@ -40,7 +56,7 @@
 					<li class="person">
 						<a href="#"><span class="am-icon-shopping-basket am-icon-sm"></span>商品管理</a>
 						<ul >
-							<li class="person active"> <a href="reviewGoods.html">审核商品</a></li>
+							<li> <a href="reviewGoods.html">审核商品</a></li>
 							<li> <a href="passProduct.html">合格商品</a></li>	
 							<li> <a href="nopassProduct.html">不合格商品</a></li>
 						</ul>
@@ -64,8 +80,8 @@
 					<li class="person">
 						<a href="#"><span class="am-icon-building am-icon-sm"></span>商家管理</a>
 						<ul>
-							<li> <a href="#">审核商家</a></li>
-							<li> <a href="#">合格商家</a></li>
+							<li> <a href="auditMerchant.html">审核商家</a></li>
+							<li class="person active"> <a href="passSales.html">合格商家</a></li>
 							<li> <a href="#">不合格商家</a></li>
 							<li> <a href="#">黑名单设置</a></li>
 							<li> <a href="#">黑名单查询</a></li>
@@ -90,11 +106,9 @@
 		</div>
 		
 	</body>
-	
-        
+	    <script type="text/javascript" src="../static/js/vue.js" ></script>  
         <script src="../static/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 		<script src="../static/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
 		<script src="../static/AmazeUI-2.4.2/assets/js/handlebars.min.js"></script>
-		<script type="text/javascript" src="../static/js/reviewGoods.js" ></script>
-		
+		<script type="text/javascript" src="../static/js/passSales.js" ></script>		
 </html>

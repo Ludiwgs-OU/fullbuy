@@ -5,30 +5,58 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
 
-		<title>管理员中心</title>
+		<title>订单管理</title>
 		<link href="../static/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
 		<link href="../static/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 		<link href="../static/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="../static/css/systyle.css" rel="stylesheet" type="text/css">
+		 
+		
 	</head>
 
 	<body>
 	
             <div class="nav-table">
-					   <div class="long-title"><span class="all-goods">欢迎来到后台管理</span></div>
-					  
+					<div class="long-title"><span class="all-goods">欢迎来到后台管理</span></div>					  
 			</div>
 			<b class="line"></b>
 		<div class="center">
-			<div class="col-main">
+			<div class="col-main" >
 				<div class="main-wrap">
 					<div class="wrap-left">	
-						
-					<img  src="../static/images/1.png" class="am-img-thumbnail am-circle"/>
-						
+						<div id="down" class="am-selected-content">							
+								请选择所想查询的年份	：								
+  								<select id="years" data-am-selected="{maxHeight: 100,btnStyle: 'secondary'}"></select> 
+  								<span class="am-selected-content">
+        							<button @click="search" class="am-btn am-btn-default" type="button"><span class="am-icon-search"></span> </button>
+        							<button  class="am-btn am-btn-secondary am-icon-remove" @click="delAll">
+                        			 	删除这一年的订单
+                        			</button> 
+      							</span>
+      				            <table class="am-table am-table-striped am-table-hover">
+					   				<thead>
+                             			<tr>
+                                 			<th>订单id</th>
+                                 			<th>订单状态</th>
+                                 			<th>订单日期</th>
+                                 			<th>操作</th>
+                             			</tr>
+                     
+                        			</thead>
+                        				<tr v-for="site in sites">
+                        					<td>{{site.orderId}}</td>
+                        					<td>{{site.orderStates}}</td>                        			
+                        					<td>{{site.orderDate}}</td>
+                        					<td>
+                        						<button type="button" class="am-btn am-btn-primary" @click="del(site.orderId)">
+                        						删除
+                        						</button> 
+                        					</td>                            
+                        				</tr>                       
+								</table>
+						</div>
 					</div>
 				</div>					
-
 			</div>
 
 			<aside class="menu">
@@ -40,7 +68,7 @@
 					<li class="person">
 						<a href="#"><span class="am-icon-shopping-basket am-icon-sm"></span>商品管理</a>
 						<ul >
-							<li class="person active"> <a href="reviewGoods.html">审核商品</a></li>
+							<li> <a href="reviewGoods.html">审核商品</a></li>
 							<li> <a href="passProduct.html">合格商品</a></li>	
 							<li> <a href="nopassProduct.html">不合格商品</a></li>
 						</ul>
@@ -48,8 +76,8 @@
 					<li class="person">
 						<a href="#"><span class="am-icon-ticket am-icon-sm"></span>订单管理</a>
 						<ul>
-							<li><a href="">销售额</a></li>
-							<li><a href="">订单查询</a></li>
+							<li><a href="salesAmount.html">销售额</a></li>
+							<li class="person active"><a href="orderInquiry.html">订单查询</a></li>
 						</ul>
 					</li>
 					<li class="person">
@@ -90,11 +118,9 @@
 		</div>
 		
 	</body>
-	
-        
+	    <script type="text/javascript" src="../static/js/vue.js" ></script>  
         <script src="../static/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 		<script src="../static/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
 		<script src="../static/AmazeUI-2.4.2/assets/js/handlebars.min.js"></script>
-		<script type="text/javascript" src="../static/js/reviewGoods.js" ></script>
-		
+		<script type="text/javascript" src="../static/js/orderInquiry.js" ></script>		
 </html>

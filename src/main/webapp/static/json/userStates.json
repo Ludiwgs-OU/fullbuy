@@ -1,0 +1,30 @@
+[
+{
+	"userId":"1",
+	"userPhone":"13172629327",
+	"userType":"会员",
+	"userScore":"11",
+	"lastLoginTime":"2018-2-3"
+},
+{
+	"userId":"123",
+	"userPhone":"13172629328",
+	"userType":"会员",
+	"userScore":"11",
+	"lastLoginTime":"2018-2-3"
+},
+{
+	"userId":"1234",
+	"userPhone":"13172629329",
+	"userType":"会员",
+	"userScore":"11",
+	"lastLoginTime":"2018-2-3"
+},
+{
+	"userId":"12345",
+	"userPhone":"13172629330",
+	"userType":"会员",
+	"userScore":"11",
+	"lastLoginTime":"2018-2-3"
+}
+]
