@@ -75,14 +75,11 @@ public class SalesController {
     //修改商家信息
     @RequestMapping("/modifySales")
     @ResponseBody
-    public boolean modifySales(@RequestBody Sales sales, HttpSession session)
+    public int modifySales(@RequestBody Sales sales, HttpSession session)
     {
         sales.setSalesId((int)session.getAttribute("salesId"));
 
-        if(salesService.modifySales(sales)!=0)
-            return true;
-        else
-            return false;
+        return salesService.modifySales(sales);
     }
 
     //推荐商家

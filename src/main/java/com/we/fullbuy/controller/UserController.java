@@ -68,18 +68,18 @@ public class UserController {
     //注册
     @RequestMapping("/register")
     @ResponseBody
-    public String register(@RequestBody User user)
+    public int register(@RequestBody User user)
     {
         User check = userService.login(user.getUserPhone());
         if(check==null)
         {
             if(userService.registerUser(user)!=0)
-                return "注册成功~欢迎你加入满团大家庭";//注册成功
+                return 1;/*"注册成功~欢迎你加入满团大家庭";*///注册成功
             else
-                return "GG！注册失败了诶";//注册失败
+                return 0;/*"GG！注册失败了诶";*///注册失败
         }
         else
-            return "账号好像已经有别的用户使用了哦";//账号已存在
+            return 2;/*"账号好像已经有别的用户使用了哦";*///账号已存在
     }
 
     //查看个人信息
@@ -93,34 +93,30 @@ public class UserController {
     //修改个人信息
     @RequestMapping("/modifyUser")
     @ResponseBody
-    public String modifyUser(@RequestBody User user, HttpSession session)
+    public int modifyUser(@RequestBody User user, HttpSession session)
     {
         user.setUserId((int)session.getAttribute("userId"));
 
-        if (userService.modifyUser(user)!=0)
-            return "修改个人信息成功";
-        else
-            return "修改个人信息失败";
+        return userService.modifyUser(user);
+
     }
 
     //修改头像
     @RequestMapping("/modifyUserProfile")
     @ResponseBody
-    public String modifyUserProfile(@RequestParam("userProfile") String userProfile, HttpSession session)
+    public int modifyUserProfile(@RequestParam("userProfile") String userProfile, HttpSession session)
     {
         User user = new User();
         user.setUserId((int)session.getAttribute("userId"));
         user.setUserProfile(userProfile);
-        if (userService.modifyUser(user)!=0)
-            return "修改个人头像成功";
-        else
-            return "修改个人头像成功";
+        return userService.modifyUser(user);
+
     }
 
     //修改密码
     @RequestMapping("/modifyPassword")
     @ResponseBody
-    public String modifyPassword(@RequestParam("oldPassword") String oldPassword,
+    public int modifyPassword(@RequestParam("oldPassword") String oldPassword,
                                  @RequestParam("newPassword") String newPassword,
                                  HttpSession session)
     {
@@ -131,12 +127,12 @@ public class UserController {
         {
             user.setPassword(MD5Util.md5(newPassword));
             if (userService.modifyUser(user)!=0)
-                return "修改密码成功，记得保存好哦";
+                return 1;/*"修改密码成功，记得保存好哦";*/
             else
-                return "修改密码失败";
+                return 0;/*"修改密码失败";*/
         }
         else
-            return "旧密码错误哦";
+            return 2;/*"旧密码错误哦";*/
 
     }
 
