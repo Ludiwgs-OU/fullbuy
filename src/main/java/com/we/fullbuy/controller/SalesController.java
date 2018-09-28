@@ -33,7 +33,7 @@ public class SalesController {
 
         if (sales != null) {
             if (sales.getBlack()==0) {
-                if (sales.getSalaesPwd().equals(password))
+                if (sales.getSalesPwd().equals(password))
                 {
                     session.setAttribute("salesId",sales.getSalesId());
                     return 1;//登录成功

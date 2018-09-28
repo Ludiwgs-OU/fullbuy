@@ -120,14 +120,14 @@ public class UserController {
     //修改密码
     @RequestMapping("/modifyPassword")
     @ResponseBody
-    public String modifyPassword(@RequestParam("oldPaaword") String oldPassword,
-                                 @RequestParam("newPaaword") String newPassword,
+    public String modifyPassword(@RequestParam("oldPassword") String oldPassword,
+                                 @RequestParam("newPassword") String newPassword,
                                  HttpSession session)
     {
 
         User user = userService.displayUserDetail((int)session.getAttribute("userId"));
         String cpassword = MD5Util.md5(oldPassword);
-        if(user.getPassword()==cpassword)
+        if(user.getPassword().equals(cpassword))
         {
             user.setPassword(MD5Util.md5(newPassword));
             if (userService.modifyUser(user)!=0)
@@ -160,35 +160,35 @@ public class UserController {
     //添加收货地址
     @RequestMapping("/addAddress")
     @ResponseBody
-    public String addAddress(@RequestBody Address address, HttpSession session)
+    public int addAddress(@RequestBody Address address, HttpSession session)
     {
         address.setUserId((int)session.getAttribute("userId"));
         if(addressService.addAddress(address)!=0)
-            return "添加收货地址成功";
+            return 1;/*添加收货地址成功*/
         else
-            return "添加收货地址失败";
+            return 0;/*添加收货地址失败*/
     }
 
     //修改收货地址
     @RequestMapping("/modifyAddress")
     @ResponseBody
-    public String modifyAddress(@RequestBody Address address)
+    public int modifyAddress(@RequestBody Address address)
     {
         if(addressService.modifyAddress(address)!=0)
-            return "修改收货地址成功";
+            return 1;/*"修改收货地址成功"*/
         else
-            return "修改收货地址失败";
+            return 0;/*"修改收货地址失败"*/
     }
 
     //删除收货地址
     @RequestMapping("/deleteAddress")
     @ResponseBody
-    public String deleteAddress(@RequestParam("addressId") int addressId)
+    public int deleteAddress(@RequestParam("addressId") int addressId)
     {
         if(addressService.deleteAddress(addressId)!=0)
-            return "删除收货地址成功";
+            return 1;/*"删除收货地址成功"*/
         else
-            return "删除收货地址成功";
+            return 0;/*"删除收货地址成功"*/
     }
 
 
@@ -204,26 +204,26 @@ public class UserController {
     //添加到收藏夹
     @RequestMapping("/addFavor")
     @ResponseBody
-    public String addFavor(@RequestParam("productId") int productId, HttpSession session)
+    public int addFavor(@RequestParam("productId") int productId, HttpSession session)
     {
         Favor favor = new Favor();
         favor.setUserId((int)session.getAttribute("userId"));
         favor.setProductId(productId);
         if(favorService.addFavor(favor)!=0)
-            return "已帮您添加到收藏夹啦";
+            return 1;/*"已帮您添加到收藏夹啦"*/
         else
-            return "好像出了点问题，收藏不了商品";
+            return 0;/*"好像出了点问题，收藏不了商品"*/
     }
 
     //删除收藏夹单个商品
     @RequestMapping("/deleteSingleFavor")
     @ResponseBody
-    public String deleteSingleFavor(@RequestParam("favorId") int favorId)
+    public int deleteSingleFavor(@RequestParam("favorId") int favorId)
     {
         if(favorService.deleteSingleFavor(favorId)!=0)
-            return "删除成功！商品已离去";
+            return 1;/*"删除成功！商品已离去"*/
         else
-            return "好像出了点问题，商品仍留在原地";
+            return 0;/*"好像出了点问题，商品仍留在原地"*/
     }
 
     /*//批量删除收藏夹商品

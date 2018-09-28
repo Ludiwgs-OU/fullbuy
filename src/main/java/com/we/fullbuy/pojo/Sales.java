@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class Sales implements Serializable {
     private Integer salesId;
 
-    private String salaesPwd;
+    private String salesPwd;
 
-    private String salaesName;
+    private String salesName;
 
     private String salesPhone;
 
@@ -33,20 +33,20 @@ public class Sales implements Serializable {
         this.salesId = salesId;
     }
 
-    public String getSalaesPwd() {
-        return salaesPwd;
+    public String getSalesPwd() {
+        return salesPwd;
     }
 
-    public void setSalaesPwd(String salaesPwd) {
-        this.salaesPwd = salaesPwd == null ? null : salaesPwd.trim();
+    public void setSalesPwd(String salesPwd) {
+        this.salesPwd = salesPwd == null ? null : salesPwd.trim();
     }
 
-    public String getSalaesName() {
-        return salaesName;
+    public String getSalesName() {
+        return salesName;
     }
 
-    public void setSalaesName(String salaesName) {
-        this.salaesName = salaesName == null ? null : salaesName.trim();
+    public void setSalesName(String salesName) {
+        this.salesName = salesName == null ? null : salesName.trim();
     }
 
     public String getSalesPhone() {

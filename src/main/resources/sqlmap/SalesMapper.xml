@@ -3,8 +3,8 @@
 <mapper namespace="com.we.fullbuy.dao.SalesMapper">
   <resultMap id="BaseResultMap" type="com.we.fullbuy.pojo.Sales">
     <id column="sales_Id" jdbcType="INTEGER" property="salesId" />
-    <result column="salaes_Pwd" jdbcType="VARCHAR" property="salaesPwd" />
-    <result column="salaes_Name" jdbcType="VARCHAR" property="salaesName" />
+    <result column="sales_Pwd" jdbcType="VARCHAR" property="salesPwd" />
+    <result column="sales_Name" jdbcType="VARCHAR" property="salesName" />
     <result column="sales_Phone" jdbcType="CHAR" property="salesPhone" />
     <result column="sales_Address" jdbcType="VARCHAR" property="salesAddress" />
     <result column="sales_Detail" jdbcType="VARCHAR" property="salesDetail" />
@@ -15,7 +15,7 @@
     <result column="sales_Img_Path" jdbcType="VARCHAR" property="salesImgPath" />
   </resultMap>
   <sql id="Base_Column_List">
-    sales_Id, salaes_Pwd, salaes_Name, sales_Phone, sales_Address, sales_Detail, sales_Status, 
+    sales_Id, sales_Pwd, sales_Name, sales_Phone, sales_Address, sales_Detail, sales_Status, 
     sales_Email, black, login_Phone, sales_Img_Path
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -29,11 +29,11 @@
     where sales_Id = #{salesId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Sales">
-    insert into sales (sales_Id, salaes_Pwd, salaes_Name, 
+    insert into sales (sales_Id, sales_Pwd, sales_Name, 
       sales_Phone, sales_Address, sales_Detail, 
       sales_Status, sales_Email, black, 
       login_Phone, sales_Img_Path)
-    values (#{salesId,jdbcType=INTEGER}, #{salaesPwd,jdbcType=VARCHAR}, #{salaesName,jdbcType=VARCHAR}, 
+    values (#{salesId,jdbcType=INTEGER}, #{salesPwd,jdbcType=VARCHAR}, #{salesName,jdbcType=VARCHAR}, 
       #{salesPhone,jdbcType=CHAR}, #{salesAddress,jdbcType=VARCHAR}, #{salesDetail,jdbcType=VARCHAR}, 
       #{salesStatus,jdbcType=INTEGER}, #{salesEmail,jdbcType=VARCHAR}, #{black,jdbcType=INTEGER}, 
       #{loginPhone,jdbcType=CHAR}, #{salesImgPath,jdbcType=VARCHAR})
@@ -44,11 +44,11 @@
       <if test="salesId != null">
         sales_Id,
       </if>
-      <if test="salaesPwd != null">
-        salaes_Pwd,
+      <if test="salesPwd != null">
+        sales_Pwd,
       </if>
-      <if test="salaesName != null">
-        salaes_Name,
+      <if test="salesName != null">
+        sales_Name,
       </if>
       <if test="salesPhone != null">
         sales_Phone,
@@ -79,11 +79,11 @@
       <if test="salesId != null">
         #{salesId,jdbcType=INTEGER},
       </if>
-      <if test="salaesPwd != null">
-        #{salaesPwd,jdbcType=VARCHAR},
+      <if test="salesPwd != null">
+        #{salesPwd,jdbcType=VARCHAR},
       </if>
-      <if test="salaesName != null">
-        #{salaesName,jdbcType=VARCHAR},
+      <if test="salesName != null">
+        #{salesName,jdbcType=VARCHAR},
       </if>
       <if test="salesPhone != null">
         #{salesPhone,jdbcType=CHAR},
@@ -114,11 +114,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Sales">
     update sales
     <set>
-      <if test="salaesPwd != null">
-        salaes_Pwd = #{salaesPwd,jdbcType=VARCHAR},
+      <if test="salesPwd != null">
+        sales_Pwd = #{salesPwd,jdbcType=VARCHAR},
       </if>
-      <if test="salaesName != null">
-        salaes_Name = #{salaesName,jdbcType=VARCHAR},
+      <if test="salesName != null">
+        sales_Name = #{salesName,jdbcType=VARCHAR},
       </if>
       <if test="salesPhone != null">
         sales_Phone = #{salesPhone,jdbcType=CHAR},
@@ -149,8 +149,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Sales">
     update sales
-    set salaes_Pwd = #{salaesPwd,jdbcType=VARCHAR},
-      salaes_Name = #{salaesName,jdbcType=VARCHAR},
+    set sales_Pwd = #{salesPwd,jdbcType=VARCHAR},
+      sales_Name = #{salesName,jdbcType=VARCHAR},
       sales_Phone = #{salesPhone,jdbcType=CHAR},
       sales_Address = #{salesAddress,jdbcType=VARCHAR},
       sales_Detail = #{salesDetail,jdbcType=VARCHAR},
@@ -161,7 +161,6 @@
       sales_Img_Path = #{salesImgPath,jdbcType=VARCHAR}
     where sales_Id = #{salesId,jdbcType=INTEGER}
   </update>
-
 
   <!--new-->
   <select id="selectByPhone" parameterType="java.lang.String">

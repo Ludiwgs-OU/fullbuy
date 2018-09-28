@@ -124,7 +124,7 @@ new Vue({
 				async:true,
 				dataType:"json",
 				success:function(result){
-					alert(result);
+					alert("注销成功");
 					window.reload();
 				},
 				error:function(result){
