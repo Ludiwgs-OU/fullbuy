@@ -117,13 +117,66 @@
 
   <!--new-->
   <resultMap id="CommentWithOrder" type="com.we.fullbuy.pojo.Comment" extends="BaseResultMap">
-    <association property="order" javaType="com.we.fullbuy.pojo.Order" column="order_Id" select="com.we.fullbuy.dao.OrderMapper.orderDetail"/>
+    <association property="order" javaType="com.we.fullbuy.pojo.Order">
+      <id column="order_Id" jdbcType="VARCHAR" property="orderId" />
+      <result column="user_Id" jdbcType="INTEGER" property="userId" />
+      <result column="sku_Id" jdbcType="INTEGER" property="skuId" />
+      <result column="total_Price" jdbcType="DOUBLE" property="totalPrice" />
+      <result column="address_Id" jdbcType="INTEGER" property="addressId" />
+      <result column="num" jdbcType="INTEGER" property="num" />
+      <result column="order_Date" jdbcType="TIMESTAMP" property="orderDate" />
+      <result column="order_Status" jdbcType="INTEGER" property="orderStatus" />
+      <result column="price" jdbcType="DOUBLE" property="price" />
+      <association property="product" javaType="com.we.fullbuy.pojo.Product">
+        <id column="product_Id" jdbcType="INTEGER" property="productId" />
+        <result column="product_Name" jdbcType="VARCHAR" property="productName" />
+        <result column="product_Detail" jdbcType="VARCHAR" property="productDetail" />
+        <result column="product_Score" jdbcType="INTEGER" property="productScore" />
+        <result column="sales_Num" jdbcType="INTEGER" property="salesNum" />
+        <result column="category_Id" jdbcType="INTEGER" property="categoryId" />
+        <result column="second_Category_Id" jdbcType="INTEGER" property="secondCategoryId" />
+        <result column="sales_Id" jdbcType="INTEGER" property="salesId" />
+        <result column="post_Time" jdbcType="TIMESTAMP" property="postTime" />
+        <result column="product_Status" jdbcType="INTEGER" property="productStatus" />
+        <result column="search_Img_Path" jdbcType="VARCHAR" property="searchImgPath" />
+        <result column="s_Img_Path1" jdbcType="VARCHAR" property="sImgPath1" />
+        <result column="s_Img_Path2" jdbcType="VARCHAR" property="sImgPath2" />
+        <result column="m_Img_Path1" jdbcType="VARCHAR" property="mImgPath1" />
+        <result column="m_Img_Path2" jdbcType="VARCHAR" property="mImgPath2" />
+        <result column="b_Img_Path1" jdbcType="VARCHAR" property="bImgPath1" />
+        <result column="b_Img_Path2" jdbcType="VARCHAR" property="bImgPath2" />
+        <result column="detail_Img_Path1" jdbcType="VARCHAR" property="detailImgPath1" />
+        <result column="detail_Img_Path2" jdbcType="VARCHAR" property="detailImgPath2" />
+        <result column="item1" jdbcType="VARCHAR" property="item1" />
+        <result column="item2" jdbcType="VARCHAR" property="item2" />
+        <result column="postfee" jdbcType="INTEGER" property="postfee" />
+        <collection property="skuList" ofType="com.we.fullbuy.pojo.Sku">
+          <id column="skuId" jdbcType="INTEGER" property="skuid" />
+          <id column="sku_Id" jdbcType="INTEGER" property="skuId" />
+          <result column="product_Id" jdbcType="INTEGER" property="productId" />
+          <result column="item_Id" jdbcType="INTEGER" property="itemId" />
+          <result column="second_Item_Id" jdbcType="INTEGER" property="secondItemId" />
+          <result column="price" jdbcType="DOUBLE" property="price" />
+          <result column="gb_Price" jdbcType="DOUBLE" property="gbPrice" />
+          <result column="quantity" jdbcType="INTEGER" property="quantity" />
+          <collection property="itemList" ofType="com.we.fullbuy.pojo.Item">
+            <id column="item_Id" jdbcType="INTEGER" property="itemId" />
+            <result column="item_Name" jdbcType="VARCHAR" property="itemName" />
+          </collection>
+          <collection property="seconditemList" ofType="com.we.fullbuy.pojo.Seconditem">
+            <id column="second_Item_Id" jdbcType="INTEGER" property="secondItemId" />
+            <result column="second_Item_Name" jdbcType="VARCHAR" property="secondItemName" />
+          </collection>
+        </collection>
+      </association>
+    </association>
   </resultMap>
 
   <select id="displayCommentByUserId" parameterType="java.lang.Integer" resultMap="CommentWithOrder">
     select *
-    from comment c,`order` o
-    where c.user_Id = #{userId,jdbcType=INTEGER} and o.order_Id = c.order_Id
+    from comment c,`order` o,product p,sku s,item i,seconditem si
+    where c.user_Id = #{userId,jdbcType=INTEGER} and o.order_Id = c.order_Id and  s.sku_Id = o.sku_Id
+          and p.product_Id = s.product_Id and i.item_Id = s.item_Id and si.second_Item_Id = s.second_Item_Id
   </select>
 
   <select id="showProductComment" parameterType="java.lang.Integer" resultMap="CommentWithOrder">

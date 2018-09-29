@@ -5,10 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.we.fullbuy.pojo.Comment;
 import com.we.fullbuy.service.CommentService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -21,11 +18,11 @@ public class CommentController {
     private CommentService commentService;
 
     //我的评论
-    @RequestMapping("/displayCommentByUserId")
+    @RequestMapping("/displayCommentByUserId/{pid}")
     @ResponseBody
-    public List<Comment> displayCommentByUserId(HttpSession session)
+    public List<Comment> displayCommentByUserId(@PathVariable int pid, HttpSession session)
     {
-        return commentService.displayCommentByUserId((int) session.getAttribute("userId"));
+        return commentService.displayCommentByUserId(pid);/*(int) session.getAttribute("userId")*/
     }
 
     //显示商品评论

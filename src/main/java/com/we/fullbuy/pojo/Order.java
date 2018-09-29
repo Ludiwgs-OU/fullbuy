@@ -24,6 +24,8 @@ public class Order implements Serializable {
 
     private Address address;
 
+    private Product product;
+
     public String getOrderId() {
         return orderId;
     }
@@ -103,5 +105,13 @@ public class Order implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

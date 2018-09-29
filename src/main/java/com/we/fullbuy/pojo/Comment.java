@@ -18,6 +18,8 @@ public class Comment implements Serializable {
 
     private Date commentTime;
 
+    private Order order;
+
     public Integer getCommentId() {
         return commentId;
     }
@@ -72,5 +74,14 @@ public class Comment implements Serializable {
 
     public void setCommentTime(Date commentTime) {
         this.commentTime = commentTime;
+    }
+
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

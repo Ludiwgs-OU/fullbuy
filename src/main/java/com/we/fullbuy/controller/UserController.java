@@ -96,6 +96,7 @@ public class UserController {
     public int modifyUser(@RequestBody User user, HttpSession session)
     {
         user.setUserId((int)session.getAttribute("userId"));
+        System.out.println(user.getSex());
         return userService.modifyUser(user);
 
     }
