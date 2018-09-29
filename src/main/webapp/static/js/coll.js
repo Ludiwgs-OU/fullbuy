@@ -38,8 +38,8 @@ new Vue({
 				async:true,
 				dataType:"json",
 				success:function(result){
-					alert(result);
-					window.reload();
+                    alert("亲您已退出，再见~");
+                    window.location.href = "home.html";
 				},
 				error:function(result){
 					alert("获取数据失败！");
@@ -81,11 +81,17 @@ new Vue({
 				data: {
 					"favorId": id
 				},
-				success:function(inf){
-					alert(inf);
-					window.reload();
+				success:function(result){
+                    if(result == 1){
+                        alert("已为亲取消收藏商品");
+                        location.reload();
+                    }
+                    else {
+                        alert("很抱歉，不能帮亲取消收藏商品");
+                        location.reload();
+                    }
 				},
-				error:function(inf){
+				error:function(result){
 					alert("取消收藏失败！");
 				},
 			});

@@ -96,7 +96,6 @@ public class UserController {
     public int modifyUser(@RequestBody User user, HttpSession session)
     {
         user.setUserId((int)session.getAttribute("userId"));
-
         return userService.modifyUser(user);
 
     }
@@ -159,10 +158,10 @@ public class UserController {
     public int addAddress(@RequestBody Address address, HttpSession session)
     {
         address.setUserId((int)session.getAttribute("userId"));
-        if(addressService.addAddress(address)!=0)
-            return 1;/*添加收货地址成功*/
+        return addressService.addAddress(address);
+            /*return 1;*//*添加收货地址成功*//*
         else
-            return 0;/*添加收货地址失败*/
+            return 0;*//*添加收货地址失败*/
     }
 
     //修改收货地址
@@ -170,10 +169,10 @@ public class UserController {
     @ResponseBody
     public int modifyAddress(@RequestBody Address address)
     {
-        if(addressService.modifyAddress(address)!=0)
-            return 1;/*"修改收货地址成功"*/
+        return addressService.modifyAddress(address);
+          /*  return "修改收货地址成功";
         else
-            return 0;/*"修改收货地址失败"*/
+            return "修改收货地址失败";*/
     }
 
     //删除收货地址
@@ -181,20 +180,20 @@ public class UserController {
     @ResponseBody
     public int deleteAddress(@RequestParam("addressId") int addressId)
     {
-        if(addressService.deleteAddress(addressId)!=0)
-            return 1;/*"删除收货地址成功"*/
+        return addressService.deleteAddress(addressId);
+            /*return 1;*//*"删除收货地址成功"*//*
         else
-            return 0;/*"删除收货地址成功"*/
+            return 0;*//*"删除收货地址成功"*/
     }
 
 
     //查看收藏夹
-    @RequestMapping("/displayFavor/{uid}")
+    @RequestMapping("/displayFavor")
     @ResponseBody
-    public List<Favor> displayFavor(/*HttpSession session*/@PathVariable("uid") Integer userId)
+    public List<Favor> displayFavor(HttpSession session)
     {
-        /*return favorService.displayFavor((int)session.getAttribute("userId"));*/
-        return favorService.displayFavor(userId);
+        return favorService.displayFavor((int)session.getAttribute("userId"));
+
     }
 
     //添加到收藏夹
@@ -205,10 +204,10 @@ public class UserController {
         Favor favor = new Favor();
         favor.setUserId((int)session.getAttribute("userId"));
         favor.setProductId(productId);
-        if(favorService.addFavor(favor)!=0)
-            return 1;/*"已帮您添加到收藏夹啦"*/
+        return favorService.addFavor(favor);
+           /* return 1;*//*"已帮您添加到收藏夹啦"*//*
         else
-            return 0;/*"好像出了点问题，收藏不了商品"*/
+            return 0;*//*"好像出了点问题，收藏不了商品"*/
     }
 
     //删除收藏夹单个商品
@@ -216,10 +215,10 @@ public class UserController {
     @ResponseBody
     public int deleteSingleFavor(@RequestParam("favorId") int favorId)
     {
-        if(favorService.deleteSingleFavor(favorId)!=0)
-            return 1;/*"删除成功！商品已离去"*/
+        return favorService.deleteSingleFavor(favorId);
+           /* return 1;*//*"删除成功！商品已离去"*//*
         else
-            return 0;/*"好像出了点问题，商品仍留在原地"*/
+            return 0;*//*"好像出了点问题，商品仍留在原地"*/
     }
 
     /*//批量删除收藏夹商品

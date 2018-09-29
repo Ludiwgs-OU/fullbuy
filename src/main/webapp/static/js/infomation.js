@@ -40,8 +40,8 @@ new Vue({
 				async:true,
 				dataType:"json",
 				success:function(result){
-					alert(result);
-					window.reload();
+					alert("亲您已退出，再见~");
+                    window.location.href = "home.html";
 				},
 				error:function(result){
 					alert("获取数据失败！");
@@ -67,7 +67,6 @@ new Vue({
 			dataType:"json",
 			success:function(inf){
 				self.site = inf;
-				console.log(inf);
 			},
 			error:function(inf){
 				alert("获取数据失败！");
@@ -87,12 +86,14 @@ $(document).ready(()=>{
 	})
 	
 	$("#changeInfo").click(()=>{
+		
+		
 		var name = $("#user-name2").val();
 		var sex = $("input[name='radio']:checked").val();
 		var phone = $("#user-phone").val();
 		var email = $("#user-email").val();
 		
-		var info = {
+		var User = {
 			"userName": name,
 			"sex": sex,
 			"userPhone": phone,
@@ -103,14 +104,21 @@ $(document).ready(()=>{
 		$.ajax({
 			type:"post",
 			url:"/user/modifyUser",
-			async:true,
-			dataType:"json",
-			data: info,
-			success:function(inf){
-				alert(inf);
-				window.reload();
+            async:true,
+            dataType:"json",
+            contentType:"application/json",
+            data:JSON.stringify(User),
+			success:function(result){
+                if(result == 1){
+                    alert("已为亲更新个人信息");
+                    location.reload();
+                }
+                else {
+                    alert("很抱歉，不能帮亲更改个人信息");
+                    location.reload();
+                }
 			},
-			error:function(inf){
+			error:function(result){
 				alert("修改失败！");
 			},
 		});
@@ -140,14 +148,10 @@ $(document).ready(()=>{
 	})
 	
 	$("#changePwd").click(()=>{
-		var oldpwd = $("#user-old-password").val();
+	
 		var newPwd = $("#user-new-password").val();
+		var oldPwd = $("#user-old-password").val();
 		var rePwd = $("#user-confirm-password").val();
-		
-		var pwd = {
-			"oldPaaword": oldpwd,
-			"newPaaword": newPwd
-		}
 		
 		if(newPwd != rePwd){
 			alert("两次密码输入不正确！");
@@ -158,12 +162,25 @@ $(document).ready(()=>{
 				url:"/user/modifyPassword",
 				async:true,
 				dataType:"json",
-				data: pwd,
-				success:function(inf){
-					alert(inf);
-					window.reload();
+				data: {
+                    "oldPassword": oldPwd,
+                    "newPassword": newPwd
 				},
-				error:function(inf){
+				success:function(result){
+                    if(result == 1){
+                        alert("已为亲修改密码，记得保存好哦");
+                        location.reload();
+                    }
+                    else if(result == 2){
+                        alert("亲输入的旧密码有误哦");
+                        location.reload();
+                    }
+                    else {
+                        alert("很抱歉，不能帮亲修改密码");
+                        location.reload();
+                    }
+				},
+				error:function(result){
 					alert("修改失败！");
 				}
 	        });

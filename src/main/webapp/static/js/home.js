@@ -124,8 +124,8 @@ new Vue({
 				async:true,
 				dataType:"json",
 				success:function(result){
-					alert("注销成功");
-					window.reload();
+                    alert("亲您已退出，再见~");
+                    window.location.href = "home.html";
 				},
 				error:function(result){
 					alert("获取数据失败！");

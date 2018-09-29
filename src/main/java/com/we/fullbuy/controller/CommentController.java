@@ -25,7 +25,7 @@ public class CommentController {
     @ResponseBody
     public List<Comment> displayCommentByUserId(HttpSession session)
     {
-        return commentService.CommentWithOrder((int) session.getAttribute("userId"));
+        return commentService.displayCommentByUserId((int) session.getAttribute("userId"));
     }
 
     //显示商品评论

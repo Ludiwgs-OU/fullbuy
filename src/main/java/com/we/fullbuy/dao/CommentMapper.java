@@ -19,7 +19,7 @@ public interface CommentMapper {
 
     /*new*/
     /*我的评论*/
-    List<Comment> CommentWithOrder(Integer userId);
+    List<Comment> displayCommentByUserId(Integer userId);
     /*商品评论*/
     List<Comment> showProductComment(Integer productId);
 }

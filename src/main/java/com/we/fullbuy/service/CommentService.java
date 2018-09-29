@@ -14,5 +14,5 @@ public interface CommentService {
     /*查看商品评论*/
     List<Comment> showProductComment(int productId);
     /*我的评论*/
-    List<Comment> CommentWithOrder(int userId);
+    List<Comment> displayCommentByUserId(int userId);
 }

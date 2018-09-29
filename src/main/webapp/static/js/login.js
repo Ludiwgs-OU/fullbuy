@@ -47,9 +47,24 @@ $(document).ready(()=>{
 				dataType:"json",
 				data: passLogin,
 				success:function(result){
-					alert(result);
-					window.location.href = "home.html";
-				},
+					if(result == 1){
+                        alert("登录成功，欢迎回来~");
+                        window.location.href = "home.html";
+					}
+					else if(result == 2){
+                        alert("密码错误，请亲您重新填写");
+                        location.reload();
+					}
+                    else if(result == 3){
+                        alert("亲，您处于我们的黑名单当中哦，请联系我们解决");
+                        location.reload();
+                    }
+                    else {
+                        alert("输入的账号好像不存在哦，请亲检查");
+                        location.reload();
+                    }
+                
+                },
 				error:function(result){
 					alert("登录出错！");
 				}

@@ -34,7 +34,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> CommentWithOrder(int userId) {
-        return commentMapper.CommentWithOrder(userId);
+    public List<Comment> displayCommentByUserId(int userId) {
+        return commentMapper.displayCommentByUserId(userId);
     }
 }

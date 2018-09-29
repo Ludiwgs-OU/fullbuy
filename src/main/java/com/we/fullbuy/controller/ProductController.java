@@ -23,9 +23,9 @@ public class ProductController {
     private SkuService skuService;
 
     //商品SKU详情
-    @RequestMapping("/displayProductDetailWithSku/{pid}")
+    @RequestMapping("/displayProductDetailWithSku")
     @ResponseBody
-    public Product displayProductDetailWithSku(@PathVariable("pid") Integer productId){
+    public Product displayProductDetailWithSku(@RequestParam("productId") int productId){
         return productService.showProductDetail(productId);
     }
 

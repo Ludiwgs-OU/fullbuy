@@ -29,8 +29,9 @@ public class SystemController {
     //注销
     @RequestMapping("/logout")
     @ResponseBody
-    public void logout(HttpSession session) {
+    public int logout(HttpSession session) {
         session.invalidate();
+        return 1;
     }
 
     //返回用户信息

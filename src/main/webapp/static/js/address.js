@@ -63,12 +63,19 @@
 				url:"/user/addAddress",
 				async:true,
 				dataType:"json",
-				data: addressInfo,
-				success:function(inf){
-					alert(inf);
-					window.reload();
+                contentType: "application/json",
+                data: JSON.stringify(Address),
+				success:function(result){
+                    if(result == 1){
+                        alert("已为亲添加新地址");
+                        location.reload();
+                    }
+                    else {
+                        alert("很抱歉，不能帮亲添加新地址");
+                        location.reload();
+                    }
 				},
-				error:function(inf){
+				error:function(result){
 					alert("添加失败！");
 				},
 			});
@@ -106,8 +113,8 @@ new Vue({
 				async:true,
 				dataType:"json",
 				success:function(result){
-					alert(result);
-					window.reload();
+                    alert("亲您已退出，再见~");
+                    window.location.href = "home.html";
 				},
 				error:function(result){
 					alert("获取数据失败！");
@@ -170,11 +177,17 @@ new Vue({
 				data: {
 					"addressId": id
 				},
-				success:function(inf){
-					alert(inf);
-					window.reload();
+				success:function(result){
+                    if(result == 1){
+                        alert("已为亲删除地址");
+                        location.reload();
+                    }
+                    else {
+                        alert("很抱歉，不能帮亲删除地址");
+                        location.reload();
+                    }
 				},
-				error:function(inf){
+				error:function(result){
 					alert("删除失败！");
 				},
 			});
@@ -219,12 +232,19 @@ new Vue({
 					url:"/user/modifyAddress",
 					async:true,
 					dataType:"json",
-					data: addressInfo,
-					success:function(inf){
-						alert(inf);
-						window.reload();
+                    contentType:"application/json",
+					data: JSON.stringify(Address),
+					success:function(result){
+                        if(result == 1){
+                            alert("已为亲更改地址信息");
+                            location.reload();
+                        }
+                        else {
+                            alert("很抱歉，不能帮亲更改地址信息");
+                            location.reload();
+                        }
 					},
-					error:function(inf){
+					error:function(result){
 						alert("修改失败！");
 					},
 				});

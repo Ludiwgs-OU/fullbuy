@@ -85,7 +85,7 @@ public class SalesController {
     //推荐商家
     @RequestMapping("/displayRecommend")
     @ResponseBody
-    public List<Sales> displayRecommend(HttpSession session)
+    public List<Sales> displayRecommend()
     {
         return salesService.displayRecommend();
     }

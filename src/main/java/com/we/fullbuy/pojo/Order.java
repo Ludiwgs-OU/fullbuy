@@ -22,6 +22,8 @@ public class Order implements Serializable {
 
     private Double price;
 
+    private Address address;
+
     public String getOrderId() {
         return orderId;
     }
@@ -92,5 +94,14 @@ public class Order implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
