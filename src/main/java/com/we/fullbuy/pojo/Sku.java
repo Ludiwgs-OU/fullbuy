@@ -18,6 +18,10 @@ public class Sku implements Serializable {
 
     private Integer quantity;
 
+    private Item item;
+
+    private Seconditem secondItem;
+
     private List<Item> itemList;
 
     private List<Seconditem> seconditemList;
@@ -92,5 +96,21 @@ public class Sku implements Serializable {
 
     public void setSeconditemList(List<Seconditem> seconditemList) {
         this.seconditemList = seconditemList;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public Seconditem getSeconditem() {
+        return secondItem;
+    }
+
+    public void setSeconditem(Seconditem seconditem) {
+        this.secondItem = seconditem;
     }
 }

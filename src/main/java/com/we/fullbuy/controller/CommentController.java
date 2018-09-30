@@ -18,11 +18,11 @@ public class CommentController {
     private CommentService commentService;
 
     //我的评论
-    @RequestMapping("/displayCommentByUserId/{pid}")
+    @RequestMapping("/displayCommentByUserId")
     @ResponseBody
-    public List<Comment> displayCommentByUserId(@PathVariable int pid, HttpSession session)
+    public List<Comment> displayCommentByUserId(HttpSession session)
     {
-        return commentService.displayCommentByUserId(pid);/*(int) session.getAttribute("userId")*/
+        return commentService.displayCommentByUserId((int) session.getAttribute("userId"));
     }
 
     //显示商品评论

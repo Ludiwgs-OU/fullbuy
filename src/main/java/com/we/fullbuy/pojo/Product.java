@@ -51,6 +51,8 @@ public class Product implements Serializable {
 
     private List<Sku> skuList;
 
+    private Sku sku;
+
     public Integer getProductId() {
         return productId;
     }
@@ -234,5 +236,14 @@ public class Product implements Serializable {
 
     public void setSkuList(List<Sku> skuList) {
         this.skuList = skuList;
+    }
+
+
+    public Sku getSku() {
+        return sku;
+    }
+
+    public void setSku(Sku sku) {
+        this.sku = sku;
     }
 }

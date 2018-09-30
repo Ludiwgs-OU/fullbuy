@@ -87,7 +87,7 @@
 													<div class="item-title">
 														<div class="item-name">
 															<a :href="'../views/introduction.html?pid='+site.productId">
-																<p class="item-basic-info">{{ site.productName }}</p>
+																<p class="item-basic-info">{{ site.order.product.productName }}</p>
 															</a>
 														</div>
 													</div>
@@ -96,7 +96,7 @@
 													</div>
 													<div class="item-info">
 														<div>
-															<p class="info-little"><span>{{ site.item1 }}：{{ site.itemName }}</span> <span>{{ site.item2 }}：{{ site.secondItemName }}</span> </p>
+															<p class="info-little"><span>{{ site.order.product.item1 }}：{{ site.order.product.skuList.itemList.itemName }}</span> <span>{{ site.order.product.item2 }}：{{ site.order.product.skuList.seconditemList.secondItemName }}</span> </p>
 															<p class="info-time">{{ site.commentTime }}</p>
 														</div>
 													</div>

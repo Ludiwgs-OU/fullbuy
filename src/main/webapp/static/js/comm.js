@@ -54,6 +54,7 @@ new Vue({
 			async:true,
 			dataType:"json",
 			success:function(inf){
+				
 				self.sites = inf;
 			},
 			error:function(inf){
