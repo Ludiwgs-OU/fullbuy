@@ -121,7 +121,7 @@ width: 40px;height: 40px;position: absolute;margin-top:5px ;}
 	
 @media only screen and (min-width:1025px) 
 {
-.info-main {margin:0% 10%;}
+.info-main {margin:1% 10%;}
 .user-safety .check ul{margin:0 5% ;}
 
 
@@ -129,5 +129,87 @@ width: 40px;height: 40px;position: absolute;margin-top:5px ;}
 @media only screen and (min-width:1260px) 
 {
 	
+}
+
+.secondcat,
+.seconditem{
+	float: left;
+	margin-left: 30px;
+}
+
+.seconditem{
+	margin-left: 20px;
+}
+
+.secitem{
+	margin-left: 55px;
+}
+
+.secitem div{
+	margin-top: 5px;
+}
+
+.detailImg{
+	float: left;
+	margin-left: 20px;
+}
+
+.upImg,
+.searchImg{
+	position: absolute;
+	width: 200px;
+	height: 112px;
+	cursor:pointer;
+	opacity:0;
+	ilter:alpha(opacity=0);
+}
+
+.forImg,
+.forSearchImg{
+	border: 1px solid #95C8F1;
+	width: 200px;
+	height: 112px;
+}
+
+.searchImg,
+.forSearchImg{
+	width: 100px;
+	height: 100px;
+}
+
+#additem1,
+#additem2{
+	padding: 7px 10px;
+	outline: none;
+}
+
+.item2{
+	clear: left;
+}
+
+.item22{
+	margin-top: 20px;
+}
+
+.info-btn{
+	clear: both;
+	position: relative;
+	top: 10px;
+}
+
+.addbtn{
+	padding: 5px 10px !important;
+}
+
+.skuDiv{
+	float: left;
+	margin-left: 20px;
+	width: 20%;
+}
+
+.skuDiv span,
+.skuDiv input{
+	width: 100%;
+	text-align: center !important;
 }
 

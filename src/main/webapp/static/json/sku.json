@@ -1,0 +1,24 @@
+{
+	"item1": "大小",
+	"itemList": [{
+		"itemId": "1",
+		"itemName": "小"
+	},{
+		"itemId": "2",
+		"itemName": "中"
+	},{
+		"itemId": "3",
+		"itemName": "大"
+	}],
+	"item2": "糖分",
+	"secondItemList": [{
+		"secondItemId": "1",
+		"secondItemName": "多糖"
+	},{
+		"secondItemId": "2",
+		"secondItemName": "中糖"
+	},{
+		"secondItemId": "3",
+		"secondItemName": "少糖"
+	}]
+}

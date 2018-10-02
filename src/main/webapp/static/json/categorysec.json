@@ -1,0 +1,18 @@
+[
+ 	{
+ 		"secondCategoryId": "1",
+ 		"secondCategoryName": "男装"
+ 	},{
+ 		"secondCategoryId": "2",
+ 		"secondCategoryName": "女装"
+ 	},{
+ 		"secondCategoryId": "2",
+ 		"secondCategoryName": "童装"
+ 	},{
+ 		"secondCategoryId": "4",
+ 		"secondCategoryName": "风衣"
+ 	},{
+ 		"secondCategoryId": "5",
+ 		"secondCategoryName": "卫衣"
+ 	}
+]

@@ -203,18 +203,20 @@ new Vue({
 				imgUrl = "";
 			}
 			
-   			var Comment = {
-   				"commentDetail": eval,
-   				"productId": pid,
-   				"orderId": oid,
-   				"commentImgPath": imgUrl
-   			}
+   			var formData = new FormData();
+			formData.append('commentImgPath', $('#profile')[0].files[0]);
+			formData.append('commentDetail',eval);
+			formData.append('productId',pid);
+			formData.append('orderId',oid);
+			
    			$.ajax({
 				type:"post",
 				url:"/comment/addComment",
 				async:true,
-				dataType:"json",
-				data: evaluation,
+				contentType: false,
+	            processData: false,
+	            cache: false,
+	            data: formData,
 				success:function(inf){
 					alert(inf);
 				},

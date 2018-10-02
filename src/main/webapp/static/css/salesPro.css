@@ -1,0 +1,59 @@
+a{
+	color: black;
+}
+
+.th-item,
+.td-item{
+	width: 40%;
+}
+
+.th-price,
+.th-number,
+.td-price,
+.td-number{
+	width: 15%;
+}
+
+.th-operation,
+.td-operation{
+	width: 30%;
+}
+
+.item-list{
+	height: 50px;
+}
+
+.item-list .td{
+	margin: 0px;
+}
+
+.item-basic-info{
+	padding: 0;
+}
+
+.item-basic-info p{
+	width: 100%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.item-basic-info,
+.item-price,
+.item-number,
+.item-operation{
+	line-height: 50px;
+}
+
+.search-pro{
+	position: absolute;
+	margin-top: -50px;
+	margin-left: 70%;
+	z-index: 10000;
+}
+
+.search-pro input{
+	height: 32px;
+}
+
+

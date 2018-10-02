@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+		<title>商品管理</title>
+	</head>
+	<body>
+		<!--头 -->
+		<header>
+			<article>
+				<div class="mt-logo">
+					<!--顶部导航条 -->
+					<div class="am-container header" id="headerNav">
+						<ul class="message-l">
+							<div class="topMessage">
+								<div class="menu-hd" v-if="site.salesName">
+									<a target="_top" href="" @click="logout">注销</a>
+								</div>
+								<div class="menu-hd" v-if="!site.salesName">
+									<a target="_top" href="login.html?type=2">商家登录</a>
+								</div>
+							</div>
+						</ul>
+						<ul class="message-r">
+							<div class="topMessage home">
+								<div class="menu-hd"><a href="'salesHome.html?sid='site.salesId" target="_top" class="h">我的主页</a></div>
+							</div>
+						</ul>
+					</div>
+					<!--悬浮搜索框-->
+					<div class="nav white">
+						<div class="logoBig">
+							<img src="../static/images/1.png" />
+						</div>
+						<div class="search-bar pr">
+							<form>
+								<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+								<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="botton">
+							</form>
+						</div>
+					</div>
+				</div>
+			</article>
+		</header>
+
+		<div class="center">
+			<div class="col-main">
+				<div class="main-wrap">
+					<div class="user-order">
+						<!--标题 -->
+						<div class="am-cf am-padding">
+							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">商品管理</strong> / <small>Product</small></div>
+						</div>
+						<hr/>
+
+						<div class="am-tabs am-tabs-d2 am-margin" data-am-tabs id="orderList">
+							
+							<div class="search-pro">
+								<input type="text" id="sales-searchPro" placeholder="搜索" />
+								<span class="am-btn am-btn-danger">搜索</span>
+							</div>
+							<ul class="am-avg-sm-5 am-tabs-nav am-nav am-nav-tabs">
+								<li class="am-active"><a href="#tab1">已上架</a></li>
+								<li><a href="#tab2">未上架</a></li>
+							</ul>
+
+							<div class="am-tabs-bd">
+								<div class="am-tab-panel am-fade am-in am-active" id="tab1">
+									<div class="order-top">
+										<div class="th th-item">
+											<td class="td-inner">商品名称</td>
+										</div>
+										<div class="th th-price">
+											<td class="td-inner">商品Id</td>
+										</div>
+										<div class="th th-number">
+											<td class="td-inner">上架时间</td>
+										</div>
+										<div class="th th-operation">
+											<td class="td-inner">商品操作</td>
+										</div>
+									</div>
+
+									<div class="order-main">
+										<div class="order-list">
+											<!--已完成-->
+											<div class="order-status5" v-for="site in sites">
+												<div class="order-content">
+													<div class="order-left">
+														<ul class="item-list">
+															<li class="td td-item">
+																<div class="item-basic-info">
+																	<a :href="'introduction.html?pid='+site.productId">
+																		<p title="阿森纳和感觉看了你的飞胜多负少的发送到机离开过快点发几个路口见对胜多负少的发送到方">
+																			阿森纳和感觉看了你的飞胜多负少的发送到机离开过快点发几个路口见对胜多负少的发送到方
+																		</p>
+																	</a>
+																</div>
+															</li>
+															<li class="td td-price">
+																<div class="item-price">
+																	123456789
+																</div>
+															</li>
+															<li class="td td-number">
+																<div class="item-number">
+																	2018-10-21
+																</div>
+															</li>
+															<li class="td td-operation">
+																<div class="item-operation">
+																	<span class="am-btn am-btn-danger anniu">查看</span>
+																	<span class="am-btn am-btn-danger anniu">删除</span>
+																</div>
+															</li>
+														</ul>
+													</div>
+												</div>
+												
+												<div class="theme-popover" :id="'eval'+site.productId">
+													<!--标题 -->
+													<div class="am-cf am-padding">
+														<div class="am-fl am-cf">
+															<strong class="am-text-danger am-text-lg" id="update-text">商品评价</strong> / <small>Product Review</small>
+														</div>
+													</div>
+													<hr/>
+													<div class="am-u-md-12">
+														<form class="am-form am-form-horizontal">
+															<div class="am-form-group">
+																<p class="eval-p">请写出您对于此商品的评价:</p>
+																<br />
+																<textarea rows="5" :id="'evalu'+site.productId"></textarea>
+																<p class="eval-p">晒图:</p>
+																<input type="file" class="evalImg" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" id="profile">
+																<img class="forEvalImg" id="profileImg" src="../static/images/123.png"/>
+															</div>
+															<div class="am-form-group theme-poptit">
+																<div class="am-u-sm-9 am-u-sm-push-3">
+																	<div class="am-btn am-btn-danger" @click="sub(site.productId,site.orderId)">提交</div>
+																	<div class="am-btn am-btn-danger" @click="hide(site.productId)">取消</div>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="am-tab-panel am-fade" id="tab2">
+
+									<div class="order-top">
+										<div class="th th-item">
+											<td class="td-inner">商品</td>
+										</div>
+										<div class="th th-price">
+											<td class="td-inner">单价</td>
+										</div>
+										<div class="th th-number">
+											<td class="td-inner">数量</td>
+										</div>
+										<div class="th th-operation">
+											<td class="td-inner">商品操作</td>
+										</div>
+										<div class="th th-amount">
+											<td class="td-inner">合计</td>
+										</div>
+										<div class="th th-status">
+											<td class="td-inner">交易状态</td>
+										</div>
+										<div class="th th-change">
+											<td class="td-inner">交易操作</td>
+										</div>
+									</div>
+
+									<div class="order-main">
+										<div class="order-main"> 
+											<div class="order-list">
+												<div class="order-status5" v-if="site.orderStatus==1" v-for="site in sites">
+													<div class="order-title">
+														<div class="dd-num">订单编号：{{ site.orderId }}</div>
+														<span>成交时间：{{ site.orderDate }}</span>
+													</div>
+													<div class="order-content">
+														<div class="order-left">
+															<ul class="item-list">
+																<li class="td td-item">
+																	<div class="item-pic">
+																		<a :href="'introduction.html?pid='+site.productId" class="J_MakePoint">
+																			<img :src="site.sImgPath1" class="itempic J_ItemImg">
+																		</a>
+																	</div>
+																	<div class="item-info">
+																		<div class="item-basic-info">
+																			<a :href="'introduction.html?pid='+site.productId">
+																				<p>{{ site.productName }}</p>
+																				<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
+																					<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
+																			</a>
+																		</div>
+																	</div>
+																</li>
+																<li class="td td-price">
+																	<div class="item-price">
+																		{{ site.price }}
+																	</div>
+																</li>
+																<li class="td td-number">
+																	<div class="item-number">
+																		<span>×</span>{{ site.num }}
+																	</div>
+																</li>
+																<li class="td td-operation">
+																	<div class="item-operation" v-if="site.orderStatus==2">
+																		<span @click="refund(site.orderId)">退款</span>
+																	</div>
+																	<div class="item-operation" v-if="site.orderStatus==3">
+																		<span @click="returned(site.orderId)">退款/退货</span>
+																	</div>
+																</li>
+															</ul>
+														</div>
+														<div class="order-right">
+															<li class="td td-amount">
+																<div class="item-amount">
+																	合计：{{ site.totalPrice }}
+																	<p>含运费：<span>{{ site.postfee }}</span></p>
+																</div>
+															</li>
+															<div class="move-right">
+																<li class="td td-status">
+																	<div class="item-status">
+																		<p class="Mystatus" v-if="site.orderStatus==1">待付款</p>
+																		<p class="Mystatus" v-if="site.orderStatus==2">待发货</p>
+																		<p class="Mystatus" v-if="site.orderStatus==3">待收货</p>
+																		<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
+																		<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
+																		<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
+																		<p class="order-info"><a :href="'orderinfo.html?oid=' + site.orderId">订单详情</a></p>
+																	</div>
+																</li>
+																<li class="td td-change">
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
+																		<span @click="pay(site.orderId)">确认支付</span>
+																	</div>
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
+																		<span @click="remind">提醒发货</span>
+																	</div>
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
+																		<span @click="receipt(site.orderId)">确认收货</span>
+																	</div>
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
+																		<span @click="eval(site.productId)">评价商品</span>
+																	</div>
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
+																		<span @click="dele(site.orderId)">删除订单</span>
+																	</div>
+																</li>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>				
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--底部-->
+				<div class="footer">
+					<div class="phone">
+						<p>联系电话：040-88888888</p>
+					</div>
+					<p>Copyright © 2018 满团队 Inc. 保留所有权利。</p>
+				</div>
+			</div>
+			<aside class="menu">
+				<ul>
+					<li class="person">
+						<a href="">商家中心</a>
+					</li>
+					<li class="person">
+						<a>商家资料</a>
+						<ul>
+							<li> <a href="saleInformation.html">商家信息</a></li>
+							<li> <a href="saleSafety.html">安全设置</a></li>
+						</ul>
+					</li>
+					<li class="person">
+						<a>我的交易</a>
+						<ul>
+							<li class="active"><a href="">商品管理</a></li>
+						</ul>
+						<ul>
+							<li><a href="">订单管理</a></li>
+						</ul>
+					</li>
+					<li class="person">
+						<a>我的小窝</a>
+						<ul>
+							<li> <a href="">用户评价</a></li>
+							<li> <a href="">销量统计</a></li>
+							<li> <a href="news.html">消息</a></li>
+						</ul>
+					</li>
+				</ul>
+			</aside>
+		</div>
+		
+		<link href="../static/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
+		<link href="../static/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+		<link href="../static/css/personal.css" rel="stylesheet" type="text/css">
+		<link href="../static/css/orstyle.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../static/css/salesPro.css" />
+		<script type="text/javascript" src="../static/js/jquery-3.3.1.min.js" ></script>
+		<script src="../static/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+		<script type="text/javascript" src="../static/js/vue.js" ></script>
+		<script type="text/javascript" src="../static/js/salesPro.js" ></script>
+	</body>
+
+</html>

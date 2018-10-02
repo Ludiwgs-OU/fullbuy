@@ -67,6 +67,7 @@ new Vue({
 			dataType:"json",
 			success:function(inf){
 				self.site = inf;
+				console.log(inf);
 			},
 			error:function(inf){
 				alert("获取数据失败！");
@@ -86,8 +87,6 @@ $(document).ready(()=>{
 	})
 	
 	$("#changeInfo").click(()=>{
-		
-		
 		var name = $("#user-name2").val();
 		var sex = $("input[name='radio']:checked").val();
 		var phone = $("#user-phone").val();
@@ -104,7 +103,7 @@ $(document).ready(()=>{
 		$.ajax({
 			type:"post",
 			url:"/user/modifyUser",
-            async:true,
+			async:true,
             dataType:"json",
             contentType:"application/json",
             data:JSON.stringify(User),
@@ -117,10 +116,10 @@ $(document).ready(()=>{
                     alert("很抱歉，不能帮亲更改个人信息");
                     location.reload();
                 }
-			},
+           	},
 			error:function(result){
 				alert("修改失败！");
-			},
+			}
 		});
 	})
 	
@@ -128,15 +127,17 @@ $(document).ready(()=>{
 		
 		var profile = document.getElementById("profile").files[0];
 		var imgUrl = getObjectURL(profile);
+		
+		var formData = new FormData();
+		formData.append('userProfile', $('#profile')[0].files[0]);
 	    
 		$.ajax({
             type: "post",
             url: "/user/modifyUserProfile",
             contentType: false,
             processData: false,
-            data: {
-            	"userProfile": imgUrl
-            },
+            cache: false,
+	        data: formData,
             success: function(result){
             	alert(result);
             	document.getElementById("profileImg").src = imgUrl;
@@ -148,9 +149,8 @@ $(document).ready(()=>{
 	})
 	
 	$("#changePwd").click(()=>{
-	
+		var oldpwd = $("#user-old-password").val();
 		var newPwd = $("#user-new-password").val();
-		var oldPwd = $("#user-old-password").val();
 		var rePwd = $("#user-confirm-password").val();
 		
 		if(newPwd != rePwd){
@@ -165,7 +165,7 @@ $(document).ready(()=>{
 				data: {
                     "oldPassword": oldPwd,
                     "newPassword": newPwd
-				},
+                },
 				success:function(result){
                     if(result == 1){
                         alert("已为亲修改密码，记得保存好哦");
