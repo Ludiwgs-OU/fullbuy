@@ -1,0 +1,96 @@
+{
+	"productId": "123456789",
+	"productName": "阿森纳和感觉看了你的飞胜多负少的发送到机离开过快点发几个路口见对胜多负少的发送到方",
+	"productDetail": "dasdahnknsjkfskldflsdkjfiljiolkxjcoijhio",
+	"categoryId": "1",
+	"categoryName": "女装",
+	"secondCategoryId": "1",
+	"secondCategoryName": "lo裙",
+	"categoryList": [{
+ 		"categoryId": "1",
+ 		"categoryName": "服饰"
+ 	},{
+ 		"categoryId": "2",
+ 		"categoryName": "零食"
+ 	},{
+ 		"categoryId": "3",
+ 		"categoryName": "家具"
+ 	},{
+ 		"categoryId": "4",
+ 		"categoryName": "电器"
+ 	},{
+ 		"categoryId": "5",
+ 		"categoryName": "电子数码"
+ 	},{
+ 		"categoryId": "6",
+ 		"categoryName": "文具"
+ 	}],
+ 	"secondCategoryList":[{
+ 		"secondCategoryId": "1",
+ 		"secondCategoryName": "男装"
+ 	},{
+ 		"secondCategoryId": "2",
+ 		"secondCategoryName": "女装"
+ 	},{
+ 		"secondCategoryId": "2",
+ 		"secondCategoryName": "童装"
+ 	},{
+ 		"secondCategoryId": "4",
+ 		"secondCategoryName": "风衣"
+ 	},{
+ 		"secondCategoryId": "5",
+ 		"secondCategoryName": "卫衣"
+ 	}],
+ 	"searchImgPath": "../static/images/111.png",
+ 	"bImgPath1": "../static/images/111.png",
+ 	"bImgPath2": "../static/images/111.png",
+ 	"detailImgPath1": "../static/images/000.png",
+ 	"detailImgPath2": "../static/images/000.png",
+ 	"item1": "大小",
+ 	"item2": "糖分",
+	"skuList": [{
+		"skuId": "1",
+		"price": "11",
+		"gbPrice": "10",
+		"quantity": "110",
+		"itemList": {
+			"itemName": "小"
+		},
+		"seconditemList": {
+			"secondItemName": "少糖"
+		}
+	},{
+		"skuId": "2",
+		"price": "21",
+		"gbPrice": "20",
+		"quantity": "210",
+		"itemList": {
+			"itemName": "中"
+		},
+		"seconditemList": {
+			"secondItemName": "少糖"
+		}
+	},{
+		"skuId": "3",
+		"price": "31",
+		"gbPrice": "30",
+		"quantity": "310",
+		"itemList": {
+			"itemName": "大"
+		},
+		"seconditemList": {
+			"secondItemName": "少糖"
+		}
+	},{
+		"skuId": "4",
+		"price": "41",
+		"gbPrice": "40",
+		"quantity": "410",
+		"itemList": {
+			"itemName": "超大"
+		},
+		"seconditemList": {
+			"secondItemName": "少糖"
+		}
+	}]
+}

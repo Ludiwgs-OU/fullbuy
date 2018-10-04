@@ -208,8 +208,15 @@ width: 40px;height: 40px;position: absolute;margin-top:5px ;}
 }
 
 .skuDiv span,
-.skuDiv input{
+.skuDiv input,
+.changesku span,
+.changesku input{
 	width: 100%;
 	text-align: center !important;
 }
 
+.changesku{
+	float: left;
+	margin-left: 20px;
+	width: 15%;
+}
