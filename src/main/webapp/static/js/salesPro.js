@@ -99,6 +99,43 @@ new Vue({
 					alert("获取数据失败！");
 				},
 			});
-		}
+		},
+		eval: function(id){
+   			$(document.body).css("overflow","hidden");
+			$('#gb'+id).slideDown(200);
+   		},
+   		hide: function(id){
+   			$(document.body).css("overflow","visible");
+   			$('#gb'+id).slideUp(200);
+   		},
+   		gb: function(id){
+   			var min = $("#min"+id).val();
+   			var max = $("#max"+id).val();
+   			var start = $("#start"+id).val();
+   			var end = $("#end"+id).val();
+   			
+   			//alert(min+" "+max+" "+start+" "+end);
+   			
+   			var gb = {
+   				"minPeople": min,
+   				"maxPeople": max,
+   				"beginTime": start,
+   				"endTime": end
+   			}
+   			
+   			$.ajax({
+				type:"post",
+				url:"",
+				async:true,
+				dataType:"json",
+				data: gb,
+				success:function(inf){
+					alert("发起团购成功！");
+				},
+				error:function(inf){
+					alert("发起团购失败！");
+				},
+			});
+   		}
 	}
 })

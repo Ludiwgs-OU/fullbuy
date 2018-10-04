@@ -113,9 +113,58 @@
 																<div class="item-operation">
 																	<span class="am-btn am-btn-danger anniu" @click="sele(site.productId)">查看</span>
 																	<span class="am-btn am-btn-danger anniu" @click="dele(site.productId)">删除</span>
+																	<span v-if="site.productStatus == 2 || site.productStatus == 3" class="am-btn am-btn-danger anniu" @click="eval(site.productId)">发起团购</span>
 																</div>
 															</li>
 														</ul>
+													</div>
+												</div>
+												
+												<div class="theme-popover" :id="'gb'+site.productId">
+													<!--标题 -->
+													<div class="am-cf am-padding">
+														<div class="am-fl am-cf">
+															<strong class="am-text-danger am-text-lg" id="update-text">发起团购</strong> / <small>Initiate Groupbuy</small>
+														</div>
+													</div>
+													<hr/>
+													<div class="am-u-md-12">
+														<form class="am-form am-form-horizontal">
+															<div class="am-form-group">
+																<table>
+																	<tr>
+																		<td>最小拼团人数：</td>
+																		<td>
+																			<input type="text" :id="'min'+site.productId" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>最大拼团人数：</td>
+																		<td>
+																			<input type="text" :id="'max'+site.productId" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>开始时间：</td>
+																		<td>
+																			<input type="date" :id="'start'+site.productId" />
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>结束时间：</td>
+																		<td>
+																			<input type="date" :id="'end'+site.productId" />
+																		</td>
+																	</tr>
+																</table>
+															</div>
+															<div class="am-form-group theme-poptit">
+																<div class="am-u-sm-9 am-u-sm-push-3">
+																	<div class="am-btn am-btn-danger" @click="gb(site.productId)">提交</div>
+																	<div class="am-btn am-btn-danger" @click="hide(site.productId)">取消</div>
+																</div>
+															</div>
+														</form>
 													</div>
 												</div>
 											</div>
@@ -207,7 +256,6 @@
 						<ul>
 							<li> <a href="../views/saleAddPro.html">新增商品</a></li>
 							<li class="active"> <a href="../views/salesProduct.html">所有商品</a></li>
-							<li> <a href="../views/.html">发起团购</a></li>
 						</ul>
 					</li>
 					<li class="person">
