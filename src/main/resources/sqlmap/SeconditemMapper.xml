@@ -55,4 +55,10 @@
     set second_Item_Name = #{secondItemName,jdbcType=VARCHAR}
     where second_Item_Id = #{secondItemId,jdbcType=INTEGER}
   </update>
+
+  <!--new-->
+  <select id="displaySecondItem" resultMap="BaseResultMap">
+    select *
+    from seconditem
+  </select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.we.fullbuy.pojo;
 
+import com.we.fullbuy.utils.DateUtil;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,6 +19,8 @@ public class Order implements Serializable {
     private Integer num;
 
     private Date orderDate;
+
+    private String orderDateStr;
 
     private Integer orderStatus;
 
@@ -113,5 +117,9 @@ public class Order implements Serializable {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public String getOrderDateStr() {
+        return DateUtil.changetoDateStr(orderDate);
     }
 }

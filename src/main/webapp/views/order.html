@@ -54,7 +54,7 @@
 		<div class="center">
 			<div class="col-main">
 				<div class="main-wrap">
-					<div class="user-order">
+					<div class="user-order" style="height: 600px;">
 						<!--标题 -->
 						<div class="am-cf am-padding">
 							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">订单管理</strong> / <small>Order</small></div>
@@ -103,23 +103,23 @@
 											<div class="order-status5" v-for="site in sites">
 												<div class="order-title">
 													<div class="dd-num">订单编号：{{ site.orderId }}</div>
-													<span>成交时间：{{ site.orderDate }}</span>
+													<span>成交时间：{{ site.orderDateStr }}</span>
 												</div>
 												<div class="order-content">
 													<div class="order-left">
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a :href="'../views/introduction.html?pid='+site.productId" class="J_MakePoint">
-																		<img :src="site.searchImgPath" class="itempic J_ItemImg">
+																	<a :href="'../views/introduction.html?pid='+site.product.productId" class="J_MakePoint">
+																		<img :src="site.product.searchImgPath" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info">
 																	<div class="item-basic-info">
-																		<a :href="'../views/introduction.html?pid='+site.productId">
-																			<p>{{ site.productName }}</p>
-																			<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
-																				<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
+																		<a :href="'../views/introduction.html?pid='+site.product.productId">
+																			<p>{{ site.product.productName }}</p>
+																			<p class="info-little">{{ site.product.item1 }}：{{ site.product.sku.item.itemName }}
+																				<br/>{{ site.product.item2 }}：{{ site.product.sku.item.secondItemName }} </p>
 																		</a>
 																	</div>
 																</div>
@@ -148,7 +148,7 @@
 														<li class="td td-amount">
 															<div class="item-amount">
 																合计：{{ site.totalPrice }}
-																<p>含运费：<span>{{ site.postfee }}</span></p>
+																<p>含运费：<span>{{ site.product.postfee }}</span></p>
 															</div>
 														</li>
 														<div class="move-right">
@@ -174,7 +174,7 @@
 																	<span @click="receipt(site.orderId)">确认收货</span>
 																</div>
 																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
-																	<span @click="eval(site.productId)">评价商品</span>
+																	<span @click="eval(site.product.productId)">评价商品</span>
 																</div>
 																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
 																	<span @click="dele(site.orderId)">删除订单</span>
@@ -183,7 +183,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="theme-popover" :id="'eval'+site.productId">
+												<div class="theme-popover" :id="'eval'+site.product.productId">
 													<!--标题 -->
 													<div class="am-cf am-padding">
 														<div class="am-fl am-cf">
@@ -196,15 +196,15 @@
 															<div class="am-form-group">
 																<p class="eval-p">请写出您对于此商品的评价:</p>
 																<br />
-																<textarea rows="5" :id="'evalu'+site.productId"></textarea>
+																<textarea rows="5" :id="'evalu'+site.product.productId"></textarea>
 																<p class="eval-p">晒图:</p>
 																<input type="file" class="evalImg" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" id="profile">
 																<img class="forEvalImg" id="profileImg" src="../static/images/123.png"/>
 															</div>
 															<div class="am-form-group theme-poptit">
 																<div class="am-u-sm-9 am-u-sm-push-3">
-																	<div class="am-btn am-btn-danger" @click="sub(site.productId,site.orderId)">提交</div>
-																	<div class="am-btn am-btn-danger" @click="hide(site.productId)">取消</div>
+																	<div class="am-btn am-btn-danger" @click="sub(site.product.productId,site.orderId)">提交</div>
+																	<div class="am-btn am-btn-danger" @click="hide(site.product.productId)">取消</div>
 																</div>
 															</div>
 														</form>
@@ -246,23 +246,23 @@
 												<div class="order-status5" v-if="site.orderStatus==1" v-for="site in sites">
 													<div class="order-title">
 														<div class="dd-num">订单编号：{{ site.orderId }}</div>
-														<span>成交时间：{{ site.orderDate }}</span>
+														<span>成交时间：{{ site.orderDateStr }}</span>
 													</div>
 													<div class="order-content">
 														<div class="order-left">
 															<ul class="item-list">
 																<li class="td td-item">
 																	<div class="item-pic">
-																		<a :href="'../views/introduction.html?pid='+site.productId" class="J_MakePoint">
-																			<img :src="site.sImgPath1" class="itempic J_ItemImg">
+																		<a :href="'../views/introduction.html?pid='+site.product.productId" class="J_MakePoint">
+																			<img :src="site.product.searchImgPath" class="itempic J_ItemImg">
 																		</a>
 																	</div>
 																	<div class="item-info">
 																		<div class="item-basic-info">
-																			<a :href="'../views/introduction.html?pid='+site.productId">
-																				<p>{{ site.productName }}</p>
-																				<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
-																					<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
+																			<a :href="'../views/introduction.html?pid='+site.product.productId">
+																				<p>{{ site.product.productName }}</p>
+																				<p class="info-little">{{ site.product.item1 }}：{{ site.product.sku.item.itemName }}
+																					<br/>{{ site.product.item2 }}：{{ site.product.sku.seconditem.secondItemName }} </p>
 																			</a>
 																		</div>
 																	</div>
@@ -291,7 +291,7 @@
 															<li class="td td-amount">
 																<div class="item-amount">
 																	合计：{{ site.totalPrice }}
-																	<p>含运费：<span>{{ site.postfee }}</span></p>
+																	<p>含运费：<span>{{ site.product.postfee }}</span></p>
 																</div>
 															</li>
 															<div class="move-right">
@@ -317,7 +317,7 @@
 																		<span @click="receipt(site.orderId)">确认收货</span>
 																	</div>
 																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
-																		<span @click="eval(site.productId)">评价商品</span>
+																		<span @click="eval(site.product.productId)">评价商品</span>
 																	</div>
 																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
 																		<span @click="dele(site.orderId)">删除订单</span>
@@ -370,16 +370,16 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a :href="'../views/introduction.html?pid='+site.productId" class="J_MakePoint">
-																		<img :src="site.sImgPath1" class="itempic J_ItemImg">
+																	<a :href="'../views/introduction.html?pid='+site.product.productId" class="J_MakePoint">
+																		<img :src="site.product.searchImgPath" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info">
 																	<div class="item-basic-info">
-																		<a :href="'../views/introduction.html?pid='+site.productId">
-																			<p>{{ site.productName }}</p>
-																			<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
-																				<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
+																		<a :href="'../views/introduction.html?pid='+site.product.productId">
+																			<p>{{ site.product.productName }}</p>
+																			<p class="info-little">{{ site.product.item1 }}：{{ site.product.sku.item.itemName }}
+																				<br/>{{ site.product.item2 }}：{{ site.product.sku.item.secondItemName }} </p>
 																		</a>
 																	</div>
 																</div>
@@ -408,7 +408,7 @@
 														<li class="td td-amount">
 															<div class="item-amount">
 																合计：{{ site.totalPrice }}
-																<p>含运费：<span>{{ site.postfee }}</span></p>
+																<p>含运费：<span>{{ site.product.postfee }}</span></p>
 															</div>
 														</li>
 														<div class="move-right">
@@ -434,7 +434,7 @@
 																	<span @click="receipt(site.orderId)">确认收货</span>
 																</div>
 																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
-																	<span @click="eval(site.productId)">评价商品</span>
+																	<span @click="eval(site.product.productId)">评价商品</span>
 																</div>
 																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
 																	<span @click="dele(site.orderId)">删除订单</span>
@@ -484,16 +484,16 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a :href="'../views/introduction.html?pid='+site.productId" class="J_MakePoint">
-																		<img :src="site.sImgPath1" class="itempic J_ItemImg">
+																	<a :href="'../views/introduction.html?pid='+site.product.productId" class="J_MakePoint">
+																		<img :src="site.product.searchImgPath" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info">
 																	<div class="item-basic-info">
-																		<a :href="'../views/introduction.html?pid='+site.productId">
-																			<p>{{ site.productName }}</p>
-																			<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
-																				<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
+																		<a :href="'../views/introduction.html?pid='+site.product.productId">
+																			<p>{{ site.product.productName }}</p>
+																			<p class="info-little">{{ site.product.item1 }}：{{ site.product.sku.item.itemName }}
+																				<br/>{{ site.product.item2 }}：{{ site.product.sku.item.secondItemName }} </p>
 																		</a>
 																	</div>
 																</div>
@@ -522,7 +522,7 @@
 														<li class="td td-amount">
 															<div class="item-amount">
 																合计：{{ site.totalPrice }}
-																<p>含运费：<span>{{ site.postfee }}</span></p>
+																<p>含运费：<span>{{ site.product.postfee }}</span></p>
 															</div>
 														</li>
 														<div class="move-right">
@@ -548,7 +548,7 @@
 																	<span @click="receipt(site.orderId)">确认收货</span>
 																</div>
 																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
-																	<span @click="eval(site.productId)">评价商品</span>
+																	<span @click="eval(site.product.productId)">评价商品</span>
 																</div>
 																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
 																	<span @click="dele(site.orderId)">删除订单</span>
@@ -598,16 +598,16 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a :href="'../views/introduction.html?pid='+site.productId" class="J_MakePoint">
-																		<img :src="site.sImgPath1" class="itempic J_ItemImg">
+																	<a :href="'../views/introduction.html?pid='+site.product.productId" class="J_MakePoint">
+																		<img :src="site.product.searchImgPath" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info">
 																	<div class="item-basic-info">
-																		<a :href="'../views/introduction.html?pid='+site.productId">
-																			<p>{{ site.productName }}</p>
-																			<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
-																				<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
+																		<a :href="'../views/introduction.html?pid='+site.product.productId">
+																			<p>{{ site.product.productName }}</p>
+																			<p class="info-little">{{ site.product.item1 }}：{{ site.product.sku.item.itemName }}
+																				<br/>{{ site.product.item2 }}：{{ site.product.sku.item.secondItemName }} </p>
 																		</a>
 																	</div>
 																</div>
@@ -636,7 +636,7 @@
 														<li class="td td-amount">
 															<div class="item-amount">
 																合计：{{ site.totalPrice }}
-																<p>含运费：<span>{{ site.postfee }}</span></p>
+																<p>含运费：<span>{{ site.product.postfee }}</span></p>
 															</div>
 														</li>
 														<div class="move-right">
@@ -662,7 +662,7 @@
 																	<span @click="receipt(site.orderId)">确认收货</span>
 																</div>
 																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
-																	<span @click="eval(site.productId)">评价商品</span>
+																	<span @click="eval(site.product.productId)">评价商品</span>
 																</div>
 																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
 																	<span @click="dele(site.orderId)">删除订单</span>

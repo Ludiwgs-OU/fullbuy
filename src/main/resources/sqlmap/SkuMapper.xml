@@ -135,10 +135,17 @@
     and s.second_Item_Id = si.second_Item_Id
   </select>
 
-  <select id="getPrice" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="getPrice" parameterType="java.lang.Integer" resultMap="sku-item">
     select *
     from sku
     where product_Id = #{productId,jdbcType=INTEGER} and item_Id = #{itemId,jdbcType=INTEGER} and
           second_Item_Id = #{secondItemId,jdbcType=INTEGER}
+  </select>
+
+  <select id="displaySku" parameterType="java.lang.Integer" resultMap="sku-item">
+    select *
+    from sku s,item i,seconditem si
+    where s.product_Id = #{productId,jdbcType=INTEGER} and s.item_Id = i.item_Id and
+          s.second_Item_Id = si.second_Item_Id
   </select>
 </mapper>

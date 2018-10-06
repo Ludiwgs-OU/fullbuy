@@ -2,6 +2,8 @@ package com.we.fullbuy.dao;
 
 import com.we.fullbuy.pojo.Seconditem;
 
+import java.util.List;
+
 public interface SeconditemMapper {
     int deleteByPrimaryKey(Integer secondItemId);
 
@@ -14,4 +16,7 @@ public interface SeconditemMapper {
     int updateByPrimaryKeySelective(Seconditem record);
 
     int updateByPrimaryKey(Seconditem record);
+
+    /*new*/
+    List<Seconditem> displaySecondItem();
 }

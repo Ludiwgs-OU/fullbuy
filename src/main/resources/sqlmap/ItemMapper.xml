@@ -55,4 +55,11 @@
     set item_Name = #{itemName,jdbcType=VARCHAR}
     where item_Id = #{itemId,jdbcType=INTEGER}
   </update>
+
+
+  <!--new-->
+  <select id="displayItem" resultMap="BaseResultMap">
+    select *
+    from item
+  </select>
 </mapper>

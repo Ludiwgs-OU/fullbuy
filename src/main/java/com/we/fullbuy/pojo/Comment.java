@@ -1,5 +1,7 @@
 package com.we.fullbuy.pojo;
 
+import com.we.fullbuy.utils.DateUtil;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,6 +21,8 @@ public class Comment implements Serializable {
     private Date commentTime;
 
     private Order order;
+
+    private String commentTimeStr;
 
     public Integer getCommentId() {
         return commentId;
@@ -83,5 +87,9 @@ public class Comment implements Serializable {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public String getCommentTimeStr() {
+        return DateUtil.changetoDateStr(commentTime);
     }
 }

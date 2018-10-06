@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service("SkuService")
 public class SkuServiceImpl implements SkuService {
     @Autowired
@@ -38,5 +40,10 @@ public class SkuServiceImpl implements SkuService {
     @Override
     public Sku getPrice(int productId, int itemId, int secondItemId) {
         return skuMapper.getPrice(productId,itemId,secondItemId);
+    }
+
+    @Override
+    public List<Sku> displaySku(int productId) {
+        return skuMapper.displaySku(productId);
     }
 }

@@ -142,16 +142,64 @@
 
 
   <!--new-->
-  <select id="selectBySalesId" resultMap="BaseResultMap">
+  <resultMap id="orderWithProduct" type="com.we.fullbuy.pojo.Order" extends="BaseResultMap">
+    <association property="product" javaType="com.we.fullbuy.pojo.Product">
+      <id column="product_Id" jdbcType="INTEGER" property="productId" />
+      <result column="product_Name" jdbcType="VARCHAR" property="productName" />
+      <result column="product_Detail" jdbcType="VARCHAR" property="productDetail" />
+      <result column="product_Score" jdbcType="INTEGER" property="productScore" />
+      <result column="sales_Num" jdbcType="INTEGER" property="salesNum" />
+      <result column="category_Id" jdbcType="INTEGER" property="categoryId" />
+      <result column="second_Category_Id" jdbcType="INTEGER" property="secondCategoryId" />
+      <result column="sales_Id" jdbcType="INTEGER" property="salesId" />
+      <result column="post_Time" jdbcType="TIMESTAMP" property="postTime" />
+      <result column="product_Status" jdbcType="INTEGER" property="productStatus" />
+      <result column="search_Img_Path" jdbcType="VARCHAR" property="searchImgPath" />
+      <result column="s_Img_Path1" jdbcType="VARCHAR" property="sImgPath1" />
+      <result column="s_Img_Path2" jdbcType="VARCHAR" property="sImgPath2" />
+      <result column="m_Img_Path1" jdbcType="VARCHAR" property="mImgPath1" />
+      <result column="m_Img_Path2" jdbcType="VARCHAR" property="mImgPath2" />
+      <result column="b_Img_Path1" jdbcType="VARCHAR" property="bImgPath1" />
+      <result column="b_Img_Path2" jdbcType="VARCHAR" property="bImgPath2" />
+      <result column="detail_Img_Path1" jdbcType="VARCHAR" property="detailImgPath1" />
+      <result column="detail_Img_Path2" jdbcType="VARCHAR" property="detailImgPath2" />
+      <result column="item1" jdbcType="VARCHAR" property="item1" />
+      <result column="item2" jdbcType="VARCHAR" property="item2" />
+      <result column="postfee" jdbcType="INTEGER" property="postfee" />
+      <association property="sku" javaType="com.we.fullbuy.pojo.Sku">
+        <id column="skuId" jdbcType="INTEGER" property="skuid" />
+        <id column="sku_Id" jdbcType="INTEGER" property="skuId" />
+        <result column="product_Id" jdbcType="INTEGER" property="productId" />
+        <result column="item_Id" jdbcType="INTEGER" property="itemId" />
+        <result column="second_Item_Id" jdbcType="INTEGER" property="secondItemId" />
+        <result column="price" jdbcType="DOUBLE" property="price" />
+        <result column="gb_Price" jdbcType="DOUBLE" property="gbPrice" />
+        <result column="quantity" jdbcType="INTEGER" property="quantity" />
+        <association property="item" javaType="com.we.fullbuy.pojo.Item">
+          <id column="item_Id" jdbcType="INTEGER" property="itemId" />
+          <result column="item_Name" jdbcType="VARCHAR" property="itemName" />
+        </association>
+        <association property="secondItem" javaType="com.we.fullbuy.pojo.Seconditem">
+          <id column="second_Item_Id" jdbcType="INTEGER" property="secondItemId" />
+          <result column="second_Item_Name" jdbcType="VARCHAR" property="secondItemName" />
+        </association>
+      </association>
+    </association>
+  </resultMap>
+
+
+  <select id="selectBySalesId" resultMap="orderWithProduct">
     select *
-    from `order`
-    where sales_Id = #{salesId,jdbcType=INTEGER}
+    from `order` o, product p, sku s, item i, seconditem si
+    where p.sales_Id = #{salesId,jdbcType=INTEGER} and o.product_Id = p.product_Id  and s.product_Id = o.product_Id
+    and s.item_Id = i.item_Id and s.second_Item_Id = si.second_Item_Id
   </select>
 
-  <select id="selectByUserId" resultMap="BaseResultMap">
+  <select id="selectByUserId" resultMap="orderWithProduct">
     select *
-    from `order`
-    where user_Id = #{userId,jdbcType=INTEGER}
+    from `order` o, product p, sku s, item i, seconditem si
+    where o.user_Id = #{userId,jdbcType=INTEGER} and s.sku_Id = o.sku_Id and p.product_Id = s.product_Id
+    and s.item_Id = i.item_Id and s.second_Item_Id = si.second_Item_Id
   </select>
 
   <resultMap id="orderDetail" type="com.we.fullbuy.pojo.Order" extends="BaseResultMap">
@@ -190,7 +238,7 @@
       <result column="item1" jdbcType="VARCHAR" property="item1" />
       <result column="item2" jdbcType="VARCHAR" property="item2" />
       <result column="postfee" jdbcType="INTEGER" property="postfee" />
-      <collection property="skuList" ofType="com.we.fullbuy.pojo.Sku">
+      <association property="sku" javaType="com.we.fullbuy.pojo.Sku">
         <id column="skuId" jdbcType="INTEGER" property="skuid" />
         <id column="sku_Id" jdbcType="INTEGER" property="skuId" />
         <result column="product_Id" jdbcType="INTEGER" property="productId" />
@@ -199,15 +247,15 @@
         <result column="price" jdbcType="DOUBLE" property="price" />
         <result column="gb_Price" jdbcType="DOUBLE" property="gbPrice" />
         <result column="quantity" jdbcType="INTEGER" property="quantity" />
-        <collection property="itemList" ofType="com.we.fullbuy.pojo.Item">
+        <association property="item" javaType="com.we.fullbuy.pojo.Item">
           <id column="item_Id" jdbcType="INTEGER" property="itemId" />
           <result column="item_Name" jdbcType="VARCHAR" property="itemName" />
-        </collection>
-        <collection property="seconditemList" ofType="com.we.fullbuy.pojo.Seconditem">
+        </association>
+        <association property="secondItem" javaType="com.we.fullbuy.pojo.Seconditem">
           <id column="second_Item_Id" jdbcType="INTEGER" property="secondItemId" />
           <result column="second_Item_Name" jdbcType="VARCHAR" property="secondItemName" />
-        </collection>
-      </collection>
+        </association>
+      </association>
     </association>
   </resultMap>
 

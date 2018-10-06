@@ -166,4 +166,12 @@ public class ProductController {
     {
         return productService.relatedProduct(productId);
     }
+
+    //SKU
+    @RequestMapping("/displaySku/{productId}")
+    @ResponseBody
+    public List<Sku> displaySku(@PathVariable("productId") int productId)
+    {
+        return skuService.displaySku(productId);
+    }
 }

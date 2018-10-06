@@ -146,14 +146,14 @@ public class OrderController {
     //显示用户的订单列表
     @RequestMapping("/displayUserOrder")
     @ResponseBody
-    public List<Order> displayUserOrder(HttpSession session){
+    public List<Order> displayUserOrder(/*@PathVariable int uid, */HttpSession session){
         return orderService.showUserOrder((int)session.getAttribute("userId"));
     }
 
     //订单详情
-    @RequestMapping("/displayOrderDetail/{orderId}")
+    @RequestMapping("/displayOrderDetail")
     @ResponseBody
-    public Order displayOrderDetail(@PathVariable("orderId") String orderId)
+    public Order displayOrderDetail(@RequestParam("orderId") String orderId)
     {
         return orderService.showOrderDetail(orderId);
     }
