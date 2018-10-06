@@ -102,7 +102,7 @@ new Vue({
 		},
 		eval: function(id){
    			$(document.body).css("overflow","hidden");
-			$('#gb'+id).slideDown(200);
+			$('#gb'+id).slideToggle(200);
    		},
    		hide: function(id){
    			$(document.body).css("overflow","visible");
