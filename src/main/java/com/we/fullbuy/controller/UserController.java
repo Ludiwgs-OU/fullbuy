@@ -9,9 +9,14 @@ import com.we.fullbuy.service.UserService;
 import com.we.fullbuy.utils.MD5Util;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -104,12 +109,40 @@ public class UserController {
     //修改头像
     @RequestMapping("/modifyUserProfile")
     @ResponseBody
-    public int modifyUserProfile(@RequestParam("userProfile") String userProfile, HttpSession session)
+    public int modifyUserProfile(@RequestParam("file") MultipartFile file, HttpSession session, HttpServletRequest request) throws IOException
     {
-        User user = new User();
-        user.setUserId((int)session.getAttribute("userId"));
-        user.setUserProfile(userProfile);
-        return userService.modifyUser(user);
+        if(file!=null) {
+            //获取上传文件的原始名称
+            String originalFilename = file.getOriginalFilename();
+            // 上传图片
+            if (originalFilename != null && originalFilename.length() > 0) {
+                //获取Tomcat服务器所在的路径
+                String tomcat_path = System.getProperty("user.dir");
+                String pic_path = tomcat_path + "\\webapp" + "\\pic_file\\";
+                // 新的图片名称
+                String newFileName = originalFilename.substring(originalFilename.lastIndexOf("."));
+                String finalPath = pic_path + newFileName;
+                System.out.println("上传图片的路径：" + finalPath);
+                // 新图片
+                File newFile = new File(finalPath);
+                // 检查文件夹是否存在 不存在就新建一个
+                if (!newFile.isDirectory()) {
+                    newFile.mkdirs();
+                }
+                // 将内存中的数据写入磁盘
+                file.transferTo(newFile);
+
+                User user = new User();
+                user.setUserId((int) session.getAttribute("userId"));
+                user.setUserProfile(finalPath);
+
+                return userService.modifyUser(user);
+            }
+            else
+                return -2;//文件名找不到
+        }
+        else
+            return -1;//文件为空
 
     }
 
@@ -232,6 +265,4 @@ public class UserController {
         else
             return false;
     }*/
-
-
 }
