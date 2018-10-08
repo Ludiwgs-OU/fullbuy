@@ -1,3 +1,12 @@
+/*
+ * 获取路径参数
+ */
+function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return decodeURI(r[2]); return null; 
+}
+
 function showImg(img,showimg){
 	var fr = new FileReader();
     fr.onload = function () {
@@ -99,11 +108,13 @@ new Vue({
 	},
 	created(){
 		var self = this;
+		var id = getUrlParam('pid');
 		$.ajax({
 			type:"get",
 			url:"../static/json/changePro.json",
 			async:true,
 			dataType:"json",
+			//data: id,
 			success:function(result){
 				self.site = result;
 				self.secsites = result.secondCategoryList;
@@ -123,6 +134,7 @@ new Vue({
 				url:"../static/json/categorysec.json",
 				async:true,
 				dataType:"json",
+				//data: category,
 				success:function(inf){
 					self.secsites = inf;
 				},
@@ -155,8 +167,8 @@ new Vue({
    			var formData = new FormData();
    			formData.append('productName', name);
 			formData.append('productDetail',detail);
-			formData.append('categoryName',category);
-			formData.append('secondCategoryName',category2);
+			formData.append('categoryId',category);
+			formData.append('secondCategoryId',category2);
 			formData.append('searchImgPath', $('#searchImg')[0].files[0]);
 			formData.append('bImgPath1', $('#showImg1')[0].files[0]);
 			formData.append('bImgPath2', $('#showImg2')[0].files[0]);

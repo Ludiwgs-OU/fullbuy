@@ -18,7 +18,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -28,6 +28,23 @@ new Vue({
 				alert("获取数据失败！");
 			},
 		});
+  	},
+   	methods: {
+   		logout: function(){
+   			$.ajax({
+				type:"get",
+				url:"/sys/logout",
+				async:true,
+				dataType:"json",
+				success:function(result){
+                    alert("亲您已退出，再见~");
+                    window.location.href = "home.html";
+				},
+				error:function(result){
+					alert("获取数据失败！");
+				},
+			});
+   		}
    	}
 })
 
@@ -42,7 +59,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/user/displayUserDetail",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -66,7 +83,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/coll.json",
+			url:"/comment/displayCommentByUserId",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -85,9 +102,10 @@ $(document).ready(()=>{
 		var nowdate = new Date();
 		var year = nowdate.getFullYear();
 		var month = nowdate.getMonth()+1;
-		var day = nowdate.getDay();
+		var day1 = nowdate.getDate();
+		var day2 = nowdate.getDay();
 		var x;
-		switch(day){
+		switch(day2){
 			case 0:
 			 	x="日";
 			  	break;
@@ -111,7 +129,8 @@ $(document).ready(()=>{
 				break;
 		}
 		
-		document.getElementById("day").innerHTML = "星期" + x;
+		document.getElementById("day1").innerHTML = day1;
+		document.getElementById("day2").innerHTML = "星期" + x;
 		document.getElementById("ym").innerHTML = year + "." + month;
 	})
 	

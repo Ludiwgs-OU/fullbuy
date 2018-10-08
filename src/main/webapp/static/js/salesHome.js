@@ -42,7 +42,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -83,7 +83,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -150,6 +150,7 @@ $(document).ready(()=>{
 	 */
 	$("#ai-topsearch").click(()=>{
 		var info = $("#searchInput").val();
-		window.open("search.html?info=" + info);
+		var sid = getUrlParam('sid');
+		window.open("saleSearch.html?info=" + info + "&sid=" + sid);
 	})
 })

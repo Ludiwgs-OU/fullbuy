@@ -84,7 +84,7 @@ new Vue({
 				dataType:"json",
 				data: sales,
 				success:function(inf){
-					alert(inf);
+					alert("修改成功！");
 					window.reload();
 				},
 				error:function(inf){
