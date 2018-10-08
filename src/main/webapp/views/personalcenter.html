@@ -64,11 +64,11 @@
 								<div class="m-userinfo" id="userinfo">
 									<div class="m-baseinfo">
 										<a>
-											<img :src="site.img">
+											<img :src="site.userProfile">
 										</a>
-										<em class="s-name">{{ site.user }}<span class="vip1"></em>
+										<em class="s-name">{{ site.userName }}<span class="vip1"></em>
 										<div class="s-prestige am-btn am-round">
-											</span>{{ site.level }}</div>
+											</span>{{ site.userType }}</div>
 									</div>
 									<div class="m-right">
 										<div class="m-new">
@@ -79,13 +79,8 @@
 										</div>
 									</div>
 								</div>
-
-								<!--个人资产-->
-								
 							</div>
 							<div class="box-container-bottom"></div>
-
-							
 							<!--物流 -->
 							<div class="m-logistics">
 								<div class="s-bar">
@@ -189,8 +184,8 @@
 							</div>
 							<div class="s-care s-care-noweather">
 								<div class="s-date">
-									<em>21</em>
-									<span id="day"></span>
+									<em id="day1">21</em>
+									<span id="day2"></span>
 									<span id="ym"></span>
 								</div>
 							</div>
