@@ -122,6 +122,7 @@ new Vue({
 				url:"../static/json/categorysec.json",
 				async:true,
 				dataType:"json",
+				//data: category,
 				success:function(inf){
 					self.secsites = inf;
 				},
@@ -174,7 +175,8 @@ new Vue({
 	            cache: false,
 	            data: formData,
 				success:function(inf){
-					alert(inf);
+					alert("新增成功，前往添加价格的页面....");
+					window.location.href="src/main/webapp/views/saleAddSku.html?pid="+inf;
 				},
 				error:function(inf){
 					alert("新增失败！");

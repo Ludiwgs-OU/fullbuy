@@ -13,24 +13,19 @@ $(document).ready(()=>{
 		$('.radio1').labelauty();
 	});
 	
-	/*
-	 * 注销
-	 */
-	$("#logout").click(()=>{
-		$.ajax({
-			type:"post",
-			url:"#",
-			async:true,
-			dataType:"json",
-			success:function(result){
-				alert(result);
-				window.reload();
-			},
-			error:function(result){
-				alert("获取数据失败！");
-			},
-		});
+	$(function(){
+		var info = getUrlParam('info');
+		$("#searchInput").val(info);
 	})
+	
+	/*
+	 * 搜索
+	 */
+	$("#ai-topsearch").click(()=>{
+		var info = $("#searchInput").val();
+		window.open("search.html?info=" + info);
+	})
+	
 })
 
 /*
@@ -58,6 +53,23 @@ new Vue({
 				alert("获取数据失败！");
 			},
 		});
+   	},
+   	methods: {
+   		logout: function(){
+   			$.ajax({
+				type:"get",
+				url:"/sys/logout",
+				async:true,
+				dataType:"json",
+				success:function(result){
+                    alert("亲您已退出，再见~");
+                    window.location.href = "home.html";
+				},
+				error:function(result){
+					alert("获取数据失败！");
+				},
+			});
+   		}
    	}
 })
 
@@ -76,7 +88,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/login.json",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -102,11 +114,13 @@ new Vue({
  	},
 	created: function(){
     	var self = this;
+    	var info = getUrlParam('info');
    		$.ajax({
 			type:"get",
 			url:"../static/json/searchpro.json",
 			async:true,
 			dataType:"json",
+			//data: info,
 			success:function(inf){
 				self.sites = inf;
 			},
@@ -125,6 +139,7 @@ new Vue({
 				url:"../static/json/searchpro.json",
 				async:true,
 				dataType:"json",
+				//data: id,
 				success:function(inf){
 					self.sites = inf;
 				},
@@ -142,6 +157,7 @@ new Vue({
 				url:"../static/json/sortpro.json",
 				async:true,
 				dataType:"json",
+				//data: id,
 				success:function(inf){
 					self.sites = inf;
 				},
@@ -159,6 +175,7 @@ new Vue({
 				url:"../static/json/sortpro.json",
 				async:true,
 				dataType:"json",
+				//data: id,
 				success:function(inf){
 					self.sites = inf;
 				},
@@ -176,6 +193,7 @@ new Vue({
 				url:"../static/json/sortpro.json",
 				async:true,
 				dataType:"json",
+				//data: id,
 				success:function(inf){
 					self.sites = inf;
 				},
@@ -183,6 +201,63 @@ new Vue({
 					alert("获取数据失败！");
 				},
 			});
+   		},
+   		lastPage: function(){
+   			var page = document.getElementById("nowPage").innerText;
+   			if(page == 1){
+   				alert("已经是首页了");
+   			}
+   			else{
+   				page = page - 1;
+	   			var page = {
+	   				"productId": pid,
+	   				"page": page
+	   			}
+   				var self = this;
+   				$.ajax({
+					type:"post",
+					url:"#",
+					async:true,
+					dataType:"json",
+					data: page,
+					success:function(inf){
+						self.sites = inf;
+						document.getElementById("nowPage").innerHTML = page;
+					},
+					error:function(inf){
+						alert("获取数据失败！");
+					}
+				});
+   			}
+   		},
+   		nextPage: function(){
+   			var page = Number(document.getElementById("nowPage").innerText);
+   			var allpage = Number(document.getElementById("pageNum").innerText);
+   			if(page == allpage){
+   				alert("已经是末页了");
+   			}
+   			else{
+   				page = page + 1;
+	   			var page = {
+	   				"productId": pid,
+	   				"page": page
+	   			}
+   				var self = this;
+   				$.ajax({
+					type:"post",
+					url:"#",
+					async:true,
+					dataType:"json",
+					data: page,
+					success:function(inf){
+						self.sites = inf;
+						document.getElementById("nowPage").innerHTML = Number(page + 1);
+					},
+					error:function(inf){
+						alert("获取数据失败！");
+					}
+				});
+   			}
    		}
    	}
 })

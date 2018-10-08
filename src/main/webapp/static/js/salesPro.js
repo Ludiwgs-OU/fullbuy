@@ -101,11 +101,9 @@ new Vue({
 			});
 		},
 		eval: function(id){
-   			$(document.body).css("overflow","hidden");
 			$('#gb'+id).slideToggle(200);
    		},
    		hide: function(id){
-   			$(document.body).css("overflow","visible");
    			$('#gb'+id).slideUp(200);
    		},
    		gb: function(id){
@@ -117,6 +115,7 @@ new Vue({
    			//alert(min+" "+max+" "+start+" "+end);
    			
    			var gb = {
+   				"productId": id,
    				"minPeople": min,
    				"maxPeople": max,
    				"beginTime": start,

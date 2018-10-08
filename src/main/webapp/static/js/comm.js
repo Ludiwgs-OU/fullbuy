@@ -51,6 +51,7 @@ new Vue({
    		$.ajax({
 			type:"get",
 			url:"/comment/displayCommentByUserId",
+			//url:"../static/json/commList.json",
 			async:true,
 			dataType:"json",
 			success:function(inf){
