@@ -19,7 +19,8 @@
     <!-- 访问静态资源 -->
     <mvc:default-servlet-handler />
     <!-- 静态资源解析，包括js,css,img... -->
-    <!--<mvc:resources location="/static/cropper/" mapping="/static/cropper/**"/>-->
+    <!--<mvc:resources location="/CommentPic/" mapping="/CommentPic/**"/>
+    <mvc:resources location="/UserProfile/" mapping="/UserProfile/**"/>-->
     <!--<mvc:resources location="/static1/css/" mapping="/static1/css/**"/>
     <mvc:resources location="/static1/fonts/" mapping="/static1/fonts/**"/>-->
     <!--<mvc:resources location="/static/img/" mapping="/static/img/**"/>-->
@@ -79,6 +80,6 @@
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960" />
         <!-- 延迟文件解析 -->
-        <property name="resolveLazily" value="true"/>
+        <property name="resolveLazily" value="false"/>
     </bean>
 </beans>

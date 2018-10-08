@@ -181,11 +181,9 @@ new Vue({
 			});
    		},
    		eval: function(id){
-   			$(document.body).css("overflow","hidden");
-			$('#eval'+id).slideDown(200);
+			$('#eval'+id).slideToggle(200);
    		},
    		hide: function(id){
-   			$(document.body).css("overflow","visible");
    			$('#eval'+id).slideUp(200);
    		},
    		sub: function(pid,oid){
@@ -199,7 +197,7 @@ new Vue({
 			}
    			
    			var formData = new FormData();
-			formData.append('commentImgPath', $('#profile')[0].files[0]);
+			formData.append('file', $('#profile')[0].files[0]);
 			formData.append('commentDetail',eval);
 			formData.append('productId',pid);
 			formData.append('orderId',oid);
@@ -212,10 +210,17 @@ new Vue({
 	            processData: false,
 	            cache: false,
 	            data: formData,
-				success:function(inf){
-					alert(inf);
-				},
-				error:function(inf){
+                success:function(result){
+                    if(result == 1){
+                        alert("评价成功，感谢你的购买~");
+                        location.reload();
+                    }
+                    else{
+                        alert("评价失败，请再试试");
+                        location.reload();
+                    }
+                },
+				error:function(result){
 					alert("评价失败！");
 				},
 			});

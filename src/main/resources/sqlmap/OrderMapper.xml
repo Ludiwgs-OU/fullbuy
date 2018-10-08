@@ -19,15 +19,15 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from order
+    from `order`
     where order_Id = #{orderId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from order
+    delete from `order`
     where order_Id = #{orderId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.we.fullbuy.pojo.Order">
-    insert into order (order_Id, user_Id, sku_Id, 
+    insert into `order` (order_Id, user_Id, sku_Id,
       total_Price, address_Id, num, 
       order_Date, order_Status, price
       )
@@ -37,7 +37,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.we.fullbuy.pojo.Order">
-    insert into order
+    insert into `order`
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="orderId != null">
         order_Id,
@@ -98,7 +98,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.we.fullbuy.pojo.Order">
-    update order
+    update `order`
     <set>
       <if test="userId != null">
         user_Id = #{userId,jdbcType=INTEGER},
@@ -128,7 +128,7 @@
     where order_Id = #{orderId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.we.fullbuy.pojo.Order">
-    update order
+    update `order`
     set user_Id = #{userId,jdbcType=INTEGER},
       sku_Id = #{skuId,jdbcType=INTEGER},
       total_Price = #{totalPrice,jdbcType=DOUBLE},

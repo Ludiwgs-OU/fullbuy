@@ -1,4 +1,7 @@
 .user-order .am-margin {margin: 0;}
+.user-order{
+	margin-bottom: 200px;
+}
 .am-nav-tabs > li > a{padding:0px 2px; margin:0px 0px ;text-align: center;}
 .order-left{border: 1px solid #E4EAEE;padding: 5px;}
 .am-tabs-bd .am-tab-panel {padding:0px 0px 15px ;}

@@ -50,6 +50,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
+    public int comment(Order order) {
+        return orderMapper.updateByPrimaryKeySelective(order);
+    }
+
+    @Override
     public List<Order> showSalesOrder(int salesId) {
         return orderMapper.selectBySalesId(salesId);
     }

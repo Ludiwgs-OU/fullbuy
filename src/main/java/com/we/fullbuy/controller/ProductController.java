@@ -167,11 +167,15 @@ public class ProductController {
         return productService.relatedProduct(productId);
     }
 
-    //SKU
-    @RequestMapping("/displaySku/{productId}")
+    //获取商品SKU
+    @RequestMapping("/displaySku")
     @ResponseBody
-    public List<Sku> displaySku(@PathVariable("productId") int productId)
+    public List<Sku> displaySku(@RequestParam("productId") int productId)
     {
         return skuService.displaySku(productId);
     }
+
+    //获取一级分类
+
+
 }

@@ -20,6 +20,8 @@ public interface CommentMapper {
     /*new*/
     /*我的评论*/
     List<Comment> displayCommentByUserId(Integer userId);
+    List<Comment> displayCommentBySalesId(Integer salesId);
+
     /*商品评论*/
     List<Comment> showProductComment(Integer productId);
 }

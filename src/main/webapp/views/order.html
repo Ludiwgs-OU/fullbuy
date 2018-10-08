@@ -119,7 +119,7 @@
 																		<a :href="'../views/introduction.html?pid='+site.product.productId">
 																			<p>{{ site.product.productName }}</p>
 																			<p class="info-little">{{ site.product.item1 }}：{{ site.product.sku.item.itemName }}
-																				<br/>{{ site.product.item2 }}：{{ site.product.sku.item.secondItemName }} </p>
+																				<br/>{{ site.product.item2 }}：{{ site.product.sku.seconditem.secondItemName }} </p>
 																		</a>
 																	</div>
 																</div>
@@ -135,10 +135,10 @@
 																</div>
 															</li>
 															<li class="td td-operation">
-																<div class="item-operation" v-if="site.orderStatus==2">
+																<div class="item-operation" v-if="site.orderStatus==1">
 																	<span @click="refund(site.orderId)">退款</span>
 																</div>
-																<div class="item-operation" v-if="site.orderStatus==3">
+																<div class="item-operation" v-if="site.orderStatus==2">
 																	<span @click="returned(site.orderId)">退款/退货</span>
 																</div>
 															</li>
@@ -154,29 +154,29 @@
 														<div class="move-right">
 															<li class="td td-status">
 																<div class="item-status">
-																	<p class="Mystatus" v-if="site.orderStatus==1">待付款</p>
-																	<p class="Mystatus" v-if="site.orderStatus==2">待发货</p>
-																	<p class="Mystatus" v-if="site.orderStatus==3">待收货</p>
-																	<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
-																	<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
-																	<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
+																	<p class="Mystatus" v-if="site.orderStatus==0">待付款</p>
+																	<p class="Mystatus" v-if="site.orderStatus==1">待发货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==2">待收货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==3">待评价</p>
+																	<p class="Mystatus" v-if="site.orderStatus==4">已完成</p>
+																	<p class="Mystatus" v-if="site.orderStatus==5">退款中</p>
 																	<p class="order-info"><a :href="'../views/orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																</div>
 															</li>
 															<li class="td td-change">
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==0">
 																	<span @click="pay(site.orderId)">确认支付</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
 																	<span @click="remind">提醒发货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
 																	<span @click="receipt(site.orderId)">确认收货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
 																	<span @click="eval(site.product.productId)">评价商品</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
 																	<span @click="dele(site.orderId)">删除订单</span>
 																</div>
 															</li>
@@ -278,10 +278,10 @@
 																	</div>
 																</li>
 																<li class="td td-operation">
-																	<div class="item-operation" v-if="site.orderStatus==2">
+																	<div class="item-operation" v-if="site.orderStatus==1">
 																		<span @click="refund(site.orderId)">退款</span>
 																	</div>
-																	<div class="item-operation" v-if="site.orderStatus==3">
+																	<div class="item-operation" v-if="site.orderStatus==2">
 																		<span @click="returned(site.orderId)">退款/退货</span>
 																	</div>
 																</li>
@@ -297,29 +297,29 @@
 															<div class="move-right">
 																<li class="td td-status">
 																	<div class="item-status">
-																		<p class="Mystatus" v-if="site.orderStatus==1">待付款</p>
-																		<p class="Mystatus" v-if="site.orderStatus==2">待发货</p>
-																		<p class="Mystatus" v-if="site.orderStatus==3">待收货</p>
-																		<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
-																		<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
-																		<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
+																		<p class="Mystatus" v-if="site.orderStatus==0">待付款</p>
+																		<p class="Mystatus" v-if="site.orderStatus==1">待发货</p>
+																		<p class="Mystatus" v-if="site.orderStatus==2">待收货</p>
+																		<p class="Mystatus" v-if="site.orderStatus==3">待评价</p>
+																		<p class="Mystatus" v-if="site.orderStatus==4">已完成</p>
+																		<p class="Mystatus" v-if="site.orderStatus==5">退款中</p>
 																		<p class="order-info"><a :href="'../views/orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																	</div>
 																</li>
 																<li class="td td-change">
-																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==0">
 																		<span @click="pay(site.orderId)">确认支付</span>
 																	</div>
-																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
 																		<span @click="remind">提醒发货</span>
 																	</div>
-																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
 																		<span @click="receipt(site.orderId)">确认收货</span>
 																	</div>
-																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
 																		<span @click="eval(site.product.productId)">评价商品</span>
 																	</div>
-																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
+																	<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
 																		<span @click="dele(site.orderId)">删除订单</span>
 																	</div>
 																</li>
@@ -379,7 +379,7 @@
 																		<a :href="'../views/introduction.html?pid='+site.product.productId">
 																			<p>{{ site.product.productName }}</p>
 																			<p class="info-little">{{ site.product.item1 }}：{{ site.product.sku.item.itemName }}
-																				<br/>{{ site.product.item2 }}：{{ site.product.sku.item.secondItemName }} </p>
+																				<br/>{{ site.product.item2 }}：{{ site.product.sku.seconditem.secondItemName }} </p>
 																		</a>
 																	</div>
 																</div>
@@ -395,10 +395,10 @@
 																</div>
 															</li>
 															<li class="td td-operation">
-																<div class="item-operation" v-if="site.orderStatus==2">
+																<div class="item-operation" v-if="site.orderStatus==1">
 																	<span @click="refund(site.orderId)">退款</span>
 																</div>
-																<div class="item-operation" v-if="site.orderStatus==3">
+																<div class="item-operation" v-if="site.orderStatus==2">
 																	<span @click="returned(site.orderId)">退款/退货</span>
 																</div>
 															</li>
@@ -414,29 +414,29 @@
 														<div class="move-right">
 															<li class="td td-status">
 																<div class="item-status">
-																	<p class="Mystatus" v-if="site.orderStatus==1">待付款</p>
-																	<p class="Mystatus" v-if="site.orderStatus==2">待发货</p>
-																	<p class="Mystatus" v-if="site.orderStatus==3">待收货</p>
-																	<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
-																	<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
-																	<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
+																	<p class="Mystatus" v-if="site.orderStatus==0">待付款</p>
+																	<p class="Mystatus" v-if="site.orderStatus==1">待发货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==2">待收货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==3">待评价</p>
+																	<p class="Mystatus" v-if="site.orderStatus==4">已完成</p>
+																	<p class="Mystatus" v-if="site.orderStatus==5">退款中</p>
 																	<p class="order-info"><a :href="'../views/orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																</div>
 															</li>
 															<li class="td td-change">
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==0">
 																	<span @click="pay(site.orderId)">确认支付</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
 																	<span @click="remind">提醒发货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
 																	<span @click="receipt(site.orderId)">确认收货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
 																	<span @click="eval(site.product.productId)">评价商品</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
 																	<span @click="dele(site.orderId)">删除订单</span>
 																</div>
 															</li>
@@ -493,7 +493,7 @@
 																		<a :href="'../views/introduction.html?pid='+site.product.productId">
 																			<p>{{ site.product.productName }}</p>
 																			<p class="info-little">{{ site.product.item1 }}：{{ site.product.sku.item.itemName }}
-																				<br/>{{ site.product.item2 }}：{{ site.product.sku.item.secondItemName }} </p>
+																				<br/>{{ site.product.item2 }}：{{ site.product.sku.seconditem.secondItemName }} </p>
 																		</a>
 																	</div>
 																</div>
@@ -509,10 +509,10 @@
 																</div>
 															</li>
 															<li class="td td-operation">
-																<div class="item-operation" v-if="site.orderStatus==2">
+																<div class="item-operation" v-if="site.orderStatus==1">
 																	<span @click="refund(site.orderId)">退款</span>
 																</div>
-																<div class="item-operation" v-if="site.orderStatus==3">
+																<div class="item-operation" v-if="site.orderStatus==2">
 																	<span @click="returned(site.orderId)">退款/退货</span>
 																</div>
 															</li>
@@ -528,29 +528,29 @@
 														<div class="move-right">
 															<li class="td td-status">
 																<div class="item-status">
-																	<p class="Mystatus" v-if="site.orderStatus==1">待付款</p>
-																	<p class="Mystatus" v-if="site.orderStatus==2">待发货</p>
-																	<p class="Mystatus" v-if="site.orderStatus==3">待收货</p>
-																	<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
-																	<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
-																	<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
+																	<p class="Mystatus" v-if="site.orderStatus==0">待付款</p>
+																	<p class="Mystatus" v-if="site.orderStatus==1">待发货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==2">待收货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==3">待评价</p>
+																	<p class="Mystatus" v-if="site.orderStatus==4">已完成</p>
+																	<p class="Mystatus" v-if="site.orderStatus==5">退款中</p>
 																	<p class="order-info"><a :href="'../views/orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																</div>
 															</li>
 															<li class="td td-change">
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==0">
 																	<span @click="pay(site.orderId)">确认支付</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
 																	<span @click="remind">提醒发货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
 																	<span @click="receipt(site.orderId)">确认收货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
 																	<span @click="eval(site.product.productId)">评价商品</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
 																	<span @click="dele(site.orderId)">删除订单</span>
 																</div>
 															</li>
@@ -607,7 +607,7 @@
 																		<a :href="'../views/introduction.html?pid='+site.product.productId">
 																			<p>{{ site.product.productName }}</p>
 																			<p class="info-little">{{ site.product.item1 }}：{{ site.product.sku.item.itemName }}
-																				<br/>{{ site.product.item2 }}：{{ site.product.sku.item.secondItemName }} </p>
+																				<br/>{{ site.product.item2 }}：{{ site.product.sku.seconditem.secondItemName }} </p>
 																		</a>
 																	</div>
 																</div>
@@ -623,10 +623,10 @@
 																</div>
 															</li>
 															<li class="td td-operation">
-																<div class="item-operation" v-if="site.orderStatus==2">
+																<div class="item-operation" v-if="site.orderStatus==1">
 																	<span @click="refund(site.orderId)">退款</span>
 																</div>
-																<div class="item-operation" v-if="site.orderStatus==3">
+																<div class="item-operation" v-if="site.orderStatus==2">
 																	<span @click="returned(site.orderId)">退款/退货</span>
 																</div>
 															</li>
@@ -642,29 +642,29 @@
 														<div class="move-right">
 															<li class="td td-status">
 																<div class="item-status">
-																	<p class="Mystatus" v-if="site.orderStatus==1">待付款</p>
-																	<p class="Mystatus" v-if="site.orderStatus==2">待发货</p>
-																	<p class="Mystatus" v-if="site.orderStatus==3">待收货</p>
-																	<p class="Mystatus" v-if="site.orderStatus==4">待评价</p>
-																	<p class="Mystatus" v-if="site.orderStatus==5">已完成</p>
-																	<p class="Mystatus" v-if="site.orderStatus==6">退款中</p>
+																	<p class="Mystatus" v-if="site.orderStatus==0">待付款</p>
+																	<p class="Mystatus" v-if="site.orderStatus==1">待发货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==2">待收货</p>
+																	<p class="Mystatus" v-if="site.orderStatus==3">待评价</p>
+																	<p class="Mystatus" v-if="site.orderStatus==4">已完成</p>
+																	<p class="Mystatus" v-if="site.orderStatus==5">退款中</p>
 																	<p class="order-info"><a :href="'../views/orderinfo.html?oid=' + site.orderId">订单详情</a></p>
 																</div>
 															</li>
 															<li class="td td-change">
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==0">
 																	<span @click="pay(site.orderId)">确认支付</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
 																	<span @click="remind">提醒发货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
 																	<span @click="receipt(site.orderId)">确认收货</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3>
 																	<span @click="eval(site.product.productId)">评价商品</span>
 																</div>
-																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
+																<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
 																	<span @click="dele(site.orderId)">删除订单</span>
 																</div>
 															</li>

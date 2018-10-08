@@ -37,4 +37,9 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> displayCommentByUserId(int userId) {
         return commentMapper.displayCommentByUserId(userId);
     }
+
+    @Override
+    public List<Comment> displayCommentBySalesId(int salesId) {
+        return commentMapper.displayCommentBySalesId(salesId);
+    }
 }

@@ -1,9 +1,11 @@
 package com.we.fullbuy.controller;
 
 import com.we.fullbuy.pojo.Item;
+import com.we.fullbuy.pojo.Order;
 import com.we.fullbuy.pojo.Sales;
 import com.we.fullbuy.pojo.Seconditem;
 import com.we.fullbuy.service.ItemService;
+import com.we.fullbuy.service.OrderService;
 import com.we.fullbuy.service.SalesService;
 import com.we.fullbuy.utils.MD5Util;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,8 @@ public class SalesController {
     private SalesService salesService;
     @Resource
     private ItemService itemService;
+    @Resource
+    private OrderService orderService;
 
 
     //登录
@@ -107,6 +111,28 @@ public class SalesController {
         map.put("itemList",itemList);
         map.put("seconditemList",seconditemList);
         return map;
+    }
+
+    //确认收退款
+    @RequestMapping("/confirmRefund")
+    @ResponseBody
+    public int confirmRefund(@RequestParam("orderId") String orderId)
+    {
+        Order order = new Order();
+        order.setOrderId(orderId);
+        order.setOrderStatus(4);
+        return orderService.confirm(order);
+    }
+
+    //发货
+    @RequestMapping("/sendProduct")
+    @ResponseBody
+    public int sendProduct(@RequestParam("orderId") String orderId)
+    {
+        Order order = new Order();
+        order.setOrderId(orderId);
+        order.setOrderStatus(2);
+        return orderService.confirm(order);
     }
 
 }

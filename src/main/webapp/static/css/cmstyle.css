@@ -4,8 +4,8 @@
 .am-tabs-bd .am-tab-panel {padding:0px 0px 15px ;}
 
 .td-item{overflow: hidden;float: left;}
-.item-pic {width:80px;height:80px;border: 1px solid #EEE;float: left;overflow: hidden;margin-left: 3px;}
-.item-pic img{width:100%;}
+.item-pic {height:80px;border: 1px solid #EEE;float: left;overflow: hidden;margin-left: 3px;}
+.item-pic img{height:100%;}
 .td-comment {margin:0px 0px 0px 85px;padding-right:5px;}
 /*标题*/
 .item-opinion{width:30px;float: left;color: #E0690C;font-size: 14px;}

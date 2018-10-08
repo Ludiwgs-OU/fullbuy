@@ -84,20 +84,20 @@
 								<div class="order-address">
 									<div class="icon-add"></div>
 									<p class="new-tit new-p-re">
-										<span class="new-txt">{{ site.name }}</span>
-										<span class="new-txt-rd2">{{ site.phone }}</span>
+										<span class="new-txt">{{ site.address.name }}</span>
+										<span class="new-txt-rd2">{{ site.address.phone }}</span>
 									</p>
 									<p class="new-tit new-p-re">
 										<span class="new-txt">邮政编码：</span>
-										<span class="new-txt-rd2">{{ site.postCode }}</span>
+										<span class="new-txt-rd2">{{ site.address.postCode }}</span>
 									</p>
 									<div class="new-mu_l2a new-p-re">
 										<p class="new-mu_l2cw">
 											<span class="title">收货地址：</span>
-											<span class="province">{{ site.province }}</span>
-											<span class="city">{{ site.city }}</span>
-											<span class="dist">{{ site.street }}</span>
-											<span class="street">{{ site.addressDetail }}</span>
+											<span class="province">{{ site.address.province }}</span>
+											<span class="city">{{ site.address.city }}</span>
+											<span class="dist">{{ site.address.street }}</span>
+											<span class="street">{{ site.address.addressDetail }}</span>
 										</p>
 									</div>
 								</div>
@@ -140,22 +140,22 @@
 												<li class="td td-item">
 													<div class="item-pic">
 														<a :href="'../views/introduction.html?pid='+site.productId" class="J_MakePoint">
-															<img :src="site.sImgPath1" class="itempic J_ItemImg">
+															<img :src="site.product.sImgPath1" class="itempic J_ItemImg">
 														</a>
 													</div>
 													<div class="item-info">
 														<div class="item-basic-info">
-															<a :href="'../views/introduction.html?pid='+site.productId">
-																<p>{{ site.productName }}</p>
-																<p class="info-little">{{ site.item1 }}：{{ site.itemName }}
-																	<br/>{{ site.item2 }}：{{ site.secondItemName }} </p>
+															<a :href="'../views/introduction.html?pid='+site.product.productId">
+																<p>{{ site.product.productName }}</p>
+																<p class="info-little">{{ site.product.item1 }}：{{ site.product.sku.item.itemName }}
+																	<br/>{{ site.product.item2 }}：{{ site.product.sku.seconditem.secondItemName }} </p>
 															</a>
 														</div>
 													</div>
 												</li>
 												<li class="td td-price">
 													<div class="item-price">
-														{{ site.price }}
+														{{ site.product.sku.price }}
 													</div>
 												</li>
 												<li class="td td-number">
@@ -164,10 +164,10 @@
 													</div>
 												</li>
 												<li class="td td-operation">
-													<div class="item-operation" v-if="site.orderStatus==2">
+													<div class="item-operation" v-if="site.orderStatus==1">
 														<span @click="refund(site.orderId)">退款</span>
 													</div>
-													<div class="item-operation" v-if="site.orderStatus==3">
+													<div class="item-operation" v-if="site.orderStatus==2">
 														<span @click="returned(site.orderId)">退款/退货</span>
 													</div>
 												</li>
@@ -177,51 +177,51 @@
 											<li class="td td-amount">
 												<div class="item-amount">
 													合计：{{ site.totalPrice }}
-													<p>含运费：<span>{{ site.postfee }}</span></p>
+													<p>含运费：<span>{{ site.product.postfee }}</span></p>
 												</div>
 											</li>
 											<div class="move-right">
 												<li class="td td-status">
-													<div class="item-status" v-if="site.orderStatus==1">
+													<div class="item-status" v-if="site.orderStatus==0">
 														<p class="Mystatus">待付款</p>
 													</div>
-													<div class="item-status" v-if="site.orderStatus==2">
+													<div class="item-status" v-if="site.orderStatus==1">
 														<p class="Mystatus">待发货</p>
 													</div>
-													<div class="item-status" v-if="site.orderStatus==3">
+													<div class="item-status" v-if="site.orderStatus==2">
 														<p class="Mystatus">待收货</p>
 													</div>
-													<div class="item-status" v-if="site.orderStatus==4">
+													<div class="item-status" v-if="site.orderStatus==3">
 														<p class="Mystatus">待评价</p>
 													</div>
-													<div class="item-status" v-if="site.orderStatus==5">
+													<div class="item-status" v-if="site.orderStatus==4">
 														<p class="Mystatus">已完成</p>
 													</div>
-													<div class="item-status" v-if="site.orderStatus==6">
+													<div class="item-status" v-if="site.orderStatus==5">
 														<p class="Mystatus">退款中</p>
 													</div>
 												</li>
 												<li class="td td-change">
-													<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
+													<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==0">
 														<span @click="pay(site.orderId)">确认支付</span>
 													</div>
-													<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
+													<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==1">
 														<span @click="remind">提醒发货</span>
 													</div>
-													<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
+													<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==2">
 														<span @click="receipt(site.orderId)">确认收货</span>
 													</div>
-													<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
+													<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==3">
 														<span @click="eval(site.productId)">评价商品</span>
 													</div>
-													<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==5">
+													<div class="am-btn am-btn-danger anniu" v-if="site.orderStatus==4">
 														<span @click="dele(site.orderId)">删除订单</span>
 													</div>
 												</li>
 											</div>
 										</div>
 									</div>
-									<div class="theme-popover" :id="'eval'+site.productId">
+									<div class="theme-popover" :id="'eval'+site.product.productId">
 										<!--标题 -->
 										<div class="am-cf am-padding">
 											<div class="am-fl am-cf">
@@ -234,15 +234,15 @@
 												<div class="am-form-group">
 													<p class="eval-p">请写出您对于此商品的评价:</p>
 													<br />
-													<textarea rows="5" :id="'evalu'+site.productId"></textarea>
+													<textarea rows="5" :id="'evalu'+site.product.productId"></textarea>
 													<p class="eval-p">晒图:</p>
 													<input type="file" class="evalImg" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" id="profile">
 													<img class="forEvalImg" id="profileImg" src="../static/images/123.png"/>
 												</div>
 												<div class="am-form-group theme-poptit">
 													<div class="am-u-sm-9 am-u-sm-push-3">
-														<div class="am-btn am-btn-danger" @click="sub(site.productId,site.orderId)">提交</div>
-														<div class="am-btn am-btn-danger" @click="hide(site.productId)">取消</div>
+														<div class="am-btn am-btn-danger" @click="sub(site.product.productId,site.orderId)">提交</div>
+														<div class="am-btn am-btn-danger" @click="hide(site.product.productId)">取消</div>
 													</div>
 												</div>
 											</form>

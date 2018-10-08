@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -57,6 +58,10 @@ public class UserController {
                         userType="普通会员";
                     session.setAttribute("userType",userType);
                     session.setAttribute("userProfile",user.getUserProfile());
+                    Date date = new Date();
+                    Timestamp timestamp = new Timestamp(date.getTime());
+                    user.setLastLoginTime(timestamp);
+                    userService.modifyUser(user);
                     return 1;//登录成功
                 }
 
@@ -101,7 +106,6 @@ public class UserController {
     public int modifyUser(@RequestBody User user, HttpSession session)
     {
         user.setUserId((int)session.getAttribute("userId"));
-        System.out.println(user.getSex());
         return userService.modifyUser(user);
 
     }
@@ -109,19 +113,24 @@ public class UserController {
     //修改头像
     @RequestMapping("/modifyUserProfile")
     @ResponseBody
-    public int modifyUserProfile(@RequestParam("file") MultipartFile file, HttpSession session, HttpServletRequest request) throws IOException
+    public int modifyUserProfile(@RequestParam("file") MultipartFile file, HttpSession session) throws IOException
     {
-        if(file!=null) {
+        User user = new User();
+        user.setUserId((int)session.getAttribute("userId"));
+
+        if (file != null) {
             //获取上传文件的原始名称
             String originalFilename = file.getOriginalFilename();
             // 上传图片
             if (originalFilename != null && originalFilename.length() > 0) {
-                //获取Tomcat服务器所在的路径
-                String tomcat_path = System.getProperty("user.dir");
-                String pic_path = tomcat_path + "\\webapp" + "\\pic_file\\";
+                // 绝对路径
+                String pic_path = "C:\\Users\\63249\\IdeaProjects\\fullbuy\\src\\main\\webapp\\UserProfile\\";
                 // 新的图片名称
-                String newFileName = originalFilename.substring(originalFilename.lastIndexOf("."));
-                String finalPath = pic_path + newFileName;
+                String newName = session.getAttribute("userId") + Long.toString(System.currentTimeMillis());
+                // 文件后缀
+                String suffix = originalFilename.substring(originalFilename.lastIndexOf("."));
+                // 最终路径
+                String finalPath = pic_path + newName + suffix;
                 System.out.println("上传图片的路径：" + finalPath);
                 // 新图片
                 File newFile = new File(finalPath);
@@ -132,42 +141,13 @@ public class UserController {
                 // 将内存中的数据写入磁盘
                 file.transferTo(newFile);
 
-                User user = new User();
-                user.setUserId((int) session.getAttribute("userId"));
-                user.setUserProfile(finalPath);
-
-                return userService.modifyUser(user);
+                user.setUserProfile("/UserProfile/" + newName + suffix);
             }
-            else
-                return -2;//文件名找不到
         }
-        else
-            return -1;//文件为空
 
+        return userService.modifyUser(user);
     }
 
-    //修改密码
-    @RequestMapping("/modifyPassword")
-    @ResponseBody
-    public int modifyPassword(@RequestParam("oldPassword") String oldPassword,
-                                 @RequestParam("newPassword") String newPassword,
-                                 HttpSession session)
-    {
-
-        User user = userService.displayUserDetail((int)session.getAttribute("userId"));
-        String cpassword = MD5Util.md5(oldPassword);
-        if(user.getPassword().equals(cpassword))
-        {
-            user.setPassword(MD5Util.md5(newPassword));
-            if (userService.modifyUser(user)!=0)
-                return 1;/*"修改密码成功，记得保存好哦";*/
-            else
-                return 0;/*"修改密码失败";*/
-        }
-        else
-            return 2;/*"旧密码错误哦";*/
-
-    }
 
     //显示用户收货地址
     @RequestMapping("/displayAddress")

@@ -153,7 +153,7 @@ public class OrderController {
     //订单详情
     @RequestMapping("/displayOrderDetail")
     @ResponseBody
-    public Order displayOrderDetail(@RequestParam("orderId") String orderId)
+    public Order displayOrderDetail(@RequestParam("orderId") String orderId/*@PathVariable("orderId") String orderId*/)
     {
         return orderService.showOrderDetail(orderId);
     }

@@ -21,6 +21,8 @@ public interface OrderService {
     int refund(Order order);
     /*确认收货*/
     int confirm(Order order);
+    /*评价*/
+    int comment(Order order);
 
 
 }
