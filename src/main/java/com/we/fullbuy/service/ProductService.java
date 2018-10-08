@@ -1,6 +1,7 @@
 package com.we.fullbuy.service;
 
 import com.we.fullbuy.pojo.Product;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ public interface ProductService {
     int deleteProduct(int productId);
     /*商品列表*/
     List<Product> showProduct();
+    /*显示商家商品*/
+    List<Product> displaySalesProducts(int salesId);
     /*商品详情*/
     Product showProductDetail(int productId);
     /*关键字搜索商品*/

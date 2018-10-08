@@ -2,15 +2,15 @@ package com.we.fullbuy.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.we.fullbuy.pojo.Product;
-import com.we.fullbuy.pojo.Sku;
+import com.we.fullbuy.pojo.*;
+import com.we.fullbuy.service.CategoryService;
+import com.we.fullbuy.service.ItemService;
 import com.we.fullbuy.service.ProductService;
 import com.we.fullbuy.service.SkuService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,6 +21,11 @@ public class ProductController {
     private ProductService productService;
     @Resource
     private SkuService skuService;
+    @Resource
+    private CategoryService categoryService;
+    @Resource
+    private ItemService itemService;
+
 
     //商品SKU详情
     @RequestMapping("/displayProductDetailWithSku")
@@ -37,6 +42,14 @@ public class ProductController {
     public List<Product> displayProducts()
     {
         return productService.showProduct();
+    }
+
+    //显示商家商品
+    @RequestMapping("/displaySalesProducts")
+    @ResponseBody
+    public List<Product> displaySalesProducts(@RequestParam("salesId") int salesId){
+
+        return productService.displaySalesProducts(salesId);
     }
 
 
@@ -176,6 +189,31 @@ public class ProductController {
     }
 
     //获取一级分类
+    @RequestMapping("/displayCategory")
+    @ResponseBody
+    public List<Category> displayCategory()
+    {
+        return categoryService.displayCategory();
+    }
 
+    //获取二级分类
+    @RequestMapping("/displaySecondCategory")
+    @ResponseBody
+    public List<Secondcategory> displaySecondCategory(@RequestParam("categoryId") int categoryId)
+    {
+        return categoryService.displaySecondCategory(categoryId);
+    }
+
+    //规格
+    @RequestMapping("/displayItems")
+    @ResponseBody
+    public HashMap displayItems() {
+        HashMap map = new HashMap();
+        List<Item> itemList = itemService.displayItem();
+        List<Seconditem> seconditemList = itemService.displaySecondItem();
+        map.put("itemList",itemList);
+        map.put("seconditemList",seconditemList);
+        return map;
+    }
 
 }

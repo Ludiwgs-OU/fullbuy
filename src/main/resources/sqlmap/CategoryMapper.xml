@@ -55,4 +55,11 @@
     set category_Name = #{categoryName,jdbcType=VARCHAR}
     where category_Id = #{categoryId,jdbcType=INTEGER}
   </update>
+
+
+  <!--new-->
+  <select id="displayCategory" resultMap="BaseResultMap">
+    select *
+    from category
+  </select>
 </mapper>

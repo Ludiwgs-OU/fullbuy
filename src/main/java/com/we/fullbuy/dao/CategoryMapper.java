@@ -2,6 +2,8 @@ package com.we.fullbuy.dao;
 
 import com.we.fullbuy.pojo.Category;
 
+import java.util.List;
+
 public interface CategoryMapper {
     int deleteByPrimaryKey(Integer categoryId);
 
@@ -14,4 +16,7 @@ public interface CategoryMapper {
     int updateByPrimaryKeySelective(Category record);
 
     int updateByPrimaryKey(Category record);
+
+    /*new*/
+    List<Category> displayCategory();
 }

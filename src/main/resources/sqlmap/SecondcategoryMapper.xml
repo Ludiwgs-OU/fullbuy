@@ -68,4 +68,11 @@
       category_Id = #{categoryId,jdbcType=INTEGER}
     where second_Category_Id = #{secondCategoryId,jdbcType=INTEGER}
   </update>
+
+  <!--new-->
+  <select id="displaySecondCategory" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from secondcategory
+    where Category_Id = #{CategoryId,jdbcType=INTEGER}
+  </select>
 </mapper>

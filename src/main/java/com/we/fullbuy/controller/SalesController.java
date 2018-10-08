@@ -1,10 +1,7 @@
 package com.we.fullbuy.controller;
 
-import com.we.fullbuy.pojo.Item;
 import com.we.fullbuy.pojo.Order;
 import com.we.fullbuy.pojo.Sales;
-import com.we.fullbuy.pojo.Seconditem;
-import com.we.fullbuy.service.ItemService;
 import com.we.fullbuy.service.OrderService;
 import com.we.fullbuy.service.SalesService;
 import com.we.fullbuy.utils.MD5Util;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -24,8 +20,6 @@ import java.util.List;
 public class SalesController {
     @Resource
     private SalesService salesService;
-    @Resource
-    private ItemService itemService;
     @Resource
     private OrderService orderService;
 
@@ -101,17 +95,7 @@ public class SalesController {
         return salesService.displayRecommend();
     }
 
-    //规格
-    @RequestMapping("/displayItems")
-    @ResponseBody
-    public HashMap displayItems() {
-        HashMap map = new HashMap();
-        List<Item> itemList = itemService.displayItem();
-        List<Seconditem> seconditemList = itemService.displaySecondItem();
-        map.put("itemList",itemList);
-        map.put("seconditemList",seconditemList);
-        return map;
-    }
+
 
     //确认收退款
     @RequestMapping("/confirmRefund")

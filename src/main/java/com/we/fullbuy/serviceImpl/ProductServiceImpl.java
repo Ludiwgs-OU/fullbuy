@@ -38,6 +38,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> displaySalesProducts(int salesId) {
+        return productMapper.displaySalesProducts(salesId);
+    }
+
+    @Override
     public Product showProductDetail(int productId) {
         return productMapper.displayProductDetail(productId);
     }
