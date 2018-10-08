@@ -210,12 +210,9 @@ new Vue({
 	},
 	methods: {
 		addProSku: function(){
-			var itemId = Array();
-			var secondItemId = Array();
-			var price = Array();
-			var gbPrice = Array();
-			var quan = Array();
 			
+			var skuList = Array();
+   			var skuObj = new Object();
 			var itemid = $("input[name='itemId']");
 			var secondid = $("input[name='secondItemId']");
 			var yprice = $("input[name='itemPrice']");
@@ -235,28 +232,21 @@ new Vue({
 					break;
 				}
 				else{
-					itemId[i] = itemid[i];
-	   				secondItemId[i] = secondid[i];
-	   				price[i] = yprice[i];
-	   				gbPrice[i] = gbprice[i];
-	   				quan[i] = quant[i];
-	   				//alert(itemId[i].value+" "+secondItemId[i].value+" "+price[i].value+" "+gbPrice[i].value+" "+quan[i].value);
+	   				skuObj.itemId = itemid[i];
+	   				skuObj.seconditemId = secondid[i];
+	   				skuObj.price = yprice[i];
+	   				skuObj.gbPrice = gbprice[i];
+	   				skuObj.quantity = quant[i];
+	   				skuList[i] = skuObj;
+	   				//alert(skuList[i].itemId.value+" "+skuList[i].seconditemId.value+" "+skuList[i].price.value+" "+skuList[i].gbPrice.value+" "+skuList[i].quantity.value);
 				}
    			}
-			
-			var sku = {
-				"itemId": itemId,
-				"secondItemId": secondItemId,
-				"price": price,
-				"gbPrice": gbPrice,
-				"quantity": quan
-			}
 			
 			$.ajax({
 				type:"post",
 				url:"#",
 				async:true,
-	            data: sku,
+	            data: skuList,
 				success:function(inf){
 					alert(inf);
 				},
