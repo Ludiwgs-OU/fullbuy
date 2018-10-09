@@ -83,7 +83,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"/comment/displayCommentByUserId",
+			url:"/user/displayFavor",
 			async:true,
 			dataType:"json",
 			success:function(inf){
