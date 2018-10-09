@@ -62,7 +62,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"/user/displayUserDetail",
+			url:"/sys/navi",
 			async:true,
 			dataType:"json",
 			success:function(inf){

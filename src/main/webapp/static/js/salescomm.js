@@ -28,8 +28,8 @@ new Vue({
 				async:true,
 				dataType:"json",
 				success:function(result){
-					alert(result);
-					window.reload();
+                    alert("亲您已退出，再见~");
+                    window.location.href = "home.html";
 				},
 				error:function(result){
 					alert("获取数据失败！");
@@ -40,17 +40,17 @@ new Vue({
 })
 
 new Vue({
-	el: "#sorderList",
-	data(){
-		return{
-			sites: ""
-		}
-	},
-	created(){
-		var self = this;
+	el: '#commList',
+	data:function(){
+   		return {
+   			sites: ""
+   	 	}
+ 	},
+	created: function(){
+    	var self = this;
    		$.ajax({
 			type:"get",
-			url:"/order/displaySalesOrder",
+			url:"/comment/displayCommentById",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -60,43 +60,5 @@ new Vue({
 				alert("获取数据失败！");
 			},
 		});
-	},
-	methods: {
-		send: function(id){
-			$.ajax({
-				type:"post",
-				url:"/sales/sendProduct",
-				async:true,
-				dataType:"json",
-				data: {
-					"orderId": id
-				},
-				success:function(inf){
-					alert(inf);
-					location.reload();
-				},
-				error:function(inf){
-					alert("发货失败！");
-				},
-			});
-		},
-		refund: function(id){
-			$.ajax({
-				type:"post",
-				url:"/sales/confirmRefund",
-				async:true,
-				dataType:"json",
-				data: {
-					"orderId": id
-				},
-				success:function(inf){
-					alert(inf);
-					location.reload();
-				},
-				error:function(inf){
-					alert("申请退款失败！");
-				},
-			});
-		}
-	}
+   	}
 })

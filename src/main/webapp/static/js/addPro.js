@@ -1,3 +1,12 @@
+/*
+ * 获取路径参数
+ */
+function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return decodeURI(r[2]); return null; 
+}
+
 function showImg(img,showimg){
 	var fr = new FileReader();
     fr.onload = function () {
@@ -59,7 +68,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/saleInfo.json",
+			url:"/sales/displaySalesDetail",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -101,7 +110,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/category.json",
+			url:"/product/displayCategory",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -118,11 +127,13 @@ new Vue({
    			var category = $("#category option:selected").val();
    			//alert(category);
    			$.ajax({
-				type:"get",
-				url:"../static/json/categorysec.json",
+				type:"post",
+				url:"/product/displaySecondCategory",
 				async:true,
 				dataType:"json",
-				//data: category,
+				data: {
+					"categoryId": category
+				},
 				success:function(inf){
 					self.secsites = inf;
 				},
@@ -134,6 +145,7 @@ new Vue({
    		addPro: function(){
    			var name = $("#productName").val();
    			var detail = $("#productDetail").val();
+   			var postfee = $("#postfee").val();
    			var category = $("#category option:selected").val();
    			var category2 = $("#secondCategory option:selected").val();
    			var item1 = $("#item1").val();
@@ -151,37 +163,54 @@ new Vue({
    				//alert(secitem2[i].value);
    			}
    			
-   			var formData = new FormData();
-   			formData.append('productName', name);
-			formData.append('productDetail',detail);
-			formData.append('categoryName',category);
-			formData.append('secondCategoryName',category2);
-			formData.append('searchImgPath', $('#searchImg')[0].files[0]);
-			formData.append('bImgPath1', $('#showImg1')[0].files[0]);
-			formData.append('bImgPath2', $('#showImg2')[0].files[0]);
-			formData.append('detailImgPath1', $('#detailImg1')[0].files[0]);
-			formData.append('detailImgPath2', $('#detailImg2')[0].files[0]);
-			formData.append('item1',item1);
-			formData.append('item2',item2);
-			formData.append('secondItem1Array',secitem1);
-			formData.append('secondItem2Array',secitem2);
-			
-			$.ajax({
-				type:"post",
-				url:"#",
-				async:true,
-				contentType: false,
-	            processData: false,
-	            cache: false,
-	            data: formData,
-				success:function(inf){
-					alert("新增成功，前往添加价格的页面....");
-					window.location.href="src/main/webapp/views/saleAddSku.html?pid="+inf;
-				},
-				error:function(inf){
-					alert("新增失败！");
-				},
-			});
+   			var pro = {
+   				"productName": name,
+   				"productDetail": detail,
+   				"category_Id": category,
+   				"secondCategoryId": category2,
+   				"item1": item1,
+   				"item2": item2,
+   				"postfee": postfee
+   			}
+   			if(name==null||detail==null||category==null||category2==null||item1==null||item2==null||postfee==null){
+   				alert("输入不能为空！");
+   			}
+   			else if($('#searchImg')[0].files[0] == null||
+   					$('#showImg1')[0].files[0] == null||
+   					$('#showImg2')[0].files[0] == null||
+   					$('#detailImg1')[0].files[0] == null||
+   					$('#detailImg2')[0].files[0] == null||){
+   				alert("图片不能为空！");
+   			}
+   			else{
+   				var product = new FormData();
+	   			product.append('product',pro);
+				product.append('searchImgPath',$('#searchImg')[0].files[0]);
+				product.append('bImgPath1',$('#showImg1')[0].files[0]);
+				product.append('bImgPath2',$('#showImg2')[0].files[0]);
+				product.append('detailImgPath1',$('#detailImg1')[0].files[0]);
+				product.append('detailImgPath2',$('#detailImg2')[0].files[0]);
+				product.append('itemList',secitem1);
+				product.append('secondItemList',secitem2);
+				
+				$.ajax({
+					type:"post",
+					url:"/product/addProduct",
+					async:true,
+					contentType: false,
+		            processData: false,
+		            cache: false,
+		            data: product,
+					success:function(inf){
+						alert("新增成功，前往添加价格的页面....");
+						window.location.href="src/main/webapp/views/saleAddSku.html?pid="+inf;
+					},
+					error:function(inf){
+						alert("新增失败！");
+					},
+				});
+   			}
+   			
    		}
    	}
 })
@@ -195,11 +224,15 @@ new Vue({
 	},
 	created(){
 		var self = this;
+		var pid = getUrlParam('pid');
    		$.ajax({
-			type:"get",
-			url:"../static/json/sku.json",
+			type:"post",
+			url:"/product/displaySku",
 			async:true,
 			dataType:"json",
+			data: {
+				"productId":pid
+			},
 			success:function(inf){
 				self.site = inf;
 			},
@@ -210,12 +243,9 @@ new Vue({
 	},
 	methods: {
 		addProSku: function(){
-			var itemId = Array();
-			var secondItemId = Array();
-			var price = Array();
-			var gbPrice = Array();
-			var quan = Array();
-			
+			var pid = getUrlParam('pid');
+			var skuList = Array();
+   			var skuObj = new Object();
 			var itemid = $("input[name='itemId']");
 			var secondid = $("input[name='secondItemId']");
 			var yprice = $("input[name='itemPrice']");
@@ -235,28 +265,24 @@ new Vue({
 					break;
 				}
 				else{
-					itemId[i] = itemid[i];
-	   				secondItemId[i] = secondid[i];
-	   				price[i] = yprice[i];
-	   				gbPrice[i] = gbprice[i];
-	   				quan[i] = quant[i];
-	   				//alert(itemId[i].value+" "+secondItemId[i].value+" "+price[i].value+" "+gbPrice[i].value+" "+quan[i].value);
+					skuObj.productId = pid;
+	   				skuObj.itemId = itemid[i];
+	   				skuObj.seconditemId = secondid[i];
+	   				skuObj.price = yprice[i];
+	   				skuObj.gbPrice = gbprice[i];
+	   				skuObj.quantity = quant[i];
+	   				skuList[i] = skuObj;
+	   				//alert(skuList[i].itemId.value+" "+skuList[i].seconditemId.value+" "+skuList[i].price.value+" "+skuList[i].gbPrice.value+" "+skuList[i].quantity.value);
 				}
    			}
 			
-			var sku = {
-				"itemId": itemId,
-				"secondItemId": secondItemId,
-				"price": price,
-				"gbPrice": gbPrice,
-				"quantity": quan
-			}
-			
 			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/product/addSku",
 				async:true,
-	            data: sku,
+	            data: {
+	            	"SkuList": skuList
+	            },
 				success:function(inf){
 					alert(inf);
 				},

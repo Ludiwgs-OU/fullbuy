@@ -69,6 +69,12 @@
 									</div>
 								</div>
 								<div class="am-form-group">
+									<label for="postfee" class="am-form-label">商品邮费</label>
+									<div class="am-form-content">
+										<input id="postfee" type="text" :value="site.postfee">
+									</div>
+								</div>
+								<div class="am-form-group">
 									<label for="category" class="am-form-label">一级分类</label>
 									<div class="am-form-content secondcat" style="width: 100px;">
 										<select id="category" @change="getSecond">
@@ -87,29 +93,29 @@
 								<div class="am-form-group" style="height: 100px;">
 									<label for="searchImg" class="am-form-label">搜索图片</label>
 									<div class="am-form-content detailImg" style="width: 20%;">
-										<input type="file" class="searchImg" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" id="searchImg">
+										<input name="files" type="file" class="searchImg" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" id="searchImg">
 										<img class="forSearchImg" id="forSearchImg" :src="site.searchImgPath" />
 									</div>
 									<label for="showImg1" class="am-form-label">预览图片1</label>
 									<div class="am-form-content detailImg" style="width: 20%;">
-										<input type="file" class="searchImg" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" id="showImg1">
+										<input name="files" type="file" class="searchImg" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" id="showImg1">
 										<img class="forSearchImg" id="forShowImg1" :src="site.bImgPath1" />
 									</div>
 									<label for="showImg2" class="am-form-label">预览图片2</label>
 									<div class="am-form-content detailImg" style="width: 20%;">
-										<input type="file" class="searchImg" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" id="showImg2">
+										<input name="files" type="file" class="searchImg" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" id="showImg2">
 										<img class="forSearchImg" id="forShowImg2" :src="site.bImgPath2" />
 									</div>
 								</div>
 								<div class="am-form-group" style="height: 112px;">
 									<label for="detailImg1" class="am-form-label">详情图片1</label>
 									<div class="am-form-content detailImg" style="width: 35%;">
-										<input type="file" class="upImg" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" id="detailImg1">
+										<input name="files" type="file" class="upImg" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" id="detailImg1">
 										<img class="forImg" id="forDetail1" :src="site.detailImgPath1" />
 									</div>
 									<label for="detailImg2" class="am-form-label detailImg">详情图片2</label>
 									<div class="am-form-content detailImg" style="width: 35%;">
-										<input type="file" class="upImg" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" id="detailImg2">
+										<input name="files" type="file" class="upImg" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" id="detailImg2">
 										<img class="forImg" id="forDetail2" :src="site.detailImgPath2" />
 									</div>
 								</div>
@@ -140,10 +146,10 @@
 							<div class="am-form-group" v-for="item in site.skuList">
 								<input name="skuId" type="text" :value="item.skuId" style="display: none;">
 								<div class="am-form-content changesku">
-									<span class="am-form-label">{{ item.itemList.itemName }}</span>
+									<span class="am-form-label">{{ item.item.itemName }}</span>
 								</div>
 								<div class="am-form-content changesku">
-									<span class="am-form-label">{{ item.seconditemList.secondItemName }}</span>
+									<span class="am-form-label">{{ item.secondItem.secondItemName }}</span>
 								</div>
 								<div class="am-form-content changesku">
 									<input name="itemPrice" type="text" :value="item.price">
