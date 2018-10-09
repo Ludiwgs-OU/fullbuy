@@ -107,7 +107,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/sale.json",
+			url:"/sales/displaySalesDetail",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -131,7 +131,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/explosion.json",
+			url:"/product/displaySalesProducts",
 			async:true,
 			dataType:"json",
 			success:function(inf){

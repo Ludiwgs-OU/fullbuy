@@ -68,7 +68,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/saleInfo.json",
+			url:"/sales/displaySalesDetail",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -111,10 +111,12 @@ new Vue({
 		var id = getUrlParam('pid');
 		$.ajax({
 			type:"get",
-			url:"../static/json/changePro.json",
+			url:"/product/displayProductDetailWithSku",
 			async:true,
 			dataType:"json",
-			//data: id,
+			data: {
+				"productId": id
+			},
 			success:function(result){
 				self.site = result;
 				self.secsites = result.secondCategoryList;
@@ -131,10 +133,12 @@ new Vue({
    			//alert(category);
    			$.ajax({
 				type:"get",
-				url:"../static/json/categorysec.json",
+				url:"/product/displaySecondCategory",
 				async:true,
 				dataType:"json",
-				//data: category,
+				data: {
+					"categoryId": category
+				},
 				success:function(inf){
 					self.secsites = inf;
 				},
@@ -146,6 +150,7 @@ new Vue({
    		changeInfo: function(){
    			var name = $("#productName").val();
    			var detail = $("#productDetail").val();
+   			var postfee = $("#postfee").val();
    			var category = $("#category option:selected").val();
    			var category2 = $("#secondCategory option:selected").val();
    			var seconditem1 = $("input[name='secItem1']");
@@ -164,26 +169,33 @@ new Vue({
    				//alert(skuList[i].skuId.value+" "+skuList[i].price.value+" "+skuList[i].gbPrice.value+" "+skuList[i].quantity.value);
    			}
    			
-   			var formData = new FormData();
-   			formData.append('productName', name);
-			formData.append('productDetail',detail);
-			formData.append('categoryId',category);
-			formData.append('secondCategoryId',category2);
-			formData.append('searchImgPath', $('#searchImg')[0].files[0]);
-			formData.append('bImgPath1', $('#showImg1')[0].files[0]);
-			formData.append('bImgPath2', $('#showImg2')[0].files[0]);
-			formData.append('detailImgPath1', $('#detailImg1')[0].files[0]);
-			formData.append('detailImgPath2', $('#detailImg2')[0].files[0]);
-			formData.append('skuList', skuList);
+   			var pro = {
+   				"productName": name,
+   				"productDetail": detail,
+   				"category_Id": category,
+   				"secondCategoryId": category2,
+   				"item1": item1,
+   				"item2": item2,
+   				"postfee": postfee
+   			}
+   			
+   			var Product = new FormData();
+   			product.append('product',pro);
+			Product.append('searchImgPath', $('#searchImg')[0].files[0]);
+			Product.append('bImgPath1', $('#showImg1')[0].files[0]);
+			Product.append('bImgPath2', $('#showImg2')[0].files[0]);
+			Product.append('detailImgPath1', $('#detailImg1')[0].files[0]);
+			Product.append('detailImgPath2', $('#detailImg2')[0].files[0]);
+			Product.append('SkuList', skuList);
 			
 			$.ajax({
 				type:"post",
-				url:"#",
+				url:"/product/addProduct",
 				async:true,
 				contentType: false,
 	            processData: false,
 	            cache: false,
-	            data: formData,
+	            data: product,
 				success:function(inf){
 					alert(inf);
 				},

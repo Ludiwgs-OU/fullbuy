@@ -9,7 +9,7 @@
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/saleInfo.json",
+			url:"/sales/displaySalesDetail",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -50,7 +50,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/saleInfo.json",
+			url:"/sales/displaySalesDetail",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -69,7 +69,7 @@ new Vue({
    			var address = $("#salesAddress").val();
    			var email = $("#salesEmail").val();
    			
-   			var sales = {
+   			var Sales = {
    				"salesName": name,
    				"salesAddress": address,
    				"salesDetail": detail,
@@ -79,10 +79,10 @@ new Vue({
    			
    			$.ajax({
 				type:"post",
-				url:"",
+				url:"/sales/modifySales",
 				async:true,
 				dataType:"json",
-				data: sales,
+				data: Sales,
 				success:function(inf){
 					alert("修改成功！");
 					window.reload();
@@ -101,11 +101,7 @@ $("document").ready(()=>{
 		var oldpwd = $("#user-old-password").val();
 		var newPwd = $("#user-new-password").val();
 		var rePwd = $("#user-confirm-password").val();
-		
-		var pwd = {
-			"oldPaaword": oldpwd,
-			"newPaaword": newPwd
-		}
+
 		
 		if(newPwd != rePwd){
 			alert("两次密码输入不正确！");
@@ -113,10 +109,13 @@ $("document").ready(()=>{
 		else{
 			$.ajax({
 	            type:"post",
-				url:"/user/modifyPassword",
+				url:"/sys/modifyPassword",
 				async:true,
 				dataType:"json",
-				data: pwd,
+				data: {
+					"oldPassword": oldpwd,
+					"newPassword": newPwd
+				},
 				success:function(inf){
 					alert(inf);
 					window.reload();

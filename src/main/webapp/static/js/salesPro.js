@@ -9,7 +9,7 @@ new Vue({
     	var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/saleInfo.json",
+			url:"/sales/displaySalesDetail",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -50,7 +50,7 @@ new Vue({
 		var self = this;
    		$.ajax({
 			type:"get",
-			url:"../static/json/salesPro.json",
+			url:"/product/displaySalesProducts",
 			async:true,
 			dataType:"json",
 			success:function(inf){
@@ -68,9 +68,12 @@ new Vue({
 			var self = this;
 	   		$.ajax({
 				type:"get",
-				url:"../static/json/seasales.json",
+				url:"/product/serachByKeyword",
 				async:true,
 				dataType:"json",
+				data: {
+					"keyword": searchInfo
+				},
 				success:function(inf){
 					self.sites = inf;
 				},
@@ -86,7 +89,7 @@ new Vue({
 			//alert(id);
 			$.ajax({
 				type:"post",
-				url:"",
+				url:"/product/deleteProduct",
 				async:true,
 				dataType:"json",
 				data: {
@@ -114,7 +117,7 @@ new Vue({
    			
    			//alert(min+" "+max+" "+start+" "+end);
    			
-   			var gb = {
+   			var Groudbuy = {
    				"productId": id,
    				"minPeople": min,
    				"maxPeople": max,
@@ -124,10 +127,10 @@ new Vue({
    			
    			$.ajax({
 				type:"post",
-				url:"",
+				url:"/groudbuy/addGroudbuy",
 				async:true,
 				dataType:"json",
-				data: gb,
+				data: Groudbuy,
 				success:function(inf){
 					alert("发起团购成功！");
 				},
