@@ -8,7 +8,7 @@ public class Item implements Serializable {
 
     private String itemName;
 
-    private List<Seconditem> seconditemList;
+    private List<Seconditem> secondItemList;
 
     public Integer getItemId() {
         return itemId;
@@ -26,11 +26,11 @@ public class Item implements Serializable {
         this.itemName = itemName == null ? null : itemName.trim();
     }
 
-    public List<Seconditem> getSeconditemList() {
-        return seconditemList;
+    public List<Seconditem> getSecondItemList() {
+        return secondItemList;
     }
 
-    public void setSeconditemList(List<Seconditem> seconditemList) {
-        this.seconditemList = seconditemList;
+    public void setSecondItemList(List<Seconditem> secondItemList) {
+        this.secondItemList = secondItemList;
     }
 }

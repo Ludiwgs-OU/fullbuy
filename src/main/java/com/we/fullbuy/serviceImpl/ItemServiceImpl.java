@@ -26,4 +26,14 @@ public class ItemServiceImpl implements ItemService {
     public List<Seconditem> displaySecondItem() {
         return seconditemMapper.displaySecondItem();
     }
+
+    @Override
+    public int addItem(Item item) {
+        return itemMapper.insert(item);
+    }
+
+    @Override
+    public int addSecondItem(Seconditem seconditem) {
+        return seconditemMapper.insert(seconditem);
+    }
 }

@@ -1,5 +1,9 @@
 package com.we.fullbuy.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.we.fullbuy.utils.DateUtil;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +26,8 @@ public class Product implements Serializable {
     private Integer salesId;
 
     private Date postTime;
+
+    private String postTimeStr;
 
     private Integer productStatus;
 
@@ -53,6 +59,14 @@ public class Product implements Serializable {
 
     private Sku sku;
 
+    private String secondCategoryName;
+
+    private String categoryName;
+
+    private List<Category> categoryList;
+
+    private List<Secondcategory> secondCategoryList;
+
     public Integer getProductId() {
         return productId;
     }
@@ -66,7 +80,7 @@ public class Product implements Serializable {
     }
 
     public void setProductName(String productName) {
-        this.productName = productName == null ? null : productName.trim();
+        this.productName = productName;
     }
 
     public String getProductDetail() {
@@ -74,7 +88,7 @@ public class Product implements Serializable {
     }
 
     public void setProductDetail(String productDetail) {
-        this.productDetail = productDetail == null ? null : productDetail.trim();
+        this.productDetail = productDetail;
     }
 
     public Integer getProductScore() {
@@ -138,7 +152,7 @@ public class Product implements Serializable {
     }
 
     public void setSearchImgPath(String searchImgPath) {
-        this.searchImgPath = searchImgPath == null ? null : searchImgPath.trim();
+        this.searchImgPath = searchImgPath;
     }
 
     public String getsImgPath1() {
@@ -146,7 +160,7 @@ public class Product implements Serializable {
     }
 
     public void setsImgPath1(String sImgPath1) {
-        this.sImgPath1 = sImgPath1 == null ? null : sImgPath1.trim();
+        this.sImgPath1 = sImgPath1;
     }
 
     public String getsImgPath2() {
@@ -154,7 +168,7 @@ public class Product implements Serializable {
     }
 
     public void setsImgPath2(String sImgPath2) {
-        this.sImgPath2 = sImgPath2 == null ? null : sImgPath2.trim();
+        this.sImgPath2 = sImgPath2;
     }
 
     public String getmImgPath1() {
@@ -162,7 +176,7 @@ public class Product implements Serializable {
     }
 
     public void setmImgPath1(String mImgPath1) {
-        this.mImgPath1 = mImgPath1 == null ? null : mImgPath1.trim();
+        this.mImgPath1 = mImgPath1;
     }
 
     public String getmImgPath2() {
@@ -170,7 +184,7 @@ public class Product implements Serializable {
     }
 
     public void setmImgPath2(String mImgPath2) {
-        this.mImgPath2 = mImgPath2 == null ? null : mImgPath2.trim();
+        this.mImgPath2 = mImgPath2;
     }
 
     public String getbImgPath1() {
@@ -178,7 +192,7 @@ public class Product implements Serializable {
     }
 
     public void setbImgPath1(String bImgPath1) {
-        this.bImgPath1 = bImgPath1 == null ? null : bImgPath1.trim();
+        this.bImgPath1 = bImgPath1;
     }
 
     public String getbImgPath2() {
@@ -186,7 +200,7 @@ public class Product implements Serializable {
     }
 
     public void setbImgPath2(String bImgPath2) {
-        this.bImgPath2 = bImgPath2 == null ? null : bImgPath2.trim();
+        this.bImgPath2 = bImgPath2;
     }
 
     public String getDetailImgPath1() {
@@ -194,7 +208,7 @@ public class Product implements Serializable {
     }
 
     public void setDetailImgPath1(String detailImgPath1) {
-        this.detailImgPath1 = detailImgPath1 == null ? null : detailImgPath1.trim();
+        this.detailImgPath1 = detailImgPath1;
     }
 
     public String getDetailImgPath2() {
@@ -202,7 +216,7 @@ public class Product implements Serializable {
     }
 
     public void setDetailImgPath2(String detailImgPath2) {
-        this.detailImgPath2 = detailImgPath2 == null ? null : detailImgPath2.trim();
+        this.detailImgPath2 = detailImgPath2;
     }
 
     public String getItem1() {
@@ -210,7 +224,7 @@ public class Product implements Serializable {
     }
 
     public void setItem1(String item1) {
-        this.item1 = item1 == null ? null : item1.trim();
+        this.item1 = item1;
     }
 
     public String getItem2() {
@@ -218,7 +232,7 @@ public class Product implements Serializable {
     }
 
     public void setItem2(String item2) {
-        this.item2 = item2 == null ? null : item2.trim();
+        this.item2 = item2;
     }
 
     public Integer getPostfee() {
@@ -229,7 +243,6 @@ public class Product implements Serializable {
         this.postfee = postfee;
     }
 
-
     public List<Sku> getSkuList() {
         return skuList;
     }
@@ -238,12 +251,47 @@ public class Product implements Serializable {
         this.skuList = skuList;
     }
 
-
     public Sku getSku() {
         return sku;
     }
 
     public void setSku(Sku sku) {
         this.sku = sku;
+    }
+
+    public String getSecondCategoryName() {
+        return secondCategoryName;
+    }
+
+    public void setSecondCategoryName(String secondCategoryName) {
+        this.secondCategoryName = secondCategoryName;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public List<Category> getCategoryList() {
+        return categoryList;
+    }
+
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
+    }
+
+    public List<Secondcategory> getSecondCategoryList() {
+        return secondCategoryList;
+    }
+
+    public void setSecondCategoryList(List<Secondcategory> secondCategoryList) {
+        this.secondCategoryList = secondCategoryList;
+    }
+
+    public String getPostTimeStr() {
+        return DateUtil.changetoDateStr(postTime);
     }
 }

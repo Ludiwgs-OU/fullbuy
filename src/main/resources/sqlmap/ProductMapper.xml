@@ -296,6 +296,15 @@
 
   <!--new-->
   <resultMap id="productDetail" type="com.we.fullbuy.pojo.Product" extends="BaseResultMap">
+    <collection property="categoryList" ofType="com.we.fullbuy.pojo.Category">
+      <id column="category_Id" jdbcType="INTEGER" property="categoryId" />
+      <result column="category_Name" jdbcType="VARCHAR" property="categoryName" />
+    </collection>
+    <collection property="secondCategoryList" ofType="com.we.fullbuy.pojo.Secondcategory">
+      <id column="second_Category_Id" jdbcType="INTEGER" property="secondCategoryId" />
+      <result column="second_Category_Name" jdbcType="VARCHAR" property="secondCategoryName" />
+      <result column="category_Id" jdbcType="INTEGER" property="categoryId" />
+    </collection>
     <collection property="skuList" ofType="com.we.fullbuy.pojo.Sku">
       <id column="skuId" jdbcType="INTEGER" property="skuid" />
       <id column="sku_Id" jdbcType="INTEGER" property="skuId" />
@@ -309,7 +318,7 @@
         <id column="item_Id" jdbcType="INTEGER" property="itemId" />
         <result column="item_Name" jdbcType="VARCHAR" property="itemName" />
       </collection>
-      <collection property="seconditemList" ofType="com.we.fullbuy.pojo.Seconditem">
+      <collection property="secondItemList" ofType="com.we.fullbuy.pojo.Seconditem">
         <id column="second_Item_Id" jdbcType="INTEGER" property="secondItemId" />
         <result column="second_Item_Name" jdbcType="VARCHAR" property="secondItemName" />
       </collection>
@@ -317,10 +326,10 @@
   </resultMap>
 
   <select id="displayProductDetail" parameterType="java.lang.Integer" resultMap="productDetail">
-    select p.*,s.*,i.*,si.*
-    from product p, sku s, item i, seconditem si
+    select p.*,s.*,i.*,si.*,c.*,sc.*
+    from product p, sku s, item i, seconditem si, category c,secondcategory sc
     where p.product_Id = #{productId,jdbcType=INTEGER} and s.product_Id = p.product_Id
-    and s.item_Id = i.item_Id and s.second_Item_Id = si.second_Item_Id
+          and s.item_Id = i.item_Id and s.second_Item_Id = si.second_Item_Id and c.category_Id = p.category_Id and sc.second_Category_Id = p.second_Category_Id
   </select>
 
   <select id="searchBySkuId" parameterType="java.lang.Integer" resultMap="BaseResultMap">

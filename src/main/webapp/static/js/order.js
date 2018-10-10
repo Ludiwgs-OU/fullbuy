@@ -197,7 +197,7 @@ new Vue({
 			}
    			
    			var formData = new FormData();
-			formData.append('file', $('#profile')[0].files[0]);
+			formData.append("commentImgPath", $('#profile')[0].files[0]);
 			formData.append('commentDetail',eval);
 			formData.append('productId',pid);
 			formData.append('orderId',oid);

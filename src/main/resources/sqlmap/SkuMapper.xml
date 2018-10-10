@@ -122,7 +122,7 @@
       <id column="item_Id" jdbcType="INTEGER" property="itemId" />
       <result column="item_Name" jdbcType="VARCHAR" property="itemName" />
     </collection>
-    <collection property="seconditemList" ofType="com.we.fullbuy.pojo.Seconditem">
+    <collection property="secondItemList" ofType="com.we.fullbuy.pojo.Seconditem">
       <id column="second_Item_Id" jdbcType="INTEGER" property="secondItemId" />
       <result column="second_Item_Name" jdbcType="VARCHAR" property="secondItemName" />
     </collection>
@@ -142,7 +142,17 @@
           second_Item_Id = #{secondItemId,jdbcType=INTEGER}
   </select>
 
-  <select id="displaySku" parameterType="java.lang.Integer" resultMap="sku-item">
+  <resultMap id="sku" type="com.we.fullbuy.pojo.Sku" extends="BaseResultMap">
+    <association property="item" javaType="com.we.fullbuy.pojo.Item">
+      <id column="item_Id" jdbcType="INTEGER" property="itemId" />
+      <result column="item_Name" jdbcType="VARCHAR" property="itemName" />
+    </association>
+    <association property="secondItem" javaType="com.we.fullbuy.pojo.Seconditem">
+      <id column="second_Item_Id" jdbcType="INTEGER" property="secondItemId" />
+      <result column="second_Item_Name" jdbcType="VARCHAR" property="secondItemName" />
+    </association>
+  </resultMap>
+  <select id="displaySku" parameterType="java.lang.Integer" resultMap="sku">
     select *
     from sku s,item i,seconditem si
     where s.product_Id = #{productId,jdbcType=INTEGER} and s.item_Id = i.item_Id and

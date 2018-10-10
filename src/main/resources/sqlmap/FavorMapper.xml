@@ -79,9 +79,26 @@
     <collection property="productList" ofType="com.we.fullbuy.pojo.Product">
       <id column="product_Id" jdbcType="INTEGER" property="productId" />
       <result column="product_Name" jdbcType="VARCHAR" property="productName" />
+      <result column="product_Detail" jdbcType="VARCHAR" property="productDetail" />
       <result column="product_Score" jdbcType="INTEGER" property="productScore" />
       <result column="sales_Num" jdbcType="INTEGER" property="salesNum" />
+      <result column="category_Id" jdbcType="INTEGER" property="categoryId" />
+      <result column="second_Category_Id" jdbcType="INTEGER" property="secondCategoryId" />
+      <result column="sales_Id" jdbcType="INTEGER" property="salesId" />
+      <result column="post_Time" jdbcType="TIMESTAMP" property="postTime" />
+      <result column="product_Status" jdbcType="INTEGER" property="productStatus" />
       <result column="search_Img_Path" jdbcType="VARCHAR" property="searchImgPath" />
+      <result column="s_Img_Path1" jdbcType="VARCHAR" property="sImgPath1" />
+      <result column="s_Img_Path2" jdbcType="VARCHAR" property="sImgPath2" />
+      <result column="m_Img_Path1" jdbcType="VARCHAR" property="mImgPath1" />
+      <result column="m_Img_Path2" jdbcType="VARCHAR" property="mImgPath2" />
+      <result column="b_Img_Path1" jdbcType="VARCHAR" property="bImgPath1" />
+      <result column="b_Img_Path2" jdbcType="VARCHAR" property="bImgPath2" />
+      <result column="detail_Img_Path1" jdbcType="VARCHAR" property="detailImgPath1" />
+      <result column="detail_Img_Path2" jdbcType="VARCHAR" property="detailImgPath2" />
+      <result column="item1" jdbcType="VARCHAR" property="item1" />
+      <result column="item2" jdbcType="VARCHAR" property="item2" />
+      <result column="postfee" jdbcType="INTEGER" property="postfee" />
     </collection>
   </resultMap>
 

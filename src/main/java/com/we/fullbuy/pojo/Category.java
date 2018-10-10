@@ -8,7 +8,7 @@ public class Category implements Serializable {
 
     private String categoryName;
 
-    private List<Secondcategory> secondcategoryList;
+    private List<Secondcategory> secondCategoryList;
 
     public Integer getCategoryId() {
         return categoryId;
@@ -26,11 +26,11 @@ public class Category implements Serializable {
         this.categoryName = categoryName == null ? null : categoryName.trim();
     }
 
-    public List<Secondcategory> getSecondcategoryList() {
-        return secondcategoryList;
+    public List<Secondcategory> getSecondCategoryList() {
+        return secondCategoryList;
     }
 
-    public void setSecondcategoryList(List<Secondcategory> secondcategoryList) {
-        this.secondcategoryList = secondcategoryList;
+    public void setSecondCategoryList(List<Secondcategory> secondCategoryList) {
+        this.secondCategoryList = secondCategoryList;
     }
 }

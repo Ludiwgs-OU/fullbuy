@@ -149,7 +149,7 @@ $(document).ready(()=>{
 	})
 	
 	$("#changePwd").click(()=>{
-		var oldpwd = $("#user-old-password").val();
+		var oldPwd = $("#user-old-password").val();
 		var newPwd = $("#user-new-password").val();
 		var rePwd = $("#user-confirm-password").val();
 		
@@ -159,7 +159,7 @@ $(document).ready(()=>{
 		else{
 			$.ajax({
 	            type:"post",
-				url:"/user/modifyPassword",
+				url:"/sys/modifyPassword",
 				async:true,
 				dataType:"json",
 				data: {

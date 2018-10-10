@@ -53,11 +53,11 @@ public class CommentController {
     //添加评论
     @RequestMapping("/addComment")
     @ResponseBody
-    public int addComment(@RequestParam(value = "file",required = false) MultipartFile file,
+    public int addComment(@RequestParam(value = "commentImgPath",required = false) MultipartFile commentImgPath,
                              @RequestParam("commentDetail") String commentDetail,
                              @RequestParam("productId") int productId,
                              @RequestParam("orderId") String orderId,
-                             HttpSession session) throws IOException
+                             HttpSession session)
     {
 
         Comment comment = new Comment();
@@ -74,9 +74,9 @@ public class CommentController {
         order.setOrderStatus(4);
         orderService.comment(order);
 
-        if (file != null) {
+        if (commentImgPath != null) {
             //获取上传文件的原始名称
-            String originalFilename = file.getOriginalFilename();
+            String originalFilename = commentImgPath.getOriginalFilename();
             // 上传图片
             if (originalFilename != null && originalFilename.length() > 0) {
                 // 绝对路径
@@ -94,12 +94,19 @@ public class CommentController {
                 if (!newFile.isDirectory()) {
                     newFile.mkdirs();
                 }
-                // 将内存中的数据写入磁盘
-                file.transferTo(newFile);
+                try {
+                    // 将内存中的数据写入磁盘
+                    commentImgPath.transferTo(newFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
 
                 comment.setCommentImgPath("/CommentPic/" + newName + suffix);
             }
         }
+        else
+            System.out.println("没文件");
 
         return commentService.addComment(comment);
     }

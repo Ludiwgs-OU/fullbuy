@@ -18,4 +18,5 @@ public interface SkuService {
     /*根据商品ID获取sku*/
     List<Sku> displaySku(int productId);
 
+
 }

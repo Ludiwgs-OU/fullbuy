@@ -11,4 +11,7 @@ public interface CategoryService {
     List<Category> displayCategory();
     /*获取二级Category*/
     List<Secondcategory> displaySecondCategory(int categoryId);
+    /*查询种类*/
+    Category searchBycategoryId(int categoryId);
+    Secondcategory searchBysecondCategoryId(int secondCategoryId);
 }

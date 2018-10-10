@@ -177,6 +177,7 @@
     from comment c,`order` o,product p,sku s,item i,seconditem si
     where c.user_Id = #{userId,jdbcType=INTEGER} and o.order_Id = c.order_Id and  s.sku_Id = o.sku_Id
           and p.product_Id = s.product_Id and i.item_Id = s.item_Id and si.second_Item_Id = s.second_Item_Id
+    order by  comment_Time desc
   </select>
 
   <select id="displayCommentBySalesId" parameterType="java.lang.Integer" resultMap="CommentWithOrder">

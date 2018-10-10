@@ -24,7 +24,7 @@ public class Sku implements Serializable {
 
     private List<Item> itemList;
 
-    private List<Seconditem> seconditemList;
+    private List<Seconditem> secondItemList;
 
     public Integer getSkuId() {
         return skuId;
@@ -82,22 +82,6 @@ public class Sku implements Serializable {
         this.quantity = quantity;
     }
 
-    public List<Item> getItemList() {
-        return itemList;
-    }
-
-    public void setItemList(List<Item> itemList) {
-        this.itemList = itemList;
-    }
-
-    public List<Seconditem> getSeconditemList() {
-        return seconditemList;
-    }
-
-    public void setSeconditemList(List<Seconditem> seconditemList) {
-        this.seconditemList = seconditemList;
-    }
-
     public Item getItem() {
         return item;
     }
@@ -106,11 +90,27 @@ public class Sku implements Serializable {
         this.item = item;
     }
 
-    public Seconditem getSeconditem() {
+    public Seconditem getSecondItem() {
         return secondItem;
     }
 
-    public void setSeconditem(Seconditem seconditem) {
-        this.secondItem = seconditem;
+    public void setSecondItem(Seconditem secondItem) {
+        this.secondItem = secondItem;
+    }
+
+    public List<Item> getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
+    }
+
+    public List<Seconditem> getSecondItemList() {
+        return secondItemList;
+    }
+
+    public void setSecondItemList(List<Seconditem> secondItemList) {
+        this.secondItemList = secondItemList;
     }
 }

@@ -62,4 +62,5 @@
     select *
     from category
   </select>
+
 </mapper>

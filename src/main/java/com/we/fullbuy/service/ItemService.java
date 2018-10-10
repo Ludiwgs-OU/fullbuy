@@ -10,4 +10,8 @@ public interface ItemService {
     List<Item> displayItem();
 
     List<Seconditem> displaySecondItem();
+
+    int addItem(Item item);
+
+    int addSecondItem(Seconditem seconditem);
 }

@@ -26,4 +26,14 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Secondcategory> displaySecondCategory(int categoryId) {
         return null;
     }
+
+    @Override
+    public Category searchBycategoryId(int categoryId) {
+        return categoryMapper.selectByPrimaryKey(categoryId);
+    }
+
+    @Override
+    public Secondcategory searchBysecondCategoryId(int secondCategoryId) {
+        return secondcategoryMapper.selectByPrimaryKey(secondCategoryId);
+    }
 }

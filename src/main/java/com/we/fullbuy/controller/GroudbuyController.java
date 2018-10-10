@@ -22,8 +22,9 @@ public class GroudbuyController {
     //增加团购活动
     @RequestMapping("/addGroudbuy")
     @ResponseBody
-    public int addGroudbuy(@RequestBody Groudbuy groudbuy)
+    public int addGroudbuy(@RequestBody Groudbuy groudbuy, HttpSession session)
     {
+        groudbuy.setSalesId((int)session.getAttribute("salesId"));
         return groudbuyService.addGroudbuy(groudbuy);
     }
 
